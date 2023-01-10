@@ -1,13 +1,13 @@
-## Cocktail Project
+## Cocktail Project 화면구성   
 
-### MAIN
+### [MAIN](https://github.com/Son-Sumin/CocktailProject/blob/main/%ED%99%94%EB%A9%B4%EA%B5%AC%EC%84%B1/1_Main.md)
 
-### 칵테일
+### [Cocktail](https://github.com/Son-Sumin/CocktailProject/blob/main/%ED%99%94%EB%A9%B4%EA%B5%AC%EC%84%B1/2_Cocktail.md)
 
-### 시그니처
+### [Signature](https://github.com/Son-Sumin/CocktailProject/blob/main/%ED%99%94%EB%A9%B4%EA%B5%AC%EC%84%B1/3_Signature.md)
 
-### 클래스
+### [Class](https://github.com/Son-Sumin/CocktailProject/blob/main/%ED%99%94%EB%A9%B4%EA%B5%AC%EC%84%B1/4_Class.md)
 
-### 마이페이지
+### [MyPage](https://github.com/Son-Sumin/CocktailProject/blob/main/%ED%99%94%EB%A9%B4%EA%B5%AC%EC%84%B1/5_MyPage.md)
 
-### 관리자페이지
+### [AdminPage](https://github.com/Son-Sumin/CocktailProject/blob/main/%ED%99%94%EB%A9%B4%EA%B5%AC%EC%84%B1/6_AdminPage.md)
