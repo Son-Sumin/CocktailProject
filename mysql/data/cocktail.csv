@@ -1,3 +1,105 @@
 type,name,eng_name,image
-alcohol,ë§ˆê°€ë¦¬íƒ€,Margarita,image01
-alcohol,ë”¸ê¸° ë§ˆê°€ë¦¬íƒ€,Strawberry Margarita,image02
+alcohol,³×±×·Î´Ï,Negroni,image01
+alcohol,´ÙÀÌÅ°¸®,Daiquiri,image02
+alcohol,µå¶óÀÌ ¸¶Æ¼´Ï,Dry Martini,image03
+alcohol,¶ó¸ð½º ÇÇÁî,Ramos Fizz,image04
+alcohol,¶ó½ºÆ® ¿öµå,Last Word,image05
+alcohol,·¯½ºÆ¼ ³×ÀÏ,Rusty Nail,image06
+alcohol,¸¶¸£Æ¼³×½º,Martinez,image07
+alcohol,¸ÇÇØÆ°,Manhattan,image08
+alcohol,¸Þ¸® ÇÈÆ÷µå,Mary Pickford,image09
+alcohol,¸ùÅ° ±Û·£µå,Monkey Gland,image10
+alcohol,ºÒ¹Ùµð¿¡,Boulevardier,image11
+alcohol,ºä Ä«·¹,Vieux Carre,image12
+alcohol,ºê·£µð Å©·¯½ºÅ¸,Brandy Crusta,image13
+alcohol,ºñÆ®À© ´õ ½ÃÆ®,Between the Sheets,image14
+alcohol,»çÀÌµåÄ«,Sidecar,image15
+alcohol,»çÁ¦¶ô,Sazerac,image16
+alcohol,½ºÆÃ¾î,Stinger,image17
+alcohol,¾Æ¸Þ¸®Ä«³ë,Americano,image18
+alcohol,¾Ë·º»ê´õ,Alexander,image19
+alcohol,¾Öºñ¿¡ÀÌ¼Ç,Aviation,image20
+alcohol,¿£Á© ÆäÀÌ½º,Angel Face,image21
+alcohol,¿Ãµå ÆÐ¼Çµå,Old Fashioned,image22
+alcohol,À§½ºÅ° »ç¿ö,Whisky Sour,image23
+alcohol,Á¸ ÄÝ¸°½º,John Collins,image24
+alcohol,Áø ÇÇÁî,Gin Fizz,image25
+alcohol,Ä«Áö³ë,Casino,image26
+alcohol,Å¬·Î¹ö Å¬·´,Clover Club,image27
+alcohol,ÅÎ½Ãµµ,Tuxedo,image28
+alcohol,ÆÄ¶ó´ÙÀÌ½º,Paradise,image29
+alcohol,Æ÷¸£Åä ÇÃ¸³,Porto Flip,image30
+alcohol,ÇÃ·£ÅÍÁî ÆÝÄ¡,Planter¡¯s Punch,image31
+alcohol,ÇàÅ°ÆØÅ°,Hanky-Panky,image32
+alcohol,È­ÀÌÆ® ·¹ÀÌµð,White Lady,image33
+alcohol,´õºñ,Derby,image34
+alcohol,¹ÙÄ«µð,BacardI,image35
+alcohol,½ºÅ©·çµå¶óÀÌ¹ö,Screwdriver,image36
+alcohol,°ñµç µå¸²,Golden Dream,image37
+alcohol,±×·¡½ºÈ£ÆÛ,Grasshopper,image38
+alcohol,µ¥Å³¶ó ¼±¶óÀÌÁî,Tequila Sunrise,image39
+alcohol,·Õ ¾ÆÀÏ·£µå ¾ÆÀÌ½º Æ¼,Long Island Iced Tea,image40
+alcohol,¸¶°¡¸®Å¸,Margarita,image41
+alcohol,¸¶ÀÌÅ¸ÀÌ,Mai-Tai,image42
+alcohol,¸ð½ºÄÚ ¹Ä,Moscow Mule,image43
+alcohol,¸ðÈ÷Åä,Mojito,image44
+alcohol,¹Ì¸ð»ç,Mimosa,image45
+alcohol,¹ÎÆ® ÁÙ·¾,Mint Julep,image46
+alcohol,º£½ºÆÛ,Vesper,image47
+alcohol,º§¸®´Ï,Bellini,image48
+alcohol,ºí·¢ ·¯½Ã¾È,Black Russian,image49
+alcohol,ºí·¯µð ¸Þ¸®,Bloody Mary,image50
+alcohol,¼¤ÆäÀÎ Ä¬Å×ÀÏ,Champagne Cocktail,image51
+alcohol,¼½½º ¿Â ´õ ºñÄ¡,Sex on the Beach,image52
+alcohol,½Ã ºê¸®Áî,Sea Breeze,image53
+alcohol,½Ì°¡Æú ½½¸µ,Singapore Sling,image54
+alcohol,¾ÆÀÌ¸®½Ã Ä¿ÇÇ,Irish Coffee,image55
+alcohol,Á»ºñ,Zombie,image56
+alcohol,Ä«ÀÌÇÇ¸®³Ä,Caipirinha,image57
+alcohol,ÄÚ½º¸ðÆú¸®Åº,Cosmopolitan,image58
+alcohol,Äß½º ¸®¹ÙÀÌ¹ö No.2,Corpse Reviver No.2,image59
+alcohol,Äí¹Ù ¸®ºê·¹,Cuba Libre,image60
+alcohol,Å°¸£,KIR,image61
+alcohol,ÇÁ·»Ä¡ 75,French 75,image62
+alcohol,ÇÁ·»Ä¡ Ä¿³Ø¼Ç,French Connection,image63
+alcohol,ÇÇ³ª ÄÝ¶ó´Ù,Pina Colada,image64
+alcohol,ÇÇ½ºÄÚ »ç¿ö,Pisco Sour,image65
+alcohol,Çì¹Ö¿þÀÌ ½ºÆä¼È,Hemingway Special,image66
+alcohol,È¦½ºÁî ³Ø,Horse¡¯s Neck,image67
+alcohol,°«ÆÄ´õ,Godfather,image68
+alcohol,·ÎÁî,Rose,image69
+alcohol,ÇÏºñ ¿ù¹ð¾î,Harvey Wallbanger,image70
+alcohol,³×ÀÌÅ°µå ¾Ø ÆäÀÌ¸Ó½º,Naked and Famous,image71
+alcohol,´º¿å »ç¿ö,New York Sour,image72
+alcohol,´ÙÅ© ¾Ø ½ºÅä¹Ì,Dark ¡®n¡¯ Stormy,image73
+alcohol,·¯½Ã¾È ½ºÇÁ¸µ ÆÝÄ¡,Russian Spring Punch,image74
+alcohol,·¹¸ó µå·Ó ¸¶Æ¼´Ï,Lemon Drop Martini,image75
+alcohol,¹Ù¶óÄí´Ù,Barracuda,image76
+alcohol,VE.N.TO,VE.N.TO,image77
+alcohol,ºê·¥ºí,Bramble,image78
+alcohol,ºñ½º ´ÏÁî,Bee¡¯s Knees,image79
+alcohol,»ç¿ì½º»çÀÌµå,Southside,image80
+alcohol,¼­ÆÛ¸µ ¹Ù½ºÅ¸µå,Suffering Bastard,image81
+alcohol,½ºÆÄÀÌ½Ã ÇÇÇÁÆ¼,Spicy Fifty,image82
+alcohol,¾ÆÆä·Ñ ½ºÇÁ¸®Ã÷,Aperol Spritz,image83
+alcohol,¿¡½ºÇÁ·¹¼Ò ¸¶Æ¼´Ï,Espresso Martini,image84
+alcohol,¿»·Î ¹öµå,Yellow Bird,image85
+alcohol,¿Ãµå Äí¹Ý,Old Cuban,image86
+alcohol,ÀÏ·¹°¥,Illegal,image87
+alcohol,Ä­ÂùÂ÷¶ó,Canchanchara,image88
+alcohol,Åä¹Ì½º ¸¶°¡¸®Å¸,Tommy¡¯s Margarita,image89
+alcohol,Æ®¸®´Ï´Ùµå »ç¿ö,Trinidad Sour,image90
+alcohol,Æ¼ÆÛ·¯¸®,Tipperary,image91
+alcohol,ÆÈ·Î¸¶,Paloma,image92
+alcohol,Æä´Ï½Ç¸°,Penicillin,image93
+alcohol,Æä¸£³­µðÅä,Fernandito,image94
+alcohol,ÆäÀÌÆÛ ÇÃ·¹ÀÎ,Paper Plane,image95
+alcohol,ÇÁ·»Ä¡ ¸¶Æ¼´Ï,French Martini,image96
+alcohol,¹ìÇÇ·Î,Vampiro,image97
+alcohol,B-52,B-52,image98
+alcohol,Ä«¹ÌÄ«Á¦,Kamikaze,image99
+non-alcohol,°ñµç ¸Þ´Þ¸®½ºÆ®,Golden Medalist,image100
+non-alcohol,½Åµ¥·¼¶ó,Cinderella,image101
+non-alcohol,¼È¸® ÅÛÇÃ,Shirley Temple,image102
+non-alcohol,ÇÁ·¹¸® ¿ÀÀÌ½ºÅÍ,Prairie Oyster,image103
+non-alcohol,ÇÃ·Î¸®´Ù,Florida,image104
