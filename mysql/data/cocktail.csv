@@ -1,0 +1,105 @@
+type,name,eng_name,image
+alcohol,네그로니,Negroni,image01
+alcohol,다이키리,Daiquiri,image02
+alcohol,드라이 마티니,Dry Martini,image03
+alcohol,라모스 피즈,Ramos Fizz,image04
+alcohol,라스트 워드,Last Word,image05
+alcohol,러스티 네일,Rusty Nail,image06
+alcohol,마르티네스,Martinez,image07
+alcohol,맨해튼,Manhattan,image08
+alcohol,메리 픽포드,Mary Pickford,image09
+alcohol,몽키 글랜드,Monkey Gland,image10
+alcohol,불바디에,Boulevardier,image11
+alcohol,뷰 카레,Vieux Carre,image12
+alcohol,브랜디 크러스타,Brandy Crusta,image13
+alcohol,비트윈 더 시트,Between the Sheets,image14
+alcohol,사이드카,Sidecar,image15
+alcohol,사제락,Sazerac,image16
+alcohol,스팅어,Stinger,image17
+alcohol,아메리카노,Americano,image18
+alcohol,알렉산더,Alexander,image19
+alcohol,애비에이션,Aviation,image20
+alcohol,엔젤 페이스,Angel Face,image21
+alcohol,올드 패션드,Old Fashioned,image22
+alcohol,위스키 사워,Whisky Sour,image23
+alcohol,존 콜린스,John Collins,image24
+alcohol,진 피즈,Gin Fizz,image25
+alcohol,카지노,Casino,image26
+alcohol,클로버 클럽,Clover Club,image27
+alcohol,턱시도,Tuxedo,image28
+alcohol,파라다이스,Paradise,image29
+alcohol,포르토 플립,Porto Flip,image30
+alcohol,플랜터즈 펀치,Planter’s Punch,image31
+alcohol,행키팽키,Hanky-Panky,image32
+alcohol,화이트 레이디,White Lady,image33
+alcohol,더비,Derby,image34
+alcohol,바카디,BacardI,image35
+alcohol,스크루드라이버,Screwdriver,image36
+alcohol,골든 드림,Golden Dream,image37
+alcohol,그래스호퍼,Grasshopper,image38
+alcohol,데킬라 선라이즈,Tequila Sunrise,image39
+alcohol,롱 아일랜드 아이스 티,Long Island Iced Tea,image40
+alcohol,마가리타,Margarita,image41
+alcohol,마이타이,Mai-Tai,image42
+alcohol,모스코 뮬,Moscow Mule,image43
+alcohol,모히토,Mojito,image44
+alcohol,미모사,Mimosa,image45
+alcohol,민트 줄렙,Mint Julep,image46
+alcohol,베스퍼,Vesper,image47
+alcohol,벨리니,Bellini,image48
+alcohol,블랙 러시안,Black Russian,image49
+alcohol,블러디 메리,Bloody Mary,image50
+alcohol,샴페인 칵테일,Champagne Cocktail,image51
+alcohol,섹스 온 더 비치,Sex on the Beach,image52
+alcohol,시 브리즈,Sea Breeze,image53
+alcohol,싱가폴 슬링,Singapore Sling,image54
+alcohol,아이리시 커피,Irish Coffee,image55
+alcohol,좀비,Zombie,image56
+alcohol,카이피리냐,Caipirinha,image57
+alcohol,코스모폴리탄,Cosmopolitan,image58
+alcohol,콥스 리바이버 No.2,Corpse Reviver No.2,image59
+alcohol,쿠바 리브레,Cuba Libre,image60
+alcohol,키르,KIR,image61
+alcohol,프렌치 75,French 75,image62
+alcohol,프렌치 커넥션,French Connection,image63
+alcohol,피나 콜라다,Pina Colada,image64
+alcohol,피스코 사워,Pisco Sour,image65
+alcohol,헤밍웨이 스페셜,Hemingway Special,image66
+alcohol,홀스즈 넥,Horse’s Neck,image67
+alcohol,갓파더,Godfather,image68
+alcohol,로즈,Rose,image69
+alcohol,하비 월뱅어,Harvey Wallbanger,image70
+alcohol,네이키드 앤 페이머스,Naked and Famous,image71
+alcohol,뉴욕 사워,New York Sour,image72
+alcohol,다크 앤 스토미,Dark ‘n’ Stormy,image73
+alcohol,러시안 스프링 펀치,Russian Spring Punch,image74
+alcohol,레몬 드롭 마티니,Lemon Drop Martini,image75
+alcohol,바라쿠다,Barracuda,image76
+alcohol,VE.N.TO,VE.N.TO,image77
+alcohol,브램블,Bramble,image78
+alcohol,비스 니즈,Bee’s Knees,image79
+alcohol,사우스사이드,Southside,image80
+alcohol,서퍼링 바스타드,Suffering Bastard,image81
+alcohol,스파이시 피프티,Spicy Fifty,image82
+alcohol,아페롤 스프리츠,Aperol Spritz,image83
+alcohol,에스프레소 마티니,Espresso Martini,image84
+alcohol,옐로 버드,Yellow Bird,image85
+alcohol,올드 쿠반,Old Cuban,image86
+alcohol,일레갈,Illegal,image87
+alcohol,칸찬차라,Canchanchara,image88
+alcohol,토미스 마가리타,Tommy’s Margarita,image89
+alcohol,트리니다드 사워,Trinidad Sour,image90
+alcohol,티퍼러리,Tipperary,image91
+alcohol,팔로마,Paloma,image92
+alcohol,페니실린,Penicillin,image93
+alcohol,페르난디토,Fernandito,image94
+alcohol,페이퍼 플레인,Paper Plane,image95
+alcohol,프렌치 마티니,French Martini,image96
+alcohol,뱀피로,Vampiro,image97
+alcohol,B-52,B-52,image98
+alcohol,카미카제,Kamikaze,image99
+non-alcohol,골든 메달리스트,Golden Medalist,image100
+non-alcohol,신데렐라,Cinderella,image101
+non-alcohol,셜리 템플,Shirley Temple,image102
+non-alcohol,프레리 오이스터,Prairie Oyster,image103
+non-alcohol,플로리다,Florida,image104
