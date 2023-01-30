@@ -1,4 +1,5 @@
 ﻿# CocktailProject
+<<<<<<< HEAD
  
  environment    
 <img src="https://img.shields.io/badge/Eclipse%20IDE-2C2255?style=flat-square&logo=Eclipse%20IDE&logoColor=white"/>
@@ -20,3 +21,5 @@
 library    
 <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
 
+=======
+>>>>>>> 04eaa0dc347caf95783f9bc229d1ae3d9986ec96
