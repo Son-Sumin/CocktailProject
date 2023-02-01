@@ -1,0 +1,173 @@
+name,eng_name,type,degree,image
+골드 럼,Gold rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%A8%EB%93%9C%EB%9F%BC.png
+골드슐라거,Goldschlager,strong,43,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/058.%EA%B3%A8%EB%93%9C%EC%8A%90%EB%9D%BC%EA%B1%B0.png
+꼬냑,Cognac,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/013.%EA%BC%AC%EB%83%9190.png
+다크 럼,Dark rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/018.%EB%8B%A4%ED%81%AC%EB%9F%BC.png
+데킬라 골드,Tequila gold,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/070.%EB%8D%B0%ED%82%AC%EB%9D%BC%EA%B3%A8%EB%93%9C.png
+데킬라 레포사도,Tequila Reposado,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/e95b74ef-e75b-47f9-85c2-0e9ccc959e46b76f44b6b4e35ff1e9668e919.png
+데킬라 블랑코,Tequila blanco,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/037.%EB%8D%B0%ED%82%AC%EB%9D%BC%EB%B8%94%EB%9E%91%EC%BD%94.png
+데킬라 아네호,Tequila Anejo,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/0da0b8dc-0b47-4a53-a3db-3f590dafc46eb76f44b6b4e35ff1e9668e91a.png
+드람부이,Drambuie,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/019.%EB%93%9C%EB%9E%8C%EB%B6%80%EC%9D%B490.png
+라이 위스키,Rye whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/035.%EB%9D%BC%EC%9D%B4%EC%9C%84%EC%8A%A4%ED%82%A4.png
+버번 위스키,Bourbon whiskey,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/008.%EB%B2%84%EB%B2%88%EC%9C%84%EC%8A%A4%ED%82%A4.png
+베네딕틴 D.O.M,Benedictine D.O.M,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/006.%EB%B2%A0%EB%84%A4%EB%94%95%ED%8B%B4.png
+보드카,Vodka,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/038.%EB%B3%B4%EB%93%9C%EC%B9%B4.png
+보드카 시트론,Vodka citron,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/039.%EB%B3%B4%EB%93%9C%EC%B9%B4%EC%8B%9C%ED%8A%B8%EB%A1%A0.png
+봄베이 브램블,Bombay Bramble,strong,38,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/d45fb8dc-c460-453c-81af-0adb3123cb25b76f44b6b4e35ff1e9668e908.png
+봄베이 사파이어,Bombay Sapphire,strong,47,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/55c6992b-556f-464f-9bcc-f56317e362605e7e641ee43d14e631bfa2c0e.png
+브랜디,Brandy,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/009.%EB%B8%8C%EB%9E%9C%EB%94%94.png
+삼부카,Sambuca,strong,38,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/066.%EC%82%BC%EB%B6%80%EC%B9%B4.png
+샤르트뢰즈 그린,Chartreuse green,strong,55,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/051.%EC%83%A4%EB%A5%B4%ED%8A%B8%EB%A2%B0%EC%A6%88%EA%B7%B8%EB%A6%B0.png
+샤르트뢰즈 옐로우,Chartreuse yellow,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/074.%EC%83%A4%EB%A5%B4%ED%8A%B8%EB%A2%B0%EC%A6%88%EC%98%90%EB%A1%9C%EC%9A%B0.png
+스카치 위스키,Scotch whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/036.%EC%8A%A4%EC%B9%B4%EC%B9%98%EC%9C%84%EC%8A%A4%ED%82%A4.png
+슬로 진,Sloe gin,strong,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/067.%EC%8A%AC%EB%A1%9C%EC%A7%84.png
+아그와,AGWA,strong,30,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/f17ed246-3853-432e-999c-9393cf369a14b76f44b6b4e35ff1e9668e90e.png
+아이리쉬 위스키,Irish whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/073.%EC%95%84%EC%9D%B4%EB%A6%AC%EC%89%AC%EC%9C%84%EC%8A%A4%ED%82%A4.png
+압생트,Absinthe,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/046.%EC%95%95%EC%83%9D%ED%8A%B8.png
+앙고스투라 비터,Angostura bitter,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%8A%A4%ED%88%AC%EB%9D%BC%EB%B9%84%ED%84%B090.png
+예거 마이스터,Jagermeister,strong,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EA%B1%B0%EB%A7%88%EC%9D%B4%EC%8A%A4%ED%84%B0.png
+오버프루프 럼,Over-proof rum,strong,70,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EB%B2%84%ED%94%84%EB%A3%A8%ED%94%84%EB%9F%BC.png
+올드 톰 진,Old Tom Gin,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/064.%EC%98%AC%EB%93%9C%ED%86%B0%EC%A7%84.png
+위스키,Whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/040.%EC%9C%84%EC%8A%A4%ED%82%A4.png
+잭 다니엘,Jack daniels,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/027.%EC%9E%AD%EB%8B%A4%EB%8B%88%EC%97%98.png
+진,Gin,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/023.%EC%A7%84.png
+칼바도스,Calvados,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/050.%EC%B9%BC%EB%B0%94%EB%8F%84%EC%8A%A4.png
+쿠앵트로,Cointreau,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ER/014.%EC%BF%A0%EC%95%B5%ED%8A%B8%EB%A1%9C90.png
+피스코,Pisco,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/065.%ED%94%BC%EC%8A%A4%EC%BD%94.png
+헨드릭스 진,Hendrick's Gin,strong,44,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…bf-a2a8-5df1c5293cb31b084acdc75744f121af76602.png
+화이트 럼,White rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/041.%ED%99%94%EC%9D%B4%ED%8A%B8%EB%9F%BC.png
+갈리아노,Galliano,weak,30,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/022.%EA%B0%88%EB%A6%AC%EC%95%84%EB%85%B8.png
+계란 리큐르,Egg liqueur,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/055.%EA%B3%84%EB%9E%80%EB%A6%AC%ED%81%90%EB%A5%B4.png
+그랑 마니에르,Grand marnier,weak,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/026.%EA%B7%B8%EB%9E%91%EB%A7%88%EB%8B%88%EC%97%90%EB%A5%B490.png
+드라이 베르무트,Dry vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/021.%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%A0%EB%A5%B4%EB%AC%B4%ED%8A%B8.png
+드라이 셰리,Dry sherry,weak,16,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/020.%EB%93%9C%EB%9D%BC%EC%9D%B4%EC%85%B0%EB%A6%AC.png
+레드 와인,Red wine,weak,14,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/034.%EB%A0%88%EB%93%9C%EC%99%80%EC%9D%B8.png
+레몬 리큐르,Lemon liqueur,weak,26,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/072.%EB%A0%88%EB%AA%AC%EB%A6%AC%ED%81%90%EB%A5%B4.png
+릴레블랑,Lillet Blanc,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/062.%EB%A6%B4%EB%A0%88%EB%B8%94%EB%9E%91.png
+마라스키노 리큐르,Maraschino liqueur,weak,32,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/063.%EB%A7%88%EB%9D%BC%EC%8A%A4%ED%82%A4%EB%85%B8%EB%A6%AC%ED%81%90%EB%A5%B4.png
+막걸리,Makgeolli,weak,6,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/076.%EB%A7%89%EA%B1%B8%EB%A6%AC.png
+말리부 코코넛 럼,Malibu,weak,21,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/030.%EB%A7%90%EB%A6%AC%EB%B6%80.png
+맥주,Beer,weak,5,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/005.%EB%A7%A5%EC%A3%BC.png
+미도리,Midori,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/031.%EB%AF%B8%EB%8F%84%EB%A6%AC.png
+바나나 리큐르,Banana liqueur,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/049.%EB%B0%94%EB%82%98%EB%82%98%EB%A6%AC%ED%81%90%EB%A5%B4.png
+백세주,Baekseju,weak,13,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/077.%EB%B0%B1%EC%84%B8%EC%A3%BC90.png
+버터스카치 리큐르,Butterscotch liqueur,weak,15,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/048.%EB%B2%84%ED%84%B0%EC%8A%A4%EC%B9%B4%EC%B9%98.png
+베일리스,Baileys,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/004.%EB%B2%A0%EC%9D%BC%EB%A6%AC%EC%8A%A4.png
+복숭아 리큐르,Peach liqueur,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/045.%EB%B3%B5%EC%88%AD%EC%95%84%EB%A6%AC%ED%81%90%EB%A5%B4.png
+블루 큐라소,Blue curacao,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EB%B8%94%EB%A3%A8%ED%81%90%EB%9D%BC%EC%86%8C.png
+사과 리큐르,Apple liqueur,weak,15,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/002.%EC%82%AC%EA%B3%BC%EB%A6%AC%ED%81%90%EB%A5%B4.png
+산사춘,Sansachun,weak,13,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/078.%EC%82%B0%EC%82%B0%EC%B6%9890.png
+살구 브랜디,Apricot brandy,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/003.%EC%82%B4%EA%B5%AC%EB%B8%8C%EB%9E%9C%EB%94%94.png
+생 제르망,St Germain,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/b287efa3-c119-406a-ab07-d88ad588db33b76f44b6b4e35ff1e9668e904.png
+샴보드,Chambord,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/62cb5237-a079-47b8-bfa6-c67d1e1b9dd51b084acdc75744f121af76605.png
+서던 컴포트,Southern comfort,weak,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%84%9C%EB%8D%98%EC%BB%B4%ED%8F%AC%ED%8A%B8.png
+소주,Soju,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/075.soju90.png
+스위트 베르무트,Sweet Vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%E1%85%B3%E1%84%86%E1%85%AE%E1%84%90%E1%85%B3.png
+스파클링 와인,Sparkling wine,weak,12,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%ED%8C%8C%ED%81%B4%EB%A7%81%EC%99%80%EC%9D%B8.png
+아마레토,Amaretto,weak,28,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ER/001.%EC%95%84%EB%A7%88%EB%A0%88%ED%86%A090.png
+아메리칸 허니,American Honey,weak,36,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…fe-93fd-3fc9ee37e32b1b084acdc75744f121af76606.png
+아페롤,Aperol,weak,11,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/047.%EC%95%84%ED%8E%98%EB%A1%A4.png
+엑스레이티드,Rated,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…93-ab21-07673771b03e1b084acdc75744f121af76604.png
+오렌지 비터,Orange bitter,weak,28,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%98%A4%EB%A0%8C%EC%A7%80%EB%B9%84%ED%84%B090.png
+잭다니엘 허니,Jack Daniels Honey,weak,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…0d-bdd4-a28404fbd733b76f44b6b4e35ff1e9668e910.png
+체리 브랜디,Cherry brandy,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%B2%B4%EB%A6%AC%EB%B8%8C%EB%9E%9C%EB%94%94.png
+치나,Cynar,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…6e-b8bb-4617d845420f1b084acdc75744f121af76601.png
+칼루아,kahlua,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/029.%EC%B9%BC%EB%A3%A8%EC%95%84.png
+캄파리,Campari,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/010.%EC%BA%84%ED%8C%8C%EB%A6%AC.png
+커피 리큐르,Coffee liqueur,weak,16,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%BB%A4%ED%94%BC%EB%A6%AC%ED%81%90%EB%A5%B4.png
+콰이페,Kwai Feh,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…7b-a1d9-7b60e1aaa3ee1b084acdc75744f121af76609.png
+크렘 드 민트 그린,Creme de menthe green,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/017.%EB%AF%BC%ED%8A%B8%EA%B7%B8%EB%A6%B0.png
+크렘 드 민트 화이트,Creme de menthe white,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EB%AF%BC%ED%8A%B8%ED%99%94%EC%9D%B4%ED%8A%B8.png
+크림 드 카시스,Creme de cassis,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EB%A6%BC%EB%93%9C%EC%B9%B4%EC%8B%9C%EC%8A%A4.png
+크림 드 카카오 브라운,Creme de cacao brown,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%B9%B4%EC%98%A4%EB%B8%8C%EB%9D%BC%EC%9A%B4.png
+크림 드 카카오 화이트,Creme de cacao white,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%B9%B4%EC%98%A4%ED%99%94%EC%9D%B4%ED%8A%B8.png
+트리플 섹,Ttriple sec,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/071.%ED%8A%B8%EB%A6%AC%ED%94%8C%EC%84%B9.png
+파르페 아무르,Parfait Amour,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…5b-8eb9-6a3f93a4761e1b084acdc75744f121af76600.png
+파이어볼,Fire Ball,weak,33,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…e1-930f-4b33ac9352e31b084acdc75744f121af76608.png
+프란젤리코,Frangelico,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%ED%94%84%EB%9E%80%EC%A0%A4%EB%A6%AC%EC%BD%94.png
+화이트 베르무트,Dry vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%ED%8A%B8%EB%B2%A0%EB%A5%B4%EB%AC%B4%ED%8A%B8.png
+화이트 와인,White wine,weak,10,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%ED%99%94%EC%9D%B4%ED%8A%B8%EC%99%80%EC%9D%B8.png
+힙노틱,Hpnotiq,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/060.%ED%9E%99%EB%85%B8%ED%8B%B1.png
+레드불,Red bull,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/033.%EB%A0%88%EB%93%9C%EB%B6%8880.png
+레몬티,Lemon Tea,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/114a10bb-4826-4f90-9a79-59077fb2f298b76f44b6b4e35ff1e9668e918.png
+물,Water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/042.%EB%AC%BC.png
+사이다,Sprite,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/048.%EC%82%AC%EC%9D%B4%EB%8B%A480.png
+솔의눈,Pine Bud Drink,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/30360845-22d6-4d94-b074-f2c075b1f05cb76f44b6b4e35ff1e9668e91b.png
+식용장미수,RABEE Rose water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/aa798194-3ae1-4754-8324-e8e35cd32a8d5e7e641ee43d14e631bfa2c0b.png
+우유,Milk,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/023.%EC%9A%B0%EC%9C%A0.png
+진저 비어,Ginger beer,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/025.%EC%A7%84%EC%A0%80%EB%B9%84%EC%96%B480.png
+진저 에일,Ginger ale,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/024.%EC%A7%84%EC%A0%80%EC%97%90%EC%9D%BC70.png
+커피,Coffee,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/008.%EC%BB%A4%ED%94%BC80.png
+코코넛 밀크,Coconut milk,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EC%BD%94%EC%BD%94%EB%84%9B%EB%B0%80%ED%81%AC80.png
+콜라,Cola,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/009.%EC%BD%9C%EB%9D%BC90.png
+탄산수,Soda water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/035.%ED%83%84%EC%82%B0%EC%88%9890.png
+토닉워터,Tonic water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/040.%ED%86%A0%EB%8B%89%EC%9B%8C%ED%84%B090.png
+파워에이드,Powerade,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/068.%ED%8C%8C%EC%9B%8C%EC%97%90%EC%9D%B4%EB%93%9C90.png
+핫식스,HotSix,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/069.%ED%95%AB%EC%8B%9D%EC%8A%A480.png
+홍차,Black tea,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/051.%ED%99%8D%EC%B0%A890.png
+라임 주스,Lime juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/066.%EB%9D%BC%EC%9E%84%EC%A3%BC%EC%8A%A490.png
+레몬 주스,Lemon juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/065.%EB%A0%88%EB%AA%AC%EC%A3%BC%EC%8A%A490.png
+레몬에이드,lemonade,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/020.%EB%A0%88%EB%AA%AC%EC%97%90%EC%9D%B4%EB%93%9C90.png
+망고 주스,Mango Juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/ebff265e-6a9a-426d-83b1-41fee3274735b76f44b6b4e35ff1e9668e915.png
+사과 주스,Apple juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/049.%EC%82%AC%EA%B3%BC%EC%A3%BC%EC%8A%A470.png
+석류 주스,Pomegranate juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/074.%EC%84%9D%EB%A5%98%EC%A3%BC%EC%8A%A4.png
+오렌지 주스,Orange juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/030.%EC%98%A4%EB%A0%8C%EC%A7%80%EC%A3%BC%EC%8A%A490.png
+올리브 주스,Olive juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/026.%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%A3%BC%EC%8A%A490.png
+자몽 주스,Grapefruit juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/014.%EC%9E%90%EB%AA%BD%EC%A3%BC%EC%8A%A4.png
+지룩스 라임 주스,Giroux Lime Juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/32012301-b057-414a-b021-cf8fe3b66756b76f44b6b4e35ff1e9668e909.png
+크랜베리 주스,Cranberry juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/010.%ED%81%AC%EB%9E%9C%EB%B2%A0%EB%A6%AC%EC%A3%BC%EC%8A%A4.png
+토마토 주스,Tomato juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/039.%ED%86%A0%EB%A7%88%ED%86%A0%EC%A3%BC%EC%8A%A4.png
+파인애플 주스,Pineapple juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/032.%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C%EC%A3%BC%EC%8A%A480.png
+패션프루트 주스,passion fruit juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/047.%ED%8C%A8%EC%85%98%ED%94%84%EB%A3%A8%ED%8A%B8%EC%A3%BC%EC%8A%A490.png
+딸기,Strawberry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/063.%EB%94%B8%EA%B8%B080.png
+라임,Lime,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/021.%EB%9D%BC%EC%9E%8490.png
+레몬,lemon,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/019.%EB%A0%88%EB%AA%AC80.png
+마라스키노 체리,Maraschino cherry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/022.%EB%A7%88%EB%9D%BC%EC%8A%A4%ED%82%A4%EB%85%B8%EC%B2%B4%EB%A6%AC80.png
+바나나,Banana,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/072.%EB%B0%94%EB%82%98%EB%82%9890.png
+블랙 베리,blackberry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/052.%EB%B8%94%EB%9E%99%EB%B2%A0%EB%A6%AC80.png
+사과,Apple,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/003.%EC%82%AC%EA%B3%BC60.png
+오렌지,Orange,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/027.%EC%98%A4%EB%A0%8C%EC%A7%80.png
+자몽,Grapefruit,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/013.%EC%9E%90%EB%AA%BD90.png
+파인애플,Pineapple,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/031.%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C.png
+계란,Egg,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/012.%EA%B3%84%EB%9E%80.png
+계피 스틱,Cinnamon sticks,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%84%ED%94%BC%EC%8A%A4%ED%8B%B180.png
+그레나딘 시럽,Grenadine,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/015.%EA%B7%B8%EB%A0%88%EB%82%98%EB%94%98%EC%8B%9C%EB%9F%BD.png
+꿀,Honey,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/016.%EA%BF%8090.png
+꿀 시럽,Honey syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/017.%EA%BF%80%EC%8B%9C%EB%9F%BD.png
+넛맥,Grated Nutmeg,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/045.%EB%84%9B%EB%A7%A580.png
+딸기 시럽,Strawberry syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/064.%EB%94%B8%EA%B8%B0%EC%8B%9C%EB%9F%BD.png
+라즈베리 시럽,Raspberry syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/062.%EB%9D%BC%EC%A6%88%EB%B2%A0%EB%A6%AC%EC%8B%9C%EB%9F%BD.png
+메이플 시럽,Maple syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/061.%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8B%9C%EB%9F%BD90.png
+민트,Mint,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/024.%EB%AF%BC%ED%8A%B890.png
+바나나 시럽,Banana Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/a0b1187f-1e92-4021-91dc-47ae4667ed4eb76f44b6b4e35ff1e9668e90f.png
+바닐라 추출액,Vanilla Extract,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/041.%EB%B0%94%EB%8B%90%EB%9D%BC%EC%B6%94%EC%B6%9C%EC%95%A180.png
+바질,Basil,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/050.%EB%B0%94%EC%A7%8890.png
+방울양파,Silverskin Onion,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/046.%EB%B0%A9%EC%9A%B8%EC%96%91%ED%8C%8C80.png
+버터,Butter,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/053.%EB%B2%84%ED%84%B090.png
+복숭아 퓨레,Peach puree,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/071.%EB%B3%B5%EC%88%AD%EC%95%84%ED%93%A8%EB%A0%8890.png
+샐러리,Celery,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/005.%EC%83%90%EB%9F%AC%EB%A6%AC.png
+설탕,Sugar,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/036.%EC%84%A4%ED%83%9570.png
+설탕 시럽,Sugar syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/037.%EC%84%A4%ED%83%95%EC%8B%9C%EB%9F%BD.png
+소금,Salt,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/034.%EC%86%8C%EA%B8%8880.png
+스윗 앤 사워 믹스,Sweet sour mix,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/067.%EC%8A%A4%EC%9C%97%EC%82%AC%EC%9B%8C.png
+아몬드 시럽,Almond syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/001.%EC%95%84%EB%AA%AC%EB%93%9C%EC%8B%9C%EB%9F%BD.png
+아이스크림,Ice cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/060.%EC%95%84%EC%9D%B4%EC%8A%A4%ED%81%AC%EB%A6%BC80.png
+얼그레이 시럽,Earl Gray Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/e84b5b44-ccf5-4671-9325-4e7f0bbf6135b76f44b6b4e35ff1e9668e903.png
+얼음,Ice,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/018.%EC%96%BC%EC%9D%8C80.png
+오렌지 플라워 워터,Orange flower water,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…D%94%8C%EB%9D%BC%EC%9B%8C%EC%9B%8C%ED%84%B080.png
+오이,Cucumber,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…17-ad66-c25b44cfa6681b084acdc75744f121af76603.png
+올리브,Olive,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ITEM_MASTER/025.%EC%98%AC%EB%A6%AC%EB%B8%8C90.png
+우스터 소스,Worcestershire sauce,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%9A%B0%EC%8A%A4%ED%84%B0%EC%86%8C%EC%8A%A490.png
+장미 시럽,Rose Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…5d-b443-d76a652d6acab76f44b6b4e35ff1e9668e90d.png
+정향,Clove,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/058.%EC%A0%95%ED%96%A580.png
+초콜릿,Chocolate,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ITEM_MASTER/055.%EC%B4%88%EC%BD%9C%EB%A6%BF90.png
+초콜릿 시럽,Chocolate syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%B4%88%EC%BD%9C%EB%A6%BF%EC%8B%9C%EB%9F%BD90.png
+칠리 고추,Chili,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/054.%EA%B3%A0%EC%B6%94.png
+커피 콩,Coffee beans,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ITEM_MASTER/059.%EC%BB%A4%ED%94%BC%EC%BD%A980.png
+코코넛 시럽,Coconut syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%BD%94%EC%BD%94%EB%84%9B%EC%8B%9C%EB%9F%BD.png
+코코넛 크림,Coconut cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%BD%94%EC%BD%94%EB%84%9B%ED%81%AC%EB%A6%BC80.png
+크림,Cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/011.%ED%81%AC%EB%A6%BC80.png
+타바스코,Tabasco,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ER/038.%ED%83%80%EB%B0%94%EC%8A%A4%EC%BD%9490.png
+팔각,Star anise,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/070.%ED%8C%94%EA%B0%8180.png
+후추,Black pepper,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/004.%ED%9B%84%EC%B6%9470.png
+휘핑 크림,Whipped cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/043.%ED%9C%98%ED%95%91%ED%81%AC%EB%A6%BC.png
