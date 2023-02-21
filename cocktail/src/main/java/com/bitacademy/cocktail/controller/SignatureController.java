@@ -42,13 +42,13 @@ public class SignatureController {
 		
 		Signature signature = new Signature();
 
-		signature.setNickname(form.getNickname());
+		//signature.setNickname(form.getNickname());
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setType(form.getType());
 		signature.setHit(0);
-		signature.setLike(0);
+		//signature.setLike(0);
 		
 		signatureService.add(signature);
 		return signatureService.listSignature();
@@ -70,13 +70,13 @@ public class SignatureController {
 		return signatureService.findSigView(no);
 	}
 	
-	/* 시그니처 게시글 좋아요 */
-	@PutMapping("/view/like/{no}")
-	public Signature likeSig(@PathVariable("no") Long no,  Model model) {
-		model.addAttribute("signature", signatureService.findSigView(no));
-		signatureService.updateLike(no);
-		return signatureService.findSigView(no);
-	}
+//	/* 시그니처 게시글 좋아요 */
+//	@PutMapping("/view/like/{no}")
+//	public Signature likeSig(@PathVariable("no") Long no,  Model model) {
+//		model.addAttribute("signature", signatureService.findSigView(no));
+//		signatureService.updateLike(no);
+//		return signatureService.findSigView(no);
+//	}
 
 	/* 시그니처 게시글 삭제 */
 	@DeleteMapping("/delete/{no}")
@@ -94,9 +94,9 @@ public class SignatureController {
 		
 		signature = signatureService.findSigView(no);
 		
-		signature.setNickname(signature.getNickname());
+		//signature.setNickname(signature.getNickname());
 		signature.setHit(signature.getHit());
-		signature.setLike(signature.getLike());
+		//signature.setLike(signature.getLike());
 		
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());

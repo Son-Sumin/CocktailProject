@@ -32,7 +32,7 @@ public class ReviewSignature extends BaseTimeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
 
-	private String nickname;
+	//private String nickname;
 
 	private String contents;
 	
@@ -40,14 +40,5 @@ public class ReviewSignature extends BaseTimeEntity {
 	@JsonIgnore
     @JoinColumn(name = "signature_no")
     private Signature signature;
-	
-	
-	@Builder
-	public ReviewSignature(String nickname, String contents, Signature signature) {
-      this.nickname = nickname;
-      this.contents = contents;
-      this.signature = signature;
-      signature.getReviewSignatures().add(this);
-	}
-	
+    
 }
