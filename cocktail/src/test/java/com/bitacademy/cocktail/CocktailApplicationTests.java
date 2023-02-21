@@ -1,10 +1,10 @@
-package com.bitacademy.cocktailproject;
+package com.bitacademy.cocktail;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CocktailProjectApplicationTests {
+class CocktailApplicationTests {
 
 	@Test
 	void contextLoads() {
