@@ -44,10 +44,13 @@ public class User {
 	private String profileImage;
 	@Column(name="reg_date")
 	private LocalDateTime createdAt;
+	@Column(name="gender")
 	private String gender;
 
 	@OneToMany(mappedBy="userNo")
 	private List<Board> boards = new ArrayList<>();
+	
+	
 	
     @PrePersist
     public void createdAt() {
