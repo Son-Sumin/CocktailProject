@@ -1,20 +1,20 @@
 package com.bitacademy.cocktail.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.bitacademy.cocktail.base.BaseTimeEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,14 +49,21 @@ public class Signature extends BaseTimeEntity {
 	
 	private Integer hit;
 	
-	//private Integer like;
 	
 	@ToString.Exclude
+	@Builder.Default
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
-	private List<ReviewSignature> reviewSignatures;
+	@JsonIgnoreProperties({"signature"})
+	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_no")
-	private User user;
+	@ToString.Exclude
+	@Builder.Default
+	@OneToMany(mappedBy = "signature")
+	@JsonIgnoreProperties({"signature"})
+	private List<SignatureImage> signatureImages = new ArrayList<>();
+	
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "user_no")
+//	private User user;
 	
 }

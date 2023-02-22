@@ -29,9 +29,9 @@ public class SignatureService {
 		return signatureRepository.findByNo(no).get();
 	}
 
-	/* 시그니처 작성 */
-	public Signature add(Signature signature) {		
-		return signatureRepository.save(signature);
+	/* 시그니처 작성 +  파일 업로드 */
+	public void add(Signature signature) {		
+		signatureRepository.save(signature);
 	}
 
 	/* 글 삭제 */
