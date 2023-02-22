@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
-import com.bitacademy.cocktail.domain.User;
 import com.bitacademy.cocktail.service.ReviewSignatureService;
 import com.bitacademy.cocktail.service.SignatureImageService;
 import com.bitacademy.cocktail.service.SignatureService;
@@ -43,7 +43,7 @@ public class SignatureController {
 	@PostMapping("/form")
 	public List<Signature> writeSignature(
 			@ModelAttribute Signature form,
-			@ModelAttribute User user) {
+			MultipartFile file) throws Exception {
 		
 		Signature signature = new Signature();
 		
@@ -55,7 +55,7 @@ public class SignatureController {
 		signature.setHit(0);
 		//signature.setLike(0);
 		
-		signatureService.add(signature);
+		signatureService.add(signature, file);
 		return signatureService.listSignature();
 	}
 
