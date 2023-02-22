@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
+import com.bitacademy.cocktail.domain.User;
 import com.bitacademy.cocktail.service.ReviewSignatureService;
 import com.bitacademy.cocktail.service.SignatureService;
 
@@ -38,11 +39,13 @@ public class SignatureController {
 
 	/* 시그니처 글 작성 */  ////////////////
 	@PostMapping("/form")
-	public List<Signature> writeSignature(@ModelAttribute Signature form) {
+	public List<Signature> writeSignature(
+			@ModelAttribute Signature form,
+			@ModelAttribute User user) {
 		
 		Signature signature = new Signature();
-
-		//signature.setNickname(form.getNickname());
+		
+		signature.setUser(user);
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
