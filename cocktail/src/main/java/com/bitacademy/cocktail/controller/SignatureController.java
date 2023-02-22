@@ -16,6 +16,7 @@ import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.User;
 import com.bitacademy.cocktail.service.ReviewSignatureService;
+import com.bitacademy.cocktail.service.SignatureImageService;
 import com.bitacademy.cocktail.service.SignatureService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,9 +26,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignatureController {
 
-	/* SignatureService, ReviewSignatureService 생성자 주입 */
+	/* 생성자 주입 */
 	private final SignatureService signatureService;
 	private final ReviewSignatureService reviewSignatureService;
+	private final SignatureImageService signatureImageService;
 	
 	/* 시그니처 리스트 */
 	@GetMapping({"", "/list"})
@@ -45,7 +47,7 @@ public class SignatureController {
 		
 		Signature signature = new Signature();
 		
-		signature.setUser(user);
+		//signature.setUser(user);
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
