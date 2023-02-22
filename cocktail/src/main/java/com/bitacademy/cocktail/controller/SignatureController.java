@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
-import com.bitacademy.cocktail.domain.User;
+import com.bitacademy.cocktail.domain.SignatureImage;
 import com.bitacademy.cocktail.service.ReviewSignatureService;
+import com.bitacademy.cocktail.service.SignatureImageService;
 import com.bitacademy.cocktail.service.SignatureService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,9 +27,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignatureController {
 
-	/* SignatureService, ReviewSignatureService 생성자 주입 */
+	/* 생성자 주입 */
 	private final SignatureService signatureService;
 	private final ReviewSignatureService reviewSignatureService;
+	private final SignatureImageService signatureImageService;
 	
 	/* 시그니처 리스트 */
 	@GetMapping({"", "/list"})
@@ -37,12 +40,13 @@ public class SignatureController {
 		return signatureService.listSignature();
 	}
 
-	/* 시그니처 글 작성 */  ////////////////
+	/* 시그니처 글 작성 + 파일 업로드 */
 	@PostMapping("/form")
 	public List<Signature> writeSignature(
-			@ModelAttribute Signature form,
-			@ModelAttribute User user) {
+			@ModelAttribute Signature form, SignatureImage signatureImage,
+			List<MultipartFile> files) throws Exception {
 		
+		//시그니처 글 작성
 		Signature signature = new Signature();
 		
 		//signature.setUser(user);
@@ -51,9 +55,20 @@ public class SignatureController {
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setType(form.getType());
 		signature.setHit(0);
-		//signature.setLike(0);
+		
+		System.out.println("+++++++++++++++++++++++++전 signature : " + signature);
 		
 		signatureService.add(signature);
+		
+		System.out.println("+++++++++++++++++++++++++후 signature : " + signature);
+		
+		//파일 업로드
+		signatureImageService.addImages(signature, signatureImage, files);
+		
+		System.out.println("+++++++++++++++++++++++++후후후 signature : " + signature);
+		System.out.println("+++++++++++++++++++++++++signatureImage" + signatureImage);
+		System.out.println("+++++++++++++++++++++++++files" + files);
+		
 		return signatureService.listSignature();
 	}
 

@@ -58,10 +58,13 @@ public class User {
 //	@JsonIgnoreProperties({"reviewSignatures"})
 //	private List<Signature> signatures = new ArrayList<>();
 	
-	
 	@OneToMany(mappedBy="user", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"user"})
 	private List<ReviewBoard> reviews = new ArrayList<>();
+	
+//	@OneToMany(mappedBy="user")
+//	@JsonIgnoreProperties({"reviewSignatures"})
+//	private List<Signature> signatures = new ArrayList<>();
 	
     @PrePersist
     public void createdAt() {
