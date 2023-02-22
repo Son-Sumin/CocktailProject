@@ -55,8 +55,8 @@ public class Signature extends BaseTimeEntity {
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
 	private List<ReviewSignature> reviewSignatures;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_no")
-	private User user;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "user_no")
+//	private User user;
 	
 }

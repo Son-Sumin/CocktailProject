@@ -45,7 +45,7 @@ public class SignatureController {
 		
 		Signature signature = new Signature();
 		
-		signature.setUser(user);
+		//signature.setUser(user);
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());

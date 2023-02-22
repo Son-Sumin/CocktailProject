@@ -1,7 +1,9 @@
 package com.bitacademy.cocktail.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -49,4 +51,7 @@ public class Board extends BaseTimeEntity {
 	@OneToMany(mappedBy="board", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonIgnoreProperties({"board"})
 	private List<BoardImage> imgs = new ArrayList<>();
+	
+	@OneToMany(mappedBy="board", cascade = CascadeType.ALL)
+	private Set<LikeBoard> likes = new HashSet<>();
 }
