@@ -43,10 +43,10 @@ public class SignatureController {
 	/* 시그니처 글 작성 + 파일 업로드 */
 	@PostMapping("/form")
 	public List<Signature> writeSignature(
-			@ModelAttribute Signature form,
-			SignatureImage signatureImage,
-			MultipartFile file) throws Exception {
+			@ModelAttribute Signature form, SignatureImage signatureImage,
+			List<MultipartFile> files) throws Exception {
 		
+		//시그니처 글 작성
 		Signature signature = new Signature();
 		
 		signature.setCocktailName(form.getCocktailName());
@@ -55,8 +55,19 @@ public class SignatureController {
 		signature.setType(form.getType());
 		signature.setHit(0);
 		
+		System.out.println("+++++++++++++++++++++++++전 signature : " + signature);
+		
 		signatureService.add(signature);
-		signatureImageService.add(signature, signatureImage, file);
+		
+		System.out.println("+++++++++++++++++++++++++후 signature : " + signature);
+		
+		//파일 업로드
+		signatureImageService.addImages(signature, signatureImage, files);
+		
+		System.out.println("+++++++++++++++++++++++++후후후 signature : " + signature);
+		System.out.println("+++++++++++++++++++++++++signatureImage" + signatureImage);
+		System.out.println("+++++++++++++++++++++++++files" + files);
+		
 		return signatureService.listSignature();
 	}
 

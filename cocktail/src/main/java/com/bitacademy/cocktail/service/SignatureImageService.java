@@ -1,6 +1,8 @@
 package com.bitacademy.cocktail.service;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -22,22 +24,34 @@ public class SignatureImageService {
 	/* SignatureRepository 생성자 주입 */
 	private final SignatureImageRepository signatureImageRepository;
 	
-	public void add(Signature signature, SignatureImage signatureImage, MultipartFile file) throws Exception {
+	public void addImages(
+			Signature signature, SignatureImage signatureImage,
+			List<MultipartFile> files) throws Exception {
 		
-		// 프로젝트 경로 설정, 랜덤한 문자열이 들어간 파일이름 설정
-		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
-		UUID uuid = UUID.randomUUID();
-		String fileName = uuid + "_" + file.getOriginalFilename();
+		List<SignatureImage> signatureImages = new ArrayList<>();
 		
-		// MultipartFile file 넣어줄 껍데기 지정 (경로, "파일이름")
-		File saveFile = new File(projectPath, fileName);
-		file.transferTo(saveFile);
+		for(MultipartFile file : files) {
+			if(!file.isEmpty()) {
 		
-		signatureImage.setName(fileName);
-		signatureImage.setPath("/files/" + fileName);
-		signatureImage.setSignature(signature);
-		
-		signatureImageRepository.save(signatureImage);
+				// 프로젝트 경로 설정, 랜덤한 문자열이 들어간 파일이름 설정
+				String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+				UUID uuid = UUID.randomUUID();
+				String fileName = uuid + "_" + file.getOriginalFilename();
+				
+				// MultipartFile file 넣어줄 껍데기 지정 (경로, "파일이름")
+				File saveFile = new File(projectPath, fileName);
+				file.transferTo(saveFile);
+				
+				// 사진 1장씩 List<SignatureImage>에 추가
+				SignatureImage img = new SignatureImage();
+				img.setName(file.getOriginalFilename());
+				img.setPath("/files/" + fileName);
+				img.setSignature(signature);
+				signatureImages.add(img);
+				
+				signatureImageRepository.saveAll(signatureImages);
+			}
+		}
 	}
 
 }
