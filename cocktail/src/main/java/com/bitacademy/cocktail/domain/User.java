@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,7 +50,8 @@ public class User {
 	@Column(name="gender")
 	private String gender;
 
-	@OneToMany(mappedBy="userNo")
+	@OneToMany(mappedBy="user", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"user"})
 	private List<Board> boards = new ArrayList<>();
 	
 	@OneToMany(mappedBy="user")
@@ -57,6 +59,9 @@ public class User {
 	private List<Signature> signatures = new ArrayList<>();
 	
 	
+	@OneToMany(mappedBy="board", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"user"})
+	private List<ReviewBoard> reviews = new ArrayList<>();
 	
     @PrePersist
     public void createdAt() {

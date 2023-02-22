@@ -29,12 +29,19 @@ public class BoardController {
 	@Autowired
 	BoardImageService boardImageService;
 	
+//	게시글 리스트
+	@GetMapping("/board/list")
+	public List<Board> boardList(Model model) {
+		List<Board> boardList = boardService.boardList();
+		model.addAttribute("boardList", boardList);
+		return boardList;
+	}
+	
 //	게시글 작성
 	@PostMapping("/board/write")
 	public void boardWrite(Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
 		
 		board.setHit(0L);
-		board.setFavorite(0L);
 		boardService.boardWrite(board);
 		
 		boardImageService.saveFile(board, boardImage, files);

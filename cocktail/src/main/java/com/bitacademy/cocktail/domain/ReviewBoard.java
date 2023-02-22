@@ -32,10 +32,13 @@ public class ReviewBoard extends BaseTimeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
 	
-	private String nickname;
 	private String contents;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="board_no")
 	private Board board;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_no")
+	private User user;
 }
