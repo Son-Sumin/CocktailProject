@@ -49,6 +49,7 @@ public class SignatureController {
 		//시그니처 글 작성
 		Signature signature = new Signature();
 		
+		//signature.setUser(user);
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
