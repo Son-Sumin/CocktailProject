@@ -5,9 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,8 +35,6 @@ public class Signature extends BaseTimeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
-	
-	private String nickname;
 
 	@Column(name = "cocktail_name")
 	private String cocktailName;
@@ -48,10 +49,14 @@ public class Signature extends BaseTimeEntity {
 	
 	private Integer hit;
 	
-	private Integer like;
+	//private Integer like;
 	
 	@ToString.Exclude
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
 	private List<ReviewSignature> reviewSignatures;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_no")
+	private User user;
 	
 }

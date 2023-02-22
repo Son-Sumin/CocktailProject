@@ -13,18 +13,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "user")
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "user")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
-public class User { //////////
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +51,10 @@ public class User { //////////
 
 	@OneToMany(mappedBy="userNo")
 	private List<Board> boards = new ArrayList<>();
+	
+	@OneToMany(mappedBy="user")
+	@JsonIgnoreProperties({"reviewSignatures"})
+	private List<Signature> signatures = new ArrayList<>();
 	
 	
 	
