@@ -37,11 +37,10 @@ public class Board extends BaseTimeEntity {
 	private String title;
 	private String contents;
 	private Long hit;
-	private Long favorite;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_no")
-	private User userNo;
+	private User user;
 	
 	@OneToMany(mappedBy="board", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"board"})

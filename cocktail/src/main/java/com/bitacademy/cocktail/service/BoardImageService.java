@@ -8,7 +8,6 @@ import java.util.UUID;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,9 +22,6 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class BoardImageService {
-
-	@Value("${file.upload-dir}")
-	private String fileDir;
 	
 	@Autowired
 	BoardImageRepository boardImageRepository;
