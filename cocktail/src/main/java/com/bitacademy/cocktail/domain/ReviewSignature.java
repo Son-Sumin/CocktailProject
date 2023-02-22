@@ -32,12 +32,9 @@ public class ReviewSignature extends BaseTimeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
 
-	//private String nickname;
-
 	private String contents;
 	
     @ManyToOne
-	@JsonIgnore
     @JoinColumn(name = "signature_no")
     private Signature signature;
     

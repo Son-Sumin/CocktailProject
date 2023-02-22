@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
+import com.bitacademy.cocktail.domain.SignatureImage;
 import com.bitacademy.cocktail.service.ReviewSignatureService;
 import com.bitacademy.cocktail.service.SignatureImageService;
 import com.bitacademy.cocktail.service.SignatureService;
@@ -39,23 +40,23 @@ public class SignatureController {
 		return signatureService.listSignature();
 	}
 
-	/* 시그니처 글 작성 */  ////////////////
+	/* 시그니처 글 작성 + 파일 업로드 */
 	@PostMapping("/form")
 	public List<Signature> writeSignature(
 			@ModelAttribute Signature form,
+			SignatureImage signatureImage,
 			MultipartFile file) throws Exception {
 		
 		Signature signature = new Signature();
 		
-		//signature.setUser(user);
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setType(form.getType());
 		signature.setHit(0);
-		//signature.setLike(0);
 		
-		signatureService.add(signature, file);
+		signatureService.add(signature);
+		signatureImageService.add(signature, signatureImage, file);
 		return signatureService.listSignature();
 	}
 

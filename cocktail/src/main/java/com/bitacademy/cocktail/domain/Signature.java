@@ -1,5 +1,6 @@
 package com.bitacademy.cocktail.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.bitacademy.cocktail.base.BaseTimeEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,11 +51,16 @@ public class Signature extends BaseTimeEntity {
 	
 	private Integer hit;
 	
-	//private Integer like;
 	
 	@ToString.Exclude
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
-	private List<ReviewSignature> reviewSignatures;
+	@JsonIgnoreProperties({"signature"})
+	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
+	
+	@ToString.Exclude
+	@OneToMany(mappedBy = "signature")
+	@JsonIgnoreProperties({"signature"})
+	private List<SignatureImage> signatureImages = new ArrayList<>();
 	
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "user_no")

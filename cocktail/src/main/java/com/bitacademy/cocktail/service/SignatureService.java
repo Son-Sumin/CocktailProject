@@ -1,13 +1,10 @@
 package com.bitacademy.cocktail.service;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.repository.SignatureRepository;
@@ -32,23 +29,8 @@ public class SignatureService {
 		return signatureRepository.findByNo(no).get();
 	}
 
-	/* 시그니처 작성 */
-	public void add(Signature signature, MultipartFile file) throws Exception {
-		
-		// 프로젝트 경로 설정
-		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
-		
-		// 식별자 (파일 이름에 붙일 임의의 문자 생성)
-		UUID uuid = UUID.randomUUID();
-		
-		// 저장될 파일이름 : 임의의 문자_원래 파일이름
-		String fileName = uuid + "_" + file.getOriginalFilename();
-		
-		// MultipartFile file 넣어줄 껍데기 지정 (경로, "파일이름")
-		File saveFile = new File(projectPath, "name");
-		
-		file.transferTo(saveFile);
-		
+	/* 시그니처 작성 +  파일 업로드 */
+	public void add(Signature signature) {		
 		signatureRepository.save(signature);
 	}
 
