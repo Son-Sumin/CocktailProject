@@ -29,6 +29,7 @@ public class CocktailRecipe{
 	private Long no;
 
 	@ManyToOne
+	@JsonIgnoreProperties({"cocktailRecipes"})
 	@JoinColumn(name = "cocktail_no")
 	private Cocktail cocktail;
 	
