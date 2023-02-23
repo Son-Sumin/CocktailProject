@@ -15,7 +15,7 @@ ingredient_no,cocktail_no,amount,unit
 131,4,30,ml
 156,4,3,Dashes
 142,4,2,Dashes
-102,4,Full Up,
+102,4,0,FullUp
 32,5,22.5,ml
 19,5,22.5,ml
 46,5,22.5,ml
@@ -44,7 +44,7 @@ ingredient_no,cocktail_no,amount,unit
 3,13,31,ml
 64,13,31,ml
 12,13,1,tsp
-184,13,2,Dashes
+180,13,2,Dashes
 17,14,52.5,ml
 46,14,7.5,ml
 83,14,1,tsp
@@ -61,19 +61,19 @@ ingredient_no,cocktail_no,amount,unit
 3,17,50,ml
 25,17,10,ml
 148,17,1,∞≥
-184,17,2,Dashes
+180,17,2,Dashes
 3,18,50,ml
 79,18,20,ml
 75,19,30,ml
 64,19,30,ml
-102,19,Splash,
+102,19,50,ml
 3,20,30,ml
 81,20,30,ml
 168,20,30,ml
 32,21,45,ml
 46,21,15,ml
 108,21,15,ml
-80,21,1,tsp
+179,21,1,tsp
 32,22,30,ml
 33,22,30,ml
 59,22,30,ml
@@ -93,7 +93,7 @@ ingredient_no,cocktail_no,amount,unit
 32,26,45,ml
 108,26,30,ml
 149,26,10,ml
-102,26,Splash,
+102,26,50,ml
 29,27,40,ml
 46,27,10,ml
 108,27,10,ml
@@ -101,7 +101,7 @@ ingredient_no,cocktail_no,amount,unit
 32,28,45,ml
 108,28,15,ml
 138,28,15,ml
-131,28,Drops,
+131,28,0,opsion
 26,29,30,ml
 41,29,20,ml
 46,29,0.5,tsp
@@ -114,12 +114,12 @@ ingredient_no,cocktail_no,amount,unit
 43,31,45,ml
 131,31,10,ml
 107,32,15,ml
-180,32,30,ml
+177,32,30,ml
 4,32,45,ml
 32,33,45,ml
 64,33,45,ml
-173,33,7.5,ml
-21,34,30,ml
+176,33,7.5,ml
+32,34,30,ml
 83,34,15,ml
 108,34,15,ml
 38,35,20,ml
@@ -132,7 +132,7 @@ ingredient_no,cocktail_no,amount,unit
 5,37,45,ml
 113,37,90,ml
 133,37,15,ml
-32,38,3215,ml
+32,38,15,ml
 13,38,15,ml
 37,38,15,ml
 5,38,15,ml
@@ -140,14 +140,14 @@ ingredient_no,cocktail_no,amount,unit
 108,38,30,ml
 92,38,10,ml
 148,38,10,ml
-101,38,Full Up,
+101,38,0,FullUp
 5,39,50,ml
 83,39,20,ml
 107,39,15,ml
 4,40,30,ml
 1,40,30,ml
 107,40,30,ml
-83,40,15,ml
+113,40,15,ml
 152,40,15,ml
 92,40,3.75,ml
 148,40,3.75,ml
@@ -158,16 +158,16 @@ ingredient_no,cocktail_no,amount,unit
 140,42,6,¿Ÿ
 148,42,2,tsp
 107,42,20,ml
-102,42,Full Up,
-113,43,1/2,cup
-65,43,1/3,cup
+102,42,0,FullUp
+113,43,1.5,cup
+65,43,1.5,cup
 11,44,45,ml
 140,44,4,¿Ÿ
 148,44,1,tsp
 92,44,2,tsp
 32,45,4,ml
 13,45,15,ml
-45,45,7.5,ml
+64,45,7.5,ml
 65,46,100,ml
 146,46,50,ml
 13,47,50,ml
@@ -176,13 +176,13 @@ ingredient_no,cocktail_no,amount,unit
 108,48,15,ml
 118,48,90,ml
 159,48,2,Dashes
-169,48,free,
-147,48,free,
-171,48,free,
+169,48,2,Dashes
+147,48,0.5,tsp
+171,48,0.5,tsp
 65,49,90,ml
 3,49,10,ml
 26,49,2,Dashes
-40,49, Drops,
+40,49,0,opsion
 148,49,1,∞≥
 13,50,40,ml
 55,50,20,ml
@@ -194,7 +194,7 @@ ingredient_no,cocktail_no,amount,unit
 32,52,30,ml
 83,52,7.5,ml
 12,52,7.5,ml
-46,52,15,ml
+124,52,15,ml
 119,52,120,ml
 107,52,15,ml
 133,52,10,ml
@@ -205,15 +205,15 @@ ingredient_no,cocktail_no,amount,unit
 168,53,50,ml
 1,54,45,ml
 4,54,45,ml
-3,54,30,ml
+4,54,30,ml
 152,54,15,ml
 107,54,20,ml
 115,54,10,ml
-177,54,5,ml
+181,54,5,ml
 133,54,1,tsp
 26,54,1,Dashes
 25,54,1,tsp
-182,55,60,ml
+184,55,60,ml
 122,55,1,∞≥
 148,55,4,tsp
 14,56,40,ml
@@ -244,7 +244,7 @@ ingredient_no,cocktail_no,amount,unit
 92,63,10,ml
 148,63,10,ml
 131,63,1,∞≥
-185,63,3~4,Drops
+26,63,3.5,Drops
 37,64,60,ml
 115,64,40,ml
 107,64,15,ml
@@ -252,14 +252,14 @@ ingredient_no,cocktail_no,amount,unit
 17,65,45,ml
 98,65,120,ml
 26,65,1,Dashes
-5,66,22.5,ml
+8,66,22.5,ml
 68,66,22.5,ml
 20,66,22.5,ml
 107,66,22.5,ml
 11,67,60,ml
 149,67,22.5,ml
 108,67,30,ml
-131,67,Drops,
+131,67,0,opsion
 43,67,15,ml
 4,68,60,ml
 97,68,100,ml
@@ -267,7 +267,7 @@ ingredient_no,cocktail_no,amount,unit
 107,69,25,ml
 80,69,15,ml
 149,69,10,ml
-65,69, Full Up,
+65,69,0,FullUp
 14,70,30,ml
 83,70,20,ml
 108,70,15,ml
@@ -275,8 +275,8 @@ ingredient_no,cocktail_no,amount,unit
 38,71,15,ml
 119,71,60,ml
 107,71,1,Dashes
-65,71,Full Up,
-17,72,45,ml
+65,71,0,FullUp
+183,72,45,ml
 108,72,22.5,ml
 134,72,7.5,ml
 178,72,7.5,ml
@@ -294,13 +294,13 @@ ingredient_no,cocktail_no,amount,unit
 108,75,30,ml
 92,75,7.5,ml
 148,75,7.5,ml
-140,75,5~6,¿Ÿ
-131,75,Drops,
+140,75,5.5,¿Ÿ
+131,75,0,opsion
 17,76,30,ml
 32,76,30,ml
 107,76,15,ml
 26,76,2,Dashes
-97,76,Full Up,
+97,76,0,FullUp
 13,77,50,ml
 178,77,15,ml
 107,77,15,ml
@@ -308,7 +308,7 @@ ingredient_no,cocktail_no,amount,unit
 164,77,2,∞≥
 6,78,90,ml
 68,78,60,ml
-102,78,Full Up,
+102,78,0,FullUp
 13,79,50,ml
 74,79,30,ml
 135,79,10,ml
@@ -323,22 +323,22 @@ ingredient_no,cocktail_no,amount,unit
 148,81,15,ml
 26,81,2,Dashes
 65,81,60,ml
-140,81,6~8,¿Ÿ
-5,82,30,ml
+140,81,7,¿Ÿ
+8,82,30,ml
 28,82,15,ml
 107,82,22.5,ml
 152,82,15,ml
 92,82,7.5,
 148,82,7.5,ml
 46,82,1,tsp
-131,82,Drops,
-181,83,60,ml
+131,82,0,opsion
+184,83,60,ml
 107,83,15,ml
 34,83,15,ml
 92,83,50,ml
 6,84,60,ml
 107,84,30,ml
-176,84,30,ml
+182,84,30,ml
 26,85,45,ml
 152,85,30,ml
 108,85,22.5,ml
@@ -350,16 +350,16 @@ ingredient_no,cocktail_no,amount,unit
 5,87,50,ml
 107,87,5,ml
 150,87,1,pinch
-179,87,100,ml
+185,87,100,ml
 21,88,60,ml
 21,88,7.5,ml
 108,88,22.5,ml
 135,88,22.5,ml
-173,88,2~3,∞≥
-173,89,50,ml
-101,89,Full Up,
+175,88,2.5,∞≥
+176,89,50,ml
+101,89,0,FullUp
 11,90,30,ml
-17,90,30,ml
+183,90,30,ml
 68,90,30,ml
 108,90,30,ml
 13,91,45,ml
@@ -379,7 +379,7 @@ ingredient_no,cocktail_no,amount,unit
 133,94,10,ml
 22,94,100,g
 124,94,1,∞≥
-121,95,4~5,∞≥
+121,95,4.5,∞≥
 125,95,0.5,∞≥
 133,95,15,ml
 119,95,200,ml
@@ -389,15 +389,15 @@ ingredient_no,cocktail_no,amount,unit
 119,96,20,ml
 131,97,1,∞≥
 159,97,1,tsp
-174,97,1,tsp
-175,97,2,Dashes
+173,97,1,tsp
+174,97,2,Dashes
 171,97,1,Dashes
 113,98,22.5,ml
 108,98,7.5,ml
 148,98,1,tsp
 26,98,2,Dashes
 133,99,15,ml
-98,99,Full Up,
+98,99,0,FullUp
 108,100,45,ml
 149,100,15,ml
-102,100,Full Up,
+102,100,0,FullUp
