@@ -65,10 +65,47 @@ public class SignatureImageService {
 		signatureImageRepository.deleteByNo(no);
 	}
 	
-//	/* 멀티파일 수정 */
-//	public void modify(SignatureImage signatureImage, List<MultipartFile> files) {
-//		List<SignatureImage> signatureImages = new ArrayList<>();
-//		signatureImageRepository.saveAll(signatureImage);
-//	}
+	/* 멀티파일 수정 */
+	public void modifyImages(
+			Signature signature, SignatureImage signatureImage,
+			List<MultipartFile> files) throws Exception {
+		
+		List<SignatureImage> signatureImages = signature.getSignatureImages();
+		
+		for(MultipartFile savedfile : files) {
+			if(savedfile != null) {
+				String uploadPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+				String fullpath = uploadPath + "/" + savedfile;
+		        File file = new File(fullpath);
+		        if(file.isFile()) {
+		            file.delete();
+		        }
+		        signatureImageRepository.saveAll(signatureImages);
+			}
+		}
+		
+		for(MultipartFile newFile : files) {
+			if(!newFile.isEmpty()) {
+		
+				// 프로젝트 경로 설정, 랜덤한 문자열이 들어간 파일이름 설정
+				String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+				UUID uuid = UUID.randomUUID();
+				String fileName = uuid + "_" + newFile.getOriginalFilename();
+				
+				// MultipartFile file 넣어줄 껍데기 지정 (경로, "파일이름")
+				File saveFile = new File(projectPath, fileName);
+				newFile.transferTo(saveFile);
+				
+				// 사진 1장씩 List<SignatureImage>에 추가
+				SignatureImage img = new SignatureImage();
+				img.setName(newFile.getOriginalFilename());
+				img.setPath("/files/" + fileName);
+				img.setSignature(signature);
+				signatureImages.add(img);
+				
+				signatureImageRepository.saveAll(signatureImages);
+			}
+		}
+	}
 
 }

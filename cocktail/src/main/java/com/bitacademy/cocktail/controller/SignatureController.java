@@ -2,6 +2,7 @@ package com.bitacademy.cocktail.controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -100,25 +101,12 @@ public class SignatureController {
 	@PutMapping("/modify/{no}")
 	public Signature modify(
 			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature,Signature form, 
-			SignatureImage signatureImage, MultipartFile upload, List<MultipartFile> files,
-			Model model) throws Exception {
+			@ModelAttribute Signature signature, Signature form,
+			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
 		
 		signature = signatureService.findSigView(no);
-		signature.setHit(signature.getHit());
-		
-		List<SignatureImage> savedfile = signature.getSignatureImages();
-		
-		if(savedfile!=null) {
-			String fullpath = upload + "/" + savedfile;
-	        File file = new File(fullpath);
-	        if(file.isFile()) {
-	            file.delete();
-	        }
-		}
-		
-		 //String newsavedfile = saveFile(upload);
-		
+		signature.setHit(signature.getHit());	
+
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
@@ -126,14 +114,15 @@ public class SignatureController {
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
-		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
-		model.addAttribute("signatureImages", signatureImages);
+//		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
+//		model.addAttribute("signatureImages", signatureImages);
 		
-		signatureImageService.addImages(signature, signatureImage, files);
+		signatureImageService.modifyImages(signature, signatureImage, files);
 		
 		return signatureService.findSigView(no);
 	}
 	
+
 	/* 시그니처 게시글 댓글 작성 */
 	@PostMapping("/view/{no}/review/write")
 	public Signature writeReviewSig(
