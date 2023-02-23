@@ -55,6 +55,10 @@ public class SignatureImageService {
 		}
 	}
 	
+	public void deleteImage(Long no) {
+		signatureImageRepository.deleteByNo(no);
+	}
+	
 //	/* 멀티파일 수정 */
 //	public void modify(SignatureImage signatureImage, List<MultipartFile> files) {
 //		List<SignatureImage> signatureImages = new ArrayList<>();

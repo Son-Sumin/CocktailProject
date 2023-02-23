@@ -6,4 +6,6 @@ import com.bitacademy.cocktail.domain.SignatureImage;
 
 public interface SignatureImageRepository extends JpaRepository<SignatureImage, Long> {
 
+	void deleteByNo(Long no);
+
 }

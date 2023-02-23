@@ -32,6 +32,7 @@ public class SignatureController {
 	private final ReviewSignatureService reviewSignatureService;
 	private final SignatureImageService signatureImageService;
 	
+	
 	/* 시그니처 리스트 */
 	@GetMapping({"", "/list"})
 	public List<Signature> list(Model model) {
@@ -40,7 +41,7 @@ public class SignatureController {
 		return signatureService.listSignature();
 	}
 
-	/* 시그니처 글 작성 + 파일 업로드 */
+	/* 시그니처 글 작성 + 멀티파일 업로드 */
 	@PostMapping("/form")
 	public List<Signature> writeSignature(
 			@ModelAttribute Signature form, SignatureImage signatureImage,
@@ -88,8 +89,13 @@ public class SignatureController {
 
 	/* 시그니처 게시글 삭제 */
 	@DeleteMapping("/delete/{no}")
-	public List<Signature> delete(@PathVariable("no") Long no) {
+	public List<Signature> delete(@PathVariable("no") Long no, SignatureImage signatureImage) {
+		Long nos = signatureImage.getNo();
+		
+		System.out.println("222222222222222222 nos : " + nos);
+		
 		signatureService.delete(no);
+		//signatureImageService.deleteImage(nos);
 		return signatureService.listSignature();
 	}
 
@@ -107,10 +113,10 @@ public class SignatureController {
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setType(form.getType());
+		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
 		signatureImageService.addImages(signature, signatureImage, files);
-		System.out.println(signature);
 		return signatureService.findSigView(no);
 	}
 	
