@@ -29,7 +29,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "no")
 public class Cocktail {
 
 	@Id
@@ -59,13 +58,13 @@ public class Cocktail {
 	@Builder.Default
 	private List<CocktailRecipe> cocktailRecipes = new ArrayList<>();
 
-	public void addCocktailImage(CocktailImage cocktailImage){
-		cocktailImages.add(cocktailImage);
-		cocktailImage.setCocktail(this);
-    }
-	
-	public void addCocktailRecipe(CocktailRecipe cocktailRecipe){
-		cocktailRecipes.add(cocktailRecipe);
-		cocktailRecipe.setCocktail(this);
-    }
+//	public void addCocktailImage(CocktailImage cocktailImage){
+//		cocktailImages.add(cocktailImage);
+//		cocktailImage.setCocktail(this);
+//    }
+//	
+//	public void addCocktailRecipe(CocktailRecipe cocktailRecipe){
+//		cocktailRecipes.add(cocktailRecipe);
+//		cocktailRecipe.setCocktail(this);
+//    }
 }

@@ -60,6 +60,7 @@ public class SignatureImageService {
 		}
 	}
 	
+	/* 멀티파일 삭제 */
 	public void deleteImage(Long no) {
 		signatureImageRepository.deleteByNo(no);
 	}

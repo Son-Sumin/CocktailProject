@@ -1,5 +1,6 @@
 package com.bitacademy.cocktail.controller;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.ui.Model;
@@ -44,7 +45,8 @@ public class SignatureController {
 	/* 시그니처 글 작성 + 멀티파일 업로드 */
 	@PostMapping("/form")
 	public List<Signature> writeSignature(
-			@ModelAttribute Signature form, SignatureImage signatureImage,
+			@ModelAttribute Signature form,
+			SignatureImage signatureImage,
 			List<MultipartFile> files) throws Exception {
 		
 		//시그니처 글 작성
@@ -98,12 +100,24 @@ public class SignatureController {
 	@PutMapping("/modify/{no}")
 	public Signature modify(
 			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature, Signature form, 
-			SignatureImage signatureImage, List<MultipartFile> files,
+			@ModelAttribute Signature signature,Signature form, 
+			SignatureImage signatureImage, MultipartFile upload, List<MultipartFile> files,
 			Model model) throws Exception {
 		
 		signature = signatureService.findSigView(no);
 		signature.setHit(signature.getHit());
+		
+		List<SignatureImage> savedfile = signature.getSignatureImages();
+		
+		if(savedfile!=null) {
+			String fullpath = upload + "/" + savedfile;
+	        File file = new File(fullpath);
+	        if(file.isFile()) {
+	            file.delete();
+	        }
+		}
+		
+		 //String newsavedfile = saveFile(upload);
 		
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());

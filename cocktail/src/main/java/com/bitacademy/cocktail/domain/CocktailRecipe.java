@@ -18,10 +18,9 @@ import lombok.NoArgsConstructor;
 
 @Entity(name="cocktailRecipe")
 @Data
-@Builder
+//@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "no")
 public class CocktailRecipe{
 	
 	@Id
