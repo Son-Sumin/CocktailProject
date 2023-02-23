@@ -60,7 +60,7 @@ public class Signature extends BaseTimeEntity {
 
 	@ToString.Exclude
 	@Builder.Default
-	@OneToMany(mappedBy = "signature")
+	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"signature"})
 	private List<SignatureImage> signatureImages = new ArrayList<>();
 	

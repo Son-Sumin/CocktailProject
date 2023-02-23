@@ -29,7 +29,7 @@ public class SignatureService {
 		return signatureRepository.findByNo(no).get();
 	}
 
-	/* 시그니처 작성 +  파일 업로드 */
+	/* 시그니처 작성 */
 	public void add(Signature signature) {		
 		signatureRepository.save(signature);
 	}
