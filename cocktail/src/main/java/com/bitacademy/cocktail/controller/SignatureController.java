@@ -90,12 +90,7 @@ public class SignatureController {
 	/* 시그니처 게시글 삭제 */
 	@DeleteMapping("/delete/{no}")
 	public List<Signature> delete(@PathVariable("no") Long no, SignatureImage signatureImage) {
-		Long nos = signatureImage.getNo();
-		
-		System.out.println("222222222222222222 nos : " + nos);
-		
 		signatureService.delete(no);
-		//signatureImageService.deleteImage(nos);
 		return signatureService.listSignature();
 	}
 
@@ -104,7 +99,8 @@ public class SignatureController {
 	public Signature modify(
 			@PathVariable("no") Long no, 
 			@ModelAttribute Signature signature, Signature form, 
-			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
+			SignatureImage signatureImage, List<MultipartFile> files,
+			Model model) throws Exception {
 		
 		signature = signatureService.findSigView(no);
 		signature.setHit(signature.getHit());
@@ -116,7 +112,11 @@ public class SignatureController {
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
+		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
+		model.addAttribute("signatureImages", signatureImages);
+		
 		signatureImageService.addImages(signature, signatureImage, files);
+		
 		return signatureService.findSigView(no);
 	}
 	

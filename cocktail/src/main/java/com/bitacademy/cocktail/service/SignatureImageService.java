@@ -24,6 +24,11 @@ public class SignatureImageService {
 	/* SignatureRepository 생성자 주입 */
 	private final SignatureImageRepository signatureImageRepository;
 	
+	/* 멀티파일 리스트 */
+	public List<SignatureImage> listSigImage() {
+		return signatureImageRepository.findAll();
+	}
+	
 	/* 멀티파일 업로드 */
 	public void addImages(
 			Signature signature, SignatureImage signatureImage,
