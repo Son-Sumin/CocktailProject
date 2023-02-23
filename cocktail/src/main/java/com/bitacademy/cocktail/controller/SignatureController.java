@@ -49,25 +49,15 @@ public class SignatureController {
 		//시그니처 글 작성
 		Signature signature = new Signature();
 		
-		//signature.setUser(user);
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setType(form.getType());
 		signature.setHit(0);
-		
-		System.out.println("+++++++++++++++++++++++++전 signature : " + signature);
-		
 		signatureService.add(signature);
-		
-		System.out.println("+++++++++++++++++++++++++후 signature : " + signature);
 		
 		//파일 업로드
 		signatureImageService.addImages(signature, signatureImage, files);
-		
-		System.out.println("+++++++++++++++++++++++++후후후 signature : " + signature);
-		System.out.println("+++++++++++++++++++++++++signatureImage" + signatureImage);
-		System.out.println("+++++++++++++++++++++++++files" + files);
 		
 		return signatureService.listSignature();
 	}
@@ -107,21 +97,20 @@ public class SignatureController {
 	@PutMapping("/modify/{no}")
 	public Signature modify(
 			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature,
-			Signature form) {
+			@ModelAttribute Signature signature, Signature form, 
+			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
 		
 		signature = signatureService.findSigView(no);
-		
-		//signature.setNickname(signature.getNickname());
 		signature.setHit(signature.getHit());
-		//signature.setLike(signature.getLike());
 		
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setType(form.getType());
-		
 		signatureService.modify(signature);
+		
+		signatureImageService.addImages(signature, signatureImage, files);
+		System.out.println(signature);
 		return signatureService.findSigView(no);
 	}
 	
