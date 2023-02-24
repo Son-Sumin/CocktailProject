@@ -88,4 +88,10 @@ public class BoardController {
 		
 		boardService.boardDelete(no);
 	}
+	
+//	이미지 삭제
+	@GetMapping("/board/{no}/img/delete/{bno}")
+	public void imgDelete(@PathVariable("no") Long no, @PathVariable("bno") Long bno) {
+		boardImageService.imgDelete(bno);
+	}
 }
