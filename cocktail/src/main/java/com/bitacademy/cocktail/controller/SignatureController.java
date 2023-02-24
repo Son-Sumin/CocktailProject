@@ -1,8 +1,6 @@
 package com.bitacademy.cocktail.controller;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -63,6 +61,9 @@ public class SignatureController {
 		//파일 업로드
 		signatureImageService.addImages(signature, signatureImage, files);
 		
+//		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
+//		model.addAttribute("signatureImages", signatureImages);
+		
 		return signatureService.listSignature();
 	}
 
@@ -114,10 +115,12 @@ public class SignatureController {
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
-//		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
-//		model.addAttribute("signatureImages", signatureImages);
+		// 기존에 올린 파일 있으면 지우기
+		if(signature.getSignatureImages() != null){
+			signatureImageService.deleteImage(no);
+        }
 		
-		signatureImageService.modifyImages(signature, signatureImage, files);
+		signatureImageService.addImages(signature, signatureImage, files);
 		
 		return signatureService.findSigView(no);
 	}
