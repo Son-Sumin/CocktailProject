@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CocktailRecipeService {
 
-	/* CocktailRepository, CocktailRecipeRepository, IngredientRepository 생성자 주입 */
+	/* 생성자 주입 */
 	private final CocktailRepository cocktailRepository;
 	private final CocktailRecipeRepository cocktailRecipeRepository;
 	private final IngredientRepository ingredientRepository;

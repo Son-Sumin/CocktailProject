@@ -11,9 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +27,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "no")
 public class Cocktail {
 
 	@Id
@@ -59,13 +56,13 @@ public class Cocktail {
 	@Builder.Default
 	private List<CocktailRecipe> cocktailRecipes = new ArrayList<>();
 
-	public void addCocktailImage(CocktailImage cocktailImage){
-		cocktailImages.add(cocktailImage);
-		cocktailImage.setCocktail(this);
-    }
-	
-	public void addCocktailRecipe(CocktailRecipe cocktailRecipe){
-		cocktailRecipes.add(cocktailRecipe);
-		cocktailRecipe.setCocktail(this);
-    }
+//	public void addCocktailImage(CocktailImage cocktailImage){
+//		cocktailImages.add(cocktailImage);
+//		cocktailImage.setCocktail(this);
+//    }
+//	
+//	public void addCocktailRecipe(CocktailRecipe cocktailRecipe){
+//		cocktailRecipes.add(cocktailRecipe);
+//		cocktailRecipe.setCocktail(this);
+//    }
 }

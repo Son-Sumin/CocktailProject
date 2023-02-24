@@ -44,7 +44,8 @@ public class SignatureController {
 	/* 시그니처 글 작성 + 멀티파일 업로드 */
 	@PostMapping("/form")
 	public List<Signature> writeSignature(
-			@ModelAttribute Signature form, SignatureImage signatureImage,
+			@ModelAttribute Signature form,
+			SignatureImage signatureImage,
 			List<MultipartFile> files) throws Exception {
 		
 		//시그니처 글 작성
@@ -59,6 +60,9 @@ public class SignatureController {
 		
 		//파일 업로드
 		signatureImageService.addImages(signature, signatureImage, files);
+		
+//		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
+//		model.addAttribute("signatureImages", signatureImages);
 		
 		return signatureService.listSignature();
 	}
@@ -98,13 +102,12 @@ public class SignatureController {
 	@PutMapping("/modify/{no}")
 	public Signature modify(
 			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature, Signature form, 
-			SignatureImage signatureImage, List<MultipartFile> files,
-			Model model) throws Exception {
+			@ModelAttribute Signature signature, Signature form,
+			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
 		
 		signature = signatureService.findSigView(no);
-		signature.setHit(signature.getHit());
-		
+		signature.setHit(signature.getHit());	
+
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
@@ -112,8 +115,10 @@ public class SignatureController {
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
-		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
-		model.addAttribute("signatureImages", signatureImages);
+		// 기존에 올린 파일 있으면 지우기
+		if(signature.getSignatureImages() != null){
+			signatureImageService.deleteImage(no);
+        }
 		
 		signatureImageService.addImages(signature, signatureImage, files);
 		

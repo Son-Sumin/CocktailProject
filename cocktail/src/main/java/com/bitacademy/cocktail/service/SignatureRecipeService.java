@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignatureRecipeService {
 	
-	/* CocktailRepository, SignatureRecipeRepository, IngredientRepository 생성자 주입 */
+	/* 생성자 주입 */
 	private final SignatureRepository signatureRepository;
 	private final SignatureRecipeRepository signatureRecipeRepository;
 	
