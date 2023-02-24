@@ -1,186 +1,193 @@
-name,eng_name,type,degree,image
-골드 럼,Gold rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%A8%EB%93%9C%EB%9F%BC.png
-골드슐라거,Goldschlager,strong,43,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/058.%EA%B3%A8%EB%93%9C%EC%8A%90%EB%9D%BC%EA%B1%B0.png
-꼬냑,Cognac,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/013.%EA%BC%AC%EB%83%9190.png
-다크 럼,Dark rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/018.%EB%8B%A4%ED%81%AC%EB%9F%BC.png
-데킬라 골드,Tequila gold,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/070.%EB%8D%B0%ED%82%AC%EB%9D%BC%EA%B3%A8%EB%93%9C.png
-데킬라 레포사도,Tequila Reposado,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/e95b74ef-e75b-47f9-85c2-0e9ccc959e46b76f44b6b4e35ff1e9668e919.png
-데킬라 블랑코,Tequila blanco,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/037.%EB%8D%B0%ED%82%AC%EB%9D%BC%EB%B8%94%EB%9E%91%EC%BD%94.png
-데킬라 아네호,Tequila Anejo,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/0da0b8dc-0b47-4a53-a3db-3f590dafc46eb76f44b6b4e35ff1e9668e91a.png
-드람부이,Drambuie,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/019.%EB%93%9C%EB%9E%8C%EB%B6%80%EC%9D%B490.png
-라이 위스키,Rye whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/035.%EB%9D%BC%EC%9D%B4%EC%9C%84%EC%8A%A4%ED%82%A4.png
-버번 위스키,Bourbon whiskey,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/008.%EB%B2%84%EB%B2%88%EC%9C%84%EC%8A%A4%ED%82%A4.png
-베네딕틴 D.O.M,Benedictine D.O.M,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/006.%EB%B2%A0%EB%84%A4%EB%94%95%ED%8B%B4.png
-보드카,Vodka,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/038.%EB%B3%B4%EB%93%9C%EC%B9%B4.png
-보드카 시트론,Vodka citron,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/039.%EB%B3%B4%EB%93%9C%EC%B9%B4%EC%8B%9C%ED%8A%B8%EB%A1%A0.png
-봄베이 브램블,Bombay Bramble,strong,38,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/d45fb8dc-c460-453c-81af-0adb3123cb25b76f44b6b4e35ff1e9668e908.png
-봄베이 사파이어,Bombay Sapphire,strong,47,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/55c6992b-556f-464f-9bcc-f56317e362605e7e641ee43d14e631bfa2c0e.png
-브랜디,Brandy,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/009.%EB%B8%8C%EB%9E%9C%EB%94%94.png
-삼부카,Sambuca,strong,38,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/066.%EC%82%BC%EB%B6%80%EC%B9%B4.png
-샤르트뢰즈 그린,Chartreuse green,strong,55,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/051.%EC%83%A4%EB%A5%B4%ED%8A%B8%EB%A2%B0%EC%A6%88%EA%B7%B8%EB%A6%B0.png
-샤르트뢰즈 옐로우,Chartreuse yellow,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/074.%EC%83%A4%EB%A5%B4%ED%8A%B8%EB%A2%B0%EC%A6%88%EC%98%90%EB%A1%9C%EC%9A%B0.png
-스카치 위스키,Scotch whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/036.%EC%8A%A4%EC%B9%B4%EC%B9%98%EC%9C%84%EC%8A%A4%ED%82%A4.png
-슬로 진,Sloe gin,strong,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/067.%EC%8A%AC%EB%A1%9C%EC%A7%84.png
-아그와,AGWA,strong,30,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/f17ed246-3853-432e-999c-9393cf369a14b76f44b6b4e35ff1e9668e90e.png
-아이리쉬 위스키,Irish whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/073.%EC%95%84%EC%9D%B4%EB%A6%AC%EC%89%AC%EC%9C%84%EC%8A%A4%ED%82%A4.png
-압생트,Absinthe,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/046.%EC%95%95%EC%83%9D%ED%8A%B8.png
-앙고스투라 비터,Angostura bitter,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%8A%A4%ED%88%AC%EB%9D%BC%EB%B9%84%ED%84%B090.png
-예거 마이스터,Jagermeister,strong,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EA%B1%B0%EB%A7%88%EC%9D%B4%EC%8A%A4%ED%84%B0.png
-오버프루프 럼,Over-proof rum,strong,70,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EB%B2%84%ED%94%84%EB%A3%A8%ED%94%84%EB%9F%BC.png
-올드 톰 진,Old Tom Gin,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/064.%EC%98%AC%EB%93%9C%ED%86%B0%EC%A7%84.png
-위스키,Whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/040.%EC%9C%84%EC%8A%A4%ED%82%A4.png
-잭 다니엘,Jack daniels,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/027.%EC%9E%AD%EB%8B%A4%EB%8B%88%EC%97%98.png
-진,Gin,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/023.%EC%A7%84.png
-칼바도스,Calvados,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/050.%EC%B9%BC%EB%B0%94%EB%8F%84%EC%8A%A4.png
-쿠앵트로,Cointreau,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ER/014.%EC%BF%A0%EC%95%B5%ED%8A%B8%EB%A1%9C90.png
-피스코,Pisco,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/065.%ED%94%BC%EC%8A%A4%EC%BD%94.png
-헨드릭스 진,Hendrick's Gin,strong,44,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…bf-a2a8-5df1c5293cb31b084acdc75744f121af76602.png
-화이트 럼,White rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/041.%ED%99%94%EC%9D%B4%ED%8A%B8%EB%9F%BC.png
-갈리아노,Galliano,weak,30,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/022.%EA%B0%88%EB%A6%AC%EC%95%84%EB%85%B8.png
-계란 리큐르,Egg liqueur,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/055.%EA%B3%84%EB%9E%80%EB%A6%AC%ED%81%90%EB%A5%B4.png
-그랑 마니에르,Grand marnier,weak,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/026.%EA%B7%B8%EB%9E%91%EB%A7%88%EB%8B%88%EC%97%90%EB%A5%B490.png
-드라이 베르무트,Dry vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/021.%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%A0%EB%A5%B4%EB%AC%B4%ED%8A%B8.png
-드라이 셰리,Dry sherry,weak,16,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/020.%EB%93%9C%EB%9D%BC%EC%9D%B4%EC%85%B0%EB%A6%AC.png
-레드 와인,Red wine,weak,14,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/034.%EB%A0%88%EB%93%9C%EC%99%80%EC%9D%B8.png
-레몬 리큐르,Lemon liqueur,weak,26,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/072.%EB%A0%88%EB%AA%AC%EB%A6%AC%ED%81%90%EB%A5%B4.png
-릴레블랑,Lillet Blanc,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/062.%EB%A6%B4%EB%A0%88%EB%B8%94%EB%9E%91.png
-마라스키노 리큐르,Maraschino liqueur,weak,32,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/063.%EB%A7%88%EB%9D%BC%EC%8A%A4%ED%82%A4%EB%85%B8%EB%A6%AC%ED%81%90%EB%A5%B4.png
-막걸리,Makgeolli,weak,6,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/076.%EB%A7%89%EA%B1%B8%EB%A6%AC.png
-말리부 코코넛 럼,Malibu,weak,21,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/030.%EB%A7%90%EB%A6%AC%EB%B6%80.png
-맥주,Beer,weak,5,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/005.%EB%A7%A5%EC%A3%BC.png
-미도리,Midori,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/031.%EB%AF%B8%EB%8F%84%EB%A6%AC.png
-바나나 리큐르,Banana liqueur,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/049.%EB%B0%94%EB%82%98%EB%82%98%EB%A6%AC%ED%81%90%EB%A5%B4.png
-백세주,Baekseju,weak,13,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/077.%EB%B0%B1%EC%84%B8%EC%A3%BC90.png
-버터스카치 리큐르,Butterscotch liqueur,weak,15,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/048.%EB%B2%84%ED%84%B0%EC%8A%A4%EC%B9%B4%EC%B9%98.png
-베일리스,Baileys,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/004.%EB%B2%A0%EC%9D%BC%EB%A6%AC%EC%8A%A4.png
-복숭아 리큐르,Peach liqueur,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/045.%EB%B3%B5%EC%88%AD%EC%95%84%EB%A6%AC%ED%81%90%EB%A5%B4.png
-블루 큐라소,Blue curacao,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EB%B8%94%EB%A3%A8%ED%81%90%EB%9D%BC%EC%86%8C.png
-사과 리큐르,Apple liqueur,weak,15,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/002.%EC%82%AC%EA%B3%BC%EB%A6%AC%ED%81%90%EB%A5%B4.png
-산사춘,Sansachun,weak,13,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/078.%EC%82%B0%EC%82%B0%EC%B6%9890.png
-살구 브랜디,Apricot brandy,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/003.%EC%82%B4%EA%B5%AC%EB%B8%8C%EB%9E%9C%EB%94%94.png
-생 제르망,St Germain,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/b287efa3-c119-406a-ab07-d88ad588db33b76f44b6b4e35ff1e9668e904.png
-샴보드,Chambord,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/62cb5237-a079-47b8-bfa6-c67d1e1b9dd51b084acdc75744f121af76605.png
-서던 컴포트,Southern comfort,weak,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%84%9C%EB%8D%98%EC%BB%B4%ED%8F%AC%ED%8A%B8.png
-소주,Soju,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/075.soju90.png
-스위트 베르무트,Sweet Vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%E1%85%B3%E1%84%86%E1%85%AE%E1%84%90%E1%85%B3.png
-스파클링 와인,Sparkling wine,weak,12,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%ED%8C%8C%ED%81%B4%EB%A7%81%EC%99%80%EC%9D%B8.png
-아마레토,Amaretto,weak,28,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ER/001.%EC%95%84%EB%A7%88%EB%A0%88%ED%86%A090.png
-아메리칸 허니,American Honey,weak,36,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…fe-93fd-3fc9ee37e32b1b084acdc75744f121af76606.png
-아페롤,Aperol,weak,11,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/047.%EC%95%84%ED%8E%98%EB%A1%A4.png
-엑스레이티드,Rated,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…93-ab21-07673771b03e1b084acdc75744f121af76604.png
-오렌지 비터,Orange bitter,weak,28,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%98%A4%EB%A0%8C%EC%A7%80%EB%B9%84%ED%84%B090.png
-잭다니엘 허니,Jack Daniels Honey,weak,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…0d-bdd4-a28404fbd733b76f44b6b4e35ff1e9668e910.png
-체리 브랜디,Cherry brandy,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%B2%B4%EB%A6%AC%EB%B8%8C%EB%9E%9C%EB%94%94.png
-치나,Cynar,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…6e-b8bb-4617d845420f1b084acdc75744f121af76601.png
-칼루아,kahlua,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/029.%EC%B9%BC%EB%A3%A8%EC%95%84.png
-캄파리,Campari,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/010.%EC%BA%84%ED%8C%8C%EB%A6%AC.png
-커피 리큐르,Coffee liqueur,weak,16,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%BB%A4%ED%94%BC%EB%A6%AC%ED%81%90%EB%A5%B4.png
-콰이페,Kwai Feh,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…7b-a1d9-7b60e1aaa3ee1b084acdc75744f121af76609.png
-크렘 드 민트 그린,Creme de menthe green,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/017.%EB%AF%BC%ED%8A%B8%EA%B7%B8%EB%A6%B0.png
-크렘 드 민트 화이트,Creme de menthe white,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EB%AF%BC%ED%8A%B8%ED%99%94%EC%9D%B4%ED%8A%B8.png
-크림 드 카시스,Creme de cassis,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EB%A6%BC%EB%93%9C%EC%B9%B4%EC%8B%9C%EC%8A%A4.png
-크림 드 카카오 브라운,Creme de cacao brown,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%B9%B4%EC%98%A4%EB%B8%8C%EB%9D%BC%EC%9A%B4.png
-크림 드 카카오 화이트,Creme de cacao white,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%B9%B4%EC%98%A4%ED%99%94%EC%9D%B4%ED%8A%B8.png
-트리플 섹,Ttriple sec,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/071.%ED%8A%B8%EB%A6%AC%ED%94%8C%EC%84%B9.png
-파르페 아무르,Parfait Amour,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…5b-8eb9-6a3f93a4761e1b084acdc75744f121af76600.png
-파이어볼,Fire Ball,weak,33,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…e1-930f-4b33ac9352e31b084acdc75744f121af76608.png
-프란젤리코,Frangelico,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%ED%94%84%EB%9E%80%EC%A0%A4%EB%A6%AC%EC%BD%94.png
-화이트 베르무트,Dry vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%ED%8A%B8%EB%B2%A0%EB%A5%B4%EB%AC%B4%ED%8A%B8.png
-화이트 와인,White wine,weak,10,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%ED%99%94%EC%9D%B4%ED%8A%B8%EC%99%80%EC%9D%B8.png
-힙노틱,Hpnotiq,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…B_ITEM_MASTER/060.%ED%9E%99%EB%85%B8%ED%8B%B1.png
-레드불,Red bull,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/033.%EB%A0%88%EB%93%9C%EB%B6%8880.png
-레몬티,Lemon Tea,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/114a10bb-4826-4f90-9a79-59077fb2f298b76f44b6b4e35ff1e9668e918.png
-물,Water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/042.%EB%AC%BC.png
-사이다,Sprite,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/048.%EC%82%AC%EC%9D%B4%EB%8B%A480.png
-솔의눈,Pine Bud Drink,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/30360845-22d6-4d94-b074-f2c075b1f05cb76f44b6b4e35ff1e9668e91b.png
-식용장미수,RABEE Rose water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/aa798194-3ae1-4754-8324-e8e35cd32a8d5e7e641ee43d14e631bfa2c0b.png
-우유,Milk,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/023.%EC%9A%B0%EC%9C%A0.png
-진저 비어,Ginger beer,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/025.%EC%A7%84%EC%A0%80%EB%B9%84%EC%96%B480.png
-진저 에일,Ginger ale,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/024.%EC%A7%84%EC%A0%80%EC%97%90%EC%9D%BC70.png
-커피,Coffee,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/008.%EC%BB%A4%ED%94%BC80.png
-코코넛 밀크,Coconut milk,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EC%BD%94%EC%BD%94%EB%84%9B%EB%B0%80%ED%81%AC80.png
-콜라,Cola,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/009.%EC%BD%9C%EB%9D%BC90.png
-탄산수,Soda water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/035.%ED%83%84%EC%82%B0%EC%88%9890.png
-토닉워터,Tonic water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/040.%ED%86%A0%EB%8B%89%EC%9B%8C%ED%84%B090.png
-파워에이드,Powerade,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/068.%ED%8C%8C%EC%9B%8C%EC%97%90%EC%9D%B4%EB%93%9C90.png
-핫식스,HotSix,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/069.%ED%95%AB%EC%8B%9D%EC%8A%A480.png
-홍차,Black tea,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/051.%ED%99%8D%EC%B0%A890.png
-라임 주스,Lime juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/066.%EB%9D%BC%EC%9E%84%EC%A3%BC%EC%8A%A490.png
-레몬 주스,Lemon juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/065.%EB%A0%88%EB%AA%AC%EC%A3%BC%EC%8A%A490.png
-레몬에이드,lemonade,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/020.%EB%A0%88%EB%AA%AC%EC%97%90%EC%9D%B4%EB%93%9C90.png
-망고 주스,Mango Juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/ebff265e-6a9a-426d-83b1-41fee3274735b76f44b6b4e35ff1e9668e915.png
-사과 주스,Apple juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/049.%EC%82%AC%EA%B3%BC%EC%A3%BC%EC%8A%A470.png
-석류 주스,Pomegranate juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/074.%EC%84%9D%EB%A5%98%EC%A3%BC%EC%8A%A4.png
-오렌지 주스,Orange juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/030.%EC%98%A4%EB%A0%8C%EC%A7%80%EC%A3%BC%EC%8A%A490.png
-올리브 주스,Olive juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/026.%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%A3%BC%EC%8A%A490.png
-자몽 주스,Grapefruit juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/014.%EC%9E%90%EB%AA%BD%EC%A3%BC%EC%8A%A4.png
-지룩스 라임 주스,Giroux Lime Juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/32012301-b057-414a-b021-cf8fe3b66756b76f44b6b4e35ff1e9668e909.png
-크랜베리 주스,Cranberry juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/010.%ED%81%AC%EB%9E%9C%EB%B2%A0%EB%A6%AC%EC%A3%BC%EC%8A%A4.png
-토마토 주스,Tomato juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/039.%ED%86%A0%EB%A7%88%ED%86%A0%EC%A3%BC%EC%8A%A4.png
-파인애플 주스,Pineapple juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/032.%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C%EC%A3%BC%EC%8A%A480.png
-패션프루트 주스,passion fruit juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/047.%ED%8C%A8%EC%85%98%ED%94%84%EB%A3%A8%ED%8A%B8%EC%A3%BC%EC%8A%A490.png
-딸기,Strawberry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/063.%EB%94%B8%EA%B8%B080.png
-라임,Lime,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/021.%EB%9D%BC%EC%9E%8490.png
-레몬,lemon,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/019.%EB%A0%88%EB%AA%AC80.png
-마라스키노 체리,Maraschino cherry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/022.%EB%A7%88%EB%9D%BC%EC%8A%A4%ED%82%A4%EB%85%B8%EC%B2%B4%EB%A6%AC80.png
-바나나,Banana,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/072.%EB%B0%94%EB%82%98%EB%82%9890.png
-블랙 베리,blackberry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/052.%EB%B8%94%EB%9E%99%EB%B2%A0%EB%A6%AC80.png
-사과,Apple,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/003.%EC%82%AC%EA%B3%BC60.png
-오렌지,Orange,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/027.%EC%98%A4%EB%A0%8C%EC%A7%80.png
-자몽,Grapefruit,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/013.%EC%9E%90%EB%AA%BD90.png
-파인애플,Pineapple,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/031.%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C.png
-계란,Egg,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/012.%EA%B3%84%EB%9E%80.png
-계피 스틱,Cinnamon sticks,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%84%ED%94%BC%EC%8A%A4%ED%8B%B180.png
-그레나딘 시럽,Grenadine,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/015.%EA%B7%B8%EB%A0%88%EB%82%98%EB%94%98%EC%8B%9C%EB%9F%BD.png
-꿀,Honey,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/016.%EA%BF%8090.png
-꿀 시럽,Honey syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/017.%EA%BF%80%EC%8B%9C%EB%9F%BD.png
-넛맥,Grated Nutmeg,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/045.%EB%84%9B%EB%A7%A580.png
-딸기 시럽,Strawberry syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/064.%EB%94%B8%EA%B8%B0%EC%8B%9C%EB%9F%BD.png
-라즈베리 시럽,Raspberry syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/062.%EB%9D%BC%EC%A6%88%EB%B2%A0%EB%A6%AC%EC%8B%9C%EB%9F%BD.png
-메이플 시럽,Maple syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/061.%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8B%9C%EB%9F%BD90.png
-민트,Mint,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/024.%EB%AF%BC%ED%8A%B890.png
-바나나 시럽,Banana Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/a0b1187f-1e92-4021-91dc-47ae4667ed4eb76f44b6b4e35ff1e9668e90f.png
-바닐라 추출액,Vanilla Extract,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/041.%EB%B0%94%EB%8B%90%EB%9D%BC%EC%B6%94%EC%B6%9C%EC%95%A180.png
-바질,Basil,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/050.%EB%B0%94%EC%A7%8890.png
-방울양파,Silverskin Onion,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/046.%EB%B0%A9%EC%9A%B8%EC%96%91%ED%8C%8C80.png
-버터,Butter,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/053.%EB%B2%84%ED%84%B090.png
-복숭아 퓨레,Peach puree,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/071.%EB%B3%B5%EC%88%AD%EC%95%84%ED%93%A8%EB%A0%8890.png
-샐러리,Celery,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/005.%EC%83%90%EB%9F%AC%EB%A6%AC.png
-설탕,Sugar,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/036.%EC%84%A4%ED%83%9570.png
-설탕 시럽,Sugar syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/037.%EC%84%A4%ED%83%95%EC%8B%9C%EB%9F%BD.png
-소금,Salt,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/034.%EC%86%8C%EA%B8%8880.png
-스윗 앤 사워 믹스,Sweet sour mix,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/067.%EC%8A%A4%EC%9C%97%EC%82%AC%EC%9B%8C.png
-아몬드 시럽,Almond syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/001.%EC%95%84%EB%AA%AC%EB%93%9C%EC%8B%9C%EB%9F%BD.png
-아이스크림,Ice cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/060.%EC%95%84%EC%9D%B4%EC%8A%A4%ED%81%AC%EB%A6%BC80.png
-얼그레이 시럽,Earl Gray Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/e84b5b44-ccf5-4671-9325-4e7f0bbf6135b76f44b6b4e35ff1e9668e903.png
-얼음,Ice,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/018.%EC%96%BC%EC%9D%8C80.png
-오렌지 플라워 워터,Orange flower water,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…D%94%8C%EB%9D%BC%EC%9B%8C%EC%9B%8C%ED%84%B080.png
-오이,Cucumber,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…17-ad66-c25b44cfa6681b084acdc75744f121af76603.png
-올리브,Olive,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ITEM_MASTER/025.%EC%98%AC%EB%A6%AC%EB%B8%8C90.png
-우스터 소스,Worcestershire sauce,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%9A%B0%EC%8A%A4%ED%84%B0%EC%86%8C%EC%8A%A490.png
-장미 시럽,Rose Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…5d-b443-d76a652d6acab76f44b6b4e35ff1e9668e90d.png
-정향,Clove,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/058.%EC%A0%95%ED%96%A580.png
-초콜릿,Chocolate,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ITEM_MASTER/055.%EC%B4%88%EC%BD%9C%EB%A6%BF90.png
-초콜릿 시럽,Chocolate syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%B4%88%EC%BD%9C%EB%A6%BF%EC%8B%9C%EB%9F%BD90.png
-칠리 고추,Chili,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/054.%EA%B3%A0%EC%B6%94.png
-커피 콩,Coffee beans,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ITEM_MASTER/059.%EC%BB%A4%ED%94%BC%EC%BD%A980.png
-코코넛 시럽,Coconut syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%EC%BD%94%EC%BD%94%EB%84%9B%EC%8B%9C%EB%9F%BD.png
-코코넛 크림,Coconut cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…C%BD%94%EC%BD%94%EB%84%9B%ED%81%AC%EB%A6%BC80.png
-크림,Cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/011.%ED%81%AC%EB%A6%BC80.png
-타바스코,Tabasco,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…ER/038.%ED%83%80%EB%B0%94%EC%8A%A4%EC%BD%9490.png
-팔각,Star anise,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/070.%ED%8C%94%EA%B0%8180.png
-후추,Black pepper,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/004.%ED%9B%84%EC%B6%9470.png
-휘핑 크림,Whipped cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/043.%ED%9C%98%ED%95%91%ED%81%AC%EB%A6%BC.png
-케첩,Ketchup,other,0,https://contents.lotteon.com/itemimage/LO/14/30/44/11/35/_1/43/04/41/13/6/LO1430441135_1430441136_1.jpg
-식초,vinegar,other,0,https://contents.lotteon.com/itemimage/LM/88/01/04/52/02/31/0_/00/1/LM8801045202310_001_1.jpg
-생강,ginger,fruit,0,http://san.chosun.com/news/photo/201502/9048_35514_3125.jpg
-페르넷브랑카,Fernet Branca,weak,35,"https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/107596/fernet-branca.jpg"
-사탕수수주스,Sugar Cane Juice,beverage,0,https://previews.123rf.com/images/lim_atos/lim_atos1407/lim_atos140700026/29792958-%EC%82%AC%ED%83%95-%EC%88%98%EC%88%98%EB%A1%9C-%EB%91%98%EB%9F%AC%EC%8B%B8%EC%9D%B8-%EC%82%AC%ED%83%95-%EC%88%98%EC%88%98-%EC%A3%BC%EC%8A%A4.jpg
-코디얼,Cordial,other,0,https://www.earthfoodandfire.com/wp-content/uploads/2022/07/raspberry-cordial-on-garden-table.jpg
-크렘 드 바이올렛,Creme de violette,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…STER/017.%EB%AF%BC%ED%8A%B8%EA%B7%B8%EB%A6%B0.png
-페이쇼드비터,Peychaud's Bitters,strong,35,https://upload.wikimedia.org/wikipedia/commons/0/01/Peychauds.jpg
-시나몬시럽,Cinnamon Syrup,other,0,https://s3.amazonaws.com/yummy_uploads2/blog/8057.jpg
-아가베시럽,Agave syrup,other,0,https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/5f232fc4bb4f12c905bfedd9_00099482429911-00099482429911-c1n1.jpg
-그라파,Grappa,strong,40,http://egress.storeden.net/jpg/637ff36f00f220eb758b45bc/file.jpg
-카샤사,Cachacha,strong,35,https://image.biccamera.com/img/00000001919162_A01.jpg
-자몽소다,grapefruit soda,beverage,0,https://fevertree.s3.eu-west-2.amazonaws.com/thumbs/500x1200e/de4180d71890cace9556e4b802591c7a.png
+name,eng_name,type,degree,image,contents
+골드 럼,Gold rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%A8%EB%93%9C%EB%9F%BC.png,"사탕수수에서 설탕을 만들고 난 찌꺼지인 당밀(Molasses)를 이용하여 증류시켜 만든 증류주로 골드 럼은 앰버 럼으로도 불리며 연한 갈색에 깊은 맛이 특징이다. 2년간 태운 오크통에서 숙성되며 카라멜향과 바닐라, 너츠 등의 향미를 냅니다."
+골드슐라거,Goldschlager,strong,43,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/058.%EA%B3%A8%EB%93%9C%EC%8A%90%EB%9D%BC%EA%B1%B0.png,"금박기술자라는 뜻으로 금박이 들어있는 높은 도수의 스위스 계피 리큐르"
+꼬냑,Cognac,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/013.%EA%BC%AC%EB%83%9190.png,"프랑스 꼬냑 지방에서 생산되는 브랜디로 2번 증류하고 오크통에서 최소 2년 동안 숙성됩니다. 꼬냑 지방의 포도주가 맛이 빨리 변하기 때문에 오랬동안 저장할 수가 없어 증류했던 것이 오늘날 브랜디를 만들게되었습니다."
+다크 럼,Dark rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/018.%EB%8B%A4%ED%81%AC%EB%9F%BC.png,"사탕수수에서 설탕을 만들고 난 찌꺼기인 당밀(Molasses)를 이용하여 발효, 증류시켜 만든 증류주. 다크럼은 스모키한 풍미를 위해 그을린 오크통에서 숙성되어 짙은 갈색에 맛과 향이 매우 강하게 느껴진다."
+데킬라 골드,Tequila gold,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/070.%EB%8D%B0%ED%82%AC%EB%9D%BC%EA%B3%A8%EB%93%9C.png,"데킬라는 용설란의 일종으로 멕시코 데킬라 지방에서만 재배되는 아가베로 만든 술로 골드 데킬라는 이중 증류와 오크통에서 숙성시키는 특징이 있다."
+데킬라 레포사도,Tequila Reposado,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/e95b74ef-e75b-47f9-85c2-0e9ccc959e46b76f44b6b4e35ff1e9668e919.png,"데킬라는 용설란의 일종인 멕시코 데킬라 지방에서만 재배되는 아가베로 만든 술이다. 레포사도는 오크통에 2개월 이상 숙성하여 약간 갈색을 띄고있다."
+데킬라 블랑코,Tequila blanco,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/037.%EB%8D%B0%ED%82%AC%EB%9D%BC%EB%B8%94%EB%9E%91%EC%BD%94.png,"데킬라는 용설란의 일종으로 멕시코 데킬라 지방에서만 재배되는 아가베로 만든 술로 데킬라 블랑코는 화이트 데킬라로 불리며 무색, 투명하여 칵테일에 주로 사용됩니다. 가볍고 샤프한 맛으로 용설란을 발효시킨 후 단식증류기로 두 번 증류하여 스테인레스 통에 단기간 저장한다."
+데킬라 아네호,Tequila Anejo,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/0da0b8dc-0b47-4a53-a3db-3f590dafc46eb76f44b6b4e35ff1e9668e91a.png,"데킬라는 용설란의 일종인 멕시코 데킬라 지방에서만 재배되는 아가베로 만든 술이다. 아네호는 오크통에서 1년 이상 숙성되어 향과 맛이 더 부드럽고 풍부한 고급 데킬라이다."
+드람부이,Drambuie,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/019.%EB%93%9C%EB%9E%8C%EB%B6%80%EC%9D%B490.png,"몰트 위스키, 허브, 향신료 및 꿀로 만든 달콤한 스코트랜드 리큐르. 스코틀랜드의 고대 게릭어인 Dram Buid Heach로 사람을 만족시키는 음료라는 뜻이다."
+라이 위스키,Rye whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/035.%EB%9D%BC%EC%9D%B4%EC%9C%84%EC%8A%A4%ED%82%A4.png,"라이(호밀) 51% 이상을 주재료로 곡물로 만든 위스키로, 발아시키지 않은 호밀과 맥아 또는 발아 호밀을 혼합해 만든 증류주입니다. 버번위스키와 색이 비슷하지만 맛과 향이 다릅니다."
+버번 위스키,Bourbon whiskey,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/008.%EB%B2%84%EB%B2%88%EC%9C%84%EC%8A%A4%ED%82%A4.png,"옥수수와 호밀로 만든 아메리칸 위스키의 한 종류로, 미국 켄터키주의 버번지방을 중심으로 생산된 옥수수를 51% 이상 사용하여 만든 증류주다."
+베네딕틴 D.O.M,Benedictine D.O.M,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/006.%EB%B2%A0%EB%84%A4%EB%94%95%ED%8B%B4.png,"다양한 약초와 허브, 과일 껍질 등으로 만들어진 달콤한 허브 향의 꼬냑 기반 프랑스 리큐르. D.O.M은 라틴어로 Deo Optimo Maximo(데오 옵티모 맥시모)의 약어로 최대 최선의 신에게라는 뜻으로 카라멜과 꿀이 첨가된다."
+보드카,Vodka,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/038.%EB%B3%B4%EB%93%9C%EC%B9%B4.png,"주로 곡물과 감자의 증류로 만들어지는 보드카는 무색, 무미, 무취의 특징을 갖고있다. 러시아어로 Voda Boa, 생명의 물에서 유래 되었다. 12세기경 러시아의 농민에 의해 창안된 술로서 증류주로서 오랜 역사를 가지고 있다. 어떠한 음료나 부재료와 잘 조화되기 때문에 칵테일의 기주로 많이 사용된다."
+보드카 시트론,Vodka citron,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/039.%EB%B3%B4%EB%93%9C%EC%B9%B4%EC%8B%9C%ED%8A%B8%EB%A1%A0.png,"보드카에 여러 가지 과실을 첨가하여 향과 맛을 더해 일반 보드카보다 약간 낮은 도수를 가진 보드카로 오렌지, 레몬, 라임 등의 감귤류가 사용됩니다."
+봄베이 브램블,Bombay Bramble,strong,38,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/d45fb8dc-c460-453c-81af-0adb3123cb25b76f44b6b4e35ff1e9668e908.png,"블랙베리와 라즈베리를 인퓨징한 진으로 브램블은 나무에서 열리는 베리류를 뜻한다. 베리 특유의 풍미와 신맛을 가지고있고 단맛이 없어 달달한 음료와 섞어마시면 좋다."
+봄베이 사파이어,Bombay Sapphire,strong,47,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/55c6992b-556f-464f-9bcc-f56317e362605e7e641ee43d14e631bfa2c0e.png,"유명한 진 중 하나. 47도라는 높은 도수와 일반적인 진에 비해 쥬니퍼베리와 감초 레몬 아몬드 등 10가지 재료 특유의 향이 강해 몇몇 진 베이스 칵테일에 쓰기에는 호불호가 갈린다. 물론 봄베이 특유의 향미를 응용한 봄베이 전용 칵테일도 존재한다."
+브랜디,Brandy,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/009.%EB%B8%8C%EB%9E%9C%EB%94%94.png,"와인을 증류하여 만든 술로 브랜디는 꽃 향미를 가지고 있으며 증류주에 독특한 향과 색상을 주기 위해 일반적으로 나무 통에서 숙성됩니다. 숙성시간이 길수록 품질이 향상됩니다."
+삼부카,Sambuca,strong,38,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/066.%EC%82%BC%EB%B6%80%EC%B9%B4.png,"아니스(Anis) 및 여러 가지 부재료가 사용되었으며 스텐레스통에서 숙성시켜 만든 무색 투명한 리큐르. 이탈리아에서는 엘더베리를 삼부카 니그라(Sambuca Nigra)라고 불러 이름을 따왔습니다."
+샤르트뢰즈 그린,Chartreuse green,strong,55,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/051.%EC%83%A4%EB%A5%B4%ED%8A%B8%EB%A2%B0%EC%A6%88%EA%B7%B8%EB%A6%B0.png,"130가지 허브와 식물, 꽃으로 숙성시킨 증류주로 만든 프랑스 리큐르. 샤르트뢰즈는 프랑스 그르노블 지역에 위치한 그랑 샤르트뢰즈 수도원의 이름을 따서 명명되었습니다."
+샤르트뢰즈 옐로우,Chartreuse yellow,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/074.%EC%83%A4%EB%A5%B4%ED%8A%B8%EB%A2%B0%EC%A6%88%EC%98%90%EB%A1%9C%EC%9A%B0.png,"130가지 허브와 식물, 꽃으로 숙성시킨 증류주로 만든 프랑스 리큐르. 샤르트뢰즈는 프랑스 그르노블 지역에 위치한 그랑 샤르트뢰즈 수도원의 이름을 따서 명명되었습니다. 옐로우 샤르트뢰즈는 그린 샤르트뢰즈보다 더 순하며 달콤합니다."
+스카치 위스키,Scotch whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/036.%EC%8A%A4%EC%B9%B4%EC%B9%98%EC%9C%84%EC%8A%A4%ED%82%A4.png,"스코틀랜드에서 생산된 위스키의 총칭이며 위스키 생산량의 양 60%를 생산하고 있다. 보리 몰트(Malt) 60%와 기타 곡류 40%를 혼합하여 엿기름에 의해 당화, 발효시켜 스코틀랜드에서 단식 증류기로 증류하여 최소한 3년간 오크통에 넣어 저장 숙성시킨다."
+슬로 진,Sloe gin,strong,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/067.%EC%8A%AC%EB%A1%9C%EC%A7%84.png,"유럽에서 많이 자라는 야생자두(Sloe berry, 오얏나무의 열매)를 진에 침지하여 주니퍼베리의 향을 첨가하고 설탕을 더해 만든 리큐르."
+아그와,AGWA,strong,30,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/f17ed246-3853-432e-999c-9393cf369a14b76f44b6b4e35ff1e9668e90e.png,"정식 명칭은 Agwa de Bolivia 네덜란드에서 생산되는 허브 리큐르. 코카나무잎을 원료로 사용하며 녹차, 라벤더, 오이 등을 재료로 사용하여 가볍고 상쾌한 풀내음이 난다. 호리병 모양의 독특한 전용 잔이 있다."
+아이리쉬 위스키,Irish whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/073.%EC%95%84%EC%9D%B4%EB%A6%AC%EC%89%AC%EC%9C%84%EC%8A%A4%ED%82%A4.png,"아일랜드에서 만들어지는 위스키의 총칭으로 세 번 증류하고 맥아 건조 과정에서 피트를 쓰지 않음으로써 전통적인 스카치 위스키나 버번 위스키보다 마시기 쉽고 익숙해지기 쉬운 맛을 구현했다."
+압생트,Absinthe,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/046.%EC%95%95%EC%83%9D%ED%8A%B8.png,"아니스(Anis)씨와 감초 그리고 향쑥 약초와 향료를 원료로 배합하여 만든 리큐르로 일명 ‘녹색요정, 녹색의 마주’라고 한다. 감초 비슷한 맛과 오팔색을 띈다. 1700년대에 처음 만들어졌으며 1800년대 후반의 위대한 예술가와 작가들 사이에서 인기와 명성을 얻었습니다."
+앙고스투라 비터,Angostura bitter,strong,45,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/002.%EC%95%99%EA%B3%A0%EC%8A%A4%ED%88%AC%EB%9D%BC%EB%B9%84%ED%84%B090.png,"럼에 40~80여종의 약초와 향초를 사용해서 만든 유명한 비터로 몇방울만 사용하여 칵테일에 향을 더한다."
+예거 마이스터,Jagermeister,strong,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/028.%EC%98%88%EA%B1%B0%EB%A7%88%EC%9D%B4%EC%8A%A4%ED%84%B0.png,"56가지 허브, 열매, 향료 등으로 만들어 특유의 허브향과 강한 단맛이 나는 짙은 갈색의 리큐르. 1934년 독일의 마스트-예거마이스트사에서 개발되었고 예거마이스트는 독일의 산림 관리인 또는 사냥터 관리인을 부르는 말이다."
+오버프루프 럼,Over-proof rum,strong,70,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/033.%EC%98%A4%EB%B2%84%ED%94%84%EB%A3%A8%ED%94%84%EB%9F%BC.png,"일반 럼주 도수 2배인 매우 높은 60~75.5%를 가지고있다. 높은 알코올 함량으로 인화성이 매우 강하므로 불과 열로부터 멀리 떨어진 곳에 보관해야하고 불타는 샷으로 서빙할 때 사용된다."
+올드 톰 진,Old Tom Gin,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/064.%EC%98%AC%EB%93%9C%ED%86%B0%EC%A7%84.png,"18세기 영국에서 인기를 얻은 올드 톰 진은 약간의 설탕 덕분에 드라이 진보다 조금 더 달콤합니다."
+위스키,Whiskey,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/040.%EC%9C%84%EC%8A%A4%ED%82%A4.png,"위스키는 12세기경 처음으로 아일랜드에서 보리를 발효하여 증류시킨 술로 그 이후 스코틀랜드에도 유입되어 품질개발과 함께 전세계로 많이 알려지게 되었다."
+잭 다니엘,Jack daniels,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/027.%EC%9E%AD%EB%8B%A4%EB%8B%88%EC%97%98.png,"잭 다니엘은 아메리칸 위스키 중에 테네시 위스키에 속하는 브랜드이다. 1866년 미국 테네시주의 린치버그에 재스퍼 뉴튼 잭 다니엘이 설립한 양조장에서 처음 탄생했다. 주로 잭콕이라는 칵테일의 형태로 콜라 등의 음료수와 함께 마시는 게 일반적이다."
+진,Gin,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/023.%EC%A7%84.png,"보리 또는 옥수수와 같은 곡물을 증류하여 만든 술. 특유의 향을 지닌 주니퍼 베리로인해 소나무향이 나는 증류주이다. 주니퍼(Juniper)의 불어 주니에브르(Genievre)가 네덜란드로 전해져 제네바(Geneva)가 되고 영국으로 건너가 진(Gin)이 되었다."
+칼바도스,Calvados,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/050.%EC%B9%BC%EB%B0%94%EB%8F%84%EC%8A%A4.png,"프랑스의 칼바도스 지역에서 생산되는 전통 증류주로 사과로 만드는 브랜디. 오크통에서 숙성되며 스모키한 뒷맛과 함께 매우 달콤한 사과 맛이 난다."
+쿠앵트로,Cointreau,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/014.%EC%BF%A0%EC%95%B5%ED%8A%B8%EB%A1%9C90.png,"쿠앵트로는 1849년 제과업자인 아돌프 쿠앵트로와 그의 형제 에두아르 장 쿠앵트로가 처음 만든 달콤한 오렌지 맛 리큐르로 오렌지 계열의 리큐르 중 최고급이다."
+피스코,Pisco,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/065.%ED%94%BC%EC%8A%A4%EC%BD%94.png,"페루 또는 칠레의 포도 브랜디로 증류를 마친 뒤 브랜디에 색이 물들지않도록 백색처리를 한 오크통에서 숙성한다."
+헨드릭스 진,Hendrick's Gin,strong,44,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/ac73a470-e650-47bf-a2a8-5df1c5293cb31b084acdc75744f121af76602.png,"핸드릭스 진이라고도 불리며 오이를 주원료로 장미 꽃잎, 곡물, 11가지 허브로 만들어진 프리미엄 진이다. 장미 정원에서 오이 샌드위치를 먹다가 두 가지 재료의 아이디어를 얻었다고 한다. 장미 꽃향과 오이향이 은은하다."
+화이트 럼,White rum,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/041.%ED%99%94%EC%9D%B4%ED%8A%B8%EB%9F%BC.png,"사탕수수에서 설탕을 만들고 난 찌꺼지인 당밀(Molasses)를 이용하여 증류시켜 만든 증류주로 화이트 럼은 라이트 럼, 실버 럼으로도 알려져있다. 무색투명한 럼으로 맛이 부드러워 칵테일의 기주로 많이 사용된다."
+갈리아노,Galliano,weak,30,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/022.%EA%B0%88%EB%A6%AC%EC%95%84%EB%85%B8.png,"감초, 아니스, 바닐라 향을 함유한 달콤한 이탈리아 허브 리큐르로 도수는 약 30~42%이고 길쭉한 병에 담겨있다. 이탈리아 전쟁 영웅 Giuseppe Galliano의 이름에서 유래되었다."
+계란 리큐르,Egg liqueur,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/055.%EA%B3%84%EB%9E%80%EB%A6%AC%ED%81%90%EB%A5%B4.png,"브랜디를 베이스로 계란 노른자와 여러종류의 허브, 설탕을 배합하여 만든 리큐르. 바닐라향이 가미된 커스터드 향과 에그노그처럼 부드럽고 크림같은 질감이 특징으로 마시기전에 병을 잘 흔들어서 따른다."
+그랑 마니에르,Grand marnier,weak,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/026.%EA%B7%B8%EB%9E%91%EB%A7%88%EB%8B%88%EC%97%90%EB%A5%B490.png,"꼬냑 베이스에 열대 오렌지 에센스의 독특한 조화를 이룬 오렌지 맛 브랜디 리큐르. 짙은 황금색과 갈색톤을 띄며 오렌지와 꽃의 섬세한 향기로 은은한 뒷 맛을 즐길 수 있다."
+드라이 베르무트,Dry vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/021.%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B2%A0%EB%A5%B4%EB%AC%B4%ED%8A%B8.png,"베르뭇, 버무스라 불리며 와인에 40여종의 약재가 포함된 혼성 포도주로 원래 식전주로 만들었찌만 칵테일용으로 많이 이용된다. 드라이 베르무트는 화이트와인을 베이스로 초근목피향 첨가로 씁쓸한 맛이 난다."
+드라이 셰리,Dry sherry,weak,16,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/020.%EB%93%9C%EB%9D%BC%EC%9D%B4%EC%85%B0%EB%A6%AC.png,"선택된 포도 품종의 완전한 발효로 생산되는 15-17%도수의 와인."
+레드 와인,Red wine,weak,14,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/034.%EB%A0%88%EB%93%9C%EC%99%80%EC%9D%B8.png,"적포도주로 적포도의 포도 알맹이, 껍질, 씨까지 포함하여 즙을 낸 후 발효시켜 만든 발효주. 붉은 빛을 띄고 탄닌성분이 적다. 레드 와인의 대표 종류는 멜로, 피노누아, 까베르네 쇼비뇽 및 쉬라즈입니다."
+레몬 리큐르,Lemon liqueur,weak,26,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/072.%EB%A0%88%EB%AA%AC%EB%A6%AC%ED%81%90%EB%A5%B4.png,"이탈리아 아말피 해안의 스푸사토 품종의 레몬을 사용하여 만든 레몬리큐르로 리몬첼로라 불린다. 스푸사토는 껍질이 두꺼워 산도가 낮고 향이 풍부한 것이 특징이다."
+릴레블랑,Lillet Blanc,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/062.%EB%A6%B4%EB%A0%88%EB%B8%94%EB%9E%91.png,"릴레브론드로 불리는 프랑스 식전주. 와인과 과일 향이 절묘하게 섞여있어 은은한 꽃향기와 달콤한 오렌지향이 난다."
+마라스키노 리큐르,Maraschino liqueur,weak,32,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/063.%EB%A7%88%EB%9D%BC%EC%8A%A4%ED%82%A4%EB%85%B8%EB%A6%AC%ED%81%90%EB%A5%B4.png,"마라스카종의 체리를 사용하여 발효시키고 세번을 증류하여 숙성시킨 후 시럽 등을 첨가하여 만든 체리맛의 리큐르."
+막걸리,Makgeolli,weak,6,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/076.%EB%A7%89%EA%B1%B8%EB%A6%AC.png,"우리나라 고유한 술의 하나. 맑은 술을 떠내지않고 그대로 걸러 짠 술로 빛깔이 흐리고 맛이 텁텁하다. 과음을 하고 나면 다음날 숙취가 심합니다."
+말리부 코코넛 럼,Malibu,weak,21,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/030.%EB%A7%90%EB%A6%AC%EB%B6%80.png,"자메이카산 라이트 럼에 카리브해 지역에서 생산되는 코코넛과 당분을 첨가하여 만든 무색 투명하고 달콤한 코코넛 맛의 화이트 럼."
+맥주,Beer,weak,5,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/005.%EB%A7%A5%EC%A3%BC.png,"보리나 기타 곡물을 발효시켜 만든 4~6% 도수의 술로 맥주의 역사는 약 9500년으로 거슬러 올라갑니다."
+미도리,Midori,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/031.%EB%AF%B8%EB%8F%84%EB%A6%AC.png,"달콤하고 밝은 녹색의 멜론맛 리큐르로 1978년 일본에서 만들어졌고 일본어로 초록색을 의미합니다."
+바나나 리큐르,Banana liqueur,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/049.%EB%B0%94%EB%82%98%EB%82%98%EB%A6%AC%ED%81%90%EB%A5%B4.png,"럼주 또는 기타 중성 증류주를 기본으로 하며 신선한 바나나와 설탕을 첨가하여 바나나맛이 나도록 만든 리큐르"
+백세주,Baekseju,weak,13,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/077.%EB%B0%B1%EC%84%B8%EC%A3%BC90.png,"찹쌀로 만든 한국의 발효술로 전통적인 방식으로 양조하며 다양한 허브, 미량의 인삼을 넣어 감미로운 맛을 낸다. 백세주라는 이름은 이 술을 마시면 백세까지도 살 수 있다해서 붙여졌다."
+버터스카치 리큐르,Butterscotch liqueur,weak,15,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/048.%EB%B2%84%ED%84%B0%EC%8A%A4%EC%B9%B4%EC%B9%98.png,"버터와 흑설탕으로 만든 달콤하고 순한 리큐르로 보통 15~20% 정도의 알코올 도수입니다."
+베일리스,Baileys,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/004.%EB%B2%A0%EC%9D%BC%EB%A6%AC%EC%8A%A4.png,"아이리쉬 위스키와 크림, 벨기에 초콜릿으로 만든 크림 리큐르로 달콤하면서도 부드러운 맛이 특징입니다."
+복숭아 리큐르,Peach liqueur,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/045.%EB%B3%B5%EC%88%AD%EC%95%84%EB%A6%AC%ED%81%90%EB%A5%B4.png,"복숭아 추출물과 신선한 향을 보존하기 위한 감미로운 브랜디를 결합하여 만든 리큐르로 설탕이 추가되었다."
+블루 큐라소,Blue curacao,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EB%B8%94%EB%A3%A8%ED%81%90%EB%9D%BC%EC%86%8C.png,"오렌지 향이 나는 달콤한 맛의 파란색 리큐어로 라라하 귤 열매의 껍질로 만든 큐라소 리큐르에 식용 색소로 색을 냈다."
+사과 리큐르,Apple liqueur,weak,15,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/002.%EC%82%AC%EA%B3%BC%EB%A6%AC%ED%81%90%EB%A5%B4.png,"사과를 증류하여 만든 리큐르로 병에 담기 전에 설탕을 첨가한다."
+산사춘,Sansachun,weak,13,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/078.%EC%82%B0%EC%82%B0%EC%B6%9890.png,"쌀을 주원료로 하여 산사나무와 산수유 열매로 향과 맛의 깊이를 더했다. 은은한 과실향에 새콤한 맛이 미각을 살려준다."
+살구 브랜디,Apricot brandy,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/003.%EC%82%B4%EA%B5%AC%EB%B8%8C%EB%9E%9C%EB%94%94.png,"브랜디에 살구와 여러 가지 향료를 첨가하여 당분과 함께 침지법을 사용하여 만든 리큐르로 살구향과 살구씨에서 우러난 아몬드향이 특징입니다."
+생 제르망,St Germain,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/b287efa3-c119-406a-ab07-d88ad588db33b76f44b6b4e35ff1e9668e904.png,"국내에서는 인지도가 상대적으로 낮은 향신료이자 꽃인 엘더 플라워로 만든 프랑스 산 프리미엄 리큐르."
+샴보드,Chambord,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/62cb5237-a079-47b8-bfa6-c67d1e1b9dd51b084acdc75744f121af76605.png,"블랙라즈베리 리큐르로 독특한 모양의 병에 담겨있다. 프랑스 국왕 루이 14세가 샴보드 성을 방문하였을 때 산딸기로 만든 리큐르를 즐긴 것에 유래한다."
+서던 컴포트,Southern comfort,weak,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/068.%EC%84%9C%EB%8D%98%EC%BB%B4%ED%8F%AC%ED%8A%B8.png,"버번위스키에 복숭아 향미를 첨가한 리큐르로 미국을 대표한다."
+소주,Soju,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/075.soju90.png,"곡류를 발효시켜 증류하거나, 알코올을 물로 희석하여 만든 한국의 전통주 중 하나. 국내에서는 저렴한 술이지만 해외에서는 고가로 판매되며 제조 방법에 따라 희석식 소주, 증류식 소주로 구분됩니다."
+스위트 베르무트,Sweet Vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaw…%E1%85%B3%E1%84%86%E1%85%AE%E1%84%90%E1%85%B3.png,"베르뭇, 버무스라 불리며 와인에 40여종의 약재가 포함된 혼성 포도주로 원래 식전주로 만들었지만 칵테일용으로 많이 이용된다. 스위트 베르무트는 레드 베르무트로 불리며, 레드와인을 베이스로 설탕이 첨가되어 단맛이 난다."
+스파클링 와인,Sparkling wine,weak,12,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/069.%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81%EC%99%80%EC%9D%B8.png,"발포성와인으로 발효 도중에 생기는 탄산가스를 함유한 와인이다. 샴페인은 가장 잘 알려진 스파클링 와인이며 프랑스 샴페인 지역에서만 만들어집니다."
+아마레토,Amaretto,weak,28,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/001.%EC%95%84%EB%A7%88%EB%A0%88%ED%86%A090.png,"살구씨를 물에 침지, 증류하여 아몬드향과 비슷한 향을 만들어 향초 성분과 혼합하고 시럽을 첨가해서 만든 이탈리아 리큐르로 아몬드 향이 강합니다."
+아메리칸 허니,American Honey,weak,36,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/980aa490-b9de-4afe-93fd-3fc9ee37e32b1b084acdc75744f121af76606.png,"버번 위스키에 꿀이 첨가된 리큐르로 다른 위스키에 비해 단맛이 강하다."
+아페롤,Aperol,weak,11,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/047.%EC%95%84%ED%8E%98%EB%A1%A4.png,"붉은 오렌지색의 이탈리아 감귤 리큐르로 식전주로 만들어진 술이다. 아페롤 스프리츠가 유명하다."
+엑스레이티드,Rated,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/7b709329-f0c7-4293-ab21-07673771b03e1b084acdc75744f121af76604.png,"슈퍼 프리미엄 보드카에 블러드 오렌지, 망고, 패션 푸르츠 등의 열대과일을 배합하여 만든 리큐르. 최고 수위의 영화등급을 의미하는 단어로 여성의 몸을 형상화한 병 디자인과 핫핑크 음료 색상으로 시각적인 면을 강조했다."
+오렌지 비터,Orange bitter,weak,28,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/028.%EC%98%A4%EB%A0%8C%EC%A7%80%EB%B9%84%ED%84%B090.png,"씁쓸한 오렌지 껍질의 엑기스를 사용한 비터로 칵테일에 몇 방울만 넣어 오렌지 향을 더한다."
+잭다니엘 허니,Jack Daniels Honey,weak,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/163c89da-760a-420d-bdd4-a28404fbd733b76f44b6b4e35ff1e9668e910.png,"테네시 위스키인 잭 다니엘의 풍미를 유지하면서 천연 꿀에서 오는 달콤한 부드러움을 선사한다. 도수가 낮아짐에 따라 위스키로 분류되지않고 리큐르로 분류된다."
+체리 브랜디,Cherry brandy,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/011.%EC%B2%B4%EB%A6%AC%EB%B8%8C%EB%9E%9C%EB%94%94.png,"레드 체리 주스로 만들어 달콤하고 진한 체리향이 나는 리큐르로 16세기부터 프랑스에서 만들어졌다."
+치나,Cynar,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/400f9b1c-9b68-4e6e-b8bb-4617d845420f1b084acdc75744f121af76601.png,"아티초크를 비롯한 13가지 식물로 만들어진 어두운 갈색의 허브 리큐르. 각종 허브를 이용해 달콤쌉싸름한 풍미를 내는 이탈리아 전통 리큐르를 일컫는 아마로 중 유명하다. 아티초크의 학명인 Cynar Scolymus에서 이름을 따왔다. 허브의 쌉싸름한 맛과 약한 단맛이 느껴진다."
+칼루아,kahlua,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/029.%EC%B9%BC%EB%A3%A8%EC%95%84.png,"럼 기반의 멕시코의 커피 리큐르이며 Acolhua(사람들의 집)을 의미합니다."
+캄파리,Campari,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/010.%EC%BA%84%ED%8C%8C%EB%A6%AC.png,"과일과 허브에 알코올과 물을 주입하여 만든 캄파리는 쓴 허브 향이 나는 20~28% 도수의 이탈리아 리큐르다. 비터이지만 식전주로 많이 사용된다."
+커피 리큐르,Coffee liqueur,weak,16,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/012.%EC%BB%A4%ED%94%BC%EB%A6%AC%ED%81%90%EB%A5%B4.png,"커피맛이 나는 리큐르로 칼루아와 티아 마리아가 유명하다."
+콰이페,Kwai Feh,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/8a3a9738-d77c-4f7b-a1d9-7b60e1aaa3ee1b084acdc75744f121af76609.png,"달콤한 리치 리큐르로 리치를 가장 좋아했다는 중국 3대 미녀 양귀비를 모티브로 탄생했다."
+크렘 드 민트 그린,Creme de menthe green,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/017.%EB%AF%BC%ED%8A%B8%EA%B7%B8%EB%A6%B0.png,"시원하고 부드러운 맛을 지닌 박하잎에서 추출한 농축액으로 만들어진 페퍼민트 리큐르로 그린은 색을 내는데 주로 사용한다."
+크렘 드 민트 화이트,Creme de menthe white,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/053.%EB%AF%BC%ED%8A%B8%ED%99%94%EC%9D%B4%ED%8A%B8.png,"시원하고 부드러운 맛을 지닌 박하잎에서 추출한 농축액으로 만들어진 페퍼민트 리큐르로 화이트는 그린과 맛에서 구별되지않고 투명한 특성으로 칵테일의 색깔에 영향을 주지않고 상큼한 민트 맛을 내는데 사용한다."
+크림 드 카시스,Creme de cassis,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/016.%ED%81%AC%EB%A6%BC%EB%93%9C%EC%B9%B4%EC%8B%9C%EC%8A%A4.png,"블랙커런트 추출액과 증류주를 혼합하여 만든 리큐르로 달콤하고 약간 산미가 있고 매우 진하며 시럽처럼 고농축이다."
+크림 드 카카오 브라운,Creme de cacao brown,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/052.%EC%B9%B4%EC%B9%B4%EC%98%A4%EB%B8%8C%EB%9D%BC%EC%9A%B4.png,"카카오 열매와 바닐라 추출물을 증류하여 만든 달콤한 초콜릿 리큐르. 브라운은 화이트에 비해 더 다크하고 씁쓸하며 갈색의 시럽같은 질감이다."
+크림 드 카카오 화이트,Creme de cacao white,weak,24,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/015.%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%99%94%EC%9D%B4%ED%8A%B8.png,"카카오 열매와 바닐라 추출물을 증류하여 만든 달콤한 초콜릿 리큐르. 화이트는 달콤한 카카오의 향과 맛을 가지면서 칵테일 색상에 영향을 주지않는다."
+트리플 섹,Ttriple sec,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/071.%ED%8A%B8%EB%A6%AC%ED%94%8C%EC%84%B9.png,"오렌지 껍질, 브랜디, 설탕을 원료로 한 달콤하고 무색의 오렌지 리큐르로, 3번의 증류를 거듭했다는 뜻에서 나온 이름이다."
+파르페 아무르,Parfait Amour,weak,25,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/376004de-2a31-435b-8eb9-6a3f93a4761e1b084acdc75744f121af76600.png,"달콤한 오렌지와 바닐라의 풍미를 가진 보라색의 리큐르로 오렌지, 네롤리(오렌지 꽃), 바닐라 빈을 블렌딩하여 만들어졌습니다. Perfect Love(완벽한 사랑)이라는 뜻입니다."
+파이어볼,Fire Ball,weak,33,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/3c6052c3-1dc8-4ee1-930f-4b33ac9352e31b084acdc75744f121af76608.png,"위스키 베이스의 계피맛 리큐르로 강렬한 시나몬에 더해지는 은은한 단맛을 갖고있다."
+프란젤리코,Frangelico,weak,20,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/056.%ED%94%84%EB%9E%80%EC%A0%A4%EB%A6%AC%EC%BD%94.png,"20% 도수의 헤이즐넛 리큐르로 맑은 갈색을 띄고 있다."
+화이트 베르무트,Dry vermouth,weak,18,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/042.%ED%99%94%EC%9D%B4%ED%8A%B8%EB%B2%A0%EB%A5%B4%EB%AC%B4%ED%8A%B8.png,"베르뭇, 버무스라 불리며 와인에 40여종의 약재가 포함된 혼성 포도주로 원래 식전주로 만들었찌만 칵테일용으로 많이 이용된다. 화이트 베르무트는 바닐라와 클로버 맛과 함께 오레가노와 백리향의 강력한 아로마를 가지고있다."
+화이트 와인,White wine,weak,10,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/043.%ED%99%94%EC%9D%B4%ED%8A%B8%EC%99%80%EC%9D%B8.png,"백포도주로 백포도, 적포도의 껍질을 제거한 후 포도즙만을 발효시켜 만든 발효주. 노란색을 띄며 샤도네, 소비뇽블랑, 리즐링이 유명합니다."
+힙노틱,Hpnotiq,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/060.%ED%9E%99%EB%85%B8%ED%8B%B1.png,"최면에 빠진이라는 뜻으로 보드카, 꼬냑 및 과일주스로 만든 리큐르. 여러가지 과일맛이 조화롭고 알콜향이 강하지않다."
+레드불,Red bull,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/033.%EB%A0%88%EB%93%9C%EB%B6%8880.png,"레드불은 에너지 음료로 예거밤 칵테일에 예거 마이스터와 함께 사용됩니다."
+레몬티,Lemon Tea,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/114a10bb-4826-4f90-9a79-59077fb2f298b76f44b6b4e35ff1e9668e918.png,"레몬조각과 레몬향을 균형있게 블렌딩하여 상큼한 맛과 향을 즐길수 있는 홍차로 따뜻하게 혹은 아이스티로 마신다."
+물,Water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/042.%EB%AC%BC.png,"물은 칵테일 믹서로 자주 사용되지 않지만 때로는 스카치 또는 버번과 혼합되어 도수를 약하게하고 더 복잡한 맛을 냅니다."
+사이다,Sprite,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/048.%EC%82%AC%EC%9D%B4%EB%8B%A480.png,"액상과당, 설탕, 레몬향, 라임향, 구연산 등을 원료로 만든 무색 투명한 카페인이 없는 탄산음료로 7Up과 스프라이트와 같이 사용된다."
+솔의눈,Pine Bud Drink,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/30360845-22d6-4d94-b074-f2c075b1f05cb76f44b6b4e35ff1e9668e91b.png,"솔싹추출물을 함유한 음료로 솔잎향과 함께 시원하고 상쾌한 느낌이 든다. 호불호가 있는 음료지만 술과 섞으면 잘 어울려 칵테일 재료로 사용된다."
+식용장미수,RABEE Rose water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/aa798194-3ae1-4754-8324-e8e35cd32a8d5e7e641ee43d14e631bfa2c0b.png,"다마스크 장미의 꽃을 증류하여 얻는 증류액인 Rosewater는 천년 이상의 오랜 역사를 이어오고 있는 중동지역의 특산품입니다."
+우유,Milk,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/023.%EC%9A%B0%EC%9C%A0.png,"흰색 유제품으로 칵테일에 부드러운 질감을 더해주는 믹서로 사용됩니다."
+진저 비어,Ginger beer,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/025.%EC%A7%84%EC%A0%80%EB%B9%84%EC%96%B480.png,"강한 생강향이 나고 진저 에일과 비슷한 맛의 탄산 음료."
+진저 에일,Ginger ale,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/024.%EC%A7%84%EC%A0%80%EC%97%90%EC%9D%BC70.png,"소다수에 생강의 풍미를 곁들인 탄산음료로 위스키, 브랜디, 진과 함께 자주 사용된다."
+커피,Coffee,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/008.%EC%BB%A4%ED%94%BC80.png,"로스팅한 커피콩과 물로 만든 음료로 아이리쉬 위스키와 혼합하여 아이리쉬 커피를 만드는 것이 유명합니다."
+코코넛 밀크,Coconut milk,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EC%BD%94%EC%BD%94%EB%84%9B%EB%B0%80%ED%81%AC80.png,"코코넛 과육에 따뜻한 물을 섞어 만든 달콤한 주스로 열대 음료에 많이 사용됩니다."
+콜라,Cola,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/009.%EC%BD%9C%EB%9D%BC90.png,"카페인과 미묘한 바닐라 향이 가미된 달콤한 탄산 음료."
+탄산수,Soda water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/035.%ED%83%84%EC%82%B0%EC%88%9890.png,"탄산가스와 무기염류를 함유한 음료수로 소다수는 감미료가 포함되지 않아 맛을 바꾸지않고 다양한 음료에 탄산과 물을 첨가할 수 있다. 위스키와 잘 어울리고 독한 술을 마실 때 사용한다."
+토닉워터,Tonic water,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/040.%ED%86%A0%EB%8B%89%EC%9B%8C%ED%84%B090.png,"쓴맛이 나는 탄산음료로 소다수에 키나나무에서 얻어낸 엑기스인 키니네(퀴닌)와 기타 재료를 섞어 만든다. 진과 잘 어울린다."
+파워에이드,Powerade,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/068.%ED%8C%8C%EC%9B%8C%EC%97%90%EC%9D%B4%EB%93%9C90.png,"코카콜라에서 개발한 무탄산 스포츠 음료로 1988년에 출시되었다. 비타민 B와 4가지 전해질 ION4가 함유되어 있어 몸에 물보다 빠른 흡수가 되는 것으로 유명하다."
+핫식스,HotSix,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/069.%ED%95%AB%EC%8B%9D%EC%8A%A480.png,"핫식스는 롯데칠성음료에서 제조 및 판매하는, 고카페인 에너지 음료이다. 외국에서 많이 판매되는 레드불이나 몬스터의 한국판 음료."
+홍차,Black tea,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/051.%ED%99%8D%EC%B0%A890.png,"차나무의 찻잎을 우려내어 강한 허브 맛이 나는 차. 다양한 칵테일에 사용됩니다."
+라임 주스,Lime juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/066.%EB%9D%BC%EC%9E%84%EC%A3%BC%EC%8A%A490.png,"라임을 착즙하여 만든 주스"
+레몬 주스,Lemon juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/065.%EB%A0%88%EB%AA%AC%EC%A3%BC%EC%8A%A490.png,"레몬을 착즙하여 만든 주스"
+레몬에이드,lemonade,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/020.%EB%A0%88%EB%AA%AC%EC%97%90%EC%9D%B4%EB%93%9C90.png,"레몬 주스, 물 및 설탕으로 구성된 달콤한 레몬 맛의 음료."
+망고 주스,Mango Juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/ebff265e-6a9a-426d-83b1-41fee3274735b76f44b6b4e35ff1e9668e915.png,"망고를 착즙하여 만든 주스"
+사과 주스,Apple juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/049.%EC%82%AC%EA%B3%BC%EC%A3%BC%EC%8A%A470.png,"사과를 착즙한 과즙주스."
+석류 주스,Pomegranate juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/074.%EC%84%9D%EB%A5%98%EC%A3%BC%EC%8A%A4.png,"석류의 즙을 내어 만든 붉은 주스."
+오렌지 주스,Orange juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/030.%EC%98%A4%EB%A0%8C%EC%A7%80%EC%A3%BC%EC%8A%A490.png,"오렌지의 과즙 주스로 다양한 칵테일에 사용됩니다."
+올리브 주스,Olive juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/026.%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%A3%BC%EC%8A%A490.png,"올리브를 보존하는데 사용되는 짠 염수로 씁쓸하고 짠맛을 칵테일에 더할 수 있습니다. 더티마티니가 유명합니다."
+자몽 주스,Grapefruit juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/014.%EC%9E%90%EB%AA%BD%EC%A3%BC%EC%8A%A4.png,"자몽 과즙주스로 칵테일에 흔히 사용됩니다."
+지룩스 라임 주스,Giroux Lime Juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/32012301-b057-414a-b021-cf8fe3b66756b76f44b6b4e35ff1e9668e909.png,"코디얼처럼 달콤한 라임주스로 새콤달콤한 맛을 더해줍니다."
+크랜베리 주스,Cranberry juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/010.%ED%81%AC%EB%9E%9C%EB%B2%A0%EB%A6%AC%EC%A3%BC%EC%8A%A4.png,"크랜베리를 착즙하여 만든 붉은색의 주스."
+토마토 주스,Tomato juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/039.%ED%86%A0%EB%A7%88%ED%86%A0%EC%A3%BC%EC%8A%A4.png,"토마토를 착즙하여 만든 주스"
+파인애플 주스,Pineapple juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/032.%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C%EC%A3%BC%EC%8A%A480.png,"파인애플의 달콤한 과일 주스로 열대 주스가 들어있는 다양한 음료에서 가장 일반적으로 사용됩니다."
+패션프루트 주스,passion fruit juice,juice,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/047.%ED%8C%A8%EC%85%98%ED%94%84%EB%A3%A8%ED%8A%B8%EC%A3%BC%EC%8A%A490.png,"패션프루트(백향과)를 착즙한 달콤한 이국적인 주스로 열대 칵테일의 중요한 재료입니다."
+딸기,Strawberry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/063.%EB%94%B8%EA%B8%B080.png,"달콤하고 새콤한 빨간색 과일로 칵테일 장식에 사용된다."
+라임,Lime,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/021.%EB%9D%BC%EC%9E%8490.png,"칵테일 장식으로 많이사용되는 강한 신맛의 녹색 과일로 레몬보다 조금 작습니다."
+레몬,lemon,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/019.%EB%A0%88%EB%AA%AC80.png,"신맛이 나는 노란색 과일로 칵테일의 쓴맛을 완화시키면서 산뜻한 맛을 내주며 장식으로 많이 사용됩니다."
+마라스키노 체리,Maraschino cherry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/022.%EB%A7%88%EB%9D%BC%EC%8A%A4%ED%82%A4%EB%85%B8%EC%B2%B4%EB%A6%AC80.png,"칵테일 체리라고 불리며, 설탕 시럽으로 코팅된 붉은색 체리입니다. 칵테일 장식으로 많이 사용됩니다."
+바나나,Banana,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/072.%EB%B0%94%EB%82%98%EB%82%9890.png,"길쭉하고 부드러운 달콤한 노란색 과일."
+블랙 베리,blackberry,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/052.%EB%B8%94%EB%9E%99%EB%B2%A0%EB%A6%AC80.png,"약간 쓴 뒷맛이 있는 작고 달콤한 과일. 블랙베리는 블랙베리 모히또에 사용됩니다."
+사과,Apple,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/003.%EC%82%AC%EA%B3%BC60.png,"사과나무의 열매로, 세계적으로 널리 재배되는 열매 가운데 하나."
+오렌지,Orange,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/027.%EC%98%A4%EB%A0%8C%EC%A7%80.png,"주황색의 달콤한 감귤류 과일로 칵테일 장식에 사용됩니다. 슬라이스하거나 웨지로 사용한다."
+자몽,Grapefruit,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/013.%EC%9E%90%EB%AA%BD90.png,"단맛이 적고 쓴맛과 신맛이 나는 감귤류 과일."
+파인애플,Pineapple,fruit,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/031.%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C.png,"달콤하고 과즙이 많은 과일로 트로피컬 음료 장식에 잘 사용됩니다. 유럽에서는 아나나스(Ananas)라고 불린다."
+계란,Egg,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/012.%EA%B3%84%EB%9E%80.png,"칵테일에 사용할 때 크림같고 부드러운 질감을 제공합니다. 노른자와 흰자를 구분하여 사용되기도 합니다."
+계피 스틱,Cinnamon sticks,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%84%ED%94%BC%EC%8A%A4%ED%8B%B180.png,"갈포과의 식물로서 나무의 껍질로 만들어 약간 매운 맛과 단맛을 동시에 갖는 향료. 칵테일 장식으로 계피 스틱이 사용됩니다."
+그레나딘 시럽,Grenadine,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/015.%EA%B7%B8%EB%A0%88%EB%82%98%EB%94%98%EC%8B%9C%EB%9F%BD.png,"석류와 붉은 건포도로 만든 붉은 시럽으로 달콤한 풍미와 색 때문에 칵테일에 많이 사용됩니다."
+꿀,Honey,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/016.%EA%BF%8090.png,"꽃과 과일 향을 가진 달콤한 점성있는 액체 감미료."
+꿀 시럽,Honey syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/017.%EA%BF%80%EC%8B%9C%EB%9F%BD.png,"설탕대신 꿀을 따뜻한 물에 섞어 만든 시럽."
+넛맥,Grated Nutmeg,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/045.%EB%84%9B%EB%A7%A580.png,"타원형 모양으로 육두구라고 불리는 넛맥은 음료에 풍미를 더해주는데, 칵테일에는 주로 갈아서 사용된다."
+딸기 시럽,Strawberry syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/064.%EB%94%B8%EA%B8%B0%EC%8B%9C%EB%9F%BD.png,"딸기로 만든 달콤한 시럽."
+라즈베리 시럽,Raspberry syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/062.%EB%9D%BC%EC%A6%88%EB%B2%A0%EB%A6%AC%EC%8B%9C%EB%9F%BD.png,"당밀에 나무딸기 라즈베리의 풍미를 가한 달콤하고 붉은색의 시럽"
+메이플 시럽,Maple syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/061.%EB%A9%94%EC%9D%B4%ED%94%8C%EC%8B%9C%EB%9F%BD90.png,"사탕 단풍나무의 수액을 짜서 만든 달콤하고 어두운색의 시럽"
+민트,Mint,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/024.%EB%AF%BC%ED%8A%B890.png,"청량감있는 녹색 허브로 민트 잎은 신선하고 상쾌한 맛을 첨가하기 위해 다양한 칵테일에 사용되는데 새로 나온 잎이 3~4장 달린 끝부분을 사용합니다."
+바나나 시럽,Banana Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/a0b1187f-1e92-4021-91dc-47ae4667ed4eb76f44b6b4e35ff1e9668e90f.png,"과일 시럽의 한 종류로 과일을 함유하여 깊은 풍미를 더하며 칵테일 뿐 아니라 다양한 용도로 활용된다."
+바닐라 추출액,Vanilla Extract,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/041.%EB%B0%94%EB%8B%90%EB%9D%BC%EC%B6%94%EC%B6%9C%EC%95%A180.png,"바닐라 빈을 알코올에 담가 만든 향료로 칵테일에 단맛과 바닐라 향을 더할 때 사용됩니다."
+바질,Basil,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/050.%EB%B0%94%EC%A7%8890.png,"허브의 왕이라고 알려진 향신료로 진 및 보드카 기반 칵테일에 사용됩니다."
+방울양파,Silverskin Onion,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/046.%EB%B0%A9%EC%9A%B8%EC%96%91%ED%8C%8C80.png,"일반 양파보다 매운맛이 덜한 작은 크기의 방울양파를 소금과 식초로 혼합하여 절여 칵테일 어니언으로 불리며, 칵테일 장식으로 사용되거나 칵테일에 풍미를 더합니다."
+버터,Butter,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/053.%EB%B2%84%ED%84%B090.png,"발효유나 생우유 또는 생크림을 유지방과 버터밀크가 분리될 때까지 휘저어 만든 유제품."
+복숭아 퓨레,Peach puree,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/071.%EB%B3%B5%EC%88%AD%EC%95%84%ED%93%A8%EB%A0%8890.png,"복숭아를 갈아서 부드럽게 만들어 칵테일에 걸죽한 질감과 복숭아 맛을 더해준다."
+샐러리,Celery,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/005.%EC%83%90%EB%9F%AC%EB%A6%AC.png,"특유의 향을 가진 녹색 채소로 칵테일 장식으로 사용됩니다."
+설탕,Sugar,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/036.%EC%84%A4%ED%83%9570.png,"사탕수수에서 생산 된 설탕은 칵테일에 단맛을 더하는데 사용됩니다."
+설탕 시럽,Sugar syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/037.%EC%84%A4%ED%83%95%EC%8B%9C%EB%9F%BD.png,"설탕에 물을 넣고 끓인 시럽으로 칵테일에 쉽게 단맛을 더할 수 있습니다."
+소금,Salt,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/034.%EC%86%8C%EA%B8%8880.png,"음식이나 칵테일에 짠맛을 첨가하는 소금은 마가리타 잔의 림을 코팅하는데 사용된다. 입자가 부드러운 소금을 사용하는 것이 좋다."
+스윗 앤 사워 믹스,Sweet sour mix,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/067.%EC%8A%A4%EC%9C%97%EC%82%AC%EC%9B%8C.png,"레몬주스, 라임주스 설탕으로 만들어 새콤달콤한 칵테일에 사용되는데 가루분말이거나 액상으로 되어있다."
+아몬드 시럽,Almond syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/001.%EC%95%84%EB%AA%AC%EB%93%9C%EC%8B%9C%EB%9F%BD.png,"아몬드로 만들어 달콤하고 우디하며 아몬드 맛이 나는 믹싱 시럽."
+아이스크림,Ice cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/060.%EC%95%84%EC%9D%B4%EC%8A%A4%ED%81%AC%EB%A6%BC80.png,"우유, 설탕, 감미료로 만든 차가운 디저트. 칵테일에는 달콤하고 차가운 크림 질감을 더합니다."
+얼그레이 시럽,Earl Gray Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/e84b5b44-ccf5-4671-9325-4e7f0bbf6135b76f44b6b4e35ff1e9668e903.png,"홍차맛 시럽입니다. 하이볼에 넣으면 홍차맛을 더해줘 특별한 느낌을 줍니다."
+얼음,Ice,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/018.%EC%96%BC%EC%9D%8C80.png,"거의 모든 칵테일에 사용되어 음료를 차게 만들거나 복잡한 풍미를 더해줍니다."
+오렌지 플라워 워터,Orange flower water,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/029.%EC%98%A4%EB%A0%8C%EC%A7%80%ED%94%8C%EB%9D%BC%EC%9B%8C%EC%9B%8C%ED%84%B080.png,"신선한 비터 오렌지 꽃을 맑고 향기롭게 증류한 것으로, 오렌지 맛과 강한 향으로 인해 칵테일의 재료로 사용됩니다."
+오이,Cucumber,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/8d205304-b9ae-4917-ad66-c25b44cfa6681b084acdc75744f121af76603.png,"95%가 수분으로 구성되어 있어 시원한 맛이 특징인 야채."
+올리브,Olive,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/025.%EC%98%AC%EB%A6%AC%EB%B8%8C90.png,"짠맛의 과일로 주로 드라이한 맛이 나는 칵테일에 장식으로 사용됩니다. 마티니가 가장 유명합니다."
+우스터 소스,Worcestershire sauce,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/044.%EC%9A%B0%EC%8A%A4%ED%84%B0%EC%86%8C%EC%8A%A490.png,"마늘, 간장, 양파 등이 들어간 어두운 색의 소스로 1840년대 고기를 위한 조미료 소스로 인기가 있었습니다. 블러드 메리에 사용됩니다."
+장미 시럽,Rose Syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/9a80f31d-004b-4a5d-b443-d76a652d6acab76f44b6b4e35ff1e9668e90d.png,"장미꽃 향기와 아로마 향이 나는 시럽으로 칵테일을 만들거나 마카롱을 만들 때 많이 사용된다. 로즈시럽 이라고도 많이 불린다."
+정향,Clove,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/058.%EC%A0%95%ED%96%A580.png,"클로브라고 불리는 정향나무의 꽃봉오리를 압착 건조한 정향은 맵고 향긋한 맛이 난다. 알코올의 강한 냄새를 억제한다."
+초콜릿,Chocolate,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/055.%EC%B4%88%EC%BD%9C%EB%A6%BF90.png,"카카오 나무의 씨로 만든 풍부하고 어둡고 단맛이 나는 식재료. 초콜릿은 달콤하고 부드러우며 다양한 디저트 칵테일에 사용할 수 있습니다."
+초콜릿 시럽,Chocolate syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/056.%EC%B4%88%EC%BD%9C%EB%A6%BF%EC%8B%9C%EB%9F%BD90.png,"초콜릿과 같은 맛이 나는 시럽. 초콜릿 시럽으로 만든 인기 있는 칵테일은 초콜릿 에스프레소 마티니입니다."
+칠리 고추,Chili,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/054.%EA%B3%A0%EC%B6%94.png,"칠리는 맛과 향을 위해 음식과 칵테일에 사용되는 달콤하고 매운 고추입니다."
+커피 콩,Coffee beans,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/059.%EC%BB%A4%ED%94%BC%EC%BD%A980.png,"커피나무의 씨앗으로 음용 커피의 재료. 에스프레소 마티니와 같은 음료의 장식을 사용된다."
+코코넛 시럽,Coconut syrup,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/073.%EC%BD%94%EC%BD%94%EB%84%9B%EC%8B%9C%EB%9F%BD.png,"코코넛 주스, 코코넛 플레이크 및 설탕의 혼합물을 끓여서 만든 달콤한 코코넛 맛 시럽. 칵테일에 달콤함과 코코넛 향을 더합니다."
+코코넛 크림,Coconut cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/006.%EC%BD%94%EC%BD%94%EB%84%9B%ED%81%AC%EB%A6%BC80.png,"잘게 썬 코코넛을 물과 함께 끓여서 만들어 코코넛 밀크보다 더 진하고 풍부한 맛입니다."
+크림,Cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/011.%ED%81%AC%EB%A6%BC80.png,"우유의 고지방 성분으로 구성된 유제품으로 풍부하고 부드러운 질감을 가지고 있으며 우유보다 훨씬 진하다. 칵테일을 걸쭉하게 만드는 데 사용됩니다."
+타바스코,Tabasco,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/038.%ED%83%80%EB%B0%94%EC%8A%A4%EC%BD%9490.png,"매운 맛과 향이 나는 소스로 타바스코 페퍼와 식초 및 소금으로 만들어집니다."
+팔각,Star anise,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/070.%ED%8C%94%EA%B0%8180.png,"8개의 꼭지점이 있는 별 모양 향신료. 목련과 상록수의 열매로 매콤하고 단맛나는데 칵테일에는 장식으로 사용된다."
+후추,Black pepper,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/004.%ED%9B%84%EC%B6%9470.png,"일반적으로 음식에 사용되나 칵테일에도 첨가되는 향신료로 약한 스모키한 향과 함께 미묘한 허브 맛이 있습니다."
+휘핑 크림,Whipped cream,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/043.%ED%9C%98%ED%95%91%ED%81%AC%EB%A6%BC.png,"많은 거품으로 부드러운 질감을 더해주는 크림으로 설탕과 바닐라가 추가됩니다."
+케첩,Ketchup,other,0,https://contents.lotteon.com/itemimage/LO/14/30/44/11/35/_1/43/04/41/13/6/LO1430441135_1430441136_1.jpg,"케첩입니다."
+식초,vinegar,other,0,https://contents.lotteon.com/itemimage/LM/88/01/04/52/02/31/0_/00/1/LM8801045202310_001_1.jpg,"식초입니다."
+생강,ginger,fruit,0,http://san.chosun.com/news/photo/201502/9048_35514_3125.jpg,"생강입니다."
+페르넷브랑카,Fernet Branca,weak,35,"https://images.alko.fi/images/cs_srgb,f_auto,t_medium/cdn/107596/fernet-branca.jpg","페르넷브랑카입니다"
+사탕수수주스,Sugar Cane Juice,beverage,0,https://previews.123rf.com/images/lim_atos/lim_atos1407/lim_atos140700026/29792958-%EC%82%AC%ED%83%95-%EC%88%98%EC%88%98%EB%A1%9C-%EB%91%98%EB%9F%AC%EC%8B%B8%EC%9D%B8-%EC%82%AC%ED%83%95-%EC%88%98%EC%88%98-%EC%A3%BC%EC%8A%A4.jpg,"사탕수수주스입니다."
+코디얼,Cordial,other,0,https://www.earthfoodandfire.com/wp-content/uploads/2022/07/raspberry-cordial-on-garden-table.jpg,"코디얼입니다."
+크렘 드 바이올렛,Creme de violette,weak,24,https://w.namu.la/s/16f9c487af943597ba35c4cb770be912c46194b625106c2a34b19849ce1f6e90bdfaa7ae0149ae681162e436a1c72ba82eba5c8517ff537532678a4a617ea6e8d4d91feb8bde2b79d00497b1d82254c9402ce283e98623874bc308d1c8b139e0a280a110c584bc1cea6b804ce6fcdfe1,"크렘 드 바이올렛"
+페이쇼드비터,Peychaud's Bitters,strong,35,https://upload.wikimedia.org/wikipedia/commons/0/01/Peychauds.jpg,"페이쇼드비터"
+시나몬시럽,Cinnamon Syrup,other,0,https://s3.amazonaws.com/yummy_uploads2/blog/8057.jpg,"시나몬시럽"
+아가베시럽,Agave syrup,other,0,https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/5f232fc4bb4f12c905bfedd9_00099482429911-00099482429911-c1n1.jpg,"아가베시럽"
+그라파,Grappa,strong,40,http://egress.storeden.net/jpg/637ff36f00f220eb758b45bc/file.jpg,"그라파"
+카샤사,Cachacha,strong,35,https://image.biccamera.com/img/00000001919162_A01.jpg,"카샤샤"
+자몽소다,grapefruit soda,beverage,0,https://fevertree.s3.eu-west-2.amazonaws.com/thumbs/500x1200e/de4180d71890cace9556e4b802591c7a.png,"핑크자몽 탄산음료로 예쁜 핑크색이 특징이다."
+복숭아보드카,Peach Vodka,strong,40,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/aeaf7f7f-f981-4fdb-b4a2-67c70eb465795e7e641ee43d14e631bfa2c13.png,"달콤한 복숭아향이 두드러지는 보드카."
+스파이스드 럼,Spiced Rum,strong,35,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/ffedd30e-15ba-476c-ae9c-3e5cdccdfeb25e7e641ee43d14e631bfa2c0f.png,"향신료를 가미한 럼으로 캡틴 모건 스파이스드 럼이 유명하다. 주로 콜라나 진저 에일등 각종 음료와 함께 섞어 마신다."
+패션푸르트 럼,Passion fruit Rum,strong,38,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/3bf087d9-1adc-431a-8dc7-15ff8d5af0855e7e641ee43d14e631bfa2c19.png,"달콤한 열대과일 패션푸르트 향이 가미된 럼."
+오렌지 큐라소,Orange curacao,weak,39,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/032.%EC%98%A4%EB%A0%8C%EC%A7%80%ED%81%90%EB%9D%BC%EC%86%8C.png,"남미 베네주엘라 큐라소섬에서 생산되는 쓴맛의 강한 오렌지 껍질을 브랜디나 그 밖의 화주에 첨가하여 감미를 곁들인 30% 도수의 오렌지 리큐르입니다."
+핑크자몽 리큐르,Pink Grapefruit Liqueur,weak,17,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/de237c51-f5b3-48b7-9891-e314daf4ae215e7e641ee43d14e631bfa2c18.png,"달콤씁쓸한 자몽 리큐르로 예쁜 핑크색이 특징이다."
+밀키스,Milkis,beverage,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/71775508-2323-431e-bbd0-50501522f2455e7e641ee43d14e631bfa2c12.png,"우유가 첨가된 밀크소다 탄산음료."
+로즈마리,Rosemary,other,0,https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/bd3531c4-5577-4080-980a-b8da5b577bb05e7e641ee43d14e631bfa2c17.png,"특유의 향이 강한 허브의 일종으로 요리 뿐만 아니라 칵테일에도 종종 쓰인다. 로즈마리 특유의 향을 좋아하는 사람들은 하이볼에 종종 넣기도 한다."
