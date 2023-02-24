@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignatureService {
 
-	/* SignatureRepository 생성자 주입 */
+	/* 생성자 주입 */
 	private final SignatureRepository signatureRepository;
 
 	/* 시그니처 리스트 */

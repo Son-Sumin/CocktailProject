@@ -7,9 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Entity(name="cocktailRecipe")
 @Data
-//@Builder
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class CocktailRecipe{

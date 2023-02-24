@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IngredientController {
 	
-	/* IngredientService, CocktailRecipeService 생성자 주입 */
+	/* 생성자 주입 */
 	private final IngredientService ingredientService;
 	private final CocktailRecipeService cocktailRecipeService;
 

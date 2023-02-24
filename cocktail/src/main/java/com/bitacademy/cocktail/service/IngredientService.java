@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IngredientService {
 	
-	/* IngredientRepository, CocktailRecipeRepository 생성자 주입 */
+	/* 생성자 주입 */
 	private final IngredientRepository ingredientRepository;
 
 	/* 재료 목록 불러오기 */
