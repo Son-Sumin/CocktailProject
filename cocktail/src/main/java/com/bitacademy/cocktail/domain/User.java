@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -54,17 +55,18 @@ public class User {
 	@JsonIgnoreProperties({"user"})
 	private List<Board> boards = new ArrayList<>();
 	
-//	@OneToMany(mappedBy="user")
-//	@JsonIgnoreProperties({"reviewSignatures"})
-//	private List<Signature> signatures = new ArrayList<>();
-	
 	@OneToMany(mappedBy="user", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"user"})
 	private List<ReviewBoard> reviews = new ArrayList<>();
 	
-//	@OneToMany(mappedBy="user")
-//	@JsonIgnoreProperties({"reviewSignatures"})
-//	private List<Signature> signatures = new ArrayList<>();
+	@OneToMany(mappedBy="user", cascade = CascadeType.REMOVE)
+//	@JsonIgnoreProperties({"reviewSignatures", "signatureImages"})
+	private List<Signature> signatures = new ArrayList<>();
+	
+	@OneToMany(mappedBy="user", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"signature"})
+	@OrderBy("createdDate desc")
+	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 	
     @PrePersist
     public void createdAt() {

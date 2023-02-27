@@ -1,7 +1,9 @@
 package com.bitacademy.cocktail.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +19,6 @@ import com.bitacademy.cocktail.base.BaseTimeEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,6 @@ import lombok.ToString;
 @Entity(name="signature")
 @Table
 @Data
-@Builder
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -51,16 +51,17 @@ public class Signature extends BaseTimeEntity {
 	
 	
 	@ToString.Exclude
-	@Builder.Default
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"signature"})
 	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 
 	@ToString.Exclude
-	@Builder.Default
 	@OneToMany(mappedBy = "signature", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonIgnoreProperties({"signature"})
 	private List<SignatureImage> signatureImages = new ArrayList<>();
+	
+	@OneToMany(mappedBy="board", cascade = CascadeType.ALL)
+	private Set<LikeBoard> likes = new HashSet<>();
 	
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "user_no")
