@@ -31,7 +31,7 @@ public class SignatureRecipe {
 	private Signature signature;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"cocktailRecipes"})
+	@JsonIgnoreProperties({"cocktailRecipes", "signatureRecipes"})
 	@JoinColumn(name = "ingredient_no")
 	private Ingredient ingredient;
 	

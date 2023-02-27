@@ -68,6 +68,9 @@ public class User {
 	@OrderBy("createdDate desc")
 	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 	
+//	@OneToMany(mappedBy="user", cascade = CascadeType.REMOVE)
+//	private List<LikeSignature> LikeSignature = new ArrayList<>();
+	
     @PrePersist
     public void createdAt() {
         this.createdAt = LocalDateTime.now();
