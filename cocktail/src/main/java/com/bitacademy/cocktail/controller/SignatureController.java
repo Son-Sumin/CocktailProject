@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,9 +54,8 @@ public class SignatureController {
 	public List<Signature> writeSignature(
 			@ModelAttribute Signature form,
 			SignatureImage signatureImage,
-			@ModelAttribute List<MultipartFile> files,
-			@ModelAttribute List<SignatureRecipe> recipes,
-			Ingredient ingredient) throws Exception {
+			List<MultipartFile> files,
+			List<SignatureRecipe> recipes) throws Exception {
 		
 		//시그니처 글 작성
 		Signature signature = new Signature();
@@ -71,9 +71,6 @@ public class SignatureController {
 		
 		//파일 업로드
 		signatureImageService.addImages(signature, signatureImage, files);
-		
-//		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
-//		model.addAttribute("signatureImages", signatureImages);
 		
 		return signatureService.listSignature();
 	}
@@ -109,6 +106,7 @@ public class SignatureController {
 			@ModelAttribute Signature signature, Signature form,
 			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
 		
+		// 기존 내용 불러오기 및 글 수정
 		signature = signatureService.findSigView(no);
 		signature.setHit(signature.getHit());	
 
@@ -119,11 +117,10 @@ public class SignatureController {
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
-		// 기존에 올린 파일 있으면 지우기
-		if(signature.getSignatureImages() != null){
-			signatureImageService.deleteImage(no);
-        }
+		// 기존에 올라간 파일 있으면 지우기
+		signatureImageService.deleteImage(no);
 		
+		//파일 수정 및 재업로드
 		signatureImageService.addImages(signature, signatureImage, files);
 		
 		return signatureService.findSigView(no);

@@ -70,7 +70,7 @@ public class Signature extends BaseTimeEntity {
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
 	private List<SignatureRecipe> signatureRecipes = new ArrayList<>();
 	
-	@OneToMany(mappedBy="board", cascade = CascadeType.ALL)
-	private Set<LikeBoard> likes = new HashSet<>();
+	@OneToMany(mappedBy="signature", cascade = CascadeType.ALL)
+	private Set<LikeSignature> likes = new HashSet<>();
 	
 }

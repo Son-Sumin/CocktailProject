@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +19,9 @@ import com.bitacademy.cocktail.service.BoardImageService;
 import com.bitacademy.cocktail.service.BoardService;
 import com.bitacademy.cocktail.service.ReviewBoardService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 public class BoardController {
 
@@ -39,7 +44,7 @@ public class BoardController {
 	
 //	게시글 작성
 	@PostMapping("/board/write")
-	public void boardWrite(Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
+	public void boardWrite(@ModelAttribute Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
 		
 		board.setHit(0L);
 		boardService.boardWrite(board);
