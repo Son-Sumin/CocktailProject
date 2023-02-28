@@ -104,6 +104,7 @@ public class SignatureController {
 	}
 
 	/* 시그니처 게시글 수정 */
+	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}")
 	public Signature modify(
 			@PathVariable("no") Long no, 
@@ -130,6 +131,7 @@ public class SignatureController {
 	}
 	
 	/* 시그니처 게시글 댓글 작성 */
+	@CrossOrigin(origins = "*")
 	@PostMapping("/view/{no}/review/write")
 	public Signature writeReviewSig(
 			@PathVariable("no") Long no,
