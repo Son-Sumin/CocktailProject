@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.transaction.Transactional;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,6 +41,7 @@ public class BannerController {
 	}
 	
 	/* 배너 추가 */
+	@CrossOrigin(origins = "*")
 	@PostMapping("/add")
 	public void addBanner(@ModelAttribute Banner form, MultipartFile file) throws Exception {
 
@@ -62,6 +64,7 @@ public class BannerController {
 	}
 	
 	/* 배너 삭제 */
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/delete/{no}")
 	public void deleteBanner(@PathVariable("no") Long no) {
 		bannerRepository.deleteByNo(no);
