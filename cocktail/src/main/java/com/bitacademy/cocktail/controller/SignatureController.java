@@ -58,6 +58,7 @@ public class SignatureController {
 		//시그니처 글 작성
 		Signature signature = new Signature();
 		signature.setCocktailName(form.getCocktailName());
+		signature.setEngName(form.getEngName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setHit(0);
@@ -115,6 +116,7 @@ public class SignatureController {
 		signature.setHit(signature.getHit());	
 
 		signature.setCocktailName(form.getCocktailName());
+		signature.setEngName(form.getEngName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setSignatureImages(form.getSignatureImages());
