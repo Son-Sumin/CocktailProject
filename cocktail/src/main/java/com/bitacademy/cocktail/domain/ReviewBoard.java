@@ -39,6 +39,6 @@ public class ReviewBoard extends BaseTimeEntity {
 	private Board board;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_no")
-	private User user;
+	@JoinColumn(name="member_no")
+	private Member member;
 }

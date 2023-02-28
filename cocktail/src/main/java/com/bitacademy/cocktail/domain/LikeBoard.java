@@ -25,8 +25,8 @@ public class LikeBoard {
 	private Long no;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_no")
-	private User user;
+	@JoinColumn(name="member_no")
+	private Member member;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="board_no")

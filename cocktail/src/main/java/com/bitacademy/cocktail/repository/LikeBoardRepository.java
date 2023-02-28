@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.bitacademy.cocktail.domain.Board;
 import com.bitacademy.cocktail.domain.LikeBoard;
-import com.bitacademy.cocktail.domain.User;
+import com.bitacademy.cocktail.domain.Member;
 
 public interface LikeBoardRepository extends JpaRepository<LikeBoard, Long> {
 	
-	Optional<LikeBoard> findByUserAndBoard(User user, Board board);
+	Optional<LikeBoard> findBymemberAndBoard(Member member, Board board);
 
 }
