@@ -8,10 +8,12 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -44,11 +46,12 @@ public class Signature extends BaseTimeEntity {
 
 	@Column(name = "recipe_contents")
 	private String recipeContents;
-
-	private String type;
 	
 	private Integer hit;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_no")
+	private User user;
 	
 	@ToString.Exclude
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
@@ -62,9 +65,5 @@ public class Signature extends BaseTimeEntity {
 	
 	@OneToMany(mappedBy="board", cascade = CascadeType.ALL)
 	private Set<LikeBoard> likes = new HashSet<>();
-	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "user_no")
-//	private User user;
 	
 }

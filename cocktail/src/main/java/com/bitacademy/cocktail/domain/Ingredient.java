@@ -11,19 +11,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity(name="ingredient")
-@ToString(exclude = {"cocktailRecipes"})
+@ToString(exclude = {"cocktailRecipes", "signatureRecipes"})
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
@@ -48,16 +47,15 @@ public class Ingredient {
 
 	@JsonIgnoreProperties({"ingredient"})
 	@OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
-	@Builder.Default
 	private List<CocktailRecipe> cocktailRecipes = new ArrayList<>();
+	
+	@JsonIgnore
+	//@JsonIgnoreProperties({"signatureRecipes"})
+	@OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+	private List<SignatureRecipe> signatureRecipes = new ArrayList<>();
 	
 //	public void addCocktailRecipe(CocktailRecipe cocktailRecipe){
 //		cocktailRecipes.add(cocktailRecipe);
 //		cocktailRecipe.setIngredient(this);
 //    }
-	
-//	@ToString.Exclude
-//	@JsonIgnoreProperties({"signatureRecipes"})
-//	@OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
-//	private List<SignatureRecipe> signatureRecipes = new ArrayList<>();
 }

@@ -3,6 +3,7 @@ package com.bitacademy.cocktail.controller;
 import java.util.List;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,8 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureImage;
+import com.bitacademy.cocktail.domain.SignatureRecipe;
 import com.bitacademy.cocktail.service.ReviewSignatureService;
 import com.bitacademy.cocktail.service.SignatureImageService;
+import com.bitacademy.cocktail.service.SignatureRecipeService;
 import com.bitacademy.cocktail.service.SignatureService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +34,7 @@ public class SignatureController {
 	private final SignatureService signatureService;
 	private final ReviewSignatureService reviewSignatureService;
 	private final SignatureImageService signatureImageService;
+	private final SignatureRecipeService signatureRecipeService;
 	
 	
 	/* 시그니처 리스트 */
@@ -42,21 +46,30 @@ public class SignatureController {
 	}
 
 	/* 시그니처 글 작성 + 멀티파일 업로드 */
+	// 자체 test시 @ModelAttribute, 클라이언트로 전송 시 @RequestBody
+	@CrossOrigin(origins = "*")
 	@PostMapping("/form")
 	public List<Signature> writeSignature(
 			@ModelAttribute Signature form,
 			SignatureImage signatureImage,
-			List<MultipartFile> files) throws Exception {
+			SignatureRecipe recipe,
+			@ModelAttribute List<MultipartFile> files) throws Exception {
 		
 		//시그니처 글 작성
 		Signature signature = new Signature();
-		
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
-		signature.setType(form.getType());
 		signature.setHit(0);
 		signatureService.add(signature);
+		
+		// 시그니처 재료 작성
+		SignatureRecipe signatureRecipe = new SignatureRecipe();
+		signatureRecipe.setSignature(signature);
+		signatureRecipe.setIngredient(recipe.getIngredient());
+		signatureRecipe.setAmount(recipe.getAmount());
+		signatureRecipe.setUnit(recipe.getUnit());
+		signatureRecipeService.add(signatureRecipe);
 		
 		//파일 업로드
 		signatureImageService.addImages(signature, signatureImage, files);
@@ -82,14 +95,6 @@ public class SignatureController {
 		
 		return signatureService.findSigView(no);
 	}
-	
-//	/* 시그니처 게시글 좋아요 */
-//	@PutMapping("/view/like/{no}")
-//	public Signature likeSig(@PathVariable("no") Long no,  Model model) {
-//		model.addAttribute("signature", signatureService.findSigView(no));
-//		signatureService.updateLike(no);
-//		return signatureService.findSigView(no);
-//	}
 
 	/* 시그니처 게시글 삭제 */
 	@DeleteMapping("/delete/{no}")
@@ -99,6 +104,7 @@ public class SignatureController {
 	}
 
 	/* 시그니처 게시글 수정 */
+	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}")
 	public Signature modify(
 			@PathVariable("no") Long no, 
@@ -111,7 +117,6 @@ public class SignatureController {
 		signature.setCocktailName(form.getCocktailName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
-		signature.setType(form.getType());
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
@@ -126,6 +131,7 @@ public class SignatureController {
 	}
 	
 	/* 시그니처 게시글 댓글 작성 */
+	@CrossOrigin(origins = "*")
 	@PostMapping("/view/{no}/review/write")
 	public Signature writeReviewSig(
 			@PathVariable("no") Long no,
@@ -145,5 +151,13 @@ public class SignatureController {
 		reviewSignatureService.delete(no, reviewNo, reviewSignature);
 		return signatureService.findSigView(no);
 	}
+	
+//	/* 시그니처 게시글 좋아요 */
+//	@PutMapping("/view/like/{no}")
+//	public Signature likeSig(@PathVariable("no") Long no,  Model model) {
+//		model.addAttribute("signature", signatureService.findSigView(no));
+//		signatureService.updateLike(no);
+//		return signatureService.findSigView(no);
+//	}
 
 }
