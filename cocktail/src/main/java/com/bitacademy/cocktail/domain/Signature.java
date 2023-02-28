@@ -53,8 +53,8 @@ public class Signature extends BaseTimeEntity {
 	private Integer hit;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_no")
-	private User user;
+	@JoinColumn(name="member_no")
+	private Member member;
 	
 	@ToString.Exclude
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
