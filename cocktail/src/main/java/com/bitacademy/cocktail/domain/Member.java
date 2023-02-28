@@ -37,10 +37,11 @@ public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
+	@Column(nullable = false, length = 30)
 	private String name;
 	@Column(nullable = false, length = 30)
 	private String id;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, length = 30)
 	private String password;
 	@Column(nullable = false, length = 30)
 	private String nickname;
