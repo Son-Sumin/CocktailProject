@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureImage;
@@ -53,7 +54,8 @@ public class SignatureController {
 			@ModelAttribute Signature form,
 			SignatureImage signatureImage,
 			@ModelAttribute List<MultipartFile> files,
-			@ModelAttribute List<SignatureRecipe> recipes) throws Exception {
+			@ModelAttribute List<SignatureRecipe> recipes,
+			Ingredient ingredient) throws Exception {
 		
 		//시그니처 글 작성
 		Signature signature = new Signature();

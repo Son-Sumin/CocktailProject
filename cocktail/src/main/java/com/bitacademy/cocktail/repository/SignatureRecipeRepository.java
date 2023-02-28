@@ -17,9 +17,9 @@ public interface SignatureRecipeRepository extends JpaRepository<SignatureRecipe
 //			+ "WHERE i.name = :name",
 //			nativeQuery=true)
 	
-	@Query("SELECT i FROM Ingredient i "
-			+ "WHERE i. = :#{ingredient.no}")
-	Ingredient findIngredient(@Param(value = "ingredient") Ingredient ingredient);
+//	@Query("SELECT i FROM Ingredient i "
+//			+ "WHERE i. = :#{ingredient.no}")
+//	Ingredient findIngredient(@Param(value = "ingredient") Ingredient ingredient);
 
 }
 
