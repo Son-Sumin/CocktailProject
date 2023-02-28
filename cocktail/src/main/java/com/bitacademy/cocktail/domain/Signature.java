@@ -66,6 +66,10 @@ public class Signature extends BaseTimeEntity {
 	@JsonIgnoreProperties({"signature"})
 	private List<SignatureImage> signatureImages = new ArrayList<>();
 	
+	@JsonIgnoreProperties({"signature"})
+	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
+	private List<SignatureRecipe> signatureRecipes = new ArrayList<>();
+	
 	@OneToMany(mappedBy="board", cascade = CascadeType.ALL)
 	private Set<LikeBoard> likes = new HashSet<>();
 	

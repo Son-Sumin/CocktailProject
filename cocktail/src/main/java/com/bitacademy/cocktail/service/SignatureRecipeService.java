@@ -32,7 +32,11 @@ public class SignatureRecipeService {
 	public List<SignatureRecipe> findBySignature(Long signatureNo, SignatureRecipe signatureRecipe) {
 		Optional<Signature> signature = signatureRepository.findByNo(signatureNo);
 		//signatureRecipe.setSignature(signature).get();
-		return signatureRecipeRepository.findBySignature_No(signatureNo);
+		return signatureRecipeRepository.findBySignatureNo(signatureNo);
+	}
+	
+	public void findByIngredient() {
+		signatureRecipeRepository.findByIngredientName();
 	}
 	
 	/* 시그니처 작성 */

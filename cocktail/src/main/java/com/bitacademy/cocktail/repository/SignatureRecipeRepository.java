@@ -8,7 +8,9 @@ import com.bitacademy.cocktail.domain.SignatureRecipe;
 
 public interface SignatureRecipeRepository extends JpaRepository<SignatureRecipe, Long>{
 
-	List<SignatureRecipe> findBySignature_No(Long signatureNo);
+	List<SignatureRecipe> findBySignatureNo(Long signatureNo);
+
+	void findByIngredientName();
 
 }
 
