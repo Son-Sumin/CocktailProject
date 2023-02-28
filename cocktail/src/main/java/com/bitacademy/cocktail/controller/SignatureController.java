@@ -52,8 +52,8 @@ public class SignatureController {
 	public List<Signature> writeSignature(
 			@ModelAttribute Signature form,
 			SignatureImage signatureImage,
-			SignatureRecipe recipe,
-			@ModelAttribute List<MultipartFile> files) throws Exception {
+			@ModelAttribute List<MultipartFile> files,
+			@ModelAttribute List<SignatureRecipe> recipes) throws Exception {
 		
 		//시그니처 글 작성
 		Signature signature = new Signature();
@@ -65,12 +65,7 @@ public class SignatureController {
 		signatureService.add(signature);
 		
 		// 시그니처 재료 작성
-		SignatureRecipe signatureRecipe = new SignatureRecipe();
-		signatureRecipe.setSignature(signature);
-		signatureRecipe.setIngredient(recipe.getIngredient());
-		signatureRecipe.setAmount(recipe.getAmount());
-		signatureRecipe.setUnit(recipe.getUnit());
-		signatureRecipeService.add(signatureRecipe);
+		signatureRecipeService.addRecipes(signature, recipes);
 		
 		//파일 업로드
 		signatureImageService.addImages(signature, signatureImage, files);

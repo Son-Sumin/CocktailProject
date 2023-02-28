@@ -1,5 +1,6 @@
 package com.bitacademy.cocktail.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureRecipe;
 import com.bitacademy.cocktail.repository.SignatureRecipeRepository;
@@ -35,12 +37,29 @@ public class SignatureRecipeService {
 		return signatureRecipeRepository.findBySignatureNo(signatureNo);
 	}
 	
-	public void findByIngredient() {
-		signatureRecipeRepository.findByIngredientName();
+	public void addRecipes(Signature signature, List<SignatureRecipe> recipes) {
+		
+		List<SignatureRecipe> signatureRecipes = new ArrayList<>();
+		
+		for(SignatureRecipe recipe : recipes) {
+			
+			SignatureRecipe sigRecipe = new SignatureRecipe();
+			sigRecipe.setSignature(signature);
+			sigRecipe.setIngredient(signatureRecipeRepository.findIngredient(recipe.getIngredient()));
+			sigRecipe.setAmount(recipe.getAmount());
+			sigRecipe.setUnit(recipe.getUnit());
+			signatureRecipes.add(sigRecipe);
+			
+			signatureRecipeRepository.saveAll(signatureRecipes);
+		}
 	}
 	
-	/* 시그니처 작성 */
-	public SignatureRecipe add(SignatureRecipe signatureRecipe) {		
-		return signatureRecipeRepository.save(signatureRecipe);
+	public void findByIngredient(Ingredient ingredient) {
+		signatureRecipeRepository.findIngredient(ingredient);
 	}
+	
+//	/* 시그니처 작성 */
+//	public SignatureRecipe add(SignatureRecipe signatureRecipe) {		
+//		return signatureRecipeRepository.save(signatureRecipe);
+//	}
 }
