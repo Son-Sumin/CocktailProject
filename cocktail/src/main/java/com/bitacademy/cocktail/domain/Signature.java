@@ -40,6 +40,9 @@ public class Signature extends BaseTimeEntity {
 
 	@Column(name = "cocktail_name")
 	private String cocktailName;
+	
+	@Column(name = "eng_name")
+	private String engName;
 
 	@Column(name = "cocktail_contents")
 	private String cocktailContents;
