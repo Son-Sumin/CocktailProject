@@ -117,8 +117,10 @@ public class SignatureController {
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
-		// 기존에 올라간 파일 있으면 지우기
-		signatureImageService.deleteImage(no);
+		// 기존에 올린 파일 있으면 지우기
+		if(signature.getSignatureImages() != null){
+			signatureImageService.deleteImage(no);
+        }
 		
 		//파일 수정 및 재업로드
 		signatureImageService.addImages(signature, signatureImage, files);

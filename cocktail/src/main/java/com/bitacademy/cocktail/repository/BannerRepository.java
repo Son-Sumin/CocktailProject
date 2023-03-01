@@ -8,4 +8,6 @@ public interface BannerRepository extends JpaRepository<Banner, Long> {
 
 	void deleteByNo(Long no);
 
+	Banner findByNo(Long no);
+
 }
