@@ -3,21 +3,19 @@ package com.bitacademy.cocktail.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.Board;
 import com.bitacademy.cocktail.domain.BoardImage;
 import com.bitacademy.cocktail.domain.ReviewBoard;
-import com.bitacademy.cocktail.jwt.JwtTokenProvider;
-import com.bitacademy.cocktail.repository.MemberRepository;
 import com.bitacademy.cocktail.service.BoardImageService;
 import com.bitacademy.cocktail.service.BoardService;
 import com.bitacademy.cocktail.service.ReviewBoardService;
@@ -47,10 +45,12 @@ public class BoardController {
 
 //	게시글 작성
 	@PostMapping("/board/write")
-	public void boardWrite(Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
+	public void boardWrite(@RequestBody Board board, BoardImage boardImage,
+						@RequestParam(value="files", required = false) List<MultipartFile> files) throws Exception {
 		System.out.println("board = " + board);
 		board.setHit(0L);
 		boardService.boardWrite(board);
+		System.out.println(!files.isEmpty());
 		if (!files.isEmpty()) {
 			for (MultipartFile file : files) {
 				boardImageService.saveFile(board, boardImage, file);

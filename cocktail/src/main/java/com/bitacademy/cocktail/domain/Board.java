@@ -20,6 +20,7 @@ import com.bitacademy.cocktail.base.BaseTimeEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "board")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Board extends BaseTimeEntity {
 
 	@Id

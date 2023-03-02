@@ -33,9 +33,10 @@ private String secretKey = "cocktailproject";
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
 	
-	public String createToken(String userPk, Role roles) {
+	public String createToken(String userPk, Role roles, String nickname) {
 		Claims claims = Jwts.claims().setSubject(userPk);
 		claims.put("roles", roles);
+		claims.put("nickname", nickname);
 		Date now = new Date();
 		return Jwts.builder()
 				.setClaims(claims)

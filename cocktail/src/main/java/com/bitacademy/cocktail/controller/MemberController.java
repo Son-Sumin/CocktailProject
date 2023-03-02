@@ -62,8 +62,8 @@ public class MemberController {
 		if (!passwordEncoder.matches(user.get("password"), member.getPassword())) {
 			throw new IllegalArgumentException("아이디 또는 비밀번호가 맞지않습니다.");
 		}
-		System.out.println("~~~~~~~~~" + jwtTokenProvider.createToken(member.getId(), member.getRole()));
-		return jwtTokenProvider.createToken(member.getId(), member.getRole());
+		System.out.println("~~~~~~~~~" + jwtTokenProvider.createToken(member.getId(), member.getRole(), member.getNickname()));
+		return jwtTokenProvider.createToken(member.getId(), member.getRole(), member.getNickname());
 	}
     
     //유저리스트
