@@ -67,7 +67,7 @@ public class SignatureController {
 		signatureService.add(signature);
 		
 		// 시그니처 재료 작성
-		signatureRecipeService.addRecipes(signature, recipes);
+		//signatureRecipeService.addRecipes(signature, recipes);
 		
 		//파일 업로드
 		signatureImageService.addImages(signature, signatureImage, files);
@@ -122,7 +122,7 @@ public class SignatureController {
 			signatureImageService.deleteImage(no);
         }
 		
-		//파일 수정 및 재업로드
+		// 파일 수정 및 재업로드
 		signatureImageService.addImages(signature, signatureImage, files);
 		
 		return signatureService.findSigView(no);
