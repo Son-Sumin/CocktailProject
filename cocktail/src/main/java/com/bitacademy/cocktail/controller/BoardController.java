@@ -45,7 +45,7 @@ public class BoardController {
 //	게시글 작성
 	@PostMapping("/board/write")
 	public void boardWrite(@ModelAttribute Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
-		
+		System.out.println("board = " + board);
 		board.setHit(0L);
 		boardService.boardWrite(board);
 		
