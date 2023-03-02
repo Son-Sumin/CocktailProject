@@ -39,37 +39,24 @@ public class BannerController {
 	/* 생성자 주입 */
 	private final BannerRepository bannerRepository;
 	
-	
-//	/* 배너 리스트 */
-//	@GetMapping({"", "/list"})
-//	public List<Banner> listBanner(Model model) {
-//		List<Banner> banner = bannerRepository.findAll();
-//		model.addAttribute("banners", banner);
-//		return banner;
-//	}
-	
 	/* 배너 리스트 */
 	@GetMapping({"", "/list"})
-	public void listBanner(Model model, String filename) {
+	public List<Banner> listBanner(Model model) {
 		List<Banner> banner = bannerRepository.findAll();
 		model.addAttribute("banners", banner);
-		
-		//showImage(filename);
-		//return listBanner(filename);
+		return banner;
 	}
 	
-	@GetMapping(value = {"/{filename}", "/list/{filename}"}, produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE,})
-	public ResponseEntity<byte[]> showImages(@PathVariable("filename") String filename) throws IOException {
+	/* 이미지 변환 */
+	@GetMapping(value = {"/view/{no}"}, produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE,})
+	public ResponseEntity<byte[]> showImages(@PathVariable("no") Long no) throws IOException {
 		
-		byte[] res = bannerRepository.findByFilename(filename);
-		System.out.println("filename : " + filename);
-		System.out.println("res : " + res);
-	    return new ResponseEntity<>(res, HttpStatus.OK);
-		
-//		InputStream imageStream = new FileInputStream("C://images/feed/" + no);
-//		byte[] imageByteArray = IOUtils.toByteArray(imageStream);
-//		imageStream.close();
-//		return new ResponseEntity<byte[]>(imageByteArray, HttpStatus.OK);
+		Banner banner = bannerRepository.findByNo(no);
+
+		InputStream imageStream = new FileInputStream("src/main/resources/static" + banner.getFilepath());
+		byte[] imageByteArray  = IOUtils.toByteArray(imageStream);
+		imageStream.close();
+	    return new ResponseEntity<>(imageByteArray, HttpStatus.OK);
 	}
 	
 	/* 배너 추가 */
