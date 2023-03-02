@@ -29,13 +29,13 @@ public class BoardImageService {
 	@Autowired
 	BoardRepository boardRepository;
 	
-	public void saveFile(Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
+	public void saveFile(Board board, BoardImage boardImage, MultipartFile file) throws Exception {
 		
 		List<BoardImage> imgs = new ArrayList<>();
 //		boardImage.setBoard(board);
-		for(MultipartFile file : files) {
-			if(!file.isEmpty()) {	
-				
+//		for(MultipartFile file : files) {
+//			if(!file.isEmpty()) {	
+				System.out.println("~~~~~~~~~~~~~~~~" + file.isEmpty());
 				String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
 				UUID uuid = UUID.randomUUID();
 				String savedName = uuid + "_" + file.getOriginalFilename();
@@ -52,8 +52,8 @@ public class BoardImageService {
 //				boardImage.setNo(null);
 //				boardImage.setPath("/files/" + savedName);
 				boardImageRepository.saveAll(imgs);
-			}
-		}
+//			}
+//		}
 	}
 	
 	public void imgDelete(Long no) {
