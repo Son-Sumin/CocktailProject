@@ -48,7 +48,7 @@ public class MemberController {
 				.birth(member.get("birth"))
 				.phoneNumber(member.get("phoneNumber"))
 				.role(Role.enuser)
-				.profileImage(member.get("profileImage"))
+				.profileImage("/common/defaultprofile.png")
 				.gender(member.get("gender"))
 				.build());
     }
@@ -56,11 +56,13 @@ public class MemberController {
 	//jwt로그인
 	@PostMapping("/member/login")
 	public String testLogin(@RequestBody Map<String, String> user) {
+		System.out.println("user = " + user);
 		Member member = memberRepository.findById(user.get("id"))
-						.orElseThrow(() -> new IllegalArgumentException("가입 되지 않은 이메일 입니다."));
+						.orElseThrow(() -> new IllegalArgumentException("가입 되지 않은 아이디 입니다."));
 		if (!passwordEncoder.matches(user.get("password"), member.getPassword())) {
-			throw new IllegalArgumentException("이메일 또는 비밀번호가 맞지않습니다.");
+			throw new IllegalArgumentException("아이디 또는 비밀번호가 맞지않습니다.");
 		}
+		System.out.println("~~~~~~~~~" + jwtTokenProvider.createToken(member.getId(), member.getRole()));
 		return jwtTokenProvider.createToken(member.getId(), member.getRole());
 	}
     
