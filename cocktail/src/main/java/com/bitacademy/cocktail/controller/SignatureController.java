@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureImage;
@@ -52,8 +54,8 @@ public class SignatureController {
 	public List<Signature> writeSignature(
 			@ModelAttribute Signature form,
 			SignatureImage signatureImage,
-			SignatureRecipe recipe,
-			@ModelAttribute List<MultipartFile> files) throws Exception {
+			List<MultipartFile> files,
+			List<SignatureRecipe> recipes) throws Exception {
 		
 		//시그니처 글 작성
 		Signature signature = new Signature();
@@ -65,18 +67,10 @@ public class SignatureController {
 		signatureService.add(signature);
 		
 		// 시그니처 재료 작성
-		SignatureRecipe signatureRecipe = new SignatureRecipe();
-		signatureRecipe.setSignature(signature);
-		signatureRecipe.setIngredient(recipe.getIngredient());
-		signatureRecipe.setAmount(recipe.getAmount());
-		signatureRecipe.setUnit(recipe.getUnit());
-		signatureRecipeService.add(signatureRecipe);
+		signatureRecipeService.addRecipes(signature, recipes);
 		
 		//파일 업로드
 		signatureImageService.addImages(signature, signatureImage, files);
-		
-//		List<SignatureImage> signatureImages = signatureImageService.listSigImage();
-//		model.addAttribute("signatureImages", signatureImages);
 		
 		return signatureService.listSignature();
 	}
@@ -112,6 +106,7 @@ public class SignatureController {
 			@ModelAttribute Signature signature, Signature form,
 			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
 		
+		// 기존 내용 불러오기 및 글 수정
 		signature = signatureService.findSigView(no);
 		signature.setHit(signature.getHit());	
 
@@ -127,6 +122,7 @@ public class SignatureController {
 			signatureImageService.deleteImage(no);
         }
 		
+		//파일 수정 및 재업로드
 		signatureImageService.addImages(signature, signatureImage, files);
 		
 		return signatureService.findSigView(no);

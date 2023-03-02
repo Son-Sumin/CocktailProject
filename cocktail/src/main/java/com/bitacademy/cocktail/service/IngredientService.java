@@ -28,5 +28,10 @@ public class IngredientService {
 	public Ingredient findIngredientView(Long no) {
 		return ingredientRepository.findByNo(no);
 	}
+	
+	/* 재료 찾기 */
+	public Ingredient findIngredient(String name) {
+		return ingredientRepository.findByName(name);
+	}
 
 }

@@ -8,7 +8,7 @@ import com.bitacademy.cocktail.domain.CocktailRecipe;
 
 public interface CocktailRecipeRepository extends JpaRepository<CocktailRecipe, Long> {
 
-	List<CocktailRecipe> findByCocktail_No(Long cocktailNo);
+	List<CocktailRecipe> findByCocktailNo(Long cocktailNo);
 	
-	List<CocktailRecipe> findByIngredient_No(Long ingredientNo);
+	List<CocktailRecipe> findByIngredientNo(Long ingredientNo);
 }

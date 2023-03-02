@@ -35,13 +35,13 @@ public class CocktailRecipeService {
 	public List<CocktailRecipe> findByCocktail(Long cocktailNo, CocktailRecipe cocktailRecipe) {
 		Cocktail cocktail = cocktailRepository.findByNo(cocktailNo);
 		cocktailRecipe.setCocktail(cocktail);
-		return cocktailRecipeRepository.findByCocktail_No(cocktailNo);
+		return cocktailRecipeRepository.findByCocktailNo(cocktailNo);
 	}
 	
 	/* ingredientNo에 따른 칵테일 레시피 */
 	public List<CocktailRecipe> findByIngredient(Long ingredientNo, CocktailRecipe cocktailRecipe) {
 		Ingredient ingredient = ingredientRepository.findByNo(ingredientNo);
 		cocktailRecipe.setIngredient(ingredient);
-		return cocktailRecipeRepository.findByIngredient_No(ingredientNo);
+		return cocktailRecipeRepository.findByIngredientNo(ingredientNo);
 	}
 }
