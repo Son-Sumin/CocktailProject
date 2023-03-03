@@ -1,0 +1,92 @@
+{
+    "cocktail": [
+        {
+            "no": 1,
+            "type": "nonalcohol",
+            "name": "버진 피나 콜라다",
+            "engName": "Virgin Pina Colada",
+            "cocktailContents": "피나 콜라다의 무알콜 버전입니다.",
+            "recipeContents": "피나 콜라다의 무알콜 버전입니다.",
+            "cocktailImages": [
+                {
+                    "no": 1,
+                    "url": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/72.Virgin%20Colada.jpg"
+                },
+                {
+                    "no": 2,
+                    "url": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg"
+                }
+            ]
+        },
+        {
+            "no": 2,
+            "type": "nonalcohol",
+            "name": "셜리 템플",
+            "engName": "Shirley Temple",
+            "cocktailContents": "미국의 아역배우 셜리 템플을 위해 만들어진 심플하고 대중적인 무알콜 칵테일입니다.",
+            "recipeContents": "미국의 아역배우 셜리 템플을 위해 만들어진 심플하고 대중적인 무알콜 칵테일입니다.",
+            "cocktailImages": [
+                {
+                    "no": 2,
+                    "url": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg"
+                }
+            ]
+        },
+        {
+            "no": 3,
+            "type": "nonalcohol",
+            "name": "로이 로저스",
+            "engName": "Roy Rogers",
+            "cocktailContents": "미국의 배우이자 가수인 로이 로저스의 이름을 딴 상쾌한 무알콜 칵테일입니다.",
+            "recipeContents": "미국의 배우이자 가수인 로이 로저스의 이름을 딴 상쾌한 무알콜 칵테일입니다.",
+            "cocktailImages": [
+                {
+                    "no": 3,
+                    "url": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/70.Roy%20Rogers.jpg"
+                }
+            ]
+        },
+        {
+            "no": 4,
+            "type": "alcohol",
+            "name": "한라토닉",
+            "engName": "Halla Tonic",
+            "cocktailContents": "소주로 쉽게 만들 수 있는 하이볼. 제주도의 한라산 소주를 사용하면 더 맛이 좋습니다. 화요 25도 짜리로 만드는 화요토닉도 있습니다.",
+            "recipeContents": "소주로 쉽게 만들 수 있는 하이볼. 제주도의 한라산 소주를 사용하면 더 맛이 좋습니다. 화요 25도 짜리로 만드는 화요토닉도 있습니다.",
+            "cocktailImages": [
+                {
+                    "no": 4,
+                    "url": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/69.Halla%20Tonic.jpg"
+                }
+            ]
+        },
+        {
+            "no": 5,
+            "type": "alcohol",
+            "name": "고진감래주",
+            "engName": "No pain, No gain",
+            "cocktailContents": "고생이 다하면 즐거움이 찾아온다는 한자성어 고진감래의 의미를 가진 폭탄주. 마시면 소주의 쓴 맛 뒤에 달달한 콜라를 먹게되므로 고진감래라고 이름 붙여졌습니다.",
+            "recipeContents": "고생이 다하면 즐거움이 찾아온다는 한자성어 고진감래의 의미를 가진 폭탄주. 마시면 소주의 쓴 맛 뒤에 달달한 콜라를 먹게되므로 고진감래라고 이름 붙여졌습니다.",
+            "cocktailImages": [
+                {
+                    "no": 5,
+                    "url": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/68.No%20pain,%20No%20gain.jpg"
+                }
+            ]
+        },
+        {
+            "no": 6,
+            "type": "alcohol",
+            "name": "에너자이저주",
+            "engName": "Energyju",
+            "cocktailContents": "편의점에서 쉽게 재료를 구해서 만들 수 있는 인기있는 소주 칵테일입니다.",
+            "recipeContents": "편의점에서 쉽게 재료를 구해서 만들 수 있는 인기있는 소주 칵테일입니다.",
+            "cocktailImages": [
+                {
+                    "no": 6,
+                    "url": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/67.Energyju.jpg"
+                }
+            ]
+        }
+    ]
+}

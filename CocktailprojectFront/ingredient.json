@@ -1,0 +1,58 @@
+{
+    "ingredient": [
+        {
+            "no": 1,
+            "name": "갈리아노",
+            "engName": "Galliano",
+            "type": "weak",
+            "degree": 30,
+            "image": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/022.%EA%B0%88%EB%A6%AC%EC%95%84%EB%85%B8.png",
+            "contents": "감초, 아니스, 바닐라 향을 함유한 달콤한 이탈리아 허브 리큐르로 도수는 약 30~42%이고 길쭉한 병에 담겨있다. 이탈리아 전쟁 영웅 Giuseppe Galliano의 이름에서 유래되었다."
+        },
+        {
+            "no": 2,
+            "name": "계란",
+            "engName": "Egg",
+            "type": "other",
+            "degree": 0,
+            "image": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/012.%EA%B3%84%EB%9E%80.png",
+            "contents": "칵테일에 사용할 때 크림같고 부드러운 질감을 제공합니다. 노른자와 흰자를 구분하여 사용되기도 합니다."
+        }
+        ,{
+            "no": 3,
+            "name": "꿀",
+            "engName": "Honey",
+            "type": "other",
+            "degree": 0,
+            "image": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/016.%EA%BF%8090.png",
+            "contents": "꽃과 과일 향을 가진 달콤한 점성있는 액체 감미료"
+        }
+        ,{
+            "no": 4,
+            "name": "레몬 주스",
+            "engName": "Lemon Juice",
+            "type": "juice",
+            "degree": 0,
+            "image": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/065.%EB%A0%88%EB%AA%AC%EC%A3%BC%EC%8A%A490.png",
+            "contents": "레몬을 착즙하여 만든 주스"
+        }
+        ,{
+            "no": 5,
+            "name": "골드 럼",
+            "engName": "Gold rum",
+            "type": "strong",
+            "degree": 40,
+            "image": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%A8%EB%93%9C%EB%9F%BC.png",
+            "contents": "사탕수수에서 설탕을 만들고 난 찌꺼지인 당밀(Molasses)를 이용하여 증류시켜 만든 증류주로 골드 럼은 앰버 럼으로도 불리며 연한 갈색에 깊은 맛이 특징이다. 2년간 태운 오크통에서 숙성되며 카라멜향과 바닐라, 너츠 등의 향미를 냅니다."
+        }
+        ,{
+            "no": 6,
+            "name": "우유",
+            "engName": "Milk",
+            "type": "beverage",
+            "degree": 0,
+            "image": "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/023.%EC%9A%B0%EC%9C%A0.png",
+            "contents": "흰색 유제품으로 칵테일에 부드러운 질감을 더해주는 믹서로 사용됩니다."
+        }
+    ]
+}
