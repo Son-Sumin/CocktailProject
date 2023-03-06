@@ -64,9 +64,11 @@ public class BannerController {
 	/* 이미지 변환 리스트 */
 	@GetMapping(value = {"/images"})
 	public ResponseEntity<List<byte[]>> getImages() throws IOException {
+		
 	    List<byte[]> imageDataList = new ArrayList<>();
 	    File directory = new File("src/main/resources/static/banner");
 	    File[] files = directory.listFiles();
+	    
 	    for (File file : files) {
 	        if (file.isFile()) {
 	            FileInputStream in = new FileInputStream(file);
@@ -136,9 +138,9 @@ public class BannerController {
 		banner = bannerRepository.findByNo(no);
 		
 		// 기존에 올린 파일 있으면 지우기
-		if(file.isEmpty()) {
-			banner.setFilename("");
-			banner.setFilepath("");
+		if(file != null) {
+			banner.setFilename(null);
+			banner.setFilepath(null);
         }
 		
 		if(file.isEmpty()) {
