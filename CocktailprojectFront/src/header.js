@@ -2,10 +2,26 @@
 import React, { useState } from "react";
 import './App.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-function Header() {
+function Header(props) {
+  const navigate = useNavigate();
+  const setIsLoggedIn = props.setIsLoggedIn;
+
   const bannerLogo = process.env.PUBLIC_URL + '/project-logo.png';
   const search = process.env.PUBLIC_URL + '/search.png';
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem('token');
+      // setIsLoggedIn(false);
+      navigate('/');
+      alert("로그아웃 성공!");
+    } catch(error) {
+      console.log(error);
+      alert("로그아웃 실패!");
+    }
+  };
 
   return (
     <div className='header-container'>
@@ -19,7 +35,7 @@ function Header() {
         
       <div style={{display:'grid', gridTemplateColumns:'1fr 200px 110px 130px' , columnGap:'10px'}}>
         <div style={{gridColumn:'2/3', paddingTop:'20px'}}>
-          <h3 style={{textAlign:'center'}}>로그인중</h3>
+          <button className='login-btn' onClick={handleLogout} >로그아웃</button>
         </div>
         
         <Link to="/login" style={{gridColumn:'3/4'}}>
