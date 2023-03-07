@@ -1,17 +1,36 @@
 /* eslint-disable */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../App.css';
 import axios from "axios";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-function Main() {
+function Main(props) {
+    const banner = props.banner;
+    // console.log("props.banner: " + banner);
+
     const [title, setTitle] = useState("");
     const [file, setFile] = useState(null);
-    const [urls, setUrls] = useState([]);
+    const [eachBanner, setEachBanner] = useState([]);
 
-    // for(let i=0; i<file.length; i++) {
-    //     setUrls("/banner/view/"+ i)
-    // }
-    // console.log(urls);
+    const cocktail01 = process.env.PUBLIC_URL + '/cocktail01.jpg';
+    const cocktail02 = process.env.PUBLIC_URL + '/cocktail02.jpg';
+
+    useEffect(() => {
+        setEachBanner(banner);
+    },[banner]);
+    // console.log("eachBanner: " + banner);
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000 // 2초마다 자동으로 넘어감
+      };
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -42,17 +61,22 @@ function Main() {
 
     return(
         <>
-        <div className='banner'>
-            {/* {
-                urls.map(function(a,i) {
+        <Slider {...settings}>
+            <div className='banner'>
+                {/* {
+                eachBanner.map(function(a,i) {
                     return (
-                        <img src={a} alt={"Image"} key={i} />
+                        <img src={`C:\\bitacademyBigdata\\eclipse-workspace\\CocktailProject\\cocktail\\src\\main\\resources\\static${a.filepath}`} alt={"Image"} key={i} />
                     )
                 })
-            } */}
-            {/* <img src={"/banner/view/3"} alt={"image"} />
-            <img src={"/banner/view/4"} alt={"image"} /> */}
-        </div>
+                } */}
+                <img src={cocktail01} alt={"Image"} style={{width:'100%', height:'100%'}}/>
+            </div>
+            <div className='banner'>
+                <img src={cocktail02} alt={"Image"} style={{width:'100%', height:'100%'}}/>
+            </div>
+        </Slider>
+
         <form onSubmit={handleSubmit} style={{margin:'50px'}}>
             <input type="file" name="file" onChange={handleFileChange} />
             <label>배너이름 : 

@@ -48,6 +48,7 @@ function Join() {
                   'Content-Type': 'application/json'
                 }
               }); // http://192.168.0.4:8080/member/join
+            alert("회원가입 성공!!");
             navigate("/");
         } catch(err) {
             alert("회원가입 실패");
