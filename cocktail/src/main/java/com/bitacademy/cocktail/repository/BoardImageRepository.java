@@ -8,5 +8,5 @@ import com.bitacademy.cocktail.domain.BoardImage;
 @Repository
 public interface BoardImageRepository extends JpaRepository<BoardImage, Long> {
 
-	void deleteByNo(Long no);
+	void deleteByBoardNo(Long no);
 }
