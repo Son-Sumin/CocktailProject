@@ -25,10 +25,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "board")
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Table(name = "board")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

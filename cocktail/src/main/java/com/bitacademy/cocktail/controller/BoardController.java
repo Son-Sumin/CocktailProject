@@ -65,8 +65,8 @@ public class BoardController {
 //	게시글 보기
 	@GetMapping("/board/view/{no}")
 	public Board boardView(Model model, @PathVariable("no") Long no) {
-
 		model.addAttribute("boardList", boardService.boardView(no));
+		boardService.updateHit(no);
 		return boardService.boardView(no);
 	}
 

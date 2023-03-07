@@ -40,5 +40,10 @@ public class BoardService {
 	public void boardDelete(Long no) {
 		boardRepository.deleteByNo(no);
 	}
+
+	public void updateHit(Long no) {
+		boardRepository.updateHit(no);
+		
+	}
 	
 }
