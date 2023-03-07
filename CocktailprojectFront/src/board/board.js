@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function board(props) {
+function Board(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     // let Data1 = useFetch("http://localhost:5030/board")
     // let Data1 = useFetch("http://192.168.0.4:8080/cocktail")
@@ -20,9 +20,10 @@ function board(props) {
     let [topFavoriteData, setTopFavoriteData] = useState([])
 
     useEffect(() => { setEachBoard([board]); }, [board])
-    useEffect(() => { setTopHitData([...Data1]); }, [Data1])
-    useEffect(() => { setTopFavoriteData([...Data1]); }, [Data1])
+    useEffect(() => { setTopHitData([...board]); }, [board])
+    useEffect(() => { setTopFavoriteData([...board]); }, [board])
 
+    console.log("each: "+ eachBoard);
     // const handleSelect = (e) => {
     //     setBoard(e.target.value);
     // };
@@ -56,9 +57,9 @@ function board(props) {
         setSorting(sortByValue);
 
         if (sortByValue === 'asc') {
-            sortJSON(board, "title", "asc")
+            sortJSON(eachBoard, "title", "asc")
         } else if (sortByValue === 'desc') {
-            sortJSON(board, "title", "desc")
+            sortJSON(eachBoard, "title", "desc")
         }
     };
 
@@ -66,7 +67,7 @@ function board(props) {
 
     const handleClick = (event, test) => {
         if (test && test.no) {
-            const updatedHit = Number((board.filter(x => x.no === test.no))[0].hit) + 1;
+            const updatedHit = Number((eachBoard.filter(x => x.no === test.no))[0].hit) + 1;
             event.preventDefault();
             fetch(`http://localhost:5030/board/${test.no}`, {
                 method: 'PATCH',
@@ -126,9 +127,9 @@ function board(props) {
             </div>
 
             <div className='d-flex justify-content-center mt-1'> {/* 필터 버튼 */}
-                <button onClick={() => setBoard(Data1)} className='DefaultButton mx-3'>전체</button>
-                <button onClick={() => setBoard(Data1.filter(x => x.category === '자유'))} className=' mx-3'>자유</button>
-                <button onClick={() => setBoard(Data1.filter(x => x.category === 'Q&A'))} className=' mx-3'>Q&A</button>
+                <button onClick={() => setEachBoard(board)} className='DefaultButton mx-3'>전체</button>
+                <button onClick={() => setEachBoard(board.filter(x => x.category === '자유'))} className=' mx-3'>자유</button>
+                <button onClick={() => setEachBoard(board.filter(x => x.category === 'Q&A'))} className=' mx-3'>Q&A</button>
 
                 {/* <select name="sorting" id="sorting" onClick={(e) => onSorted}> */}
                 <select onChange={onSorted} id="sorting" value={board.title}>{/* value : title을 기준으로 변경 */}
@@ -146,7 +147,7 @@ function board(props) {
                 <Row>
                     <Col xs={1} />
                     <Col xs={10} >
-                        {board.map((test, i) => (
+                        {eachBoard.map((test, i) => (
                             <h3 className='text-center' key={i}>
                                 <div className="d-flex align-items-center" style={{ float: "left", height: "67px" }}>                            <p>{test.no}</p>
                                 </div>
@@ -184,4 +185,4 @@ function board(props) {
     )
 }
 
-export default board;
+export default Board;
