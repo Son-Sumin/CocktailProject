@@ -12,15 +12,18 @@ import Cocktail from './cocktail/cocktail';
 import CocktailDetail from './cocktail/cocktailDetail';
 import Ingredient from "./ingredient/ingredient";
 import IngredientDetail from "./ingredient/IngredientDetail";
+import Board01 from "./board/board01";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import {getBanner, getCocktail, getIngredient, ScrolToTop} from "./api";
+import {getCocktail, getIngredient, ScrolToTop, getBanner, getBoard} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 
 function App() {
   const [cocktail, setCocktail] = useState([]);
   const [ingredient, setIngredient] = useState([]);
+  const [banner, setBanner] = useState([]);
+  const [board, setBoard] = useState([]);
 
   const location = useLocation();
 
@@ -34,18 +37,28 @@ function App() {
     getIngredient(setIngredient);
   },[])
 
+  // 배너 JSON파일
+  useEffect(() => {
+    getBanner(setBanner);
+  },[])
+
+  // 게시판 JSON파일
+  useEffect(() => {
+    getBoard(setBoard);
+  },[])
+
   return (
     <div className="App">
       {location.pathname !== '/join' && location.pathname !== '/login' && <Header /> }
       <Routes>
-        <Route path="/" element={<Main />}></Route>
+        <Route path="/" element={<Main banner={banner} />}></Route>
         <Route path="/join" element={<Join />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/cocktail" element={<Cocktail cocktail={cocktail} />}></Route>
         <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
         <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
         <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
-        <Route path="/board" element={<Board />}></Route>
+        <Route path="/board" element={<Board board={board} />}></Route>
         <Route path="signature" element={<Signature />}></Route>
         <Route path="signature/:no" element={<SignatureDetail />}></Route>
         <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
