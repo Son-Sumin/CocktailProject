@@ -12,10 +12,6 @@ public interface SignatureImageRepository extends JpaRepository<SignatureImage, 
 	
 	void deleteByNo(Long no);
 	
-	void deleteBySignature_No(Long signatureNo);
-	
-//	@Query("DELETE FROM SignatureImage si "
-//			+ "WHERE si.no IN (:deleteImages)")
-//	public void deleteByNo(@Param("deleteImages") List<Long> deleteImages);
+	void deleteBySignatureNo(Long signatureNo);
 
 }
