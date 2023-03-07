@@ -24,44 +24,40 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class JwtTokenProvider {
 
-private String secretKey = "cocktailproject123";
-	
+	private String secretKey = "cocktailproject123";
+
 	private long tokenValidTime = 60 * 60 * 1000L;
-	
+
 	private final UserDetailsService userDetailsService;
-	
+
 	protected void init() {
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
-	
+
 	public String createToken(String userPk, Role roles, String nickname) {
 		Claims claims = Jwts.claims().setSubject(userPk);
 		claims.put("roles", roles);
 		claims.put("nickname", nickname);
 		Date now = new Date();
-		return Jwts.builder()
-				.setHeaderParam(Header.TYPE, Header.JWT_TYPE)
-				.setClaims(claims)
-				.setIssuedAt(now)
-				.setExpiration(new Date(now.getTime() + tokenValidTime))
-				.signWith(SignatureAlgorithm.HS256, secretKey)
+		return Jwts.builder().setHeaderParam(Header.TYPE, Header.JWT_TYPE).setClaims(claims).setIssuedAt(now)
+				.setExpiration(new Date(now.getTime() + tokenValidTime)).signWith(SignatureAlgorithm.HS256, secretKey)
 				.compact();
-		
+
 	}
-	
+
 	public Authentication getAuthentication(String token) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
 		return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
 	}
-	
+
 	public String getUserPk(String token) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
 	}
-	
+
 	public String resolveToken(HttpServletRequest request) {
 		return request.getHeader("X-AUTH-TOKEN");
 	}
-	
+
 	public boolean validateToken(String jwtToken) {
 		try {
 			Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
@@ -69,5 +65,13 @@ private String secretKey = "cocktailproject123";
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public Long getExpiration(String accessToken) {
+		// accessToken 남은 유효시간
+		Date expiration = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(accessToken).getBody().getExpiration();
+		// 현재 시간
+		Long now = new Date().getTime();
+		return (expiration.getTime() - now);
 	}
 }

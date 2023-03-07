@@ -35,7 +35,7 @@ public class BoardController {
 
 	@Autowired
 	BoardImageService boardImageService;
-	
+
 	MemberRepository memberRepository;
 
 //	게시글 리스트
@@ -48,18 +48,14 @@ public class BoardController {
 
 //	게시글 작성
 	@PostMapping("/board/write")
-	public void boardWrite(Board board, BoardImage boardImage,
-						List<MultipartFile> files) throws Exception {
+	public void boardWrite(Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
 		System.out.println("board = " + board);
 		board.setHit(0L);
 		System.out.println("*****************" + SecurityContextHolder.getContext().getAuthentication());
 		boardService.boardWrite(board);
 		System.out.println(!files.isEmpty());
-		if (!files.isEmpty()) {
-			for (MultipartFile file : files) {
-				boardImageService.saveFile(board, boardImage, file);
-			}
-		}
+
+		boardImageService.saveFile(board, boardImage, files);
 	}
 
 //	게시글 보기
@@ -94,11 +90,12 @@ public class BoardController {
 		boardTemp.setImgs(board.getImgs());
 		boardService.boardWrite(boardTemp);
 
-		if (!files.isEmpty()) {
-			for (MultipartFile file : files) {
-				boardImageService.saveFile(board, boardImage, file);
-			}
+		System.out.println("img:  "+boardTemp.getImgs());
+		if(boardTemp.getImgs() != null) {
+			System.out.println("*****");
+			boardImageService.imgDelete(no);
 		}
+		boardImageService.saveFile(board, boardImage, files);
 	}
 
 //	게시글삭제
@@ -109,8 +106,8 @@ public class BoardController {
 	}
 
 //	이미지 삭제
-	@GetMapping("/board/{no}/img/delete/{bno}")
-	public void imgDelete(@PathVariable("no") Long no, @PathVariable("bno") Long bno) {
-		boardImageService.imgDelete(bno);
-	}
+//	@GetMapping("/board/{no}/img/delete/{bno}")
+//	public void imgDelete(@PathVariable("no") Long no, @PathVariable("bno") Long bno) {
+//		boardImageService.imgDelete(bno);
+//	}
 }
