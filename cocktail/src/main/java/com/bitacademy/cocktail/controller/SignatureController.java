@@ -54,8 +54,8 @@ public class SignatureController {
 	public List<Signature> writeSignature(
 			@ModelAttribute Signature form,
 			SignatureImage signatureImage,
-			List<MultipartFile> files,
-			List<SignatureRecipe> recipes) throws Exception {
+			List<MultipartFile> files
+			/* List<SignatureRecipe> recipes */) throws Exception {
 		
 		//시그니처 글 작성
 		Signature signature = new Signature();
