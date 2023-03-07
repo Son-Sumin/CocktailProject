@@ -51,28 +51,33 @@ public class SignatureController {
 	// 자체 test시 @ModelAttribute, 클라이언트로 전송 시 @RequestBody
 	@CrossOrigin(origins = "*")
 	@PostMapping("/form")
-	public List<Signature> writeSignature(
+	public void writeSignature(
 			@ModelAttribute Signature form,
 			SignatureImage signatureImage,
-			List<MultipartFile> files
-			/* List<SignatureRecipe> recipes */) throws Exception {
+			List<MultipartFile> files,
+			List<SignatureRecipe> recipes) throws Exception {
 		
-		//시그니처 글 작성
-		Signature signature = new Signature();
-		signature.setCocktailName(form.getCocktailName());
-		signature.setEngName(form.getEngName());
-		signature.setCocktailContents(form.getCocktailContents());
-		signature.setRecipeContents(form.getRecipeContents());
-		signature.setHit(0);
-		signatureService.add(signature);
+//		if(files == null) {
+//			System.out.println("1장 이상의 사진을 업로드하세요.");
+//		} else {
 		
-		// 시그니처 재료 작성
-		//signatureRecipeService.addRecipes(signature, recipes);
-		
-		//파일 업로드
-		signatureImageService.addImages(signature, signatureImage, files);
-		
-		return signatureService.listSignature();
+			//시그니처 글 작성
+			Signature signature = new Signature();
+			signature.setCocktailName(form.getCocktailName());
+			signature.setEngName(form.getEngName());
+			signature.setCocktailContents(form.getCocktailContents());
+			signature.setRecipeContents(form.getRecipeContents());
+			signature.setHit(0);
+			signatureService.add(signature);
+			System.out.println("files 1 : " + files);
+			
+			// 시그니처 재료 작성
+			signatureRecipeService.addRecipes(signature, recipes);
+			
+			//파일 업로드
+			signatureImageService.addImages(signature, signatureImage, files);
+			System.out.println("files 2 : " + files);
+//		}
 	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
@@ -93,9 +98,8 @@ public class SignatureController {
 
 	/* 시그니처 게시글 삭제 */
 	@DeleteMapping("/delete/{no}")
-	public List<Signature> delete(@PathVariable("no") Long no, SignatureImage signatureImage) {
+	public void delete(@PathVariable("no") Long no, SignatureImage signatureImage) {
 		signatureService.delete(no);
-		return signatureService.listSignature();
 	}
 
 	/* 시그니처 게시글 수정 */
