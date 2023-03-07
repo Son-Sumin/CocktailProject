@@ -21,8 +21,9 @@ img {
   margin-top: 40px;
   display: grid;
   grid-template-columns: 70px 45px 70px 90px 70px 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1.5fr 1fr;
   column-gap: 30px;
+  row-gap: 5px;
 }
 
 .login-btn {
@@ -71,6 +72,12 @@ img {
   width: 350px;
   height: 20px;
   float: right;
+}
+
+.header-search::after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
 /* --------------- main -------------------- */
