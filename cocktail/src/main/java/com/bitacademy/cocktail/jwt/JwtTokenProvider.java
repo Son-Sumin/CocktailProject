@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import com.bitacademy.cocktail.domain.Role;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -23,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class JwtTokenProvider {
 
-private String secretKey = "cocktailproject";
+private String secretKey = "cocktailproject123";
 	
 	private long tokenValidTime = 60 * 60 * 1000L;
 	
@@ -39,6 +40,7 @@ private String secretKey = "cocktailproject";
 		claims.put("nickname", nickname);
 		Date now = new Date();
 		return Jwts.builder()
+				.setHeaderParam(Header.TYPE, Header.JWT_TYPE)
 				.setClaims(claims)
 				.setIssuedAt(now)
 				.setExpiration(new Date(now.getTime() + tokenValidTime))
@@ -57,7 +59,7 @@ private String secretKey = "cocktailproject";
 	}
 	
 	public String resolveToken(HttpServletRequest request) {
-		return request.getHeader("X-TOKEN");
+		return request.getHeader("X-AUTH-TOKEN");
 	}
 	
 	public boolean validateToken(String jwtToken) {

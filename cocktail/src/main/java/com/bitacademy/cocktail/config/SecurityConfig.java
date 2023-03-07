@@ -44,7 +44,7 @@ public class SecurityConfig {
 			.and()
 			.authorizeHttpRequests()
 //			.antMatchers("/admin/**").hasRole("admin")
-//			.antMatchers("/enuser/**").hasRole("enuser")
+//			.antMatchers("/board/write").hasRole("enuser")
 //			.antMatchers("/unuser").hasRole("unuser")
 //			.antMatchers("/**").authenticated()
 			.anyRequest().permitAll()

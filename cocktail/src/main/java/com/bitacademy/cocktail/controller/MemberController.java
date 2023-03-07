@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.domain.Role;
+import com.bitacademy.cocktail.domain.Token;
 import com.bitacademy.cocktail.jwt.JwtTokenProvider;
 import com.bitacademy.cocktail.repository.MemberRepository;
 import com.bitacademy.cocktail.service.MemberService;
@@ -31,14 +32,10 @@ public class MemberController {
 	private final JwtTokenProvider jwtTokenProvider;
 	private final MemberRepository memberRepository;
 	
-    @GetMapping("/login")
-    public String login(){
-        return "member/login";
-    }
     
  // 회원가입
     @PostMapping("/member/join")
-	public void testJoin(@RequestBody Map<String, String> member) {
+	public void Join(@RequestBody Map<String, String> member) {
 		System.out.println(member);
 		memberService.join(Member.builder()
 				.name(member.get("name"))
@@ -55,7 +52,7 @@ public class MemberController {
     
 	//jwt로그인
 	@PostMapping("/member/login")
-	public String testLogin(@RequestBody Map<String, String> user) {
+	public Token Login(@RequestBody Map<String, String> user) {
 		System.out.println("user = " + user);
 		Member member = memberRepository.findById(user.get("id"))
 						.orElseThrow(() -> new IllegalArgumentException("가입 되지 않은 아이디 입니다."));
@@ -63,7 +60,10 @@ public class MemberController {
 			throw new IllegalArgumentException("아이디 또는 비밀번호가 맞지않습니다.");
 		}
 		System.out.println("~~~~~~~~~" + jwtTokenProvider.createToken(member.getId(), member.getRole(), member.getNickname()));
-		return jwtTokenProvider.createToken(member.getId(), member.getRole(), member.getNickname());
+//		return jwtTokenProvider.createToken(member.getId(), member.getRole(), member.getNickname());
+		return Token.builder()
+					.token(jwtTokenProvider.createToken(member.getId(), member.getRole(), member.getNickname()))
+					.build();
 	}
     
     //유저리스트
