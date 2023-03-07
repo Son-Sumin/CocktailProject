@@ -40,7 +40,7 @@ public class SignatureImageService {
 			System.out.println("1장 이상의 사진을 업로드하세요.");
 		} else {
 			for(MultipartFile file : files) {
-				if(!file.isEmpty()) {
+				if(file != null) {
 			
 					// 프로젝트 경로 설정, 랜덤한 문자열이 들어간 파일이름 설정
 					String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
@@ -66,7 +66,7 @@ public class SignatureImageService {
 	
 	/* 멀티파일 삭제 */
 	public void deleteImage(Long signatureNo) {
-		signatureImageRepository.deleteBySignature_No(signatureNo);
+		signatureImageRepository.deleteBySignatureNo(signatureNo);
 	}
 	
 }
