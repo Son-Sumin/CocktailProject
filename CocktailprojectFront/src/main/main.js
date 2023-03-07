@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import '../App.css';
 import axios from "axios";
-import Swiper from 'react-id-swiper';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function Main(props) {
     const banner = props.banner;
@@ -20,17 +22,14 @@ function Main(props) {
     },[banner]);
     // console.log("eachBanner: " + banner);
 
-    const swiperParams = {
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true,
-        },
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-        },
-        loop: true,
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000 // 2초마다 자동으로 넘어감
       };
 
     const handleTitleChange = (e) => {
@@ -62,7 +61,7 @@ function Main(props) {
 
     return(
         <>
-        <Swiper {...swiperParams}>
+        <Slider {...settings}>
             <div className='banner'>
                 {/* {
                 eachBanner.map(function(a,i) {
@@ -76,7 +75,8 @@ function Main(props) {
             <div className='banner'>
                 <img src={cocktail02} alt={"Image"} style={{width:'100%', height:'100%'}}/>
             </div>
-        </Swiper>
+        </Slider>
+
         <form onSubmit={handleSubmit} style={{margin:'50px'}}>
             <input type="file" name="file" onChange={handleFileChange} />
             <label>배너이름 : 
