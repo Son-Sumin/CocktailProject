@@ -42,8 +42,9 @@ public class Board extends BaseTimeEntity {
 	private String contents;
 	private Long hit;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="member_no")
+	@JsonIgnoreProperties({"boards"})
 	private Member member;
 	
 	@OneToMany(mappedBy="board", cascade = CascadeType.REMOVE)
