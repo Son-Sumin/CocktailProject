@@ -1,5 +1,6 @@
 package com.bitacademy.cocktail.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.ui.Model;
@@ -10,12 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureImage;
@@ -52,17 +52,18 @@ public class SignatureController {
 	@CrossOrigin(origins = "*")
 	@PostMapping("/form")
 	public void writeSignature(
+			@ModelAttribute Signature signature,
 			@ModelAttribute Signature form,
 			/* SignatureImage signatureImage,
 			List<MultipartFile> files, */
-			List<SignatureRecipe> recipes) throws Exception {
+			@RequestPart ArrayList<SignatureRecipe> recipes) throws Exception {
 		
 //		if(files == null) {
 //			System.out.println("1장 이상의 사진을 업로드하세요.");
 //		} else {
 		
 			//시그니처 글 작성
-			Signature signature = new Signature();
+			//Signature signature = new Signature();
 			signature.setCocktailName(form.getCocktailName());
 			signature.setEngName(form.getEngName());
 			signature.setCocktailContents(form.getCocktailContents());
@@ -70,8 +71,17 @@ public class SignatureController {
 			signature.setHit(0);
 			signatureService.add(signature);
 			
+			System.out.println("signature : " + signature);
+			
 			// 시그니처 재료 작성
+			
+			System.out.println("signature11 : " + signature);
+			System.out.println("signature11 : " + recipes);
+			
 			signatureRecipeService.addRecipes(signature, recipes);
+			
+			System.out.println("signature22 : " + signature);
+			System.out.println("signature22 : " + recipes);
 			
 //			//파일 업로드
 //			signatureImageService.addImages(signature, signatureImage, files);

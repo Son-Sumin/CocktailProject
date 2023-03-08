@@ -42,7 +42,7 @@ public class SignatureRecipeService {
 	/* 시그니처 작성간 재료 등록 */
 	public void addRecipes(Signature signature, List<SignatureRecipe> recipes) {
 		
-		List<SignatureRecipe> signatureRecipes = new ArrayList<>();
+		ArrayList<SignatureRecipe> signatureRecipes = new ArrayList<>();
 		
 		for(SignatureRecipe recipe : recipes) {
 			SignatureRecipe sigRecipe = new SignatureRecipe();
