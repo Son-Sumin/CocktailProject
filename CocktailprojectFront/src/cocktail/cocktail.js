@@ -21,6 +21,8 @@ function Cocktail(props) {
     },[cocktail]);
 
     // console.log(eachCocktail);
+    console.log(props.isLoggedIn);
+
     return (
     <div>
         <div className="cocktail-btn-box">
