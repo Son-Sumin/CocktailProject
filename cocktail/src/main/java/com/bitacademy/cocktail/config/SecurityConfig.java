@@ -1,6 +1,7 @@
 package com.bitacademy.cocktail.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -17,18 +18,13 @@ import com.bitacademy.cocktail.jwt.JwtTokenProvider;
 
 import lombok.RequiredArgsConstructor;
 
+@Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
 
 	private final JwtTokenProvider jwtTokenProvider;
-	
 	private final RedisTemplate redisTemplate;
-	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-	}
 	
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -44,13 +40,20 @@ public class SecurityConfig {
 			.and()
 			.authorizeHttpRequests()
 //			.antMatchers("/admin/**").hasRole("admin")
-//			.antMatchers("/board/write").hasRole("enuser")
+			.antMatchers("/test").hasRole("enuser")
 //			.antMatchers("/unuser").hasRole("unuser")
 //			.antMatchers("/**").authenticated()
 			.anyRequest().permitAll()
 			.and()
+			.apply(new JwtSecurityConfig(jwtTokenProvider, redisTemplate))
+			.and()
 			.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, redisTemplate), UsernamePasswordAuthenticationFilter.class);
-		
 		return http.build();
 	}
+	
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+	
 }
