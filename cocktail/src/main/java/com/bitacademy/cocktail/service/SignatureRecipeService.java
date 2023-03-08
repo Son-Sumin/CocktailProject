@@ -34,26 +34,31 @@ public class SignatureRecipeService {
 	
 	/* signatureNo에 따른 칵테일 레시피 */
 	public List<SignatureRecipe> findBySignature(Long signatureNo, SignatureRecipe signatureRecipe) {
-		Optional<Signature> signature = signatureRepository.findByNo(signatureNo);
-		//signatureRecipe.setSignature(signature).get();
+		Signature signature = signatureRepository.findByNo(signatureNo);
+		signatureRecipe.setSignature(signature);
 		return signatureRecipeRepository.findBySignatureNo(signatureNo);
 	}
 	
 	/* 시그니처 작성간 재료 등록 */
-	public void addRecipes(Signature signature, List<SignatureRecipe> recipes) {
+	public void addRecipes(List<SignatureRecipe> recipes, Long signatureNo) {
 		
-		List<SignatureRecipe> signatureRecipes = new ArrayList<>();
+		Signature signature = signatureRepository.findByNo(signatureNo);
+		ArrayList<SignatureRecipe> signatureRecipes = new ArrayList<>();
 		
 		for(SignatureRecipe recipe : recipes) {
 			SignatureRecipe sigRecipe = new SignatureRecipe();
 			sigRecipe.setSignature(signature);
-			sigRecipe.setIngredient(recipe.getIngredient());
-			//sigRecipe.setIngredient(ingredientRepository.findByName(recipe.getIngredient().getName()));
+			//sigRecipe.setIngredient(recipe.getIngredient());
+			sigRecipe.setIngredient(ingredientRepository.findByName(recipe.getIngredient().getName()));
 			sigRecipe.setAmount(recipe.getAmount());
 			sigRecipe.setUnit(recipe.getUnit());
 			signatureRecipes.add(sigRecipe);
 			
 			signatureRecipeRepository.saveAll(signatureRecipes);
 		}
+	}
+	
+	public void deleteRecipe(Long signatureNo) {
+		signatureRecipeRepository.deleteBySignatureNo(signatureNo);
 	}
 }

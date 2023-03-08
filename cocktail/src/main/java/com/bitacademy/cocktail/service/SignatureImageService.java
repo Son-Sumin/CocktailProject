@@ -36,30 +36,26 @@ public class SignatureImageService {
 		
 		List<SignatureImage> signatureImages = new ArrayList<>();
 		
-		if(files.isEmpty()) {
-			System.out.println("1장 이상의 사진을 업로드하세요.");
-		} else {
-			for(MultipartFile file : files) {
-				if(file != null) {
-			
-					// 프로젝트 경로 설정, 랜덤한 문자열이 들어간 파일이름 설정
-					String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
-					UUID uuid = UUID.randomUUID();
-					String fileName = uuid + "_" + file.getOriginalFilename();
-					
-					// MultipartFile file 넣어줄 껍데기 지정 (경로, "파일이름")
-					File saveFile = new File(projectPath, fileName);
-					file.transferTo(saveFile);
-					
-					// 사진 1장씩 List<SignatureImage>에 추가
-					SignatureImage img = new SignatureImage();
-					img.setName(file.getOriginalFilename());
-					img.setPath("/files/" + fileName);
-					img.setSignature(signature);
-					signatureImages.add(img);
-					
-					signatureImageRepository.saveAll(signatureImages);
-				}
+		for(MultipartFile file : files) {
+			if(file != null) {
+		
+				// 프로젝트 경로 설정, 랜덤한 문자열이 들어간 파일이름 설정
+				String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+				UUID uuid = UUID.randomUUID();
+				String fileName = uuid + "_" + file.getOriginalFilename();
+				
+				// MultipartFile file 넣어줄 껍데기 지정 (경로, "파일이름")
+				File saveFile = new File(projectPath, fileName);
+				file.transferTo(saveFile);
+				
+				// 사진 1장씩 List<SignatureImage>에 추가
+				SignatureImage img = new SignatureImage();
+				img.setName(file.getOriginalFilename());
+				img.setPath("/files/" + fileName);
+				img.setSignature(signature);
+				signatureImages.add(img);
+				
+				signatureImageRepository.saveAll(signatureImages);
 			}
 		}
 	}

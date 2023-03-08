@@ -13,6 +13,8 @@ public interface SignatureRecipeRepository extends JpaRepository<SignatureRecipe
 
 	List<SignatureRecipe> findBySignatureNo(Long signatureNo);
 
+	void deleteBySignatureNo(Long signatureNo);
+
 //	@Query(value= "SELECT r, i FROM signatureRecipe r, ingredient i "
 //			+ "WHERE i.name = :name",
 //			nativeQuery=true)
