@@ -35,7 +35,7 @@ public class SignatureRecipeService {
 	/* signatureNo에 따른 칵테일 레시피 */
 	public List<SignatureRecipe> findBySignature(Long signatureNo, SignatureRecipe signatureRecipe) {
 		Signature signature = signatureRepository.findByNo(signatureNo);
-		//signatureRecipe.setSignature(signature).get();
+		signatureRecipe.setSignature(signature);
 		return signatureRecipeRepository.findBySignatureNo(signatureNo);
 	}
 	

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,6 +37,7 @@ public class SignatureController {
 	private final SignatureImageService signatureImageService;
 	private final SignatureRecipeService signatureRecipeService;
 	
+	private final ArrayList<SignatureRecipe> recipes;
 	
 	/* 시그니처 리스트 */
 	@GetMapping({"", "/list"})
@@ -78,7 +78,6 @@ public class SignatureController {
 			
 			System.out.println("signature11 : " + signature);
 			System.out.println("signature11 : " + recipes);
-			System.out.println("signature11 : " + signature.getNo());
 			
 			signatureRecipeService.addRecipes(recipes, signature.getNo());
 			
