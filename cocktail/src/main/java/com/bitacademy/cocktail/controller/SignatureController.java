@@ -37,8 +37,6 @@ public class SignatureController {
 	private final SignatureImageService signatureImageService;
 	private final SignatureRecipeService signatureRecipeService;
 	
-	private final ArrayList<SignatureRecipe> recipes;
-	
 	/* 시그니처 리스트 */
 	@GetMapping({"", "/list"})
 	public List<Signature> list(Model model) {
@@ -50,44 +48,30 @@ public class SignatureController {
 	/* 시그니처 글 작성 + 멀티파일 업로드 */
 	// 자체 test시 @ModelAttribute, 클라이언트로 전송 시 @RequestBody
 	@CrossOrigin(origins = "*")
-	@PostMapping("/form")
+	@PostMapping("/write")
 	public void writeSignature(
 			@ModelAttribute Signature signature,
 			@ModelAttribute Signature form,
-			/* SignatureImage signatureImage,
-			List<MultipartFile> files, */
+			SignatureImage signatureImage,
+			List<MultipartFile> files,
 			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes,
 			Long signatureNo) throws Exception {
 		
-//		if(files == null) {
-//			System.out.println("1장 이상의 사진을 업로드하세요.");
-//		} else {
-		
-			//시그니처 글 작성
-			//Signature signature = new Signature();
-			signature.setCocktailName(form.getCocktailName());
-			signature.setEngName(form.getEngName());
-			signature.setCocktailContents(form.getCocktailContents());
-			signature.setRecipeContents(form.getRecipeContents());
-			signature.setHit(0);
-			signatureService.add(signature);
-			
-			System.out.println("signature : " + signature);
-			
-			// 시그니처 재료 작성
-			
-			System.out.println("signature11 : " + signature);
-			System.out.println("signature11 : " + recipes);
-			
-			signatureRecipeService.addRecipes(recipes, signature.getNo());
-			
-			System.out.println("signature22 : " + signature);
-			System.out.println("signature22 : " + recipes);
-			
-//			//파일 업로드
-//			signatureImageService.addImages(signature, signatureImage, files);
-//		}
+		//시그니처 글 작성
+		//Signature signature = new Signature();
+		signature.setCocktailName(form.getCocktailName());
+		signature.setEngName(form.getEngName());
+		signature.setCocktailContents(form.getCocktailContents());
+		signature.setRecipeContents(form.getRecipeContents());
+		signature.setHit(0);
+		signatureService.add(signature);
 	}
+		
+//		// 시그니처 재료 작성
+//		signatureRecipeService.addRecipes(recipes, signature.getNo());
+//		
+//		//파일 업로드
+//		signatureImageService.addImages(signature, signatureImage, files);
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
 	@GetMapping("/view/{no}")
