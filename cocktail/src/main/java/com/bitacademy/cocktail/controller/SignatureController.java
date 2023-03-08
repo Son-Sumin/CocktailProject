@@ -45,19 +45,11 @@ public class SignatureController {
 		return signatureService.listSignature();
 	}
 
-	/* 시그니처 글 작성 + 멀티파일 업로드 */
-	// 자체 test시 @ModelAttribute, 클라이언트로 전송 시 @RequestBody
+	/* 시그니처 글 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write")
-	public void writeSignature(
-			@ModelAttribute Signature signature,
-			@ModelAttribute Signature form,
-			SignatureImage signatureImage,
-			List<MultipartFile> files,
-			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes,
-			Long signatureNo) throws Exception {
+	public void writeSignature(@ModelAttribute Signature signature, @ModelAttribute Signature form) {
 		
-		//시그니처 글 작성
 		//Signature signature = new Signature();
 		signature.setCocktailName(form.getCocktailName());
 		signature.setEngName(form.getEngName());
@@ -67,18 +59,35 @@ public class SignatureController {
 		signatureService.add(signature);
 	}
 		
-//		// 시그니처 재료 작성
-//		signatureRecipeService.addRecipes(recipes, signature.getNo());
-//		
-//		//파일 업로드
-//		signatureImageService.addImages(signature, signatureImage, files);
+	/* 멀티파일 업로드 */
+	@CrossOrigin(origins = "*")
+	@PostMapping("/upload/file/{no}")
+	public void uploadSignatureFile(
+			@PathVariable("no") Long no,
+			@ModelAttribute Signature signature,
+			SignatureImage signatureImage,
+			List<MultipartFile> files) throws Exception {
+		signature = signatureService.findSigView(no);
+		signatureImageService.addImages(signature, signatureImage, files);
+	}
+	
+	/* 시그니처 레시피 작성 */
+	@CrossOrigin(origins = "*")
+	@PostMapping("/write/recipe/{no}")
+	public void writeSignature(
+			@PathVariable("no") Long no,
+			@ModelAttribute Signature signature,
+			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes) {
+		signature = signatureService.findSigView(no);
+		signatureRecipeService.addRecipes(recipes, signature.getNo());
+	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
 	@GetMapping("/view/{no}")
 	public Signature view(@PathVariable("no") Long no, Model model) {
 		// 시그니처 게시글 보기
 		model.addAttribute("signature", signatureService.findSigView(no));
-		
+	
 		// 조회수
 		signatureService.updateHit(no);
 		
@@ -89,9 +98,11 @@ public class SignatureController {
 		return signatureService.findSigView(no);
 	}
 
-	/* 시그니처 게시글 삭제 */
+	/* 시그니처 게시글 + 파일 + 레시피 삭제 */
 	@DeleteMapping("/delete/{no}")
 	public void delete(@PathVariable("no") Long no, SignatureImage signatureImage) {
+		signatureImageService.deleteImage(no);
+		signatureRecipeService.deleteRecipe(no);
 		signatureService.delete(no);
 	}
 
@@ -125,7 +136,7 @@ public class SignatureController {
 		if(signature.getSignatureRecipes() != null){
 			signatureRecipeService.deleteRecipe(no);
         }
-		//signatureRecipeService.addRecipes(signature, recipes);
+		signatureRecipeService.addRecipes(recipes, signature.getNo());
 		
 		return signatureService.findSigView(no);
 	}
