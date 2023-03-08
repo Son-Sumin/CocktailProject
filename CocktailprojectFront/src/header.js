@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import './App.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Header(props) {
   const navigate = useNavigate();
@@ -11,10 +12,18 @@ function Header(props) {
   const bannerLogo = process.env.PUBLIC_URL + '/project-logo.png';
   const search = process.env.PUBLIC_URL + '/search.png';
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     try {
+      await axios.post('/member/logout', {}, {
+        headers: {
+          'Authorization': localStorage.getItem('token')
+        }
+      })
+
       localStorage.removeItem('token');
-      // setIsLoggedIn(false);
+      // delete axios.defaults.headers.common['Authorization'];
+
+      setIsLoggedIn(false);
       navigate('/');
       alert("로그아웃 성공!");
     } catch(error) {

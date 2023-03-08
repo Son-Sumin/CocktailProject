@@ -24,7 +24,7 @@ function App() {
   const [ingredient, setIngredient] = useState([]);
   const [banner, setBanner] = useState([]);
   const [board, setBoard] = useState([]);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const location = useLocation();
 
@@ -50,14 +50,12 @@ function App() {
 
   return (
     <div className="App">
-      {/* setIsLoggedIn={setIsLoggedIn} */}
-      {location.pathname !== '/join' && location.pathname !== '/login' && <Header /> }
+      {location.pathname !== '/join' && location.pathname !== '/login' && <Header setIsLoggedIn={setIsLoggedIn} /> }
       <Routes>
         <Route path="/" element={<Main banner={banner} />}></Route>
         <Route path="/join" element={<Join />}></Route>
-        {/* isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} */}
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/cocktail" element={<Cocktail cocktail={cocktail} />}></Route>
+        <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
+        <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
         <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
         <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
         <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
