@@ -56,4 +56,8 @@ public class SignatureRecipeService {
 			signatureRecipeRepository.saveAll(signatureRecipes);
 		}
 	}
+	
+	public void deleteRecipe(Long signatureNo) {
+		signatureRecipeRepository.deleteBySignatureNo(signatureNo);
+	}
 }
