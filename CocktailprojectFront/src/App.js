@@ -20,13 +20,20 @@ import {getCocktail, getIngredient, ScrolToTop, getBanner, getBoard} from "./api
 import SignatureJoin from "./signature/signatureJoin";
 
 function App() {
+  const token = localStorage.getItem('accessToken');
+  const location = useLocation();
+
   const [cocktail, setCocktail] = useState([]);
   const [ingredient, setIngredient] = useState([]);
   const [banner, setBanner] = useState([]);
   const [board, setBoard] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    // localStorage에서 isLoggedIn 값을 가져옵니다. 값이 없으면 false를 반환합니다.
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    return isLoggedIn ? JSON.parse(isLoggedIn) : false;
+  });
 
-  const location = useLocation();
+  const [user, setUser] = useState("");
 
   // 칵테일 JSON파일
   useEffect(() => {
@@ -47,6 +54,32 @@ function App() {
   useEffect(() => {
     getBoard(setBoard);
   },[])
+
+  // 로그인 한 유저정보 받아옴
+  useEffect(() => {
+    axios.get('member/info', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(response => {
+      // 유저 정보를 처리합니다.
+      console.log(response.data);
+      console.log("로그인여부: " + isLoggedIn);
+      
+      setUser(response.data.name);
+
+      console.log("유저이름: " + user);
+    })
+    .catch(error => {
+      // 에러를 처리합니다.
+      console.error(error);
+    });
+  },[token]);
+
+  useEffect(() => {
+    // isLoggedIn 값이 변경될 때마다 localStorage에 저장합니다.
+    localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
 
   return (
     <div className="App">
