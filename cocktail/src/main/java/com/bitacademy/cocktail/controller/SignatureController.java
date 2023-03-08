@@ -53,13 +53,13 @@ public class SignatureController {
 	@PostMapping("/form")
 	public void writeSignature(
 			@ModelAttribute Signature form,
-			SignatureImage signatureImage,
-			List<MultipartFile> files,
+			/* SignatureImage signatureImage,
+			List<MultipartFile> files, */
 			List<SignatureRecipe> recipes) throws Exception {
 		
-		if(files == null) {
-			System.out.println("1장 이상의 사진을 업로드하세요.");
-		} else {
+//		if(files == null) {
+//			System.out.println("1장 이상의 사진을 업로드하세요.");
+//		} else {
 		
 			//시그니처 글 작성
 			Signature signature = new Signature();
@@ -73,9 +73,9 @@ public class SignatureController {
 			// 시그니처 재료 작성
 			signatureRecipeService.addRecipes(signature, recipes);
 			
-			//파일 업로드
-			signatureImageService.addImages(signature, signatureImage, files);
-		}
+//			//파일 업로드
+//			signatureImageService.addImages(signature, signatureImage, files);
+//		}
 	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
