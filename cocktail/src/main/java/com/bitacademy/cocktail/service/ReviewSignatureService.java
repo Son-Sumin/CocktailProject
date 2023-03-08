@@ -29,14 +29,14 @@ public class ReviewSignatureService {
 	
 	/* 시그니처 댓글 작성 */
 	public ReviewSignature add(Long no, ReviewSignature reviewSignature) {
-		Signature signature = signatureRepository.findByNo(no).get();	
+		Signature signature = signatureRepository.findByNo(no);	
 		reviewSignature.setSignature(signature);
 		return reviewSignatureRepository.save(reviewSignature);
 	}
 
 	/* 시그니처 게시글 댓글 삭제 */
 	public void delete(Long no, Long reviewNo, ReviewSignature reviewSignature) {
-		Signature signature = signatureRepository.findByNo(no).get();	
+		Signature signature = signatureRepository.findByNo(no);	
 		reviewSignature.setSignature(signature);
 		reviewSignatureRepository.deleteByNo(reviewNo);
 	}

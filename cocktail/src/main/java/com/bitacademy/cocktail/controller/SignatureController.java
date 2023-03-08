@@ -56,7 +56,8 @@ public class SignatureController {
 			@ModelAttribute Signature form,
 			/* SignatureImage signatureImage,
 			List<MultipartFile> files, */
-			@RequestPart ArrayList<SignatureRecipe> recipes) throws Exception {
+			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes,
+			Long signatureNo) throws Exception {
 		
 //		if(files == null) {
 //			System.out.println("1장 이상의 사진을 업로드하세요.");
@@ -77,8 +78,9 @@ public class SignatureController {
 			
 			System.out.println("signature11 : " + signature);
 			System.out.println("signature11 : " + recipes);
+			System.out.println("signature11 : " + signature.getNo());
 			
-			signatureRecipeService.addRecipes(signature, recipes);
+			signatureRecipeService.addRecipes(recipes, signature.getNo());
 			
 			System.out.println("signature22 : " + signature);
 			System.out.println("signature22 : " + recipes);
@@ -140,7 +142,7 @@ public class SignatureController {
 		if(signature.getSignatureRecipes() != null){
 			signatureRecipeService.deleteRecipe(no);
         }
-		signatureRecipeService.addRecipes(signature, recipes);
+		//signatureRecipeService.addRecipes(signature, recipes);
 		
 		return signatureService.findSigView(no);
 	}
