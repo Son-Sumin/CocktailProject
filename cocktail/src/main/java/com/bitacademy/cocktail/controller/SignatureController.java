@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -102,10 +103,12 @@ public class SignatureController {
 	/* 시그니처 레시피 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write/{no}/recipe")
-	public void writeSignatureRecipe(
+	public List<SignatureRecipe> writeSignatureRecipe(
 			@PathVariable("no") Long no,
-			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes) {
+			@ModelAttribute SignatureRecipe signatureRecipe,
+			ArrayList<SignatureRecipe> recipes) {
 		signatureRecipeService.addRecipes(recipes, no);
+		return signatureRecipeService.findBySignature(no, signatureRecipe);
 	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
@@ -178,7 +181,7 @@ public class SignatureController {
 		if(signature.getSignatureRecipes() != null){
 			signatureRecipeService.deleteRecipe(no);
         }
-		signatureRecipeService.addRecipes(recipes, signature.getNo());
+		//signatureRecipeService.addRecipes(recipes, signature.getNo());
 	}
 	
 	/* 시그니처 게시글 댓글 작성 */

@@ -42,31 +42,34 @@ public class SignatureRecipeService {
 	public void addRecipes(List<SignatureRecipe> recipes, Long signatureNo) {
 		
 		Signature signature = signatureRepository.findByNo(signatureNo);
-		recipes = new ArrayList<>();
 		
-		System.out.println("signatureNo : " + signatureNo);
+		List<SignatureRecipe> signatureRecipes  = new ArrayList<>();
+		
 		System.out.println("signature : " + signature);
-		System.out.println("signatureRecipes : " + recipes);
 		
 		for(SignatureRecipe recipe : recipes) {
 			
-			//Long ino = Long.parseLong(recipe.getIngredient());
+//			Ingredient ingredient = ingredientRepository.findByNo(recipe.getIngredient().getNo());
+//			System.out.println("ingredient 22 : " + ingredient);
 			
 			SignatureRecipe sigRecipe = new SignatureRecipe();
 			sigRecipe.setSignature(signature);
-			//sigRecipe.setIngredient(recipe.getIngredient());
-			sigRecipe.setIngredient(ingredientRepository.findByNo(recipe.getIngredient().getNo()));
+			sigRecipe.setIngredient(recipe.getIngredient());
+			//sigRecipe.setIngredient(ingredient);
+			//sigRecipe.setIngredient(ingredientRepository.findByNo(recipe.getIngredient().getNo()));
 			sigRecipe.setAmount(recipe.getAmount());
 			sigRecipe.setUnit(recipe.getUnit());
 			
 			System.out.println("sigRecipe1 : " + sigRecipe);
 			
-			recipes.add(sigRecipe);
+			signatureRecipes .add(sigRecipe);
 			
 			System.out.println("sigRecipe2 : " + sigRecipe);
 			
-			signatureRecipeRepository.saveAll(recipes);
+			signatureRecipeRepository.saveAll(signatureRecipes);
 		}
+		
+		System.out.println("signatureRecipes : " + recipes);
 	}
 	
 	/* 시그니처 레시피 삭제 */
