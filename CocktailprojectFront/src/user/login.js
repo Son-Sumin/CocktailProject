@@ -18,16 +18,16 @@ function Login(props) {
             const response = await axios.post('/member/login', { 
                 id: id, 
                 password: password });
-            const token = response.data.token;
+            const accessToken = response.data.accessToken;
             
-            localStorage.setItem('token', token); // 로그인 후 토큰을 localStorage에 저장!!
+            localStorage.setItem('accessToken', accessToken); // 로그인 후 토큰을 localStorage에 저장!!
             // if (response.status === 200) {
             //     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // 토큰을 헤더에 저장!!
             // }
             setIsLoggedIn(true);
 
             navigate("/");
-            console.log("토큰: " + token);
+            console.log("accessToken: " + accessToken);
 
             alert("로그인 성공!!");
           } catch (error) {
