@@ -7,54 +7,35 @@ function SignatureJoin(props) {
     // ingredient 데이터 불러오기
     const ingredient = props.ingredient;
     const navigate = useNavigate();
-    console.log(ingredient[0]);
 
-    // JSON데이터를 저장할 객체
-    // const [joinSignature,setJoinSignature] = useState({
-    //     cocktailName: '',
-    //     engName:'',  
-    //     cocktailContents: '',
-    //     recipeContents: '',
-    //     // files: [],
-    //     // amount: '',
-    //     // unit: '',
-    // });
-
+    // 데이터를 저장할 state
     const [cocktailName, setCocktailName] = useState("");
     const [engName, setEngName] = useState("");
     const [cocktailContents, setCocktailContents] = useState("");
     const [recipeContents, setRecipeContents] = useState("");
     // const [files, setFiles] = useState([]);
-    const [amount, setAmount] = useState("");
-    const [unit, setUnit] = useState("");
+
+    const [eachIngredientNo, setEachIngredientNo] = useState([
+        {
+            "ingredient": [],
+            "amount": '',
+            "unit": '',
+        }
+    ])
 
     const [search, setSearch] = useState([
         {
-            ingredient: {
-                no: 1,
-                contents:
-                "사탕수수에서 설탕을 만들고 난 찌꺼지인 당밀(Molasses)를 이용하여 증류시켜 만든 증류주로 골드 럼은 앰버 럼으로도 불리며 연한 갈색에 깊은 맛이 특징이다. 2년간 태운 오크통에서 숙성되며 카라멜향과 바닐라, 너츠 등의 향미를 냅니다.",
-                degree: 40.0,
-                engName: "Gold rum",
-                image: "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/057.%EA%B3%A8%EB%93%9C%EB%9F%BC.png",
-                name: "골드 럼",
-                type: "strong",
-            },
-            amount: 1,
-            unit: "개"
+            "ingredient": [
+                {
+                    "no": 1,
+                }
+            ],
+            "amount": 1,
+            "unit": "개",
         },
     ]);
 
-    // input에 넣은 값을 항상 value로 업데이트 해주고 빈state객체에 저장해줌
-    // const handleChange = (e) => {
-    //     const {name, value} = e.target;
-
-    //     setJoinSignature({
-    //         ...joinSignature,
-    //         [name]: value
-    //     });
-    // };
-
+    // handleChange 이벤트
     const handleNameChange = (e) => {
         setCocktailName(e.target.value);
     }
@@ -71,49 +52,51 @@ function SignatureJoin(props) {
         setRecipeContents(e.target.value);
     }
 
+    const handleIngredientChange = (e, index) => {
+        const { value } = e.target;
+        const eachIngredient = ingredient.find((ingredient) => ingredient.name === e.target.value);
+
+        if (eachIngredient != null) {
+            setEachIngredientNo((prevState) => {
+                const newState = [...prevState];
+                newState[index] = {
+                  ...newState[index],
+                  ingredient: {
+                    no: eachIngredient.no,
+                  },
+                };
+    
+                console.log(eachIngredient);
+                return newState;
+            });   
+        }
+    }
+
+    const handleAmountChange = (e, index) => {
+        const { value } = e.target;
+        setEachIngredientNo((prevState) => {
+          const newState = [...prevState];
+          newState[index].amount = value;
+
+          return newState;
+        });
+      };
+      
+    const handleUnitChange = (e, index) => {
+    const { value } = e.target;
+    setEachIngredientNo((prevState) => {
+        const newState = [...prevState];
+        newState[index].unit = value;
+        
+        return newState;
+    });
+    };
+
     // const handleFilesChange = (e) => {
     //     setFiles(e.target.value);
     // }
 
-    const handleAmountChange = (e) => {
-        setAmount(e.target.value);
-    }
-
-    const handleUnitChange = (e) => {
-        setUnit(e.target.value);
-    }
-
-    const handleIngredientChange = (e) => {
-        const eachIngredient = ingredient.filter((ingredient) => ingredient.name === e.target.value);
-
-        setSearch(
-            ...search,
-            eachIngredient
-        )
-
-        console.log(eachIngredient);
-    }
-
-    const handleIngredientChange02 = (e) => {
-
-    }
-    
-    // files는 여러장을 넣을수 있기때문에 따로빼준다음 빈state객체에 저장해줌
-    // const handleFileChange = (e) => {
-    //     const newFiles = [...joinSignature.files];
-
-    //     for (let i = 0; i < e.target.files.length; i++) {
-    //         newFiles.push(e.target.files[i]);
-    //     }
-
-    //     setJoinSignature((prevState) => ({
-    //         ...prevState,
-    //         files: newFiles,
-    //     }));
-
-    //     // console.log(newFiles);
-    // };
-
+    // handleSumit 이벤트
     const handleSubmit = async (e) => {
         // form을 제출 했을때 새로고침되는 것을 방지
         e.preventDefault();
@@ -126,41 +109,48 @@ function SignatureJoin(props) {
         formData01.append('cocktailContents', cocktailContents);
         formData01.append('recipeContents', recipeContents);
         formData01.append('engName', engName);
+        formData02.append('recipes', JSON.stringify(eachIngredientNo));
         // joinSignature.files.forEach((file) => {
         //     formData.append('files', file);
         // });
 
-        console.log("test", search);
-        
-        formData02.append('recipes', search);
-
         // 엔드포인트에 JSON파일 전달
         try {
-            await axios.post('/signature/form', formData01, {
+            const res01 = await axios.post('/signature/write', formData01, {
                 // headers: {
-                //   'Content-Type': 'multipart/form-data'
+                //   'Content-Type': 'application/json'
                 // }
               }); // http://192.168.0.4:8080/signature/form
             // console.log(res.data);
             // navigate("/signature");
-        } catch(err) {
-            console.log(err);
-        }
 
-        try {
-            await axios.post('/signature/form', formData02, {
-                // headers: {
-                //   'Content-Type': 'multipart/form-data'
-                // }
+            const postNo = res01.data.no;
+            console.log("postNo: " + postNo);
+        
+            const res02 = await axios.post(`/signature/write/${postNo}/recipe`, formData02, {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
               }); // http://192.168.0.4:8080/signature/form
-            // console.log(res.data);
             navigate("/signature");
         } catch(err) {
             console.log(err);
         }
 
-        // 콘솔에 띄우기
-        console.log("search: " + JSON.stringify(search));
+        // try {
+        //     await axios.post(`/signature/write/${no}/file`, formData03, {
+        //         // headers: {
+        //         //   'Content-Type': 'multipart/form-data'
+        //         // }
+        //       }); // http://192.168.0.4:8080/signature/form
+        //     // console.log(res.data);
+        //     navigate("/signature");
+        // } catch(err) {
+        //     console.log(err);
+        // }
+
+        console.log("formData02: " + JSON.stringify(res02.data));
+        console.log("eachIngredientNo: " + JSON.stringify(eachIngredientNo));
     };
 
     return (
@@ -213,9 +203,9 @@ function SignatureJoin(props) {
                         <h3>재료 정보 ▼</h3>
                         <div className="signature-ingredient-container">
                             <div><h3>재료1</h3></div>
-                            <div style={{gridColumn:'1/3'}}><input type="text" onChange={handleIngredientChange} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
-                            <div><input type="text" name='value' value={amount} onChange={handleAmountChange} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
-                            <div><input type="text" name='unit' value={unit} onChange={handleUnitChange} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
+                            <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => handleIngredientChange(e, 0)} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
+                            <div><input type="text" value={eachIngredientNo[0].amount} onChange={(e) => handleAmountChange(e, 0)} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
+                            <div><input type="text" value={eachIngredientNo[0].unit} onChange={(e) => handleUnitChange(e, 0)} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
                         </div>
                         <button className="signature-ingredient-contents-btn">재료추가</button>
                     </label>
