@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -102,14 +103,32 @@ public class SignatureController {
 	
 	/* 시그니처 레시피 작성 */
 	@CrossOrigin(origins = "*")
-	@PostMapping("/write/{no}/recipe")
-	public List<SignatureRecipe> writeSignatureRecipe(
-			@PathVariable("no") Long no,
-			@ModelAttribute SignatureRecipe signatureRecipe,
-			ArrayList<SignatureRecipe> recipes) {
-		signatureRecipeService.addRecipes(recipes, no);
-		return signatureRecipeService.findBySignature(no, signatureRecipe);
+	@PostMapping("/write/{sno}/recipe")
+	public void writeSignatureRecipe(
+			@PathVariable("sno") Long sno,
+			@ModelAttribute SignatureRecipe recipe) {
+		
+		// @RequestBody 어노테이션을 쓰면 Request Body로 넘어오는 JSON 객체를 매핑할 수 있다.
+		//System.out.println("recipe:" + recipe);
+		System.out.println("sno:" + sno);
+		System.out.println("recipe:" + recipe);
+		signatureRecipeService.addRecipe(recipe, sno);
 	}
+	
+//	/* 시그니처 레시피 작성 */
+//	@CrossOrigin(origins = "*")
+//	@PostMapping("/write/{sno}/recipe")
+//	public List<SignatureRecipe> writeSignatureRecipe(
+//			@PathVariable("sno") Long sno,
+//			@RequestParam("recipesData") String recipesData,
+//			@ModelAttribute SignatureRecipe signatureRecipe,
+//			ArrayList<SignatureRecipe> recipes) {
+//		
+//		// @RequestBody 어노테이션을 쓰면 Request Body로 넘어오는 JSON 객체를 매핑할 수 있다.
+//		System.out.println("recipes:" + recipesData);
+//		signatureRecipeService.addRecipes(recipes, sno);
+//		return signatureRecipeService.findBySignature(sno, signatureRecipe);
+//	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
 	@GetMapping("/view/{no}")
