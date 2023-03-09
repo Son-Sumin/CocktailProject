@@ -22,16 +22,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity(name = "member")
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper=false)
 @Table
 @AllArgsConstructor
@@ -63,12 +66,16 @@ public class Member implements UserDetails {
 	private String gender;
 
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member"})
+	@JsonIgnoreProperties({"member", "reviews"})
 	private List<Board> boards = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member"})
+	@JsonIgnoreProperties({"member", "board"})
 	private List<ReviewBoard> reviews = new ArrayList<>();
+	
+	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"member", "board"})
+	private List<LikeBoard> likeBoard = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 //	@JsonIgnoreProperties({"reviewSignatures", "signatureImages"})
@@ -87,33 +94,34 @@ public class Member implements UserDetails {
         this.createdAt = LocalDateTime.now();
     }
     
+    @JsonIgnore
     @Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		 List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();   
          authorities.add(new SimpleGrantedAuthority("enuser"));
          return authorities;
 	}
-
+    @JsonIgnore
 	@Override
 	public String getUsername() {
 		return id;
 	}
-
+    @JsonIgnore
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
-
+    @JsonIgnore
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
-
+    @JsonIgnore
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
-
+    @JsonIgnore
 	@Override
 	public boolean isEnabled() {
 		return true;

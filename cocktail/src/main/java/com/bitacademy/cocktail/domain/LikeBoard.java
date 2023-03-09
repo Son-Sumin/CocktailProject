@@ -1,7 +1,6 @@
 package com.bitacademy.cocktail.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,26 +8,36 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Data
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity(name="likeBoard")
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper=false)
 @Table(name="likeBoard")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class LikeBoard {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="member_no")
+	@JsonIgnoreProperties({"likeBoard", "boards", "signatures", "reviewSignatures"})
 	private Member member;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="board_no")
+	@JsonIgnoreProperties({"likeBoard", "member"})
 	private Board board;
 }

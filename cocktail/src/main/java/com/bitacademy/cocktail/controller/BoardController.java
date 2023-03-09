@@ -3,7 +3,6 @@ package com.bitacademy.cocktail.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.Board;
 import com.bitacademy.cocktail.domain.BoardImage;
+import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.domain.ReviewBoard;
 import com.bitacademy.cocktail.jwt.SecurityUtil;
 import com.bitacademy.cocktail.service.BoardImageService;
 import com.bitacademy.cocktail.service.BoardService;
+import com.bitacademy.cocktail.service.LikeBoardService;
 import com.bitacademy.cocktail.service.MemberService;
 import com.bitacademy.cocktail.service.ReviewBoardService;
 
@@ -35,6 +36,8 @@ public class BoardController {
 	BoardImageService boardImageService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	LikeBoardService likeBoardService;
 	
 //	게시글 리스트
 	@GetMapping("/board/list")
@@ -100,6 +103,14 @@ public class BoardController {
 	public void boardDelete(@PathVariable("no") Long no) {
 
 		boardService.boardDelete(no);
+	}
+	
+//	좋아요
+	@PostMapping("/board/like/{no}")
+	public void addLike(@PathVariable("no") Long no){
+		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
+		likeBoardService.addLike(member, no);
+		
 	}
 
 //	이미지 삭제
