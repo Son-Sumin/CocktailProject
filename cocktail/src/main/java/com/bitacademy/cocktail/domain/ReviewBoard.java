@@ -1,7 +1,6 @@
 package com.bitacademy.cocktail.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,19 +9,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.bitacademy.cocktail.base.BaseTimeEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper=false)
 @Table(name = "reviewBoard")
-@ToString(exclude = "board")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -34,11 +34,13 @@ public class ReviewBoard extends BaseTimeEntity {
 	
 	private String contents;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
+	@JsonIgnoreProperties({"reviews", "board"})
 	@JoinColumn(name="board_no")
 	private Board board;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="member_no")
+	@JsonIgnoreProperties({"reviews", "member"})
 	private Member member;
 }

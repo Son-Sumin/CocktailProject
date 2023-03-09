@@ -12,4 +12,5 @@ public interface LikeBoardRepository extends JpaRepository<LikeBoard, Long> {
 	
 	Optional<LikeBoard> findBymemberAndBoard(Member member, Board board);
 
+	void deleteByNo(Long no);
 }

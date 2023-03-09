@@ -9,5 +9,5 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 	Ingredient findByNo(Long no);
 
 	Ingredient findByName(String name);
-
+	
 }
