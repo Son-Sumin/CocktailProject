@@ -61,7 +61,7 @@ public class SignatureController {
 		
 	/* 멀티파일 업로드 */
 	@CrossOrigin(origins = "*")
-	@PostMapping("/upload/file/{no}")
+	@PostMapping("/write/{no}/file")
 	public void uploadSignatureFile(
 			@PathVariable("no") Long no,
 			@ModelAttribute Signature signature,
@@ -73,8 +73,8 @@ public class SignatureController {
 	
 	/* 시그니처 레시피 작성 */
 	@CrossOrigin(origins = "*")
-	@PostMapping("/write/recipe/{no}")
-	public void writeSignature(
+	@PostMapping("/write/{no}/recipe")
+	public void writeSignatureRecipe(
 			@PathVariable("no") Long no,
 			@ModelAttribute Signature signature,
 			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes) {
@@ -109,11 +109,7 @@ public class SignatureController {
 	/* 시그니처 게시글 수정 */
 	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}")
-	public Signature modify(
-			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature, Signature form,
-			SignatureImage signatureImage, List<MultipartFile> files,
-			List<SignatureRecipe> recipes) throws Exception {
+	public Signature modify(@PathVariable("no") Long no, @ModelAttribute Signature signature, Signature form) {
 		
 		// 기존 내용 불러오기 및 글 수정
 		signature = signatureService.findSigView(no);
@@ -126,19 +122,37 @@ public class SignatureController {
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
 		
+		return signatureService.findSigView(no);
+	}
+		
+	/* 시그니처 멀티파일 수정 */
+	@CrossOrigin(origins = "*")
+	@PutMapping("/modify/{no}/file")
+	public void modifySignatureFile(
+			@PathVariable("no") Long no, 
+			@ModelAttribute Signature signature, Signature form,
+			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
+		
 		// 기존에 올린 파일 있으면 지우기 + 파일 수정 및 재업로드
 		if(signature.getSignatureImages() != null){
 			signatureImageService.deleteImage(no);
         }
 		signatureImageService.addImages(signature, signatureImage, files);
+	}
+		
+	/* 시그니처 레시피 수정 */
+	@CrossOrigin(origins = "*")
+	@PutMapping("/modify/{no}/recipe")
+	public void modifySignatureRecipe(
+			@PathVariable("no") Long no, 
+			@ModelAttribute Signature signature, Signature form,
+			List<SignatureRecipe> recipes) {
 		
 		// 기존에 올린 레시피 지우기 + 레시피 수정 및 재업로드
 		if(signature.getSignatureRecipes() != null){
 			signatureRecipeService.deleteRecipe(no);
         }
 		signatureRecipeService.addRecipes(recipes, signature.getNo());
-		
-		return signatureService.findSigView(no);
 	}
 	
 	/* 시그니처 게시글 댓글 작성 */

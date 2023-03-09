@@ -2,13 +2,11 @@ package com.bitacademy.cocktail.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureRecipe;
 import com.bitacademy.cocktail.repository.IngredientRepository;
@@ -39,7 +37,7 @@ public class SignatureRecipeService {
 		return signatureRecipeRepository.findBySignatureNo(signatureNo);
 	}
 	
-	/* 시그니처 작성간 재료 등록 */
+	/* 시그니처 레시피 등록 */
 	public void addRecipes(List<SignatureRecipe> recipes, Long signatureNo) {
 		
 		Signature signature = signatureRepository.findByNo(signatureNo);
@@ -49,7 +47,7 @@ public class SignatureRecipeService {
 			SignatureRecipe sigRecipe = new SignatureRecipe();
 			sigRecipe.setSignature(signature);
 			//sigRecipe.setIngredient(recipe.getIngredient());
-			sigRecipe.setIngredient(ingredientRepository.findByName(recipe.getIngredient().getName()));
+			sigRecipe.setIngredient(ingredientRepository.findByNo(recipe.getIngredient().getNo()));
 			sigRecipe.setAmount(recipe.getAmount());
 			sigRecipe.setUnit(recipe.getUnit());
 			signatureRecipes.add(sigRecipe);
@@ -58,6 +56,7 @@ public class SignatureRecipeService {
 		}
 	}
 	
+	/* 시그니처 레시피 삭제 */
 	public void deleteRecipe(Long signatureNo) {
 		signatureRecipeRepository.deleteBySignatureNo(signatureNo);
 	}
