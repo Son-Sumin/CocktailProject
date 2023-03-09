@@ -106,7 +106,7 @@ public class SignatureController {
 	@PostMapping("/write/{sno}/recipe")
 	public void writeSignatureRecipe(
 			@PathVariable("sno") Long sno,
-			@ModelAttribute SignatureRecipe recipe) {
+			@RequestBody SignatureRecipe recipe) {
 		
 		// @RequestBody 어노테이션을 쓰면 Request Body로 넘어오는 JSON 객체를 매핑할 수 있다.
 		//System.out.println("recipe:" + recipe);
