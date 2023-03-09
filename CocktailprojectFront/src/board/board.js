@@ -10,24 +10,20 @@ import { Link } from 'react-router-dom';
 
 function Board(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    // let Data1 = useFetch("http://localhost:5030/board")
-    // let Data1 = useFetch("http://192.168.0.4:8080/cocktail")
+    // const Data1 = useFetch("/board/list")
+    const Data1 = props.board;
 
-    const board = props.board;
-
-    let [eachBoard, setEachBoard] = useState([])
+    //페이징 데이터
+    const [data, setData] = useState([]); // 전체 / 데이터 원본 데이터 화
+    const [itemsPerPage, setItemsPerPage] = useState(10); // 한 페이지에 보여질 아이템 수
+    const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+    //분류 데이터
+    let [board, setBoard] = useState([])
+    //정렬 데이터
     let [topHitData, setTopHitData] = useState([])
     let [topFavoriteData, setTopFavoriteData] = useState([])
 
-    useEffect(() => { setEachBoard([board]); }, [board])
-    useEffect(() => { setTopHitData([...board]); }, [board])
-    useEffect(() => { setTopFavoriteData([...board]); }, [board])
-
-    console.log("each: "+ eachBoard);
-    // const handleSelect = (e) => {
-    //     setBoard(e.target.value);
-    // };
-
+    //정렬 소스코드
     var sortJSON = function (data, key, type) {
         if (type == undefined) {
             type = "asc";
@@ -43,33 +39,49 @@ function Board(props) {
         });
     };
 
-    // 정렬 데이터
-    sortJSON(topHitData, "hit", "desc")
-    sortJSON(topFavoriteData, "favorite", "desc")
-
-    //  내림차순 이벤트
-
     const [sorting, setSorting] = useState("asc");
-
     const onSorted = (e) => {
         const sortByValue = e.target.value;
-
         setSorting(sortByValue);
-
         if (sortByValue === 'asc') {
-            sortJSON(eachBoard, "title", "asc")
+            sortJSON(board, "title", "asc")
         } else if (sortByValue === 'desc') {
-            sortJSON(eachBoard, "title", "desc")
+            sortJSON(board, "title", "desc")
         }
     };
 
-    // 방문자수 증가 함수
+    sortJSON(topHitData, "hit", "desc")
+    sortJSON(topFavoriteData, "favorite", "desc")
 
+    //페이징 소스코드
+
+    useEffect(() => {
+        setData([...Data1])
+        setBoard([...Data1]);
+        setTopHitData([...Data1]);
+        setTopFavoriteData([...Data1]);
+    }, [Data1])
+
+    const totalPages = Math.ceil(board.length / itemsPerPage); // 전체 페이지 수
+    const startItem = (currentPage - 1) * itemsPerPage; // 현재 페이지 시작 아이템 인덱스
+    const endItem = currentPage * itemsPerPage; // 현재 페이지 마지막 아이템 인덱스
+    const currentData = board.slice(startItem, endItem); // 현재 페이지 데이터
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const handleItemsPerPageChange = (e) => {
+        setItemsPerPage(e.target.value)
+    }
+
+    // 방문자수 증가 함수
     const handleClick = (event, test) => {
         if (test && test.no) {
-            const updatedHit = Number((eachBoard.filter(x => x.no === test.no))[0].hit) + 1;
+            const updatedHit = Number((board.filter(x => x.no === test.no))[0].hit) + 1;
             event.preventDefault();
-            fetch(`http://localhost:5030/board/${test.no}`, {
+            // fetch(`http://localhost:5030/board/${test.no}`, {
+            fetch(`/board/list/${test.no}`, {
                 method: 'PATCH',
                 headers: {
                     "Content-Type": "application/json",
@@ -80,7 +92,8 @@ function Board(props) {
             })
         } else {
             console.log('X or X.no is undefined or null');
-        }
+        };
+        window.location.href = `/boardIn/${test.no}`;
     };
 
     return (
@@ -127,62 +140,109 @@ function Board(props) {
             </div>
 
             <div className='d-flex justify-content-center mt-1'> {/* 필터 버튼 */}
-                <button onClick={() => setEachBoard(board)} className='DefaultButton mx-3'>전체</button>
-                <button onClick={() => setEachBoard(board.filter(x => x.category === '자유'))} className=' mx-3'>자유</button>
-                <button onClick={() => setEachBoard(board.filter(x => x.category === 'Q&A'))} className=' mx-3'>Q&A</button>
-
-                {/* <select name="sorting" id="sorting" onClick={(e) => onSorted}> */}
-                <select onChange={onSorted} id="sorting" value={board.title}>{/* value : title을 기준으로 변경 */}
-
+                {/* <button onClick={() => {
+                    const sortedData = sortJSON(board, "no", "asc");
+                    setData(Data1);
+                }}>
+                    초기화
+                </button> */}
+                <button onClick={() => setBoard(Data1)} className='DefaultButton mx-3'>전체</button>
+                <button onClick={() => setBoard(Data1.filter(x => x.category === 'random'))} className=' mx-3'>자유</button>
+                <button onClick={() => setBoard(Data1.filter(x => x.category === 'question'))} className=' mx-3'>Q&A</button>
+                {/*  */}
+                <select onChange={onSorted} id="sorting" value={board.title}>   {/* value : title을 기준으로 변경 */}
                     <option value="asc" > 오름차순 </option>
                     <option value="desc" > 내림차순 </option>
                 </select>
 
+                <select id="paging" onChange={handleItemsPerPageChange} value={itemsPerPage} defaultValue={10}>
+                    <option value="5" > 5 </option>
+                    <option value="10" > 10 </option>
+                    <option value="15" > 15 </option>
+                    <option value="20" > 20 </option>
+                </select>
             </div>
+
             <div className='d-flex justify-content-end'>
                 <button><a href='/writing'>추가</a></button>
             </div>
+
+
+
             {/* 내용  그리드 */}
-            <div className='m-5'>
-                <Row>
-                    <Col xs={1} />
-                    <Col xs={10} >
-                        {eachBoard.map((test, i) => (
-                            <h3 className='text-center' key={i}>
-                                <div className="d-flex align-items-center" style={{ float: "left", height: "67px" }}>                            <p>{test.no}</p>
-                                </div>
-                                <div className='border' >
-
-                                    <Link
-                                        to={`/boardIn/${test.no}`}
-                                        onClick={(e) => handleClick(e, test)}
-                                        style={{ textDecoration: 'none', textDecorationColor: "black" }}
-                                    >
-                                        <div>
-                                            <Row className='mt-3 xxl'>
-
-                                                <Col xs={1}> {test.category}</Col>
-                                                <Col xs={6} className='text-start'> {test.title}</Col>
-                                                <Col ><button><Link to={`/boardRe/${test.no}`}>수정</Link></button></Col>
-                                            </Row>
-                                            <Row className='xxl'>
-                                                <Col xs={1}> {test.user_no}</Col>
-                                                <Col xs={2}> {test.reg_date}</Col>
-                                                <Col xs={2}> H:{test.hit}</Col>
-                                                <Col xs={2}> F:{test.favorite}</Col>
-
-                                            </Row>
+            <>
+                {/* 페이지별 데이터 출력 */}
+                <div className='m-5'>
+                    <Row>
+                        <Col xs={1} />
+                        <Col xs={10} >
+                            {currentData.map((test, i) => {
+                                // if (i < { countNo }) {
+                                return (
+                                    <h3 className='text-center' key={i}>
+                                        <div className="d-flex align-items-center" style={{ float: "left", height: "67px" }}>                            <p>{test.no}</p>
                                         </div>
-                                    </Link>
-                                </div>
-                            </h3>
-                        ))}
-                    </Col>
-                    <Col xs={1} />
-                </Row>
-            </div >
+                                        <div className='border' >
+
+                                            <Link onClick={(e) => handleClick(e, test)}>
+                                                <div>
+                                                    <Row className='mt-3 xxl'>
+
+                                                        <Col xs={1}> {test.category}</Col>
+                                                        <Col xs={6} className='text-start'> {test.title}</Col>
+                                                        <Col ><button><Link to={`/boardRe/${test.no}`}>수정</Link></button></Col>
+                                                    </Row>
+                                                    <Row className='xxl'>
+                                                        <Col xs={1}> {test.member}</Col>
+                                                        <Col xs={2}> {test.createdDate}</Col>
+                                                        <Col xs={2}> H:{test.hit}</Col>
+                                                        <Col xs={2}> F:{test.likes}</Col>
+
+                                                    </Row>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </h3>
+                                )
+                                // }
+                            })}
+                        </Col>
+                        <Col xs={1} />
+                    </Row>
+                </div >
+
+
+                {/* 페이징 UI */}
+                <div className="pagination flex justify-content-center" >
+                    {/* 이전 버튼 */}
+                    {currentPage !== 1 && (
+                        <button onClick={() => handlePageChange(currentPage - 1)}>
+                            Previous
+                        </button>
+                    )}
+
+                    {/* 페이지 번호 목록 */}
+                    {Array.from({ length: totalPages }).map((_, index) => (
+                        <button
+                            key={index + 1}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={currentPage === index + 1 ? "active" : ""} //css 수정해야됨 : .active를 변경시 현재페이지 표시됨 
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+
+                    {/* 다음 버튼 */}
+                    {currentPage !== totalPages && (
+                        <button onClick={() => handlePageChange(currentPage + 1)}>
+                            Next
+                        </button>
+                    )}
+                </div>
+            </>
         </>
     )
 }
+
 
 export default Board;
