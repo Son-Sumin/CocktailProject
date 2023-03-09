@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureImage;
@@ -44,19 +45,46 @@ public class SignatureController {
 		model.addAttribute("signatures", signature);
 		return signatureService.listSignature();
 	}
+	
+//	/* 시그니처 글 작성 + 멀티파일 업로드 */
+//	// 자체 test시 @ModelAttribute, 클라이언트로 전송 시 @RequestBody
+//	@CrossOrigin(origins = "*")
+//	@PostMapping("/write")
+//	public void writeSignature(
+//			@ModelAttribute Signature signature,
+//			@ModelAttribute Signature form,
+//			SignatureImage signatureImage,
+//			List<MultipartFile> files,
+//			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes,
+//			Long signatureNo) throws Exception {
+//		
+//		//시그니처 글 작성
+//		//Signature signature = new Signature();
+//		signature.setCocktailName(form.getCocktailName());
+//		signature.setEngName(form.getEngName());
+//		signature.setCocktailContents(form.getCocktailContents());
+//		signature.setRecipeContents(form.getRecipeContents());
+//		signature.setHit(0);
+//		signatureService.add(signature);
+//		
+//		// 시그니처 재료 작성
+//		signatureRecipeService.addRecipes(recipes, signature.getNo());
+//		
+//		//파일 업로드
+//		signatureImageService.addImages(signature, signatureImage, files);
+//	}
 
 	/* 시그니처 글 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write")
-	public void writeSignature(@ModelAttribute Signature signature, @ModelAttribute Signature form) {
-		
-		//Signature signature = new Signature();
+	public Signature writeSignature(@ModelAttribute Signature signature, @ModelAttribute Signature form) {
 		signature.setCocktailName(form.getCocktailName());
 		signature.setEngName(form.getEngName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setHit(0);
 		signatureService.add(signature);
+		return signatureService.findSigView(signature.getNo());
 	}
 		
 	/* 멀티파일 업로드 */
@@ -76,10 +104,8 @@ public class SignatureController {
 	@PostMapping("/write/{no}/recipe")
 	public void writeSignatureRecipe(
 			@PathVariable("no") Long no,
-			@ModelAttribute Signature signature,
 			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes) {
-		signature = signatureService.findSigView(no);
-		signatureRecipeService.addRecipes(recipes, signature.getNo());
+		signatureRecipeService.addRecipes(recipes, no);
 	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */

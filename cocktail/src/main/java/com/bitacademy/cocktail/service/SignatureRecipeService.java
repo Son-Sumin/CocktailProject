@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureRecipe;
 import com.bitacademy.cocktail.repository.IngredientRepository;
@@ -41,18 +42,30 @@ public class SignatureRecipeService {
 	public void addRecipes(List<SignatureRecipe> recipes, Long signatureNo) {
 		
 		Signature signature = signatureRepository.findByNo(signatureNo);
-		ArrayList<SignatureRecipe> signatureRecipes = new ArrayList<>();
+		recipes = new ArrayList<>();
+		
+		System.out.println("signatureNo : " + signatureNo);
+		System.out.println("signature : " + signature);
+		System.out.println("signatureRecipes : " + recipes);
 		
 		for(SignatureRecipe recipe : recipes) {
+			
+			//Long ino = Long.parseLong(recipe.getIngredient());
+			
 			SignatureRecipe sigRecipe = new SignatureRecipe();
 			sigRecipe.setSignature(signature);
 			//sigRecipe.setIngredient(recipe.getIngredient());
 			sigRecipe.setIngredient(ingredientRepository.findByNo(recipe.getIngredient().getNo()));
 			sigRecipe.setAmount(recipe.getAmount());
 			sigRecipe.setUnit(recipe.getUnit());
-			signatureRecipes.add(sigRecipe);
 			
-			signatureRecipeRepository.saveAll(signatureRecipes);
+			System.out.println("sigRecipe1 : " + sigRecipe);
+			
+			recipes.add(sigRecipe);
+			
+			System.out.println("sigRecipe2 : " + sigRecipe);
+			
+			signatureRecipeRepository.saveAll(recipes);
 		}
 	}
 	
