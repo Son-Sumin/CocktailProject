@@ -51,7 +51,7 @@ public class BannerController {
 	
 	/* 각 배너별 이미지 변환 */
 	@GetMapping(value = {"/view/{no}"}, produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
-	public ResponseEntity<byte[]> showImage(@PathVariable("no") Long no) throws IOException {
+	public ResponseEntity<byte[]> showImage(@PathVariable("no") Long no) throws Exception {
 		
 		Banner banner = bannerRepository.findByNo(no);
 

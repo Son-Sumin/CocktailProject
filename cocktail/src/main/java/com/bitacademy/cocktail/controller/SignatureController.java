@@ -1,8 +1,15 @@
 package com.bitacademy.cocktail.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bitacademy.cocktail.domain.Banner;
 import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
@@ -85,9 +93,18 @@ public class SignatureController {
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
 	@GetMapping("/view/{no}")
-	public Signature view(@PathVariable("no") Long no, Model model) {
+	public Signature view(@PathVariable("no") Long no, Model model) throws Exception {
 		// 시그니처 게시글 보기
 		model.addAttribute("signature", signatureService.findSigView(no));
+		
+		List<SignatureImage> signatureImage = signatureImageService.findSigImg(no);
+		
+		for (SignatureImage sigImg : signatureImage) {
+			InputStream imageStream = new FileInputStream("src/main/resources/static" + sigImg.getPath());
+			byte[] imageByteArray  = IOUtils.toByteArray(imageStream);
+			imageStream.close();
+			new ResponseEntity<>(imageByteArray, HttpStatus.OK);
+		}
 	
 		// 조회수
 		signatureService.updateHit(no);
@@ -97,6 +114,21 @@ public class SignatureController {
 		model.addAttribute("reviewSignatures", reviewSignature);
 		
 		return signatureService.findSigView(no);
+	}
+	
+	/* 각 배너별 이미지 변환 */
+	@GetMapping(value = {"/view/{sno}/image"}, produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+	public ResponseEntity<byte[]> showImage(@PathVariable("sno") Long no) throws Exception {
+		
+		List<SignatureImage> signatureImage = signatureImageService.findSigImg(no);
+		
+		for (SignatureImage sigImg : signatureImage) {
+			InputStream imageStream = new FileInputStream("src/main/resources/static" + sigImg.getPath());
+			byte[] imageByteArray  = IOUtils.toByteArray(imageStream);
+			imageStream.close();
+			return new ResponseEntity<>(imageByteArray, HttpStatus.OK);
+		}
+		return null;		
 	}
 
 	/* 시그니처 게시글 + 파일 + 레시피 삭제 */

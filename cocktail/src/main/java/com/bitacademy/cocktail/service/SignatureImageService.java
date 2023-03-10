@@ -64,5 +64,9 @@ public class SignatureImageService {
 	public void deleteImage(Long signatureNo) {
 		signatureImageRepository.deleteBySignatureNo(signatureNo);
 	}
+
+	public List<SignatureImage> findSigImg(Long no) {
+		return signatureImageRepository.findBySignature_No(no);
+	}
 	
 }
