@@ -61,13 +61,14 @@ public class SignatureController {
 	/* 시그니처 글 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write")
-	public void writeSignature(@ModelAttribute Signature signature, @ModelAttribute Signature form) {
+	public Signature writeSignature(@ModelAttribute Signature signature, @ModelAttribute Signature form) {
 		signature.setCocktailName(form.getCocktailName());
 		signature.setEngName(form.getEngName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setHit(0);
 		signatureService.add(signature);
+		return signatureService.findSigView(signature.getNo());
 	}
 		
 	/* 멀티파일 업로드 */
@@ -87,8 +88,11 @@ public class SignatureController {
 	@PostMapping("/write/{sno}/recipe")
 	public void writeSignatureRecipe(
 			@PathVariable("sno") Long sno,
+			@ModelAttribute Signature signature,
 			@ModelAttribute SignatureRecipe recipe) {
 		// @RequestBody 어노테이션을 쓰면 Request Body로 넘어오는 JSON 객체를 매핑할 수 있다.
+		
+		signature = signatureService.findSigView(sno);
 		signatureRecipeService.addRecipe(recipe, sno);
 	}
 
