@@ -3,61 +3,20 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function SignatureJoin(props) {
-    // ingredient 데이터 불러오기
+// 재료정보 추가 컴포넌트 (하위)
+function IngredientForm(props) {
     const ingredient = props.ingredient;
-    const navigate = useNavigate();
-
-    // 데이터를 저장할 state
-    const [cocktailName, setCocktailName] = useState("");
-    const [engName, setEngName] = useState("");
-    const [cocktailContents, setCocktailContents] = useState("");
-    const [recipeContents, setRecipeContents] = useState("");
-    // const [files, setFiles] = useState([]);
-
-    const [eachIngredientNo, setEachIngredientNo] = useState([
-        {
-            "ingredient": [],
-            "amount": '',
-            "unit": '',
-        }
-    ])
-
-    const [search, setSearch] = useState([
-        {
-            "ingredient": [
-                {
-                    "no": 1,
-                }
-            ],
-            "amount": 1,
-            "unit": "개",
-        },
-    ]);
-
-    // handleChange 이벤트
-    const handleNameChange = (e) => {
-        setCocktailName(e.target.value);
-    }
-
-    const handleEngNameChange = (e) => {
-        setEngName(e.target.value);
-    }
-
-    const handleCocktailContentsChange = (e) => {
-        setCocktailContents(e.target.value);
-    }
-
-    const handleRecipeContentsChange = (e) => {
-        setRecipeContents(e.target.value);
-    }
+    const ingredients = props.ingredients;
+    const setIngredients = props.setIngredients;
+    const handleClickIngredientForm = props.handleClickIngredientForm;
+    const [ingredientNo, setIngredientNo] = useState(1);
 
     const handleIngredientChange = (e, index) => {
         const { value } = e.target;
-        const eachIngredient = ingredient.find((ingredient) => ingredient.name === e.target.value);
+        const eachIngredient = ingredient.find((ingredient) => ingredient.name === value);
 
         if (eachIngredient != null) {
-            setEachIngredientNo((prevState) => {
+            setIngredients((prevState) => {
                 const newState = [...prevState];
                 newState[index] = {
                   ...newState[index],
@@ -67,6 +26,7 @@ function SignatureJoin(props) {
                 };
     
                 console.log(eachIngredient);
+                console.log(newState);
                 return newState;
             });   
         }
@@ -74,27 +34,94 @@ function SignatureJoin(props) {
 
     const handleAmountChange = (e, index) => {
         const { value } = e.target;
-        setEachIngredientNo((prevState) => {
+        setIngredients((prevState) => {
           const newState = [...prevState];
           newState[index].amount = value;
 
+          console.log(newState);
           return newState;
         });
       };
       
     const handleUnitChange = (e, index) => {
     const { value } = e.target;
-    setEachIngredientNo((prevState) => {
+    setIngredients((prevState) => {
         const newState = [...prevState];
         newState[index].unit = value;
         
+        console.log(newState);
         return newState;
     });
+    };
+    
+    return (
+        <label>
+            <h3>재료 정보{ingredients.length} ▼</h3>
+            <div className="signature-ingredient-container">
+                <div><h3>재료1</h3></div>
+                <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => handleIngredientChange(e, (ingredients.length - 1))} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
+                <div><input type="text" value={ingredients[(ingredients.length - 1)].amount} onChange={(e) => handleAmountChange(e, (ingredients.length - 1))} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
+                <div><input type="text" value={ingredients[(ingredients.length - 1)].unit} onChange={(e) => handleUnitChange(e, (ingredients.length - 1))} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
+            </div>
+            <button type='button' onClick={handleClickIngredientForm} className="signature-ingredient-contents-btn">재료추가</button>
+        </label>
+    )
+}
+
+
+
+
+// 시그니처 작성페이지 (상위)
+function SignatureJoin(props) {
+    // ingredient 데이터 불러오기
+    const ingredient = props.ingredient;
+    const navigate = useNavigate();
+
+    // 데이터를 저장할 state
+    const [signatureJoin, setSignatureJoin] = useState({
+        cocktailName: '',
+        engName: '',
+        cocktailContents: '',
+        recipeContents: '',
+    })
+
+    // const [files, setFiles] = useState([]);
+
+    const [ingredients, setIngredients] = useState([
+        {
+            "ingredient": {
+                "no": '',
+            },
+            "amount": '',
+            "unit": '',
+        },
+    ])
+
+    // handleChange 이벤트
+    const handleSignatureJoinChange = (e) => {
+        const {name, value} = e.target; // name과 value 속성을 추출
+
+        setSignatureJoin({
+            ...signatureJoin,
+            [name]: value // 추출한 속성을 사용
+        });
     };
 
     // const handleFilesChange = (e) => {
     //     setFiles(e.target.value);
     // }
+
+    // IngredientForm handleClidk 이벤트
+    const handleClickIngredientForm = () => {
+        const nextKey = ingredientForm.length;
+        const newIngredientForm = <IngredientForm key={nextKey} />;
+        setIngredientForm([...ingredientForm, newIngredientForm]);
+        console.log("클릭 성공!");
+        console.log(ingredientForm);
+    };
+
+    // IngredientForm을 저장할 공간
+    const [ingredientForm, setIngredientForm] = useState([<IngredientForm key={0} ingredients={ingredients} ingredient={ingredient} setIngredients={setIngredients} handleClickIngredientForm={handleClickIngredientForm} />]);
 
     // handleSumit 이벤트
     const handleSubmit = async (e) => {
@@ -105,11 +132,16 @@ function SignatureJoin(props) {
         const formData01 = new FormData();
         const formData02 = new FormData();
 
-        formData01.append('cocktailName', cocktailName);
-        formData01.append('cocktailContents', cocktailContents);
-        formData01.append('recipeContents', recipeContents);
-        formData01.append('engName', engName);
-        formData02.append('recipes', JSON.stringify(eachIngredientNo));
+        formData01.append('cocktailName', signatureJoin.cocktailName);
+        formData01.append('cocktailContents', signatureJoin.cocktailContents);
+        formData01.append('recipeContents', signatureJoin.recipeContents);
+        formData01.append('engName', signatureJoin.engName);
+
+        // formData02.append('recipesData', ingredients[0]));
+        formData02.append('ingredient', JSON.stringify(ingredients[0].ingredient));
+        formData02.append('amount', ingredients[0].amount);
+        formData02.append('unit', ingredients[0].unit);
+
         // joinSignature.files.forEach((file) => {
         //     formData.append('files', file);
         // });
@@ -128,10 +160,14 @@ function SignatureJoin(props) {
             console.log("postNo: " + postNo);
         
             const res02 = await axios.post(`/signature/write/${postNo}/recipe`, formData02, {
-                headers: {
-                  'Content-Type': 'application/json'
-                }
+                // headers: {
+                //   'Content-Type': 'application/json'
+                // }
               }); // http://192.168.0.4:8080/signature/form
+            
+            console.log("formData02: " + JSON.stringify(res02.data));
+            console.log("eachIngredientNo: " + JSON.stringify(ingredients));
+            
             navigate("/signature");
         } catch(err) {
             console.log(err);
@@ -148,9 +184,6 @@ function SignatureJoin(props) {
         // } catch(err) {
         //     console.log(err);
         // }
-
-        console.log("formData02: " + JSON.stringify(res02.data));
-        console.log("eachIngredientNo: " + JSON.stringify(eachIngredientNo));
     };
 
     return (
@@ -186,33 +219,24 @@ function SignatureJoin(props) {
                     </div>
                     <label>
                         <h3>칵테일 이름 ▼</h3>
-                        <input type="text" placeholder="이름을 지어주세요:)" className="signature-join-contents-2" name='cocktailName' value={cocktailName} onChange={handleNameChange}></input>
-                        <p style={{textAlign:'right', marginTop:'5px'}}>{cocktailName.length}/50</p>
+                        <input type="text" placeholder="이름을 지어주세요:)" className="signature-join-contents-2" name='cocktailName' value={signatureJoin.cocktailName} onChange={handleSignatureJoinChange}></input>
+                        <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.cocktailName.length}/50</p>
                     </label>
                     <label>
                         <h3>칵테일 영문이름 ▼</h3>
-                        <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-join-contents-2" name='engName' value={engName} onChange={handleEngNameChange}></input>
-                        <p style={{textAlign:'right', marginTop:'5px'}}>{engName.length}/50</p>
+                        <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-join-contents-2" name='engName' value={signatureJoin.engName} onChange={handleSignatureJoinChange}></input>
+                        <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.engName.length}/50</p>
                     </label>
                     <label>
                         <h3>칵테일 설명 ▼</h3>
-                        <textarea placeholder="칵테일 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='cocktailContents' value={cocktailContents} onChange={handleCocktailContentsChange}></textarea>
-                        <p style={{textAlign:'right', marginTop:'5px'}}>{cocktailContents.length}/200</p>
+                        <textarea placeholder="칵테일 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='cocktailContents' value={signatureJoin.cocktailContents} onChange={handleSignatureJoinChange}></textarea>
+                        <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.cocktailContents.length}/200</p>
                     </label>
-                    <label>
-                        <h3>재료 정보 ▼</h3>
-                        <div className="signature-ingredient-container">
-                            <div><h3>재료1</h3></div>
-                            <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => handleIngredientChange(e, 0)} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
-                            <div><input type="text" value={eachIngredientNo[0].amount} onChange={(e) => handleAmountChange(e, 0)} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
-                            <div><input type="text" value={eachIngredientNo[0].unit} onChange={(e) => handleUnitChange(e, 0)} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
-                        </div>
-                        <button className="signature-ingredient-contents-btn">재료추가</button>
-                    </label>
+                    {<IngredientForm ingredients={ingredients} ingredient={ingredient} setIngredients={setIngredients} />}
                     <label>
                         <h3>레시피 정보 ▼</h3>
-                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='recipeContents' value={recipeContents} onChange={handleRecipeContentsChange}></textarea>
-                        <p style={{textAlign:'right', marginTop:'5px'}}>{recipeContents.length}/200</p>
+                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='recipeContents' value={signatureJoin.recipeContents} onChange={handleSignatureJoinChange}></textarea>
+                        <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.recipeContents.length}/200</p>
                     </label>
                     <div>
                         <button type='submit' className="signature-contents-btn">업로드</button>

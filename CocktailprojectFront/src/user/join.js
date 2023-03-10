@@ -81,7 +81,7 @@ function Join() {
                 </label>
                 <label>
                     <h3>닉네임 ▼</h3>
-                    <input type="text" placeholder="닉네임을 지어주세요:)" className="signature-join-contents-2" name="nickname" value={joinMember.ninkname} onChange={handleChange}></input>
+                    <input type="text" placeholder="닉네임을 지어주세요:)" className="signature-join-contents-2" name="nickname" value={joinMember.nickname} onChange={handleChange}></input>
                     <p style={{textAlign:'right', marginTop:'5px'}}>{joinMember.nickname.length}/30</p>
                 </label>
                 <label>
