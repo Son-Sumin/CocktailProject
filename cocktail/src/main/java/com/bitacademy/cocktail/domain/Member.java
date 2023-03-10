@@ -78,6 +78,10 @@ public class Member implements UserDetails {
 	private List<LikeBoard> likeBoard = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"member", "cocktail"})
+	private List<LikeCocktail> likeCocktail = new ArrayList<>();
+	
+	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 //	@JsonIgnoreProperties({"reviewSignatures", "signatureImages"})
 	private List<Signature> signatures = new ArrayList<>();
 	
