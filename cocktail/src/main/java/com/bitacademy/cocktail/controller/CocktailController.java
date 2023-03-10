@@ -16,6 +16,7 @@ import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.jwt.SecurityUtil;
 import com.bitacademy.cocktail.service.CocktailRecipeService;
 import com.bitacademy.cocktail.service.CocktailService;
+import com.bitacademy.cocktail.service.LikeCocktailService;
 import com.bitacademy.cocktail.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class CocktailController {
 	private final CocktailService cocktailService;
 	private final CocktailRecipeService cocktailRecipeService;
 	private final MemberService memberService;
+	private final LikeCocktailService likeCocktailService;
 	
 	/* 칵테일 목록 */
 	@GetMapping({"", "/list"})
@@ -68,10 +70,10 @@ public class CocktailController {
 	}
 	
 	//좋아요
-//	@PostMapping("/like/{no}")
-//	public void addLike(@PathVariable("no") Long no) {
-//		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
-//		likeCocktailService.addLike(member, no);
-//	}
+	@PostMapping("/like/{no}")
+	public void addLike(@PathVariable("no") Long no) {
+		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
+		likeCocktailService.addLike(member, no);
+	}
 	
 }
