@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.Banner;
+import com.bitacademy.cocktail.domain.CocktailRecipe;
 import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
@@ -60,14 +61,13 @@ public class SignatureController {
 	/* 시그니처 글 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write")
-	public Signature writeSignature(@ModelAttribute Signature signature, @ModelAttribute Signature form) {
+	public void writeSignature(@ModelAttribute Signature signature, @ModelAttribute Signature form) {
 		signature.setCocktailName(form.getCocktailName());
 		signature.setEngName(form.getEngName());
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setHit(0);
 		signatureService.add(signature);
-		return signatureService.findSigView(signature.getNo());
 	}
 		
 	/* 멀티파일 업로드 */
@@ -94,18 +94,11 @@ public class SignatureController {
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
 	@GetMapping("/view/{no}")
-	public Signature view(@PathVariable("no") Long no, Model model) throws Exception {
-		// 시그니처 게시글 보기
+	public Signature view(@PathVariable("no") Long no, Model model, SignatureRecipe signatureRecipe) throws Exception {
+		// 시그니처 게시글 + 레시피 보기
 		model.addAttribute("signature", signatureService.findSigView(no));
-		
-		List<SignatureImage> signatureImage = signatureImageService.findSigImg(no);
-		
-		for (SignatureImage sigImg : signatureImage) {
-			InputStream imageStream = new FileInputStream("src/main/resources/static" + sigImg.getPath());
-			byte[] imageByteArray  = IOUtils.toByteArray(imageStream);
-			imageStream.close();
-			new ResponseEntity<>(imageByteArray, HttpStatus.OK);
-		}
+		List<SignatureRecipe> list =  signatureRecipeService.findBySignature(no, signatureRecipe);
+		model.addAttribute("signatureRecipe", list);
 	
 		// 조회수
 		signatureService.updateHit(no);
@@ -145,8 +138,7 @@ public class SignatureController {
 	/* 시그니처 게시글 수정 */
 	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}")
-	public Signature modify(@PathVariable("no") Long no, @ModelAttribute Signature signature, Signature form) {
-		
+	public void modify(@PathVariable("no") Long no, @ModelAttribute Signature signature, Signature form) {
 		// 기존 내용 불러오기 및 글 수정
 		signature = signatureService.findSigView(no);
 		signature.setHit(signature.getHit());	
@@ -157,38 +149,39 @@ public class SignatureController {
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
-		
-		return signatureService.findSigView(no);
 	}
 		
 	/* 시그니처 멀티파일 수정 */
 	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}/file")
 	public void modifySignatureFile(
-			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature, Signature form,
+			@PathVariable("no") Long no, @ModelAttribute Signature signature,
 			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
 		
-		// 기존에 올린 파일 있으면 지우기 + 파일 수정 및 재업로드
+		signature = signatureService.findSigView(no);
+		
 		if(signature.getSignatureImages() != null){
-			signatureImageService.deleteImage(no);
+			signatureImageService.deleteImage(no);			
         }
-		signatureImageService.addImages(signature, signatureImage, files);
+		
+		signatureImageService.addImages(signature, signatureImage, files);		
 	}
 		
 	/* 시그니처 레시피 수정 */
 	@CrossOrigin(origins = "*")
-	@PutMapping("/modify/{no}/recipe")
+	@PutMapping("/modify/{sno}/recipe")
 	public void modifySignatureRecipe(
-			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature, Signature form,
-			List<SignatureRecipe> recipes) {
+			@PathVariable("sno") Long signatureNo, 
+			@ModelAttribute Signature signature,
+			@ModelAttribute SignatureRecipe recipe) {
+		
+		signature = signatureService.findSigView(signatureNo);
 		
 		// 기존에 올린 레시피 지우기 + 레시피 수정 및 재업로드
 		if(signature.getSignatureRecipes() != null){
-			signatureRecipeService.deleteRecipe(no);
+			signatureRecipeService.deleteRecipe(signatureNo);
         }
-		//signatureRecipeService.addRecipes(recipes, signature.getNo());
+		signatureRecipeService.addRecipe(recipe, signatureNo);
 	}
 	
 	/* 시그니처 게시글 댓글 작성 */
