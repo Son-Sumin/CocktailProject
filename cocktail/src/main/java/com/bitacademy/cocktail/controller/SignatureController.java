@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -116,20 +117,22 @@ public class SignatureController {
 		return signatureService.findSigView(no);
 	}
 	
-	/* 각 배너별 이미지 변환 */
-	@GetMapping(value = {"/view/{sno}/image"}, produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
-	public ResponseEntity<byte[]> showImage(@PathVariable("sno") Long no) throws Exception {
-		
-		List<SignatureImage> signatureImage = signatureImageService.findSigImg(no);
-		
-		for (SignatureImage sigImg : signatureImage) {
-			InputStream imageStream = new FileInputStream("src/main/resources/static" + sigImg.getPath());
-			byte[] imageByteArray  = IOUtils.toByteArray(imageStream);
-			imageStream.close();
-			return new ResponseEntity<>(imageByteArray, HttpStatus.OK);
-		}
-		return null;		
-	}
+//	/* 각 게시글 이미지 변환 */
+//	@GetMapping(value = {"/view/{sno}/image"}, produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+//	public ResponseEntity<List<byte[]>> showImage(@PathVariable("sno") Long no, @RequestParam("files") SignatureImage signatureImage) throws Exception {
+//		
+//		List<SignatureImage> sigImageList = signatureImageService.findSigImg(no);
+//		List<byte[]> imageDataList = new ArrayList<>();
+//		
+//		for (SignatureImage sigImg : sigImageList) {
+//			InputStream imageStream = new FileInputStream("src/main/resources/static" + sigImg.getPath());
+//			byte[] imageByteArray  = IOUtils.toByteArray(imageStream);
+//			imageStream.close();
+//			imageDataList.add(imageByteArray);
+//			return new ResponseEntity<>(imageDataList, HttpStatus.OK);
+//		}
+//		return null;	
+//	}
 
 	/* 시그니처 게시글 + 파일 + 레시피 삭제 */
 	@DeleteMapping("/delete/{no}")
