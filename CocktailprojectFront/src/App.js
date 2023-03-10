@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import logo from './logo.svg';
 import './App.css';
-import {Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Header from './header';
 import Main from './main/main';
@@ -16,8 +16,12 @@ import Board01 from "./board/board01";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import {getCocktail, getIngredient, ScrolToTop, getBanner, getBoard} from "./api";
+import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard } from "./api";
 import SignatureJoin from "./signature/signatureJoin";
+
+import BoardDetail from "./board/boardIn";
+import select from "./select";
+
 
 function App() {
   const token = localStorage.getItem('accessToken');
@@ -38,22 +42,22 @@ function App() {
   // 칵테일 JSON파일
   useEffect(() => {
     getCocktail(setCocktail);
-  },[]);
+  }, []);
 
   // 재료 JSON파일
   useEffect(() => {
     getIngredient(setIngredient);
-  },[])
+  }, [])
 
   // 배너 JSON파일
   useEffect(() => {
     getBanner(setBanner);
-  },[])
+  }, [])
 
   // 게시판 JSON파일
   useEffect(() => {
     getBoard(setBoard);
-  },[])
+  }, [])
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
@@ -65,39 +69,64 @@ function App() {
       // 유저 정보를 처리합니다.
       console.log(response.data);
       console.log("로그인여부: " + isLoggedIn);
-      
+
       setUser(response.data.name);
 
       console.log("유저이름: " + user);
     })
-    .catch(error => {
-      // 에러를 처리합니다.
-      console.error(error);
-    });
-  },[token]);
+      .catch(error => {
+        // 에러를 처리합니다.
+        console.error(error);
+      });
+  }, [token]);
 
   useEffect(() => {
     // isLoggedIn 값이 변경될 때마다 localStorage에 저장합니다.
     localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
 
+  // 최상단 이동 버튼
+  const buttonClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  const [yPosition, setYPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setYPosition(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="App">
-      {location.pathname !== '/join' && location.pathname !== '/login' && <Header setIsLoggedIn={setIsLoggedIn} /> }
-      <Routes>
-        <Route path="/" element={<Main banner={banner} />}></Route>
-        <Route path="/join" element={<Join />}></Route>
-        <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
-        <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
-        <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
-        <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
-        <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
-        <Route path="/board" element={<Board board={board} />}></Route>
-        <Route path="signature" element={<Signature />}></Route>
-        <Route path="signature/:no" element={<SignatureDetail />}></Route>
-        <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
-      </Routes>
-    </div>
+    <>
+      <div className="App">
+        {location.pathname !== '/join' && location.pathname !== '/login' && <Header setIsLoggedIn={setIsLoggedIn} />}
+        <Routes>
+          <Route path="/" element={<Main banner={banner} />}></Route>
+          <Route path="/join" element={<Join />}></Route>
+          <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
+          <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
+          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
+          <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
+          <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
+          <Route path="/board" element={<Board board={board} />}></Route>
+          <Route path="signature" element={<Signature />}></Route>
+          <Route path="signature/:no" element={<SignatureDetail />}></Route>
+          <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
+
+          <Route path="/board/:no" element={<BoardDetail board={board} />}></Route>
+          <Route path="/select/:text" element={<select select={select} />}></Route>
+          
+        </Routes>
+      </div>
+      <button onClick={buttonClick} style={{ position: 'fixed', right: '10px', bottom: '10px' }}>⬆️</button>
+    </>
   );
 }
 
