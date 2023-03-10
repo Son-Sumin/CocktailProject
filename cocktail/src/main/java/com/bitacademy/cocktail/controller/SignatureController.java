@@ -1,8 +1,15 @@
 package com.bitacademy.cocktail.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,11 +18,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bitacademy.cocktail.domain.Banner;
+import com.bitacademy.cocktail.domain.CocktailRecipe;
 import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
@@ -46,34 +57,6 @@ public class SignatureController {
 		model.addAttribute("signatures", signature);
 		return signatureService.listSignature();
 	}
-	
-//	/* 시그니처 글 작성 + 멀티파일 업로드 */
-//	// 자체 test시 @ModelAttribute, 클라이언트로 전송 시 @RequestBody
-//	@CrossOrigin(origins = "*")
-//	@PostMapping("/write")
-//	public void writeSignature(
-//			@ModelAttribute Signature signature,
-//			@ModelAttribute Signature form,
-//			SignatureImage signatureImage,
-//			List<MultipartFile> files,
-//			@ModelAttribute("recipes") ArrayList<SignatureRecipe> recipes,
-//			Long signatureNo) throws Exception {
-//		
-//		//시그니처 글 작성
-//		//Signature signature = new Signature();
-//		signature.setCocktailName(form.getCocktailName());
-//		signature.setEngName(form.getEngName());
-//		signature.setCocktailContents(form.getCocktailContents());
-//		signature.setRecipeContents(form.getRecipeContents());
-//		signature.setHit(0);
-//		signatureService.add(signature);
-//		
-//		// 시그니처 재료 작성
-//		signatureRecipeService.addRecipes(recipes, signature.getNo());
-//		
-//		//파일 업로드
-//		signatureImageService.addImages(signature, signatureImage, files);
-//	}
 
 	/* 시그니처 글 작성 */
 	@CrossOrigin(origins = "*")
@@ -102,20 +85,24 @@ public class SignatureController {
 	
 	/* 시그니처 레시피 작성 */
 	@CrossOrigin(origins = "*")
-	@PostMapping("/write/{no}/recipe")
-	public List<SignatureRecipe> writeSignatureRecipe(
-			@PathVariable("no") Long no,
-			@ModelAttribute SignatureRecipe signatureRecipe,
-			ArrayList<SignatureRecipe> recipes) {
-		signatureRecipeService.addRecipes(recipes, no);
-		return signatureRecipeService.findBySignature(no, signatureRecipe);
+	@PostMapping("/write/{sno}/recipe")
+	public void writeSignatureRecipe(
+			@PathVariable("sno") Long sno,
+			@ModelAttribute Signature signature,
+			@ModelAttribute SignatureRecipe recipe) {
+		// @RequestBody 어노테이션을 쓰면 Request Body로 넘어오는 JSON 객체를 매핑할 수 있다.
+		
+		signature = signatureService.findSigView(sno);
+		signatureRecipeService.addRecipe(recipe, sno);
 	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
 	@GetMapping("/view/{no}")
-	public Signature view(@PathVariable("no") Long no, Model model) {
-		// 시그니처 게시글 보기
+	public Signature view(@PathVariable("no") Long no, Model model, SignatureRecipe signatureRecipe) throws Exception {
+		// 시그니처 게시글 + 레시피 보기
 		model.addAttribute("signature", signatureService.findSigView(no));
+		List<SignatureRecipe> list =  signatureRecipeService.findBySignature(no, signatureRecipe);
+		model.addAttribute("signatureRecipe", list);
 	
 		// 조회수
 		signatureService.updateHit(no);
@@ -126,6 +113,23 @@ public class SignatureController {
 		
 		return signatureService.findSigView(no);
 	}
+	
+//	/* 각 게시글 이미지 변환 */
+//	@GetMapping(value = {"/view/{sno}/image"}, produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+//	public ResponseEntity<List<byte[]>> showImage(@PathVariable("sno") Long no, @RequestParam("files") SignatureImage signatureImage) throws Exception {
+//		
+//		List<SignatureImage> sigImageList = signatureImageService.findSigImg(no);
+//		List<byte[]> imageDataList = new ArrayList<>();
+//		
+//		for (SignatureImage sigImg : sigImageList) {
+//			InputStream imageStream = new FileInputStream("src/main/resources/static" + sigImg.getPath());
+//			byte[] imageByteArray  = IOUtils.toByteArray(imageStream);
+//			imageStream.close();
+//			imageDataList.add(imageByteArray);
+//			return new ResponseEntity<>(imageDataList, HttpStatus.OK);
+//		}
+//		return null;	
+//	}
 
 	/* 시그니처 게시글 + 파일 + 레시피 삭제 */
 	@DeleteMapping("/delete/{no}")
@@ -138,8 +142,7 @@ public class SignatureController {
 	/* 시그니처 게시글 수정 */
 	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}")
-	public Signature modify(@PathVariable("no") Long no, @ModelAttribute Signature signature, Signature form) {
-		
+	public void modify(@PathVariable("no") Long no, @ModelAttribute Signature signature, Signature form) {
 		// 기존 내용 불러오기 및 글 수정
 		signature = signatureService.findSigView(no);
 		signature.setHit(signature.getHit());	
@@ -150,38 +153,39 @@ public class SignatureController {
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setSignatureImages(form.getSignatureImages());
 		signatureService.modify(signature);
-		
-		return signatureService.findSigView(no);
 	}
 		
 	/* 시그니처 멀티파일 수정 */
 	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}/file")
 	public void modifySignatureFile(
-			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature, Signature form,
+			@PathVariable("no") Long no, @ModelAttribute Signature signature,
 			SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
 		
-		// 기존에 올린 파일 있으면 지우기 + 파일 수정 및 재업로드
+		signature = signatureService.findSigView(no);
+		
 		if(signature.getSignatureImages() != null){
-			signatureImageService.deleteImage(no);
+			signatureImageService.deleteImage(no);			
         }
-		signatureImageService.addImages(signature, signatureImage, files);
+		
+		signatureImageService.addImages(signature, signatureImage, files);		
 	}
 		
 	/* 시그니처 레시피 수정 */
 	@CrossOrigin(origins = "*")
-	@PutMapping("/modify/{no}/recipe")
+	@PutMapping("/modify/{sno}/recipe")
 	public void modifySignatureRecipe(
-			@PathVariable("no") Long no, 
-			@ModelAttribute Signature signature, Signature form,
-			List<SignatureRecipe> recipes) {
+			@PathVariable("sno") Long signatureNo, 
+			@ModelAttribute Signature signature,
+			@ModelAttribute SignatureRecipe recipe) {
+		
+		signature = signatureService.findSigView(signatureNo);
 		
 		// 기존에 올린 레시피 지우기 + 레시피 수정 및 재업로드
 		if(signature.getSignatureRecipes() != null){
-			signatureRecipeService.deleteRecipe(no);
+			signatureRecipeService.deleteRecipe(signatureNo);
         }
-		//signatureRecipeService.addRecipes(recipes, signature.getNo());
+		signatureRecipeService.addRecipe(recipe, signatureNo);
 	}
 	
 	/* 시그니처 게시글 댓글 작성 */
