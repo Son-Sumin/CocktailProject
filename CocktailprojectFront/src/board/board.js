@@ -93,9 +93,10 @@ function Board(props) {
         } else {
             console.log('X or X.no is undefined or null');
         };
-        window.location.href = `/boardIn/${test.no}`;
+        window.location.href = `/board/${test.no}`;
     };
 
+    
     return (
         <>
             <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px" }}>
@@ -112,7 +113,7 @@ function Board(props) {
                                         if (i < 5) {
                                             return (
                                                 <tr className='text-start '>
-                                                    {i + 1}. <Link to={`/boardIn/${test.no}`}>{test.title}</Link>
+                                                    {i + 1}. <Link to={`/board/${test.no}`}>{test.title}</Link>
                                                 </tr>
                                             )
                                         }
@@ -127,7 +128,7 @@ function Board(props) {
                                         if (i < 5) {
                                             return (
                                                 <tr className='text-start'>
-                                                    <Link to={`/boardIn/${test.no}`}>{i + 1}. {test.title}</Link>
+                                                    <Link to={`/board/${test.no}`}>{i + 1}. {test.title}</Link>
                                                 </tr>
                                             )
                                         }

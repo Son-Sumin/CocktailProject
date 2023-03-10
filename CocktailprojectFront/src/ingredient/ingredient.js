@@ -6,23 +6,29 @@ import axios from 'axios';
 import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
 
 function Ingredient(props) {
-    const ingredient = props.ingredient;
+    const ingredient = props.ingredient;   
     console.log(ingredient);
+
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        setData([...ingredient]);
+    }, [ingredient])
+
 
     return (
     <div>
         <div className="cocktail-btn-box">
-            <button className='cocktail-btn'>전체</button>
-            <button className='cocktail-btn'>술(강한도수)</button>
-            <button className='cocktail-btn'>술(약한도수)</button>
-            <button className='cocktail-btn'>음료수</button>
-            <button className='cocktail-btn'>주스</button>
-            <button className='cocktail-btn'>기타</button>
+            <button onClick={()=> setData(ingredient)} className='cocktail-btn'>전체</button>
+            <button onClick={()=> setData(ingredient.filter(x => x.type === 'strong'))} className='cocktail-btn'>술(강한도수)</button>
+            <button onClick={()=> setData(ingredient.filter(x => x.type === 'weak'))} className='cocktail-btn'>술(약한도수)</button>
+            <button onClick={()=> setData(ingredient.filter(x => x.type === 'beverage'))} className='cocktail-btn'>음료수</button>
+            <button onClick={()=> setData(ingredient.filter(x => x.type === 'juice'))} className='cocktail-btn'>주스</button>
+            <button onClick={()=> setData(ingredient.filter(x => x.type === 'other'))} className='cocktail-btn'>기타</button>
         </div>
 
         <div className="cocktail-list">
             {
-            ingredient.map(function(a, i) {
+            data.map(function(a, i) {
                 // console.log(a);
                 return (
                     <Link to={`/ingredient/${a.no}`} key={i}>
