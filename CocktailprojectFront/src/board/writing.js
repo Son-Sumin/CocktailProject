@@ -3,22 +3,22 @@
 
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import useFetch from './useFetch';
+// import useFetch from './useFetch';
 
-function writing() {
-    let Data1 = useFetch("http://localhost:5030/board")
+function writing(props) {
+    // let Data1 = useFetch("http://localhost:5030/board")
+    const Data1 = props.board;
 
     const noData = Math.max.apply(null, Data1.map(function (v) { return v.no })) + 1;
     const caRef = useRef(null);
     const tiRef = useRef(null);
-    const hitRef = useRef(null);
-    const rdRef = useRef(null, Date());
-    const faRef = useRef(null);
-    const unRef = useRef(null);
-
+    // const hitRef = useRef(null);
+    // const rdRef = useRef(null, Date());
+    // const faRef = useRef(null);
+    // const unRef = useRef(null);
     //CK에디터 데이터 받아오기
     const [contentsData, setContentsData] = useState("");
 
@@ -31,7 +31,7 @@ function writing() {
     function onSubmit(e) {
         e.preventDefault();
         if (confirm("저장 하시겠습니까?")) {
-            fetch(`http://localhost:5030/board`, {
+            fetch(`/board/write`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

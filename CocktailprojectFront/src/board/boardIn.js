@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable no-lone-blocks */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useRef, useState } from 'react'
@@ -12,11 +14,15 @@ function boardIn(props) {
     const [Data, setData] = useState([]);
 
     useEffect(() => {
-        setData(Data1);
-    }, [Data1]);
+        // setData(Data1); 
+        setData(Data1.filter(x => x.no == boardNo));
+    }, [Data1, boardNo]);
 
+    console.log(Data1)
     console.log(Data)
+    console.log(typeof Data)
     console.log(Data.reviews)
+    console.log(Data.no)
 
     // 본문 삭제 
     const onRemove = (event) => {
@@ -122,94 +128,94 @@ function boardIn(props) {
     }
 
     console.log(typeof Data.createdDate)
-
-    
     return (
-        <div>
+        <>
+            {Data.map((test) => (
+                <div>
+                    {/* 상단 정보창 */}
 
-            <>
-                {/* 상단 정보창 */}
-                <div>
-                    <table>
-                        <tr>
-                            <td>①{Data.category}</td>
-                            <td>②{Data.title}</td>
-                        </tr>
-                        <tr>
-                            <td>③{Data.member}</td>
-                            <td>④{formatDate(Data.createdDate)} ⑤ {Data.hit} ⑥ {Data.likes}</td>
-                            <td style={{ width: "10%" }}>
-                                <button><Link to={`/boardRe/${Data.no}`}>수정</Link></button>
-                                <button onClick={onRemove}>삭제</button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                {/* 이미지창 */}
-                <div>
-                    {/* test.img.map((test2)=>(
-                        {test2.no}
-                    )) */}
-                </div>
-                {/* 콘텐츠창 */}
-                <div style={{ minHeight: "800px" }}>
-                    {/* {Data.contents} */}
-                    <p dangerouslySetInnerHTML={{ __html: Data.contents }}></p>
-                </div>
-                {/* 좋아요 버튼 */}
-                <div style={{ textAlign: "center" }}>
-                    <button
-                        type='button'
-                        style={{ height: '100px', width: '100px', borderRadius: '50px' }}
-                    // onClick={(e) => handleClick(e, Data)}
-                    >
-                        좋아요
-                    </button>
-                </div>
-
-                {/* 댓글창 */}
-                <div>
-                    <p className="text-center">
-                        <h4>댓글</h4>
-                    </p>
-                    <div style={{ margin: "auto" }}>
-                        <form onSubmit={onSubmit} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <input style={{ width: "75%", height: "40px" }} placeholder="댓글창" ref={reRef} />
-                            <button style={{ width: "10%", height: "40px" }}>작성</button>
-                        </form>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>①{test.category}</td>
+                                <td>②{test.title}</td>
+                            </tr>
+                            <tr>
+                                <td>③{test.member || ''}</td>
+                                <td>④{formatDate(test.createdDate)} ⑤ {test.hit} ⑥ {test.likes}</td>
+                                <td style={{ width: "10%" }}>
+                                    <button><Link to={`/board/updata/${test.no}`}>수정</Link></button>
+                                    <button onClick={onRemove}>삭제</button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    {/* 댓글창 view */}
-                    <table className='border text-center' style={{ margin: "auto" }}>
-                        {Data && Data.reviews &&
-                            <tbody>
-                                {Data.reviews.map(app => {
-                                    return (
-                                        <tr>
-                                            <td>{app.member}</td>
-                                            <td>{app.contents}</td>
-                                            <td>{app.createdDate}</td>
-                                            <td style={{ width: "10%" }}>
-                                                <Link to={`/boardRe/${boardNo}`}><button>수정</button></Link>
-                                                <button onClick={(e) => onRemove2(e, app)}>삭제</button>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                                <tr>
-                                    <td> 1</td>
-                                    <td>semple01</td>
-                                    <td>2023-03-08</td>
-                                    <td style={{ width: "10%" }}>
-                                        <button><Link to={`/boardRe/${boardNo}`}>수정</Link></button>
-                                        {/* <button onClick={onRemove2}>삭제</button> */}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        }
-                    </table>
+
+
+                    {/* 이미지창 */}
+                    <div>
+
+                    </div>
+                    {/* 콘텐츠창 */}
+                    <div style={{ minHeight: "800px" }}>
+                        {/* {Data.contents} */}
+                        <p dangerouslySetInnerHTML={{ __html: test.contents }}></p>
+                    </div>
+                    {/* 좋아요 버튼 */}
+                    <div style={{ textAlign: "center" }}>
+                        <button
+                            type='button'
+                            style={{ height: '100px', width: '100px', borderRadius: '50px' }}
+                        // onClick={(e) => handleClick(e, Data)}
+                        >
+                            좋아요
+                        </button>
+                    </div>
+
+                    {/* 댓글창 */}
+                    <div>
+                        <p className="text-center">
+                            <h4>댓글</h4>
+                        </p>
+                        <div style={{ margin: "auto" }}>
+                            <form onSubmit={onSubmit} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                <input style={{ width: "75%", height: "40px" }} placeholder="댓글창" ref={reRef} />
+                                <button style={{ width: "10%", height: "40px" }}>작성</button>
+                            </form>
+                        </div>
+                        {/* 댓글창 view */}
+                        <table className='border text-center' style={{ margin: "auto" }}>
+                            {test && test.reviews &&
+                                <tbody>
+                                    {test.reviews.map(app => {
+                                        return (
+                                            <tr>
+                                                <td>{app.member}</td>
+                                                <td>{app.contents}</td>
+                                                <td>{app.createdDate}</td>
+                                                <td style={{ width: "10%" }}>
+                                                    <Link to={`/boardRe/${boardNo}`}><button>수정</button></Link>
+                                                    <button onClick={(e) => onRemove2(e, app)}>삭제</button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                    <tr>
+                                        <td> 1</td>
+                                        <td>semple01</td>
+                                        <td>2023-03-08</td>
+                                        <td style={{ width: "10%" }}>
+                                            <button><Link to={`/board/updata/${boardNo}`}>수정</Link></button>
+                                            {/* <button onClick={onRemove2}>삭제</button> */}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
                 </div>
-            </>
-        </div>
+            ))}
+        </>
     )
 }
 

@@ -191,7 +191,7 @@ function Board(props) {
 
                                                         <Col xs={1}> {test.category}</Col>
                                                         <Col xs={6} className='text-start'> {test.title}</Col>
-                                                        <Col ><button><Link to={`/boardRe/${test.no}`}>수정</Link></button></Col>
+                                                        <Col ><button><Link to={`/board/updata/${test.no}`}>수정</Link></button></Col>
                                                     </Row>
                                                     <Row className='xxl'>
                                                         <Col xs={1}> {test.member}</Col>
