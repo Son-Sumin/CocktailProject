@@ -86,7 +86,7 @@ public class SignatureController {
 	/* 시그니처 레시피 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write/{sno}/recipe")
-	public void writeSignatureRecipe(
+	public List<SignatureRecipe> writeSignatureRecipe(
 			@PathVariable("sno") Long sno,
 			@ModelAttribute Signature signature,
 			@ModelAttribute SignatureRecipe recipe) {
@@ -94,6 +94,7 @@ public class SignatureController {
 		
 		signature = signatureService.findSigView(sno);
 		signatureRecipeService.addRecipe(recipe, sno);
+		return signatureRecipeService.findBySignature(sno, recipe);
 	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
