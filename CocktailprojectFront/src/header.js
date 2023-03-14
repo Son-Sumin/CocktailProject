@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// 회원메뉴 모달창 (하위 컴포넌트)
 function HeaderModal(props) {
   const { isModalOpen, handleModalClose } = props;
 
@@ -14,15 +15,32 @@ function HeaderModal(props) {
     <div>
       <div className="overlay" onClick={handleModalClose}></div>
         <div className="modal-container">
-          <span>모달</span>
+          <Link to="/mypage" style={{fontSize:'20px'}} onClick={handleModalClose}>
+            <span className="modal-container-contents">마이페이지</span>
+          </Link>
+          <Link to="/signature/join">
+            <span className="modal-container-contents" onClick={handleModalClose}>시그니처 참가하기</span>
+          </Link>
+          <div className="modal-contents-logout" onClick={() => {
+            handleModalClose;
+            props.setIsLoggedIn(false);
+            props.removeToken;
+            window.location.reload();
+            }}>
+            <span>로그아웃</span>
+          </div>
         </div>
     </div>
   )
 }
 
+
+
+
+// 헤더 (상위 컴포넌트)
 function Header(props) {
   const navigate = useNavigate();
-  const { setIsLoggedIn, isLoggedIn, user } = props;
+  const { setIsLoggedIn, isLoggedIn, user, removeToken } = props;
 
   const [selectedMenu, setSelectedMenu] = useState(''); // 현재 선택된 메뉴
   const [isModalOpen, setIsModalOpen] = useState(false); // 회원 메뉴바
@@ -30,48 +48,48 @@ function Header(props) {
   const bannerLogo = process.env.PUBLIC_URL + '/project-logo.png';
   const search = process.env.PUBLIC_URL + '/search.png';
 
+
+  // 모달 핸들러
   const handleMenuClick = (menu) => {
     setSelectedMenu(menu);
   }
-  
   function handleModal() {
     setIsModalOpen(true);
-    console.log("회원모달메뉴: " + isModalOpen);
+    // console.log("회원모달메뉴: " + isModalOpen);
   }
-
   function handleModalClose() {
     setIsModalOpen(false);
   }
 
-  const handleLogout = async (props) => {
-    try {
-      await axios.post('/member/logout', {}, {
-        headers: {
-          'Authorization': localStorage.getItem('token')
-        }
-      })
 
-      localStorage.removeItem('token');
-      // delete axios.defaults.headers.common['Authorization'];
+  // const handleLogout = async (props) => {
+  //   try {
+  //     await axios.post('/member/logout', {}, {
+  //       headers: {
+  //         'Authorization': localStorage.getItem('token')
+  //       }
+  //     })
 
-      setIsLoggedIn(false);
-      navigate('/');
-      alert("로그아웃 성공!");
-    } catch (error) {
-      console.log(error);
-      alert("로그아웃 실패!");
-    }
-  };
+  //     localStorage.removeItem('token');
+  //     // delete axios.defaults.headers.common['Authorization'];
+
+  //     setIsLoggedIn(false);
+  //     navigate('/');
+  //     alert("로그아웃 성공!");
+  //   } catch (error) {
+  //     console.log(error);
+  //     alert("로그아웃 실패!");
+  //   }
+  // };
+
 
   //검색
-  //검색자료 저장
   const [inputValue, setInputValue] = useState("");
 
   function onSubmit(event) {
     event.preventDefault();
     navigate(`/search/${inputValue}`);
   }
-
   function handleChange(event) {
     setInputValue(event.target.value);
   }
@@ -85,13 +103,13 @@ function Header(props) {
       </div>
       <div style={{ gridColumn: '5/6' }}></div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px 130px 150px', columnGap: '10px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px 200px 150px', columnGap: '10px' }}>
         {
         isLoggedIn ? (
           <div style={{ gridColumn: '3/4'}}>
             <>
             <button className='login-btn' onClick={handleModal}>{user} 님</button>
-            {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} />}
+            {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} setIsLoggedIn={setIsLoggedIn} removeToken={removeToken} />}
             </>
           </div>
         ) : (

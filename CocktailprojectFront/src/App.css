@@ -23,20 +23,6 @@ img {
   z-index: 1;
 }
 
-.modal-container {
-  position: absolute;
-  top: 31%;
-  right: 3%;
-  transform: translate(-50%, -50%);
-  border: 1px solid black;
-  width: 400px;
-  height: 300px;
-  background-color: white;
-  z-index: 2;
-  padding: 20px;
-  border-radius: 10px;
-}
-
 /* ---------------- header ------------------ */
 
 .header-container {
@@ -110,8 +96,52 @@ img {
   clear: both;
 }
 
+.modal-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 40px;
+  position: absolute;
+  top: 12%;
+  right: 23.3%;
+  width: 300px;
+  height: 150px;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
+  z-index: 2;
+  padding: 20px;
+  border-radius: 10px;
+  float: right;
+}
+
 .header-menu-box.selected li {
   color: rgb(216, 167, 7);
+}
+
+.modal-container div {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-container-contents {
+  font-size: 20px;
+  transition: all 0.3s;
+}
+
+.modal-container-contents:hover {
+  color: rgb(216, 167, 7);
+}
+
+.modal-contents-logout {
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 5px;
+  background-color: rgb(216, 167, 7);
+  color: white;
+  transition: all 0.5s;
+}
+
+.modal-contents-logout:hover {
+  background-color: rgb(242, 92, 92);
 }
 
 /* --------------- main -------------------- */
