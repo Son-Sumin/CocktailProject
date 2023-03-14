@@ -60,13 +60,4 @@ public class Cocktail {
 	@JsonIgnoreProperties({"member", "cocktail"})
 	private List<LikeCocktail> likeCocktail = new ArrayList<>();
 
-//	public void addCocktailImage(CocktailImage cocktailImage){
-//		cocktailImages.add(cocktailImage);
-//		cocktailImage.setCocktail(this);
-//    }
-//	
-//	public void addCocktailRecipe(CocktailRecipe cocktailRecipe){
-//		cocktailRecipes.add(cocktailRecipe);
-//		cocktailRecipe.setCocktail(this);
-//    }
 }
