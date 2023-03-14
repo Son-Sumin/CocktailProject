@@ -10,12 +10,12 @@ import com.bitacademy.cocktail.repository.CocktailRepository;
 
 import lombok.RequiredArgsConstructor;
 
-
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class CocktailService {
 
+	/* 생성자 주입 */
 	private final CocktailRepository cocktailRepository;
 
 	/* 칵테일 추가하기 */

@@ -90,6 +90,10 @@ public class Member implements UserDetails {
 	@OrderBy("createdDate desc")
 	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 	
+	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"member", "place"})
+	private List<LikePlace> likePlace = new ArrayList<>();
+	
 //	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 //	private List<LikeSignature> LikeSignature = new ArrayList<>();
 	
