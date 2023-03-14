@@ -99,7 +99,7 @@ function Board(props) {
 
     return (
         <>
-            <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px" }}>
+            <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px", backgroundColor:'aliceblue' }}>
                 <h2 className='text-center'> 오늘의 Best 게시글</h2>
 
                 <div style={{ marginLeft: '40%' }}>

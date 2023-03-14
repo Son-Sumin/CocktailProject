@@ -72,8 +72,6 @@ function App() {
       console.log("로그인여부: " + isLoggedIn);
 
       setUser(response.data.name);
-
-      console.log("유저이름: " + user);
     })
       .catch(error => {
         // 에러를 처리합니다.
