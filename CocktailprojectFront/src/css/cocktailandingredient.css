@@ -8,13 +8,21 @@
     margin: 20px;
     padding: 5px 20px;
     font-size: 20px;
-    background-color: aliceblue;
+    font-weight: 500;
     color: gray;
     border: 0px;
     border-radius: 10px;
     box-shadow: 2px 2px 5;
+    background-color: white;
+    border: 1px solid rgb(223, 217, 217);
     cursor: pointer;
+    transition: all 0.3s;
 }
+
+.cocktail-btn:hover {
+    border: 1px solid rgb(216, 167, 7);
+    color: rgb(216, 167, 7);
+  }
 
 .cocktail-box {
     width: 280px;

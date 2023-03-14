@@ -9,10 +9,17 @@ function Header(props) {
   const navigate = useNavigate();
   const setIsLoggedIn = props.setIsLoggedIn;
   const isLoggedIn = props.isLoggedIn;
+  const user = props.user;
 
   const bannerLogo = process.env.PUBLIC_URL + '/project-logo.png';
   const search = process.env.PUBLIC_URL + '/search.png';
 
+  const [selectedMenu, setSelectedMenu] = useState(''); // 현재 선택된 메뉴
+
+  const handleMenuClick = (menu) => {
+    setSelectedMenu(menu);
+  }
+  
   const handleLogout = async (props) => {
     try {
       await axios.post('/member/logout', {}, {
@@ -56,14 +63,11 @@ function Header(props) {
       </div>
       <div style={{ gridColumn: '5/6' }}></div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px 130px 130px', columnGap: '10px' }}>
-        <div style={{ gridColumn: '2/3', paddingTop:'40px', textAlign:'center'}}>
-          sun님 환영합니다.
-        </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px 130px 150px', columnGap: '10px' }}>
         {
         isLoggedIn ? (
           <div style={{ gridColumn: '3/4'}}>
-            <button className='login-btn' onClick={handleLogout}>로그아웃</button>
+            <button className='login-btn' onClick={handleLogout}>{user} 님</button>
           </div>
         ) : (
           <Link to="/login" style={{ gridColumn: '3/4' }}>
@@ -71,33 +75,32 @@ function Header(props) {
           </Link>
         )
         }
-
         <Link to="/join" style={{ gridColumn: '4/5' }}>
           <button className='login-btn'>회원가입</button>
         </Link>
       </div>
 
-      <Link to="/cocktail" className="header-menu-box">
+      <Link to="/cocktail" className={`header-menu-box ${selectedMenu === 'cocktail' ? 'selected' : ''}`} onClick={() => handleMenuClick('cocktail')}>
         <li className='header-menu'>칵테일</li>
         <div className='header-animationbar'></div>
       </Link>
 
-      <Link to="/ingredient" className="header-menu-box">
+      <Link to="/ingredient" className={`header-menu-box ${selectedMenu === 'ingredient' ? 'selected' : ''}`} onClick={() => handleMenuClick('ingredient')}>
         <li className='header-menu'>재료</li>
         <div className="header-animationbar"></div>
       </Link>
 
-      <Link to="/board" className="header-menu-box">
+      <Link to="/board" className={`header-menu-box ${selectedMenu === 'board' ? 'selected' : ''}`} onClick={() => handleMenuClick('board')}>
         <li className='header-menu'>게시판</li>
         <div className="header-animationbar"></div>
       </Link>
 
-      <Link to="/signature" className="header-menu-box">
+      <Link to="/signature" className={`header-menu-box ${selectedMenu === 'signature' ? 'selected' : ''}`} onClick={() => handleMenuClick('signature')}>
         <li className='header-menu'>시그니처</li>
         <div className="header-animationbar"></div>
       </Link>
 
-      <Link to="/" className="header-menu-box">
+      <Link to="/" className={`header-menu-box ${selectedMenu === 'class' ? 'selected' : ''}`} onClick={() => handleMenuClick('class')}>
         <li className='header-menu'>클래스</li>
         <div className="header-animationbar"></div>
       </Link>

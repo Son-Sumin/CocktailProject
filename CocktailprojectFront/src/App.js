@@ -108,7 +108,7 @@ function App() {
   return (
     <>
       <div className="App">
-        {location.pathname !== '/join' && location.pathname !== '/login' && <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
+        {location.pathname !== '/join' && location.pathname !== '/login' && <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} />}
         <Routes>
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
@@ -129,7 +129,7 @@ function App() {
 
         </Routes>
       </div>
-      <button onClick={buttonClick} style={{ position: 'fixed', right: '10px', bottom: '10px' }}>⬆️</button>
+      <button onClick={buttonClick} style={{position:'fixed', padding:'5px 10px', right:'10px', bottom:'10px', backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button>
     </>
   );
 }
