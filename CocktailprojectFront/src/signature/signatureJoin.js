@@ -39,7 +39,7 @@ function SignatureJoin(props) {
         recipeContents: '',
     })
 
-    // const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState([]);
 
     const [ingredients, setIngredients] = useState(
         {
@@ -71,9 +71,9 @@ function SignatureJoin(props) {
         });
     };
 
-    // const handleFilesChange = (e) => {
-    //     setFiles(e.target.value);
-    // }
+    const handleFilesChange = (e) => {
+        setFiles(e.target.value);
+    }
 
     // IngredientForm이벤트
     const handleClickIngredientForm = () => {
@@ -161,31 +161,19 @@ function SignatureJoin(props) {
 
         // 엔드포인트에 JSON파일 전달
         try {
-            const res01 = await axios.post('/signature/write', formData01, {
-                // headers: {
-                //   'Content-Type': 'application/json'
-                // }
-              }); // http://192.168.0.4:8080/signature/form
+            const res01 = await axios.post('/signature/write', formData01);
             // console.log(res.data);
             // navigate("/signature");
 
             const postNo = res01.data.no;
             console.log("postNo: " + postNo);
         
-            const res02 = await axios.post(`/signature/write/${postNo}/recipe`, formData02, {
-                // headers: {
-                //   'Content-Type': 'application/json'
-                // }
-              }); // http://192.168.0.4:8080/signature/form
+            const res02 = await axios.post(`/signature/write/${postNo}/recipe`, formData02);
             
             console.log("formData02: " + JSON.stringify(res02.data));
             console.log("eachIngredientNo: " + JSON.stringify(ingredients));
 
-            const res03 = await axios.post(`/signature/write/${postNo}/recipe`, formData03, {
-                // headers: {
-                //   'Content-Type': 'application/json'
-                // }
-              }); // http://192.168.0.4:8080/signature/form
+            const res03 = await axios.post(`/signature/write/${postNo}/recipe`, formData03);
             
             console.log("formData03: " + JSON.stringify(res03.data));
             // console.log("eachIngredientNo: " + JSON.stringify(ingredients));
@@ -195,17 +183,16 @@ function SignatureJoin(props) {
             console.log(err);
         }
 
-        // try {
-        //     await axios.post(`/signature/write/${no}/file`, formData03, {
-        //         // headers: {
-        //         //   'Content-Type': 'multipart/form-data'
-        //         // }
-        //       }); // http://192.168.0.4:8080/signature/form
-        //     // console.log(res.data);
-        //     navigate("/signature");
-        // } catch(err) {
-        //     console.log(err);
-        // }
+        try {
+            await axios.post(`/signature/write/${no}/file`, formData03, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+              });
+            navigate("/signature");
+        } catch(err) {
+            console.log(err);
+        }
     };
 
     return (
@@ -222,9 +209,9 @@ function SignatureJoin(props) {
                     <div className="signature-contents-picture-box">
                         <h3>칵테일 사진 ▼</h3>
                         <div className="signature-picture-box signature-picture-box-grid-1" style={{border:'0px'}}>
-                            {/* <div className="signature-picture-box" style={{border:'3px solid'}}>
-                                <input type="file" name='files' defaultValue={joinSignature.files} multiple onChange={handleFileChange} style={{textAlign:'center', marginTop:'80px'}}></input>  
-                            </div> */}
+                            <div className="signature-picture-box" style={{border:'3px solid'}}>
+                                <input type="file" name='files' defaultValue={files} multiple onChange={handleFilesChange} style={{textAlign:'center', marginTop:'80px'}}></input>  
+                            </div>
                             <div className="signature-picture-box signature-picture-box-grid-2">
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진1</div>
                                 <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div>
