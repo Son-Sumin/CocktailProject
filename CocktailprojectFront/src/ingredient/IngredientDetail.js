@@ -12,7 +12,7 @@ function IngredientDetail(props) {
     // console.log(ingredient);
 
     const eachIngredient = ingredient.filter((ingredient) => ingredient.no == no);
-    console.log(eachIngredient[0])
+    // console.log(eachIngredient[0])
 
     function IsType(a) {
         if (a.type === "strong") {

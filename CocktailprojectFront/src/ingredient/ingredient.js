@@ -7,7 +7,7 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 
 function Ingredient(props) {
     const ingredient = props.ingredient;   
-    console.log(ingredient);
+    // console.log(ingredient);
 
     const [data, setData] = useState([]);
     useEffect(() => {

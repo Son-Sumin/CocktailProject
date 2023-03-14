@@ -22,7 +22,6 @@ function Cocktail(props) {
     }, [cocktail]);
 
     // console.log(eachCocktail);
-    console.log(props.isLoggedIn);
 
     const [countValue, setCountValue] = useState(0);
 
@@ -30,7 +29,7 @@ function Cocktail(props) {
         setCountValue(e.target.value)
     }
     // console.log(eachCocktail[0].cocktailRecipes.length);
-    console.log(countValue);
+    // console.log(countValue);
 
     const [isOpen, setIsOpen] = useState(false);
 

@@ -41,7 +41,7 @@ function App() {
 
   const [user, setUser] = useState("");
 
-  console.log("유저정보: " + user);
+  // console.log("유저정보: " + user);
 
   // 칵테일 JSON파일
   useEffect(() => {
@@ -103,7 +103,7 @@ function App() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [yPosition]);
 
   return (
     <>

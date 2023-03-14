@@ -6,15 +6,16 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function HeaderModal(props) {
-  const { isOpen, onClose } = props;
-  if (!isOpen) return null;
+  const { isModalOpen, handleModalClose } = props;
+
+  if (!isModalOpen) return null;
 
   return (
-    <div className="modal">
-      <div className="overlay" onClick={onClose}></div>
-      <div className="modal-container">
-        <span>모달</span>
-      </div>
+    <div>
+      <div className="overlay" onClick={handleModalClose}></div>
+        <div className="modal-container">
+          <span>모달</span>
+        </div>
     </div>
   )
 }
@@ -23,15 +24,25 @@ function Header(props) {
   const navigate = useNavigate();
   const { setIsLoggedIn, isLoggedIn, user } = props;
 
+  const [selectedMenu, setSelectedMenu] = useState(''); // 현재 선택된 메뉴
+  const [isModalOpen, setIsModalOpen] = useState(false); // 회원 메뉴바
+
   const bannerLogo = process.env.PUBLIC_URL + '/project-logo.png';
   const search = process.env.PUBLIC_URL + '/search.png';
-
-  const [selectedMenu, setSelectedMenu] = useState(''); // 현재 선택된 메뉴
 
   const handleMenuClick = (menu) => {
     setSelectedMenu(menu);
   }
   
+  function handleModal() {
+    setIsModalOpen(true);
+    console.log("회원모달메뉴: " + isModalOpen);
+  }
+
+  function handleModalClose() {
+    setIsModalOpen(false);
+  }
+
   const handleLogout = async (props) => {
     try {
       await axios.post('/member/logout', {}, {
@@ -70,7 +81,6 @@ function Header(props) {
       <div style={{ gridColumn: '1/4' }}>
         <Link to="/">
           <img src={bannerLogo} alt="project-logo" />
-          {/* <h1>로고</h1> */}
         </Link>
       </div>
       <div style={{ gridColumn: '5/6' }}></div>
@@ -79,7 +89,10 @@ function Header(props) {
         {
         isLoggedIn ? (
           <div style={{ gridColumn: '3/4'}}>
-            <button className='login-btn' onClick={handleLogout}>{user} 님</button>
+            <>
+            <button className='login-btn' onClick={handleModal}>{user} 님</button>
+            {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} />}
+            </>
           </div>
         ) : (
           <Link to="/login" style={{ gridColumn: '3/4' }}>
