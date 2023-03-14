@@ -5,11 +5,23 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+function HeaderModal(props) {
+  const { isOpen, onClose } = props;
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal">
+      <div className="overlay" onClick={onClose}></div>
+      <div className="modal-container">
+        <span>모달</span>
+      </div>
+    </div>
+  )
+}
+
 function Header(props) {
   const navigate = useNavigate();
-  const setIsLoggedIn = props.setIsLoggedIn;
-  const isLoggedIn = props.isLoggedIn;
-  const user = props.user;
+  const { setIsLoggedIn, isLoggedIn, user } = props;
 
   const bannerLogo = process.env.PUBLIC_URL + '/project-logo.png';
   const search = process.env.PUBLIC_URL + '/search.png';

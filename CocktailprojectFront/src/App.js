@@ -129,7 +129,9 @@ function App() {
 
         </Routes>
       </div>
-      <button onClick={buttonClick} style={{position:'fixed', padding:'5px 10px', right:'10px', bottom:'10px', backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button>
+      <button onClick={buttonClick} 
+        style={{position:'fixed', padding:'5px 10px', right:'10px', bottom:'10px', borderRadius:'5px', 
+        backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button>
     </>
   );
 }
