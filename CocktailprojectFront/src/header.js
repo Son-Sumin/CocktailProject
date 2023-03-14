@@ -33,16 +33,16 @@ function Header(props) {
   };
 
   //검색
-  const [Sdata, setSdata] = useState();
-  const seRef = useRef(null);
-  useEffect(() => {
-    setSdata(seRef);
-  }, [seRef]);
+  //검색자료 저장
+  const [inputValue, setInputValue] = useState("");
 
-  const history = useNavigate();
+  function onSubmit(event) {
+    event.preventDefault();
+    navigate(`/search/${inputValue}`);
+  }
 
-  function selectClick(){
-    history.push(`/select/${Sdata}`)
+  function handleChange(event) {
+    setInputValue(event.target.value);
   }
 
   return (
@@ -97,7 +97,9 @@ function Header(props) {
 
       <div style={{ gridColumn: '6/7', position: 'relative' }}>
         <img src={search} style={{ position: 'absolute', right: '5px', top: '4.5px', cursor: 'pointer' }}></img>
-        <input onClick={selectClick} className='header-search' type="text" ref={seRef} placeholder='만들고 싶은 칵테일 또는 재료를 검색하세요 :)'></input>
+        <form onSubmit={onSubmit}>
+          <input type="text" className='header-search' value={inputValue} onChange={handleChange} placeholder='만들고 싶은 칵테일 또는 재료를 검색하세요 :)'></input>
+        </form>
       </div>
     </div>
   )

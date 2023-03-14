@@ -12,7 +12,6 @@ import Cocktail from './cocktail/cocktail';
 import CocktailDetail from './cocktail/cocktailDetail';
 import Ingredient from "./ingredient/ingredient";
 import IngredientDetail from "./ingredient/IngredientDetail";
-import Board01 from "./board/board01";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
@@ -20,7 +19,9 @@ import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard } from "./a
 import SignatureJoin from "./signature/signatureJoin";
 
 import BoardDetail from "./board/boardIn";
-import select from "./select";
+import Search from "./select";
+import Writing from "./board/writing";
+import BoardRe from "./board/boardRe";
 
 
 function App() {
@@ -121,8 +122,10 @@ function App() {
           <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
 
           <Route path="/board/:no" element={<BoardDetail board={board} />}></Route>
-          <Route path="/select/:text" element={<select select={select} />}></Route>
-          
+          <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
+          <Route path='/writing' element={<Writing board={board} />} />
+          <Route path='/board/update/:no' element={<BoardRe board={board} />} />
+
         </Routes>
       </div>
       <button onClick={buttonClick} style={{ position: 'fixed', right: '10px', bottom: '10px' }}>⬆️</button>

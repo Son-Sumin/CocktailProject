@@ -7,19 +7,18 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import React, { useEffect, useRef, useState } from 'react'
 import { Col, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import useFetch from './useFetch';
 
-function boardRe() {
+function boardRe(props) {
     // 데이터 연결
-    let Data1 = useFetch("http://localhost:5030/board")
+    const Data1 = props.board;
     let [board, setBoard] = useState([])
     useEffect(() => { setBoard([...Data1]); }, [Data1])
 
     //데이터 분류 (Params)
-    const boardNo = useParams();
+    const boardNo = useParams().no;
     let [Data2, setData2] = useState([])
     useEffect(() => {
-        setData2(board.filter(x => x.no == boardNo.no))
+        setData2(board.filter(x => x.no == boardNo))
     }, [board])
 
     //카테고리 선택
@@ -38,8 +37,6 @@ function boardRe() {
     const caRef = useRef(null)
     const tiRef = useRef(null)
 
-    const testno = useParams().no;
-
     //CK에디터 데이터 받아오기
     const [contentsData, setContentsData] = useState("");
 
@@ -54,7 +51,7 @@ function boardRe() {
         e.preventDefault();
         
         if (confirm("저장 하시겠습니까?")) {
-            fetch(`http://localhost:5030/board/${testno}`, {
+            fetch(`/board/update/${boardNo}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -88,8 +85,7 @@ function boardRe() {
     }
 
     return (
-        <>
-
+<>
             <div>
                 {Data2.map((test, i) => (
                     <>
@@ -148,9 +144,7 @@ function boardRe() {
                     </>
                 ))}
             </div>
-            
-        </>
-    )
+        </>    )
 }
 
 export default boardRe

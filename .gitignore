@@ -2,4 +2,4 @@
 **/.classpath
 **/.project
 **/target
-/bin/
+**/node_modules
