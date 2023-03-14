@@ -32,13 +32,16 @@ function App() {
   const [ingredient, setIngredient] = useState([]);
   const [banner, setBanner] = useState([]);
   const [board, setBoard] = useState([]);
+
+  // localStorage에서 isLoggedIn 값을 가져옴. 값이 없으면 false를 반환합니다.
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    // localStorage에서 isLoggedIn 값을 가져옵니다. 값이 없으면 false를 반환합니다.
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     return isLoggedIn ? JSON.parse(isLoggedIn) : false;
   });
 
   const [user, setUser] = useState("");
+
+  console.log("유저정보: " + user);
 
   // 칵테일 JSON파일
   useEffect(() => {
@@ -68,7 +71,7 @@ function App() {
       }
     }).then(response => {
       // 유저 정보를 처리합니다.
-      console.log(response.data);
+      // console.log(response.data);
       console.log("로그인여부: " + isLoggedIn);
 
       setUser(response.data.name);
@@ -105,7 +108,7 @@ function App() {
   return (
     <>
       <div className="App">
-        {location.pathname !== '/join' && location.pathname !== '/login' && <Header setIsLoggedIn={setIsLoggedIn} />}
+        {location.pathname !== '/join' && location.pathname !== '/login' && <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
         <Routes>
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
@@ -121,7 +124,7 @@ function App() {
 
           <Route path="/board/:no" element={<BoardDetail board={board} />}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
-          <Route path='/writing' element={<Writing board={board} />} />
+          <Route path='/writing' element={<Writing board={board} token={token} />} />
           <Route path='/board/update/:no' element={<BoardRe board={board} />} />
 
         </Routes>

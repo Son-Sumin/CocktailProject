@@ -4,7 +4,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 function Login(props) {
-    const isLoggedIn = props.isLoggedIn;
     const setIsLoggedIn = props.setIsLoggedIn;
 
     const [id, setUserId] = useState('');
