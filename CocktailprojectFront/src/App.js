@@ -21,6 +21,7 @@ import SignatureJoin from "./signature/signatureJoin";
 import BoardDetail from "./board/boardIn";
 import Search from "./select";
 import Writing from "./board/writing";
+import BoardRe from "./board/boardRe";
 
 
 function App() {
@@ -121,8 +122,9 @@ function App() {
           <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
 
           <Route path="/board/:no" element={<BoardDetail board={board} />}></Route>
-          <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient}/>}></Route>
-          <Route path='/writing' element={<Writing board={board}/>} />
+          <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
+          <Route path='/writing' element={<Writing board={board} />} />
+          <Route path='/board/update/:no' element={<BoardRe board={board} />} />
 
         </Routes>
       </div>

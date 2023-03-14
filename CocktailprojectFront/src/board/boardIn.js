@@ -129,7 +129,7 @@ function boardIn(props) {
 
     console.log(typeof Data.createdDate)
     return (
-        <>
+<>
             {Data.map((test) => (
                 <div>
                     {/* 상단 정보창 */}
@@ -205,7 +205,7 @@ function boardIn(props) {
                                         <td>semple01</td>
                                         <td>2023-03-08</td>
                                         <td style={{ width: "10%" }}>
-                                            <button><Link to={`/board/updata/${boardNo}`}>수정</Link></button>
+                                            <button><Link to={`/board/update/${boardNo}`}>수정</Link></button>
                                             {/* <button onClick={onRemove2}>삭제</button> */}
                                         </td>
                                     </tr>
@@ -215,8 +215,7 @@ function boardIn(props) {
                     </div>
                 </div>
             ))}
-        </>
-    )
+        </>    )
 }
 
 export default boardIn

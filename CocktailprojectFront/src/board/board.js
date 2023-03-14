@@ -5,7 +5,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-undef */
 import React, { useEffect, useRef, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { tr, Container, td } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Board(props) {
@@ -96,7 +96,7 @@ function Board(props) {
         window.location.href = `/board/${test.no}`;
     };
 
-    
+
     return (
         <>
             <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px" }}>
@@ -173,43 +173,47 @@ function Board(props) {
             {/* 내용  그리드 */}
             <>
                 {/* 페이지별 데이터 출력 */}
-                <div className='m-5'>
-                    <Row>
-                        <Col xs={1} />
-                        <Col xs={10} >
+                <div className='m-5' >
+                    <td >
+                        <tr xs={1} />
+                        <tr xs={10} >
                             {currentData.map((test, i) => {
                                 // if (i < { countNo }) {
                                 return (
-                                    <h3 className='text-center' key={i}>
-                                        <div className="d-flex align-items-center" style={{ float: "left", height: "67px" }}>                            <p>{test.no}</p>
-                                        </div>
-                                        <div className='border' >
-
-                                            <Link onClick={(e) => handleClick(e, test)}>
+                                    <div style={{border:"solid 1px",margin:"10px"}}>
+                                        <h3 className='text-center' key={i}>
+                                            <div className="d-flex align-items-center" style={{ float: "left", height: "67px" }}>
+                                                <p>{test.no}</p>
+                                            </div>
+                                            <div className='border' >
                                                 <div>
-                                                    <Row className='mt-3 xxl'>
+                                                    <Link onClick={(e) => handleClick(e, test)}>
 
-                                                        <Col xs={1}> {test.category}</Col>
-                                                        <Col xs={6} className='text-start'> {test.title}</Col>
-                                                        <Col ><button><Link to={`/board/updata/${test.no}`}>수정</Link></button></Col>
-                                                    </Row>
-                                                    <Row className='xxl'>
-                                                        <Col xs={1}> {test.member}</Col>
-                                                        <Col xs={2}> {test.createdDate}</Col>
-                                                        <Col xs={2}> H:{test.hit}</Col>
-                                                        <Col xs={2}> F:{test.likes}</Col>
+                                                        <td className='mt-3 xxl'>
 
-                                                    </Row>
+                                                            <tr> {test.category}</tr>
+                                                            <tr className='text-start'> {test.title}</tr>
+                                                        </td>
+                                                        <td className='xxl'>
+                                                            <tr> {test.member}</tr>
+                                                            <tr> {test.createdDate}</tr>
+                                                            <tr> H:{test.hit}</tr>
+                                                            <tr> F:{test.likes}</tr>
+                                                        </td>
+                                                    </Link>
                                                 </div>
-                                            </Link>
-                                        </div>
-                                    </h3>
+                                                <div >
+                                                    <button><Link to={`/board/update/${test.no}`}>수정</Link></button>
+                                                </div>
+                                            </div>
+                                        </h3>
+                                    </div>
                                 )
                                 // }
                             })}
-                        </Col>
-                        <Col xs={1} />
-                    </Row>
+                        </tr>
+                        <tr xs={1} />
+                    </td>
                 </div >
 
 
