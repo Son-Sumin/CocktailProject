@@ -1,15 +1,7 @@
 package com.bitacademy.cocktail.controller;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,20 +10,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bitacademy.cocktail.domain.Banner;
-import com.bitacademy.cocktail.domain.CocktailRecipe;
-import com.bitacademy.cocktail.domain.Ingredient;
+import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureImage;
 import com.bitacademy.cocktail.domain.SignatureRecipe;
+import com.bitacademy.cocktail.jwt.SecurityUtil;
+import com.bitacademy.cocktail.service.LikeSignatureService;
+import com.bitacademy.cocktail.service.MemberService;
 import com.bitacademy.cocktail.service.ReviewSignatureService;
 import com.bitacademy.cocktail.service.SignatureImageService;
 import com.bitacademy.cocktail.service.SignatureRecipeService;
@@ -49,6 +39,8 @@ public class SignatureController {
 	private final ReviewSignatureService reviewSignatureService;
 	private final SignatureImageService signatureImageService;
 	private final SignatureRecipeService signatureRecipeService;
+	private final MemberService memberService;
+	private final LikeSignatureService likeSignatureService;
 	
 	/* 시그니처 리스트 */
 	@GetMapping({"", "/list"})
@@ -67,6 +59,7 @@ public class SignatureController {
 		signature.setCocktailContents(form.getCocktailContents());
 		signature.setRecipeContents(form.getRecipeContents());
 		signature.setHit(0);
+		signature.setMember(memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get());
 		signatureService.add(signature);
 		return signatureService.findSigView(signature.getNo());
 	}
@@ -196,6 +189,7 @@ public class SignatureController {
 			@PathVariable("no") Long no,
 			@ModelAttribute ReviewSignature reviewSignature) {	
 		reviewSignature.setNo(null);
+		reviewSignature.setMember(memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get());
 		reviewSignatureService.add(no, reviewSignature);
 		return signatureService.findSigView(no);
 	}
@@ -211,12 +205,10 @@ public class SignatureController {
 		return signatureService.findSigView(no);
 	}
 	
-//	/* 시그니처 게시글 좋아요 */
-//	@PutMapping("/view/like/{no}")
-//	public Signature likeSig(@PathVariable("no") Long no,  Model model) {
-//		model.addAttribute("signature", signatureService.findSigView(no));
-//		signatureService.updateLike(no);
-//		return signatureService.findSigView(no);
-//	}
-
+	/* 시그니처 게시글 좋아요 */
+	@PostMapping("/like/{no}")
+	public void addLike(@PathVariable("no") Long no,  Model model) {
+		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
+		likeSignatureService.addlike(member, no);
+	}
 }

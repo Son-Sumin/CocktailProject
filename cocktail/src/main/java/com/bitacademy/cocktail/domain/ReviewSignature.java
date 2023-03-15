@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.bitacademy.cocktail.base.BaseTimeEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,10 +36,12 @@ public class ReviewSignature extends BaseTimeEntity {
 	
 	@ManyToOne
     @JoinColumn(name = "member_no")
+	@JsonIgnoreProperties({"reviewSignatures"})
     private Member member;
 	
     @ManyToOne
     @JoinColumn(name = "signature_no")
+    @JsonIgnoreProperties({"reviewSignatures", "member"})
     private Signature signature;
     
 }
