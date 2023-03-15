@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -33,12 +34,13 @@ public class LikePlace {
 	
 	@ManyToOne
 	@JoinColumn(name="member_no")
+	@JsonIgnore
 	@JsonIgnoreProperties({"boards", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likePlace"})
 	private Member member;
 	
 	@ManyToOne
 	@JoinColumn(name="place_no")
-	@JsonIgnoreProperties({"likePlace", "member"})
+	@JsonIgnoreProperties({"likePlace"})
 	private Place place;
 
 }

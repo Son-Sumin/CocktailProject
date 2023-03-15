@@ -34,8 +34,10 @@ public class Place {
 	private String address;
 	private String telephone;
 	private String image;
+	private double lon;
+	private double lat;
 	
 	@OneToMany(mappedBy="place", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"place", "member"})
+	@JsonIgnoreProperties({"member", "place"})
 	private List<LikePlace> likePlace = new ArrayList<>();
 }
