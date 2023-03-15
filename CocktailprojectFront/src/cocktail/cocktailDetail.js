@@ -8,10 +8,40 @@ import parse from 'html-react-parser';
 
 function CocktailDetail(props) {
     const cocktail = props.cocktail;
+    const token = props.token;
     const {no} = useParams();
 
+    // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
+    const [isLiked, setIsLiked] = useState(() => {
+        const liked = localStorage.getItem('isLiked');
+        return liked ? JSON.parse(liked) : false;
+    });
+
+    // 클릭시 하트상태 반전
+    const handleLikeClick = () => {
+        axios.post(`/cocktail/like/${no}`, {}, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }).then(() => {
+            console.log("좋아요 서버전달 성공!");
+            setIsLiked(!isLiked);
+          }).catch((err) => {
+            // console.log("좋아요 서버전달 실패!");
+            console.log(err);
+          })
+        
+    }
+
+    useEffect(() => {
+        localStorage.setItem('isLiked', JSON.stringify(isLiked));
+      }, [isLiked]);
+
+    // 전체 칵테일중 no와 맞는 칵테일
     const eachCocktail = cocktail.filter((cocktail) => cocktail.no == no);
-    // console.log(eachCocktail[0]);
+
+    console.log("좋아요상태: " + isLiked);
+    console.log("좋아요개수: " + eachCocktail.likeCocktail);
 
     return (
         <>
@@ -47,9 +77,12 @@ function CocktailDetail(props) {
                             </div>
                             <div style={{color:'white'}}>{a.cocktailContents}</div>
                             <div className="cocktail-banner-box-contents-isalcohol">도수 : {(a.type == "alcohol") ? "알콜" : "논알콜"}</div>
-                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'3%'}}>
-                                <div className="cocktail-banner-box-contents-favorite">❤</div>
-                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'0px'}}>5</div>
+                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'3%'}} onClick={handleLikeClick}>
+                                <div className="cocktail-banner-box-contents-favorite">
+                                    {isLiked ? '♥' : '♡'}
+                                </div>
+                                {/* {a.likeCocktail.length} */}
+                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'-15px'}}>{a.likeCocktail.length}</div> 
                             </div>
                         </div>
                     </div>
