@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,7 +52,7 @@ public class BoardController {
 //	게시글 작성
 	@CrossOrigin(origins = "*")
 	@PostMapping("/board/write")
-	public void boardWrite(@ModelAttribute Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
+	public void boardWrite(@RequestBody Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
 		board.setHit(0L);
 		board.setMember(memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get());
 		boardService.boardWrite(board);
@@ -83,7 +83,7 @@ public class BoardController {
 	}
 
 //	게시글 수정
-	@PostMapping("/board/update/{no}")
+	@PutMapping("/board/update/{no}")
 	public void boardUpdate(@PathVariable("no") Long no, Board board, BoardImage boardImage, List<MultipartFile> files)
 			throws Exception {
 		Board boardTemp = boardService.boardView(no);
