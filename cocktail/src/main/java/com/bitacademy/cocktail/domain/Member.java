@@ -10,12 +10,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -83,7 +81,7 @@ public class Member implements UserDetails {
 	private List<LikeCocktail> likeCocktail = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member", "reviewSignatures", "signatureRecipes"})
+	@JsonIgnoreProperties({"member", "reviewSignatures", "signatureImages", "signatureRecipes"})
 	private List<Signature> signatures = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)

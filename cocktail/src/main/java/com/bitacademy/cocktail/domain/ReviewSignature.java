@@ -1,6 +1,7 @@
 package com.bitacademy.cocktail.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,17 +14,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
 @Entity(name="reviewSignature")
 @Table
-@Data
+@Getter
+@Setter
 @Builder
 @EqualsAndHashCode(callSuper=false)
-@ToString(exclude = "signature")
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewSignature extends BaseTimeEntity {
@@ -34,14 +35,16 @@ public class ReviewSignature extends BaseTimeEntity {
 
 	private String contents;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_no")
-	@JsonIgnoreProperties({"boards", "reviews", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likeSignature", "likePlace"})
-    private Member member;
+	//@JsonIgnoreProperties({"boards", "reviews", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likeSignature", "likePlace"})
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","signatures",  "likeSignature"})
+	private Member member;
 	
     @ManyToOne
     @JoinColumn(name = "signature_no")
-    @JsonIgnoreProperties({"reviewSignatures", "member"})
+    //@JsonIgnoreProperties({"member", "reviewSignatures", "signatureImages", "signatureRecipes", "likeSignature"})
+    @JsonIgnoreProperties({"member", "reviewSignatures"})
     private Signature signature;
     
 }

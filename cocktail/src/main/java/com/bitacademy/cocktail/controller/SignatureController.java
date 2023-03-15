@@ -92,21 +92,31 @@ public class SignatureController {
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 */
 	@GetMapping("/view/{no}")
-	public Signature view(@PathVariable("no") Long no, Model model, SignatureRecipe signatureRecipe) throws Exception {
-		// 시그니처 게시글 + 레시피 보기
-		model.addAttribute("signature", signatureService.findSigView(no));
-		List<SignatureRecipe> list =  signatureRecipeService.findBySignature(no, signatureRecipe);
-		model.addAttribute("signatureRecipe", list);
-	
+	public Signature view(@PathVariable("no") Long no, SignatureRecipe recipe) {
+
 		// 조회수
 		signatureService.updateHit(no);
 		
-		// 해당 게시글 댓글 리스트
-		List<ReviewSignature> reviewSignature = reviewSignatureService.listReviewSignature(no);
-		model.addAttribute("reviewSignatures", reviewSignature);
-		
+		reviewSignatureService.listReviewSignature(no);
+		signatureRecipeService.findBySignature(no, recipe);
 		return signatureService.findSigView(no);
 	}
+//	@GetMapping("/view/{no}")
+//	public Signature view(@PathVariable("no") Long no, Model model, SignatureRecipe signatureRecipe) throws Exception {
+//		// 시그니처 게시글 + 레시피 보기
+//		model.addAttribute("signature", signatureService.findSigView(no));
+//		List<SignatureRecipe> list =  signatureRecipeService.findBySignature(no, signatureRecipe);
+//		model.addAttribute("signatureRecipe", list);
+//	
+//		// 조회수
+//		signatureService.updateHit(no);
+//		
+//		// 해당 게시글 댓글 리스트
+//		List<ReviewSignature> reviewSignature = reviewSignatureService.listReviewSignature(no);
+//		model.addAttribute("reviewSignatures", reviewSignature);
+//		
+//		return signatureService.findSigView(no);
+//	}
 	
 //	/* 각 게시글 이미지 변환 */
 //	@GetMapping(value = {"/view/{sno}/image"}, produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
