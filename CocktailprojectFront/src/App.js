@@ -137,7 +137,7 @@ function App() {
           <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
 
           <Route path="/board" element={<Board board={board} />}></Route>
-          <Route path="/board/:no" element={<BoardDetail board={board} />}></Route>
+          <Route path="/board/:no" element={<BoardDetail board={board} token={token} />}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
           <Route path='/writing' element={<Writing board={board} token={token} />} />
           <Route path='/board/update/:no' element={<BoardRe board={board} />} />
