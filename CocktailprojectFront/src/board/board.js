@@ -98,7 +98,7 @@ function Board(props) {
 
     return (
         <>
-            <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px", backgroundColor:'aliceblue' }}>
+            <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px", backgroundColor: 'aliceblue' }}>
                 <h2 className='text-center'> 오늘의 Best 게시글</h2>
 
                 <div style={{ marginLeft: '40%' }}>
@@ -139,80 +139,67 @@ function Board(props) {
                 </div>
             </div>
 
-            <div className='d-flex justify-content-center mt-1'> {/* 필터 버튼 */}
-                {/* <button onClick={() => {
-                    const sortedData = sortJSON(board, "no", "asc");
-                    setData(Data1);
-                }}>
-                    초기화
-                </button> */}
-                <button onClick={() => setBoard(Data1)} className='DefaultButton mx-3'>전체</button>
-                <button onClick={() => setBoard(Data1.filter(x => x.category === 'random'))} className=' mx-3'>자유</button>
-                <button onClick={() => setBoard(Data1.filter(x => x.category === 'question'))} className=' mx-3'>Q&A</button>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <button className='cocktail-btn' onClick={() => setBoard(Data1)}>전체</button>
+                <button className='cocktail-btn' onClick={() => setBoard(Data1.filter(x => x.category === 'random'))}>자유</button>
+                <button className='cocktail-btn' onClick={() => setBoard(Data1.filter(x => x.category === 'question'))}>Q&A</button>
                 {/*  */}
-                <select onChange={onSorted} id="sorting" value={board.title}>   {/* value : title을 기준으로 변경 */}
+                <select style={{ width: "100px", height: "40px", fontSize: '20px', textAlign: "center" }} onChange={onSorted} id="sorting" value={board.title}>   {/* value : title을 기준으로 변경 */}
                     <option value="asc" > 오름차순 </option>
                     <option value="desc" > 내림차순 </option>
                 </select>
+            </div>
 
-                <select id="paging" onChange={handleItemsPerPageChange} value={itemsPerPage} defaultValue={10}>
+            <div style={{ display: "flex", justifyContent: "right", alignItems: "right", margin: "0 20px 0 0" }}>
+                <text>표시글: </text>
+                <select style={{ width: "100px", height: "40px", fontSize: '20px', textAlign: "center", marginLeft: "5px" }} id="paging" onChange={handleItemsPerPageChange} value={itemsPerPage} defaultValue={10}>
                     <option value="5" > 5 </option>
                     <option value="10" > 10 </option>
                     <option value="15" > 15 </option>
                     <option value="20" > 20 </option>
                 </select>
+                <button className='cocktail-btn'><a href='/writing'>추가</a></button>
             </div>
-
-            <div className='d-flex justify-content-end'>
-                <button><a href='/writing'>추가</a></button>
-            </div>
-
-
 
             {/* 내용  그리드 */}
             <>
                 {/* 페이지별 데이터 출력 */}
-                <div className='m-5' >
-                    <td >
-                        <tr xs={1} />
-                        <tr xs={10} >
-                            {currentData.map((test, i) => {
-                                // if (i < { countNo }) {
-                                return (
-                                    <div style={{border:"solid 1px",margin:"10px"}}>
-                                        <h3 className='text-center' key={i}>
-                                            <div className="d-flex align-items-center" style={{ float: "left", height: "67px" }}>
-                                                <p>{test.no}</p>
-                                            </div>
-                                            <div className='border' >
-                                                <div>
-                                                    <Link onClick={(e) => handleClick(e, test)}>
-
-                                                        <td className='mt-3 xxl'>
-
-                                                            <tr> {test.category}</tr>
-                                                            <tr className='text-start'> {test.title}</tr>
-                                                        </td>
-                                                        <td className='xxl'>
-                                                            <tr> {test.member}</tr>
-                                                            <tr> {test.createdDate}</tr>
-                                                            <tr> H:{test.hit}</tr>
-                                                            <tr> F:{test.likes}</tr>
-                                                        </td>
-                                                    </Link>
-                                                </div>
-                                                <div >
-                                                    <button><Link to={`/board/update/${test.no}`}>수정</Link></button>
-                                                </div>
-                                            </div>
-                                        </h3>
+                <div style={{ margin: "10px" }} >
+                    {currentData.map((test, i) => {
+                        // if (i < { countNo }) {
+                        return (
+                            <div style={{ border: "solid 1px", margin: "10px", display: "flex", alignItems: "center" }}>
+                                <div>
+                                    <div style={{ display: "flex", alignItems: "center" }}>
+                                        <div >
+                                            <p>{test.no}</p>
+                                        </div>
+                                        <div >
+                                            <Link onClick={(e) => handleClick(e, test)}>
+                                                <table>
+                                                    <tr>
+                                                        <td> <p>category:{test.category}</p></td>
+                                                        <td><p style={{ marginLeft: "50px" }}> title:{test.title}</p></td>
+                                                    </tr>
+                                                    <br />
+                                                    <tr>
+                                                        <td> nickname:{test.member}</td>
+                                                        <td> Date:{test.createdDate}</td>
+                                                        <td> H:{test.hit}</td>
+                                                        <td> F:{test.likes}</td>
+                                                    </tr>
+                                                </table>
+                                            </Link>
+                                        </div>
                                     </div>
-                                )
-                                // }
-                            })}
-                        </tr>
-                        <tr xs={1} />
-                    </td>
+                                </div>
+                                <div>
+                                    <button><Link to={`/board/update/${test.no}`}>수정</Link></button>
+                                </div>
+                            </div>
+                        )
+                        // }
+                    })}
                 </div >
 
 

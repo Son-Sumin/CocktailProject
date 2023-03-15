@@ -10,6 +10,7 @@ function boardIn(props) {
     const boardNo = Number(useParams().no);
     // const Data = useFetch(`/board/view/${boardNo}`)
     const Data1 = props.board;
+    const token = props.token;
 
     const [Data, setData] = useState([]);
 
@@ -97,10 +98,11 @@ function boardIn(props) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     // user_no: boardNo, 
-                    board_no: boardNo,
+                    // board_no: boardNo,
                     contents: reRef.current.value,
                     // createdDate: Date(),
                     // modifiedDate: Date()

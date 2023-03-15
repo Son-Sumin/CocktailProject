@@ -14,8 +14,8 @@ function Select(props) {
     const [Cdata, setCdata] = useState([]);
     const [Idata, setIdata] = useState([]);
     useEffect(() => {
-        setCdata(cocktail.filter(x => x && x.name === Sdata));
-        setIdata(ingredient.filter(x => x && x.name === Sdata));
+        setCdata(cocktail.filter(x => x && x.name.includes(Sdata)));
+        setIdata(ingredient.filter(x => x && x.name.includes(Sdata)));
     }, [cocktail, ingredient, Sdata]);
 
     return (
