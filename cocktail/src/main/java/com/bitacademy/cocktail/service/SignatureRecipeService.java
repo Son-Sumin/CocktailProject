@@ -41,7 +41,7 @@ public class SignatureRecipeService {
 	}
 	
 	/* 시그니처 레시피 등록 */
-	public void addRecipe(SignatureRecipe recipe, Long signatureNo) {
+	public void addRecipe(Long signatureNo, SignatureRecipe recipe) {
 		
 		Signature signature = signatureRepository.findByNo(signatureNo);
 		
