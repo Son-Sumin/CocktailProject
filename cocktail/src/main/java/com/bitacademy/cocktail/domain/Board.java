@@ -51,7 +51,7 @@ public class Board extends BaseTimeEntity {
 	private List<ReviewBoard> reviews = new ArrayList<>();
 	
 	@OneToMany(mappedBy="board", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"board", "member"})
+	@JsonIgnoreProperties({"board"})
 	private List<LikeBoard> likeBoard = new ArrayList<>();
 	
 	@OneToMany(mappedBy="board", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
