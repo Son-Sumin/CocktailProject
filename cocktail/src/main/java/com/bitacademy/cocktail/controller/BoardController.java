@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -52,7 +53,7 @@ public class BoardController {
 //	게시글 작성
 	@CrossOrigin(origins = "*")
 	@PostMapping("/board/write")
-	public void boardWrite(@RequestBody Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
+	public void boardWrite(@ModelAttribute Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
 		board.setHit(0L);
 		board.setMember(memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get());
 		boardService.boardWrite(board);
