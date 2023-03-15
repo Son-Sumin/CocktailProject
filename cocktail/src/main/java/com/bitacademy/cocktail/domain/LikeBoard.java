@@ -33,11 +33,11 @@ public class LikeBoard {
 	
 	@ManyToOne
 	@JoinColumn(name="member_no")
-	@JsonIgnoreProperties({"likeBoard", "boards", "signatures", "reviewSignatures"})
+	@JsonIgnoreProperties({"boards", "reviews", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likeSignature", "likePlace"})
 	private Member member;
 	
 	@ManyToOne
 	@JoinColumn(name="board_no")
-	@JsonIgnoreProperties({"likeBoard", "member"})
+	@JsonIgnoreProperties({"likeBoard", "reviews", "imgs"})
 	private Board board;
 }

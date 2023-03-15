@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -66,7 +65,7 @@ public class Member implements UserDetails {
 	private String gender;
 
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member", "reviews"})
+	@JsonIgnoreProperties({"member", "reviews", "likeBoard", "imgs"})
 	private List<Board> boards = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
@@ -74,7 +73,7 @@ public class Member implements UserDetails {
 	private List<ReviewBoard> reviews = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member", "board"})
+	@JsonIgnoreProperties({"board"})
 	private List<LikeBoard> likeBoard = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
@@ -82,7 +81,7 @@ public class Member implements UserDetails {
 	private List<LikeCocktail> likeCocktail = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member", "reviewSignatures"})
+	@JsonIgnoreProperties({"member", "reviewSignatures", "signatureImages", "signatureRecipes"})
 	private List<Signature> signatures = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
@@ -90,7 +89,7 @@ public class Member implements UserDetails {
 	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member"})
+	@JsonIgnoreProperties({"signature"})
 	private List<LikeSignature> likeSignature = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)

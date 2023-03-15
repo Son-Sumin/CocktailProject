@@ -35,12 +35,12 @@ public class ReviewBoard extends BaseTimeEntity {
 	private String contents;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"reviews", "board"})
+	@JsonIgnoreProperties({"reviews", "likeBoard", "imgs"})
 	@JoinColumn(name="board_no")
 	private Board board;
 	
 	@ManyToOne
 	@JoinColumn(name="member_no")
-	@JsonIgnoreProperties({"reviews", "member"})
+	@JsonIgnoreProperties({"boards", "reviews", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likeSignature", "likePlace"})
 	private Member member;
 }

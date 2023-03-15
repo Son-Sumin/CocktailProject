@@ -4,14 +4,13 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-undef */
-import React, { useEffect, useRef, useState } from 'react';
-import { tr, Container, td } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Board(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    // const Data1 = useFetch("/board/list")
     const Data1 = props.board;
+    const token = props.token;
 
     //페이징 데이터
     const [data, setData] = useState([]); // 전체 / 데이터 원본 데이터 화
@@ -73,29 +72,7 @@ function Board(props) {
     const handleItemsPerPageChange = (e) => {
         setItemsPerPage(e.target.value)
     }
-
-    // 방문자수 증가 함수
-    const handleClick = (event, test) => {
-        if (test && test.no) {
-            const updatedHit = Number((board.filter(x => x.no === test.no))[0].hit) + 1;
-            event.preventDefault();
-            // fetch(`http://localhost:5030/board/${test.no}`, {
-            fetch(`/board/list/${test.no}`, {
-                method: 'PATCH',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    hit: updatedHit
-                })
-            })
-        } else {
-            console.log('X or X.no is undefined or null');
-        };
-        window.location.href = `/board/${test.no}`;
-    };
-
-
+   
     return (
         <>
             <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px", backgroundColor: 'aliceblue' }}>
@@ -107,7 +84,7 @@ function Board(props) {
                             <td style={{ margin: "0 auto", width: "Auto" }}>  {/* 변경한 줄 */}
                                 <tr>방문 수</tr>
                                 {/* 반복 i 값 변경시 출력수 변경가능 */}
-                                <Container>
+                                <div>
                                     {topHitData.map((test, i) => {
                                         if (i < 5) {
                                             return (
@@ -118,11 +95,11 @@ function Board(props) {
                                         }
                                     })}
 
-                                </Container>
+                                </div>
                             </td>
                             <td style={{ margin: "0 auto", width: "Auto" }}>  {/* 변경한 줄 */}
                                 <tr>좋아요 수</tr>
-                                <Container>
+                                <div>
                                     {topFavoriteData.map((test, i) => {
                                         if (i < 5) {
                                             return (
@@ -132,7 +109,7 @@ function Board(props) {
                                             )
                                         }
                                     })}
-                                </Container>
+                                </div>
                             </td>
                         </h3>
                     </table>
@@ -140,19 +117,21 @@ function Board(props) {
             </div>
 
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <button className='cocktail-btn' onClick={() => setBoard(Data1)}>전체</button>
-                <button className='cocktail-btn' onClick={() => setBoard(Data1.filter(x => x.category === 'random'))}>자유</button>
-                <button className='cocktail-btn' onClick={() => setBoard(Data1.filter(x => x.category === 'question'))}>Q&A</button>
-                {/*  */}
+                <button className='cocktail-btn' onClick={() => setBoard(data)}>전체</button>
+                <button className='cocktail-btn' onClick={() => setBoard(data.filter(x => x.category === 'random'))}>자유</button>
+                <button className='cocktail-btn' onClick={() => setBoard(data.filter(x => x.category === 'question'))}>Q&A</button>
                 <select style={{ width: "100px", height: "40px", fontSize: '20px', textAlign: "center" }} onChange={onSorted} id="sorting" value={board.title}>   {/* value : title을 기준으로 변경 */}
                     <option value="asc" > 오름차순 </option>
                     <option value="desc" > 내림차순 </option>
                 </select>
+                <button className='cocktail-btn' onClick={() => setBoard(Data1)}>초기화</button>
             </div>
 
             <div style={{ display: "flex", justifyContent: "right", alignItems: "right", margin: "0 20px 0 0" }}>
                 <text>표시글: </text>
-                <select style={{ width: "100px", height: "40px", fontSize: '20px', textAlign: "center", marginLeft: "5px" }} id="paging" onChange={handleItemsPerPageChange} value={itemsPerPage} defaultValue={10}>
+                <select
+                    style={{ width: "100px", height: "40px", fontSize: '20px', textAlign: "center", marginLeft: "5px" }}
+                    id="paging" onChange={handleItemsPerPageChange} value={itemsPerPage} defaultValue={10}>
                     <option value="5" > 5 </option>
                     <option value="10" > 10 </option>
                     <option value="15" > 15 </option>
@@ -175,7 +154,7 @@ function Board(props) {
                                             <p>{test.no}</p>
                                         </div>
                                         <div >
-                                            <Link onClick={(e) => handleClick(e, test)}>
+                                            <Link to ={`/board/view/${test.no}`}>
                                                 <table>
                                                     <tr>
                                                         <td> <p>category:{test.category}</p></td>
@@ -185,7 +164,7 @@ function Board(props) {
                                                     <tr>
                                                         <td> nickname:{test.member.nickname}</td>
                                                         <td> Date:{test.createdDate}</td>
-                                                        <td> H:{test.hit}</td>
+                                                        <td> Hit:{test.hit}</td>
                                                         <td> F:{test.likes}</td>
                                                     </tr>
                                                 </table>

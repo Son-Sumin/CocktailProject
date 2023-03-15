@@ -15,7 +15,7 @@ import IngredientDetail from "./ingredient/IngredientDetail";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard } from "./api";
+import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 import Map from "./map/map";
 
@@ -71,8 +71,6 @@ function App() {
   useEffect(() => {
     getBoard(setBoard);
   }, [])
-
-
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
@@ -141,10 +139,10 @@ function App() {
           {/* <Route path="/map" element={<Map />}></Route> */}
 
           <Route path="/board" element={<Board board={board} />}></Route>
-          <Route path="/board/:no" element={<BoardDetail board={board} token={token} />}></Route>
+          <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} />}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
           <Route path='/writing' element={<Writing board={board} token={token} />} />
-          <Route path='/board/update/:no' element={<BoardRe board={board} />} />
+          <Route path='/board/update/:no' element={<BoardRe board={board} token={token} />} />
         </Routes>
       </div>
       {/* <button onClick={buttonClick}
