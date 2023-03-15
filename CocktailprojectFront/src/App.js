@@ -18,6 +18,7 @@ import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
 import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard } from "./api";
 import SignatureJoin from "./signature/signatureJoin";
+import Map from "./map/map";
 
 import BoardDetail from "./board/boardIn";
 import Search from "./select";
@@ -26,9 +27,13 @@ import BoardRe from "./board/boardRe";
 
 
 function App() {
+  // 서버에서 받아온 토큰
   const token = localStorage.getItem('accessToken');
+
+  // 몇몇 페이지에서 헤더를 포함할지 말지를 지정하는 location 변수
   const location = useLocation();
 
+  // api.js의 axios를 통해서 서버에서 받아온 각종 데이터들
   const [cocktail, setCocktail] = useState([]);
   const [ingredient, setIngredient] = useState([]);
   const [banner, setBanner] = useState([]);
@@ -40,12 +45,12 @@ function App() {
     return isLoggedIn ? JSON.parse(isLoggedIn) : false;
   });
 
+  // 로그인 시 서버에서 보내준 유저에 관한 정보를 보관해주기 위한 state
   const [user, setUser] = useState("");
   const [likePlace, setLikePlace] = useState([]);
 
   console.log("유저정보: " + user);
   console.log("likePlace: " + JSON.stringify(likePlace));
-
 
 
   // 칵테일 JSON파일
@@ -77,29 +82,28 @@ function App() {
         Authorization: `Bearer ${token}`
       }
     }).then(response => {
-      // 유저 정보를 처리합니다.
+      // 유저 정보를 처리
       setUser(response.data.name);
       setLikePlace(response.data.likePlace);
 
       console.log("로그인여부: " + isLoggedIn);
     }).catch(error => {
-        // 에러를 처리합니다.
+        // 에러를 처리
         console.error(error);
       });
   }, [token]);
 
-
-
-  // isLoggedIn 값이 변경될 때마다 localStorage에 저장합니다.
+  // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {
     localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
 
+  // 로그아웃 시에 localStorage에 저장된 token 삭제
   const removeToken = useEffect(() => {
-    localStorage.setItem('accessToken', '');
+    if (!isLoggedIn) {
+      localStorage.setItem('accessToken', '');
+    }
   }, []);
-
-
 
   // 최상단 이동 버튼
   const buttonClick = () => {
@@ -111,7 +115,6 @@ function App() {
     const handleScroll = () => {
       setYPosition(window.scrollY);
     };
-
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -122,7 +125,8 @@ function App() {
   return (
     <>
       <div className="App">
-        {!['/join', '/login', '/mypage'].includes(location.pathname) && <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} />}
+        {!['/join', '/login', '/mypage'].includes(location.pathname) && 
+          <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} token={token} />} 
         <Routes>
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
@@ -135,6 +139,7 @@ function App() {
           <Route path="signature" element={<Signature />}></Route>
           <Route path="signature/:no" element={<SignatureDetail />}></Route>
           <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
+          <Route path="/map" element={<Map />}></Route>
 
           <Route path="/board" element={<Board board={board} />}></Route>
           <Route path="/board/:no" element={<BoardDetail board={board} />}></Route>

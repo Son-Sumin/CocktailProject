@@ -7,9 +7,32 @@ import axios from "axios";
 
 // 회원메뉴 모달창 (하위 컴포넌트)
 function HeaderModal(props) {
-  const { isModalOpen, handleModalClose } = props;
+  const { isModalOpen, handleModalClose, token} = props;
 
+  // 모달창 이외의 부분 클릭시 모달창 닫기
   if (!isModalOpen) return null;
+
+  // 로그아웃 시 토큰삭제 & isLoggedIn false로 변경
+  const handleLogout = () => {
+    handleModalClose;
+
+    axios.post('/member/logout', {}, {
+      headers: {
+        Authorization: `${token}`
+      }
+    }).then(res => {
+      console.log("로그아웃 서버전달 성공!");
+    }).catch(() => {
+      console.log("로그아웃 서버전달 실패ㅠㅠ");
+    })
+
+    props.setIsLoggedIn(false);
+    props.removeToken;
+
+    // setTimeout(() => {
+      window.location.reload();
+    // }, 1000);
+  }
 
   return (
     <div>
@@ -21,12 +44,7 @@ function HeaderModal(props) {
           <Link to="/signature/join">
             <span className="modal-container-contents" onClick={handleModalClose}>시그니처 참가하기</span>
           </Link>
-          <div className="modal-contents-logout" onClick={() => {
-            handleModalClose;
-            props.setIsLoggedIn(false);
-            props.removeToken;
-            window.location.reload();
-            }}>
+          <div className="modal-contents-logout" onClick={handleLogout}>
             <span>로그아웃</span>
           </div>
         </div>
@@ -40,7 +58,7 @@ function HeaderModal(props) {
 // 헤더 (상위 컴포넌트)
 function Header(props) {
   const navigate = useNavigate();
-  const { setIsLoggedIn, isLoggedIn, user, removeToken } = props;
+  const { setIsLoggedIn, isLoggedIn, user, removeToken, token } = props;
 
   const [selectedMenu, setSelectedMenu] = useState(''); // 현재 선택된 메뉴
   const [isModalOpen, setIsModalOpen] = useState(false); // 회원 메뉴바
@@ -60,27 +78,6 @@ function Header(props) {
   function handleModalClose() {
     setIsModalOpen(false);
   }
-
-
-  // const handleLogout = async (props) => {
-  //   try {
-  //     await axios.post('/member/logout', {}, {
-  //       headers: {
-  //         'Authorization': localStorage.getItem('token')
-  //       }
-  //     })
-
-  //     localStorage.removeItem('token');
-  //     // delete axios.defaults.headers.common['Authorization'];
-
-  //     setIsLoggedIn(false);
-  //     navigate('/');
-  //     alert("로그아웃 성공!");
-  //   } catch (error) {
-  //     console.log(error);
-  //     alert("로그아웃 실패!");
-  //   }
-  // };
 
 
   //검색
@@ -108,19 +105,23 @@ function Header(props) {
         isLoggedIn ? (
           <div style={{ gridColumn: '3/4'}}>
             <>
-            <button className='login-btn' onClick={handleModal}>{user} 님</button>
-            {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} setIsLoggedIn={setIsLoggedIn} removeToken={removeToken} />}
+            <button className='login-btn' onClick={handleModal} style={{color:'black'}}>{user} 님</button>
+            {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} setIsLoggedIn={setIsLoggedIn} removeToken={removeToken} token={token}/>}
             </>
           </div>
         ) : (
-          <Link to="/login" style={{ gridColumn: '3/4' }}>
-            <button className='login-btn'>로그인</button>
-          </Link>
+          <div style={{ gridColumn: '3/4' }}>
+            <button className='login-btn'>
+              <Link to="/login">로그인</Link>
+            </button>
+          </div>
         )
         }
-        <Link to="/join" style={{ gridColumn: '4/5' }}>
-          <button className='login-btn'>회원가입</button>
-        </Link>
+        <div style={{ gridColumn: '4/5' }}>
+          <button className='login-btn'>
+            <Link to="/join">회원가입</Link>
+          </button>
+        </div>
       </div>
 
       <Link to="/cocktail" className={`header-menu-box ${selectedMenu === 'cocktail' ? 'selected' : ''}`} onClick={() => handleMenuClick('cocktail')}>
@@ -143,8 +144,8 @@ function Header(props) {
         <div className="header-animationbar"></div>
       </Link>
 
-      <Link to="/" className={`header-menu-box ${selectedMenu === 'class' ? 'selected' : ''}`} onClick={() => handleMenuClick('class')}>
-        <li className='header-menu'>클래스</li>
+      <Link to="/map" className={`header-menu-box ${selectedMenu === 'class' ? 'selected' : ''}`} onClick={() => handleMenuClick('class')}>
+        <li className='header-menu'>주변Bar</li>
         <div className="header-animationbar"></div>
       </Link>
 
