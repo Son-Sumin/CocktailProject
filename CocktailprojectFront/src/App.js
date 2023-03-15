@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import logo from './logo.svg';
 import './App.css';
 import { Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
