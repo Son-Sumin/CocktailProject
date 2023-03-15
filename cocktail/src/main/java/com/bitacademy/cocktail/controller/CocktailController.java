@@ -76,4 +76,19 @@ public class CocktailController {
 		likeCocktailService.addLike(member, no);
 	}
 	
+	// 좋아요 확인
+	@GetMapping("/isliked/{no}")
+	public boolean isLiked(@PathVariable("no") Long no) {
+		Cocktail cocktail = cocktailService.findCocktailView(no);
+		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
+//		System.out.println(!likeCocktailService.notLike(member, cocktail));
+		return !likeCocktailService.notLike(member, cocktail);
+	}
+	
+	//좋아요 갯수
+	@GetMapping("/countliked/{no}")
+	public String countLiked(@PathVariable("no") Long no) {
+		return likeCocktailService.countLiked(no);
+	}
+	
 }
