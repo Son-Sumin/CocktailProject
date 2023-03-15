@@ -54,7 +54,6 @@ function Board(props) {
     sortJSON(topFavoriteData, "favorite", "desc")
 
     //페이징 소스코드
-
     useEffect(() => {
         setData([...Data1])
         setBoard([...Data1]);

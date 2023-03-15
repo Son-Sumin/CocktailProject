@@ -8,6 +8,7 @@ import Header from './header';
 import Main from './main/main';
 import Join from "./user/join";
 import Login from "./user/login";
+import MyPage from "./user/mypage";
 import Cocktail from './cocktail/cocktail';
 import CocktailDetail from './cocktail/cocktailDetail';
 import Ingredient from "./ingredient/ingredient";
@@ -40,8 +41,12 @@ function App() {
   });
 
   const [user, setUser] = useState("");
+  const [likePlace, setLikePlace] = useState([]);
 
-  // console.log("유저정보: " + user);
+  console.log("유저정보: " + user);
+  console.log("likePlace: " + JSON.stringify(likePlace));
+
+
 
   // 칵테일 JSON파일
   useEffect(() => {
@@ -63,6 +68,8 @@ function App() {
     getBoard(setBoard);
   }, [])
 
+
+
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
     axios.get('member/info', {
@@ -71,21 +78,28 @@ function App() {
       }
     }).then(response => {
       // 유저 정보를 처리합니다.
-      // console.log(response.data);
-      console.log("로그인여부: " + isLoggedIn);
-
       setUser(response.data.name);
-    })
-      .catch(error => {
+      setLikePlace(response.data.likePlace);
+
+      console.log("로그인여부: " + isLoggedIn);
+    }).catch(error => {
         // 에러를 처리합니다.
         console.error(error);
       });
   }, [token]);
 
+
+
+  // isLoggedIn 값이 변경될 때마다 localStorage에 저장합니다.
   useEffect(() => {
-    // isLoggedIn 값이 변경될 때마다 localStorage에 저장합니다.
     localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
+
+  const removeToken = useEffect(() => {
+    localStorage.setItem('accessToken', '');
+  }, []);
+
+
 
   // 최상단 이동 버튼
   const buttonClick = () => {
@@ -108,25 +122,25 @@ function App() {
   return (
     <>
       <div className="App">
-        {location.pathname !== '/join' && location.pathname !== '/login' && <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} />}
+        {!['/join', '/login', '/mypage'].includes(location.pathname) && <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} />}
         <Routes>
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
+          <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
-          <Route path="/board" element={<Board board={board} />}></Route>
           <Route path="signature" element={<Signature />}></Route>
           <Route path="signature/:no" element={<SignatureDetail />}></Route>
           <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
 
+          <Route path="/board" element={<Board board={board} />}></Route>
           <Route path="/board/:no" element={<BoardDetail board={board} />}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
           <Route path='/writing' element={<Writing board={board} token={token} />} />
           <Route path='/board/update/:no' element={<BoardRe board={board} />} />
-
         </Routes>
       </div>
       <button onClick={buttonClick} 
