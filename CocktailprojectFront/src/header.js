@@ -106,7 +106,8 @@ function Header(props) {
           <div style={{ gridColumn: '3/4'}}>
             <>
             <button className='login-btn' onClick={handleModal} style={{color:'black'}}>{user} 님</button>
-            {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} setIsLoggedIn={setIsLoggedIn} removeToken={removeToken} token={token}/>}
+            {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} 
+              setIsLoggedIn={setIsLoggedIn} removeToken={removeToken} token={token}/>}
             </>
           </div>
         ) : (

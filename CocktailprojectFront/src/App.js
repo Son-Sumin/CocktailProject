@@ -50,7 +50,7 @@ function App() {
   const [likePlace, setLikePlace] = useState([]);
 
   console.log("유저정보: " + user);
-  console.log("likePlace: " + JSON.stringify(likePlace));
+  // console.log("likePlace: " + JSON.stringify(likePlace));
 
 
   // 칵테일 JSON파일
@@ -133,7 +133,7 @@ function App() {
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
-          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} />}></Route>
+          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} />}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
           <Route path="signature" element={<Signature />}></Route>
