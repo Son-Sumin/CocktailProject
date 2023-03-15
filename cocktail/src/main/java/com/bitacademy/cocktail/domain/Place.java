@@ -38,6 +38,6 @@ public class Place {
 	private double lat;
 	
 	@OneToMany(mappedBy="place", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member", "place"})
+	@JsonIgnoreProperties({"place"})
 	private List<LikePlace> likePlace = new ArrayList<>();
 }
