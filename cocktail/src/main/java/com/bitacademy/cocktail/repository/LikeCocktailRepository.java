@@ -13,4 +13,6 @@ public interface LikeCocktailRepository extends JpaRepository<LikeCocktail, Long
 	void deleteByNo(Long no);
 
 	Optional<LikeCocktail> findBymemberAndCocktail(Member member, Cocktail cocktail);
+	
+	String countByCocktail(Cocktail cocktail);
 }

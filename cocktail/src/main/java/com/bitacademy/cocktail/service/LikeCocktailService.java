@@ -39,4 +39,9 @@ public class LikeCocktailService {
 	public boolean notLike(Member member, Cocktail cocktail) {
 		return likeCocktailRepository.findBymemberAndCocktail(member, cocktail).isEmpty();
 	}
+	
+	public String countLiked(Long no) {
+		Cocktail cocktail = cocktailRepository.findByNo(no);
+		return likeCocktailRepository.countByCocktail(cocktail);
+	}
 }
