@@ -46,13 +46,4 @@ async function getBoard(setBoard) {
     setBoard(boardData.data);
 }
 
-
-// 게시판View JSON파일
-async function getBoardView(setBoardView) {
-    const boardData = await axios.get(
-        `/board/view/${test.no}`
-    );
-    setBoardView(boardViewData.data);
-}
-
-export {getCocktail, getIngredient, ScrollToTop, getBanner, getBoard, getBoardView};
+export {getCocktail, getIngredient, ScrollToTop, getBanner, getBoard};

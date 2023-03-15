@@ -16,7 +16,7 @@ import IngredientDetail from "./ingredient/IngredientDetail";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard, getBoardView } from "./api";
+import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 import Map from "./map/map";
 
@@ -38,7 +38,6 @@ function App() {
   const [ingredient, setIngredient] = useState([]);
   const [banner, setBanner] = useState([]);
   const [board, setBoard] = useState([]);
-  const [boardView, setBoardView] = useState([]);
 
   // localStorage에서 isLoggedIn 값을 가져옴. 값이 없으면 false를 반환합니다.
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -72,11 +71,6 @@ function App() {
   // 게시판 JSON파일
   useEffect(() => {
     getBoard(setBoard);
-  }, [])
-
-  // 게시판 JSON파일
-  useEffect(() => {
-    getBoardView(setBoardView);
   }, [])
 
   // 로그인 한 유저정보 받아옴

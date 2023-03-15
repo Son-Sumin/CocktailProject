@@ -2,23 +2,27 @@
 /* eslint-disable no-lone-blocks */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/rules-of-hooks */
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 
 function boardIn(props) {
     // 데이터 연결
     const boardNo = Number(useParams().no);
-    // const Data = useFetch(`/board/view/${boardNo}`)
-    const Data1 = props.board;
-    // const Data1 = props.boardView;
-
     const token = props.token;
+    // const Data = useFetch(`/board/view/${boardNo}`)
+    // const Data1 = props.board;
+    const Data1 = axios.get(
+        `/board/view/${boardNo}`
+    );
+
+    // const Data1 = props.boardView;
 
     const [Data, setData] = useState([]);
 
     useEffect(() => {
-        // setData(Data1); 
-        setData(Data1.filter(x => x.no == boardNo));
+        setData(Data1); 
+        // setData(Data1.filter(x => x.no == boardNo));
     }, [Data1, boardNo]);
 
     console.log(Data1)

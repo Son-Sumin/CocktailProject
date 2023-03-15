@@ -72,27 +72,7 @@ function Board(props) {
     const handleItemsPerPageChange = (e) => {
         setItemsPerPage(e.target.value)
     }
-    // 방문자수 증가 함수
-    const handleClick = (event, test) => {
-        if (test && test.no) {
-            const updatedHit = Number((board.filter(x => x.no === test.no))[0].hit) + 1;
-            event.preventDefault();
-            fetch(`/board/update/${boardNo}`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    hit: updatedHit
-                })
-            })
-        } else {
-            console.log('X or X.no is undefined or null');
-        };
-        window.location.href = `/board/view/${test.no}`;
-    };
-
+   
     return (
         <>
             <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px", backgroundColor: 'aliceblue' }}>
@@ -174,7 +154,7 @@ function Board(props) {
                                             <p>{test.no}</p>
                                         </div>
                                         <div >
-                                            <Link onClick={(e) => handleClick(e, test)}>
+                                            <Link to ={`/board/view/${test.no}`}>
                                                 <table>
                                                     <tr>
                                                         <td> <p>category:{test.category}</p></td>
