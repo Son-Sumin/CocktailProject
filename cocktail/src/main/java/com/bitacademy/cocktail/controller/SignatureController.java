@@ -139,7 +139,7 @@ public class SignatureController {
 	public void modify(@PathVariable("no") Long no, @ModelAttribute Signature signature, Signature form) {
 		// 기존 내용 불러오기 및 글 수정
 		signature = signatureService.findSigView(no);
-		signature.setHit(signature.getHit());	
+		signature.setHit(signature.getHit());
 
 		signature.setCocktailName(form.getCocktailName());
 		signature.setEngName(form.getEngName());

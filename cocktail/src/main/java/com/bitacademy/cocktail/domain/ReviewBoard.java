@@ -35,7 +35,7 @@ public class ReviewBoard extends BaseTimeEntity {
 	private String contents;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"reviews", "board"})
+	@JsonIgnoreProperties({"reviews", "likeBoard", "imgs"})
 	@JoinColumn(name="board_no")
 	private Board board;
 	

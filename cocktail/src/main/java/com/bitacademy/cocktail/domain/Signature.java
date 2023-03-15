@@ -16,20 +16,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.bitacademy.cocktail.base.BaseTimeEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity(name="signature")
 @Table
-@Getter
-@Setter
+@Data
 @Builder
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
@@ -54,7 +52,7 @@ public class Signature extends BaseTimeEntity {
 	
 	private Integer hit;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="member_no")
 	@JsonIgnoreProperties({"boards", "reviews", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likeSignature", "likePlace"})
 	private Member member;
@@ -68,7 +66,7 @@ public class Signature extends BaseTimeEntity {
 	private List<SignatureImage> signatureImages = new ArrayList<>();
 	
 	@JsonIgnoreProperties({"signature"})
-	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "signature", cascade = CascadeType.REMOVE)
 	private List<SignatureRecipe> signatureRecipes = new ArrayList<>();
 	
 	@OneToMany(mappedBy="signature", cascade = CascadeType.REMOVE)
