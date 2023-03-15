@@ -77,7 +77,7 @@ function App() {
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
-    axios.get('member/info', {
+    axios.get('/member/info', {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -106,21 +106,21 @@ function App() {
   }, []);
 
   // 최상단 이동 버튼
-  const buttonClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  const [yPosition, setYPosition] = useState(0);
+  // const buttonClick = () => {
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // };
+  // const [yPosition, setYPosition] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setYPosition(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setYPosition(window.scrollY);
+  //   };
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [yPosition]);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [yPosition]);
 
   return (
     <>
@@ -148,9 +148,9 @@ function App() {
           <Route path='/board/update/:no' element={<BoardRe board={board} />} />
         </Routes>
       </div>
-      <button onClick={buttonClick} 
+      {/* <button onClick={buttonClick}
         style={{position:'fixed', padding:'5px 10px', right:'10px', bottom:'10px', borderRadius:'5px', 
-        backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button>
+        backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button> */}
     </>
   );
 }

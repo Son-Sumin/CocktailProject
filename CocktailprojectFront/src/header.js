@@ -94,7 +94,7 @@ function Header(props) {
   return (
     <div className='header-container'>
       <div style={{ gridColumn: '1/4' }}>
-        <Link to="/">
+        <Link to="/" onClick={() => handleMenuClick('')}>
           <img src={bannerLogo} alt="project-logo" />
         </Link>
       </div>

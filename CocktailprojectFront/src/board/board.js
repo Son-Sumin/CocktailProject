@@ -183,7 +183,7 @@ function Board(props) {
                                                     </tr>
                                                     <br />
                                                     <tr>
-                                                        <td> nickname:{test.member}</td>
+                                                        <td> nickname:{test.member.nickname}</td>
                                                         <td> Date:{test.createdDate}</td>
                                                         <td> H:{test.hit}</td>
                                                         <td> F:{test.likes}</td>

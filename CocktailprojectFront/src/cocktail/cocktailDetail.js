@@ -7,48 +7,64 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 import parse from 'html-react-parser';
 
 function CocktailDetail(props) {
-    const cocktail = props.cocktail;
-    const token = props.token;
+    const {cocktail, token} = props;
     const {no} = useParams();
 
     // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
-    const [isLiked, setIsLiked] = useState(() => {
-        const liked = localStorage.getItem('isLiked');
-        return liked ? JSON.parse(liked) : false;
-    });
+    const [isLiked, setIsLiked] = useState(false);
 
     // 클릭시 하트상태 반전
-    const handleLikeClick = () => {
-        axios.post(`/cocktail/like/${no}`, {}, {
+    const handleLikeClick = async () => {
+        await axios.post(`/cocktail/like/${no}`, {}, {
             headers: {
               Authorization: `Bearer ${token}`
             }
-          }).then(() => {
+        }).then(() => {
+            axios.get(`/cocktail/isliked/${no}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+            }).then((res) => {
+                const liked =  res.data; // 서버에서 회원의 좋아요정보 요청 => true or false
+                setIsLiked(liked); // true or false를 isLiked state에 저장
+                console.log("좋아요 데이터 가져오기 성공: " + liked);
+            }).catch((err) => {
+                console.log("좋아요 데이터 가져오기 실패ㅠㅠ");
+                console.log(err)
+            })
             console.log("좋아요 서버전달 성공!");
-            setIsLiked(!isLiked);
-          }).catch((err) => {
-            // console.log("좋아요 서버전달 실패!");
+        }).catch((err) => {
+            console.log("좋아요 서버전달 실패!");
             console.log(err);
-          })
-        
+        })
     }
 
     useEffect(() => {
-        localStorage.setItem('isLiked', JSON.stringify(isLiked));
-      }, [isLiked]);
+        axios.get(`/cocktail/isliked/${no}`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            const liked =  res.data;
+            setIsLiked(liked);
+            console.log("좋아요 데이터 가져오기 성공: " + liked);
+        }).catch((err) => {
+            console.log("좋아요 데이터 가져오기 실패ㅠㅠ");
+            console.log(err)
+        })
+    }, []);
 
     // 전체 칵테일중 no와 맞는 칵테일
     const eachCocktail = cocktail.filter((cocktail) => cocktail.no == no);
 
     console.log("좋아요상태: " + isLiked);
-    console.log("좋아요개수: " + eachCocktail.likeCocktail);
 
     return (
         <>
         {
         eachCocktail.map(function(a, i) {
             return (
-                <div key={i}>
+            <div key={i}>
                 <div className='banner cocktail-banner'>
                     <div className="cocktail-banner-box">
                         <div className="cocktail-banner-box-piturebox">
@@ -81,7 +97,6 @@ function CocktailDetail(props) {
                                 <div className="cocktail-banner-box-contents-favorite">
                                     {isLiked ? '♥' : '♡'}
                                 </div>
-                                {/* {a.likeCocktail.length} */}
                                 <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'-15px'}}>{a.likeCocktail.length}</div> 
                             </div>
                         </div>
@@ -126,7 +141,7 @@ function CocktailDetail(props) {
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
             )
         })
         }

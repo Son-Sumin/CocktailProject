@@ -104,8 +104,8 @@ function boardRe(props) {
                                         value={RadioButton}
                                         onChange={handleChange}
                                     >
-                                        <option value="자유" ref={caRef}>자유</option>
-                                        <option value="Q&A" ref={caRef}>Q&A</option>
+                                        <option value="random" ref={caRef}>자유</option>
+                                        <option value="question" ref={caRef}>Q&A</option>
                                     </select>
                                 </Col>
                                 <Col xs={10}>
