@@ -39,7 +39,7 @@ function writing(props) {
                     "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    "category": 'random', // caRef.current.value
+                    "category": caRef.current.value,
                     "title": tiRef.current.value,
                     "contents": contentsData,
                 }),
@@ -73,10 +73,10 @@ function writing(props) {
                                 <select
                                     id="sorting"
                                     style={{ width: "100%", height: "100%" }}
-                                    defaultChecked="자유"
+                                    defaultValue="random" ref={caRef}
                                 >
-                                    <option value="자유" ref={caRef}>자유</option>
-                                    <option value="Q&A" ref={caRef}>Q&A</option>
+                                    <option value="random">자유</option>
+                                    <option value="question">Q&A</option>
                                 </select>
                             </Col>
                             <Col xs={10}>
