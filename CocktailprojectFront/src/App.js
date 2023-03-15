@@ -133,7 +133,7 @@ function App() {
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
-          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} />}></Route>
+          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
           <Route path="signature" element={<Signature />}></Route>

@@ -7,38 +7,60 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 import parse from 'html-react-parser';
 
 function CocktailDetail(props) {
-    const {cocktail, token} = props;
+    const {cocktail, token, isLoggedIn} = props;
     const {no} = useParams();
 
     // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
     const [isLiked, setIsLiked] = useState(false);
 
+    // 좋아요 개수 저장 (버튼 클릭 시 실시간으로 좋아요 개수를 반영하기 위한 state)
+    const[countLiked, setCountLiked] = useState([]);
+
     // 클릭시 하트상태 반전
-    const handleLikeClick = async () => {
-        await axios.post(`/cocktail/like/${no}`, {}, {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-        }).then(() => {
-            axios.get(`/cocktail/isliked/${no}`, {
+    const handleLikeClick = async (e) => {
+        // 로그인 시에만 click이벤트 작동
+        if (isLoggedIn) {
+            await axios.post(`/cocktail/like/${no}`, {}, {
                 headers: {
                   Authorization: `Bearer ${token}`
                 }
-            }).then((res) => {
-                const liked =  res.data; // 서버에서 회원의 좋아요정보 요청 => true or false
-                setIsLiked(liked); // true or false를 isLiked state에 저장
-                console.log("좋아요 데이터 가져오기 성공: " + liked);
+            }).then(() => {
+                // Click이벤트 발생 시, 하트상태 반전을 위한 데이버를 서버에서 불러옴
+                axios.get(`/cocktail/isliked/${no}`, {
+                    headers: {
+                      Authorization: `Bearer ${token}`
+                    }
+                }).then((res) => {
+                    const liked =  res.data; // 서버에서 회원의 좋아요정보 요청 => true or false
+                    setIsLiked(liked); // true or false를 isLiked state에 저장
+                    console.log("좋아요 데이터 가져오기 성공: " + liked);
+                }).catch((err) => {
+                    console.log("좋아요 데이터 가져오기 실패ㅠㅠ");
+                    console.log(err)
+                })
+                // console.log("좋아요 서버전달 성공!");
             }).catch((err) => {
-                console.log("좋아요 데이터 가져오기 실패ㅠㅠ");
+                // console.log("좋아요 서버전달 실패!");
+                console.log(err);
+            });
+    
+            // Click이벤트 발생 시, 실시간으로 숫자를 반영
+            axios.get(`/cocktail/countliked/${no}`)
+            .then((res) => {
+                const counted =  res.data;
+                setCountLiked(counted);
+                console.log("좋아요 카운트데이터 가져오기 성공: " + counted);
+            }).catch((err) => {
+                console.log("좋아요 카운트데이터 가져오기 실패ㅠㅠ");
                 console.log(err)
-            })
-            console.log("좋아요 서버전달 성공!");
-        }).catch((err) => {
-            console.log("좋아요 서버전달 실패!");
-            console.log(err);
-        })
+            });
+        } else {
+            // 비로그인 시, Click이벤트 막음
+            e.preventDefault();
+        }
     }
 
+    // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
     useEffect(() => {
         axios.get(`/cocktail/isliked/${no}`, {
             headers: {
@@ -54,10 +76,21 @@ function CocktailDetail(props) {
         })
     }, []);
 
+    // 렌더링 할때마다, 실시간으로 숫자를 반영
+    useEffect(() => {
+        axios.get(`/cocktail/countliked/${no}`)
+        .then((res) => {
+            const counted =  res.data;
+            setCountLiked(counted);
+            console.log("좋아요 카운트데이터 가져오기 성공: " + counted);
+        }).catch((err) => {
+            console.log("좋아요 카운트데이터 가져오기 실패ㅠㅠ");
+            console.log(err)
+        })
+    }, [countLiked]);
+
     // 전체 칵테일중 no와 맞는 칵테일
     const eachCocktail = cocktail.filter((cocktail) => cocktail.no == no);
-
-    console.log("좋아요상태: " + isLiked);
 
     return (
         <>
@@ -93,11 +126,11 @@ function CocktailDetail(props) {
                             </div>
                             <div style={{color:'white'}}>{a.cocktailContents}</div>
                             <div className="cocktail-banner-box-contents-isalcohol">도수 : {(a.type == "alcohol") ? "알콜" : "논알콜"}</div>
-                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'3%'}} onClick={handleLikeClick}>
+                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'3%', cursor: isLoggedIn ? 'pointer' : 'default'}} onClick={handleLikeClick}>
                                 <div className="cocktail-banner-box-contents-favorite">
                                     {isLiked ? '♥' : '♡'}
                                 </div>
-                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'-15px'}}>{a.likeCocktail.length}</div> 
+                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'-15px'}}>{countLiked}</div> 
                             </div>
                         </div>
                     </div>
