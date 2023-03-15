@@ -78,24 +78,24 @@ public class Member implements UserDetails {
 	private List<LikeBoard> likeBoard = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member", "cocktail"})
+	@JsonIgnoreProperties({"member"})
 	private List<LikeCocktail> likeCocktail = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-//	@JsonIgnoreProperties({"reviewSignatures", "signatureImages"})
+	@JsonIgnoreProperties({"member", "reviewSignatures"})
 	private List<Signature> signatures = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"signature"})
-	@OrderBy("createdDate desc")
+	@JsonIgnoreProperties({"member", "signature"})
 	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member", "place"})
-	private List<LikePlace> likePlace = new ArrayList<>();
+	@JsonIgnoreProperties({"member"})
+	private List<LikeSignature> likeSignature = new ArrayList<>();
 	
-//	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-//	private List<LikeSignature> LikeSignature = new ArrayList<>();
+	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"member"})
+	private List<LikePlace> likePlace = new ArrayList<>();
 	
     @PrePersist
     public void createdAt() {

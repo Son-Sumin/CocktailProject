@@ -18,11 +18,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name="likePlace")
+@Table
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
-@Table(name="likePlace")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -34,8 +34,7 @@ public class LikePlace {
 	
 	@ManyToOne
 	@JoinColumn(name="member_no")
-	@JsonIgnore
-	@JsonIgnoreProperties({"boards", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likePlace"})
+	@JsonIgnoreProperties({"boards", "reviews", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likeSignature"})
 	private Member member;
 	
 	@ManyToOne
