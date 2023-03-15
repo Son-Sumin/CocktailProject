@@ -36,7 +36,7 @@ public class ReviewSignature extends BaseTimeEntity {
 	
 	@ManyToOne
     @JoinColumn(name = "member_no")
-	@JsonIgnoreProperties({"reviewSignatures"})
+	@JsonIgnoreProperties({"boards", "reviews", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likeSignature", "likePlace"})
     private Member member;
 	
     @ManyToOne

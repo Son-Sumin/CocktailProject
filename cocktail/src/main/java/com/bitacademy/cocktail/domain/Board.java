@@ -43,11 +43,11 @@ public class Board extends BaseTimeEntity {
 	
 	@ManyToOne
 	@JoinColumn(name="member_no")
-	@JsonIgnoreProperties({"boards", "reviews"})
+	@JsonIgnoreProperties({"boards", "reviews", "likeBoard","likeCocktail", "signatures", "reviewSignatures", "likeSignature", "likePlace"})
 	private Member member;
 	
 	@OneToMany(mappedBy="board", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"board", "member"})
+	@JsonIgnoreProperties({"board"})
 	private List<ReviewBoard> reviews = new ArrayList<>();
 	
 	@OneToMany(mappedBy="board", cascade = CascadeType.REMOVE)

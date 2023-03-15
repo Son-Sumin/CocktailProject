@@ -66,7 +66,7 @@ public class Member implements UserDetails {
 	private String gender;
 
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"member", "reviews"})
+	@JsonIgnoreProperties({"member", "reviews", "likeBoard", "imgs"})
 	private List<Board> boards = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)

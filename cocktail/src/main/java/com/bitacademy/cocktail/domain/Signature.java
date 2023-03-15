@@ -1,13 +1,12 @@
 package com.bitacademy.cocktail.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,12 +22,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
 @Entity(name="signature")
 @Table
-@Data
+@Getter
+@Setter
 @Builder
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
@@ -55,26 +56,23 @@ public class Signature extends BaseTimeEntity {
 	
 	@ManyToOne
 	@JoinColumn(name="member_no")
-	@JsonIgnoreProperties({"signatures", "reviewSignatures"})
+	@JsonIgnoreProperties({"boards", "reviews", "likeBoard", "likeCocktail", "signatures", "reviewSignatures", "likeSignature", "likePlace"})
 	private Member member;
 	
-	@ToString.Exclude
-	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "signature", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"signature"})
 	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 
-	@ToString.Exclude
 	@OneToMany(mappedBy = "signature", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonIgnoreProperties({"signature"})
 	private List<SignatureImage> signatureImages = new ArrayList<>();
 	
-	@ToString.Exclude
 	@JsonIgnoreProperties({"signature"})
 	@OneToMany(mappedBy = "signature", cascade = CascadeType.ALL)
 	private List<SignatureRecipe> signatureRecipes = new ArrayList<>();
 	
-	@ToString.Exclude
-	@OneToMany(mappedBy="signature", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="signature", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"signature"})
 	private List<LikeSignature> likeSignature = new ArrayList<>();
 	
 }
