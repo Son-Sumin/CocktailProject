@@ -20,7 +20,7 @@ import SignatureJoin from "./signature/signatureJoin";
 import Map from "./map/map";
 
 import BoardDetail from "./board/boardIn";
-import Search from "./select";
+import Search from "./search";
 import Writing from "./board/writing";
 import BoardRe from "./board/boardRe";
 

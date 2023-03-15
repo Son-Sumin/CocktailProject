@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css';
 import { Link, useParams } from 'react-router-dom';
 
-function Select(props) {
+function Search(props) {
 
     //전체 데이터 호출
     const cocktail = props.cocktail;
@@ -71,4 +71,4 @@ function Select(props) {
     )
 }
 
-export default Select
+export default Search;
