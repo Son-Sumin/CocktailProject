@@ -85,10 +85,9 @@ function boardRe(props) {
                                         id="sorting"
                                         style={{ width: "100%", height: "100%" }}
                                         defaultValue={test.category}
-                                        ref={caRef}
-                                    >
-                                        <option value="random">자유</option>
-                                        <option value="question">Q&A</option>
+                                        ref={caRef}>
+                                      <option value="random">자유</option>
+                                      <option value="question">Q&A</option>
                                     </select>
                                 </Col>
                                 <Col xs={10}>

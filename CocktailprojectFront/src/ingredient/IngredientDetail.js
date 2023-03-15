@@ -52,10 +52,6 @@ function IngredientDetail(props) {
                                         </div>
                                         <div style={{ color: 'white', overflow: 'hidden', textOverflow: 'ellipsis' }}>{a.contents}</div>
                                         <div className="cocktail-banner-box-contents-isalcohol">도수 : {a.degree}도</div>
-                                        <div className="cocktail-ingredient-image" style={{ marginLeft: '0%', marginTop: '2%' }}>
-                                            <div className="cocktail-banner-box-contents-favorite">❤</div>
-                                            <div className="cocktail-banner-box-contents-favorite" style={{ fontSize: '25px', marginTop: '0px' }}>5</div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

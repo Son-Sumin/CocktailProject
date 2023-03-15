@@ -49,32 +49,6 @@ function Cocktail(props) {
                     <option value="3"> 3↑</option>
                     <option value="5"> 5↑</option>
                 </select>
-                {/* <button className='cocktail-btn' onClick={handleButtonClick}>재료수</button>
-                <Modal isOpen={isOpen} onRequestClose={() => setIsOpen(false)}  style={{width:"5%", height:"5%"}}>
-                    <h2>모달 내용</h2>
-                    <div>
-                        <label>
-                            <input type="radio" name="COUNT" onChange={(e) => setCountValue('0')} value="0" checked={countValue === '0'} />
-                            ALL
-                        </label>
-                        <br />
-                        <label>
-                            <input type="radio" name="COUNT" onChange={(e) => setCountValue('3')} value="3" checked={countValue === '3'} />
-                            3↑
-                        </label>
-                        <br />
-                        <label>
-                            <input type="radio" name="COUNT" onChange={(e) => setCountValue('5')} value="5" checked={countValue === '5'} />
-                            5↑
-                        </label>
-                        <br />
-                    </div>
-                    <button onClick={() => {
-                        setIsOpen(false);
-                        setEachCocktail(cocktail.filter(data => data.cocktailRecipes.length >= countValue));
-                    }}>확인</button>
-
-                </Modal> */}
             </div>
 
             <div className="cocktail-list">

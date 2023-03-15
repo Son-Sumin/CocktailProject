@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import logo from './logo.svg';
 import './App.css';
 import { Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -21,7 +20,7 @@ import SignatureJoin from "./signature/signatureJoin";
 import Map from "./map/map";
 
 import BoardDetail from "./board/boardIn";
-import Search from "./select";
+import Search from "./search";
 import Writing from "./board/writing";
 import BoardRe from "./board/boardRe";
 
@@ -104,21 +103,21 @@ function App() {
   }, []);
 
   // 최상단 이동 버튼
-  const buttonClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-  const [yPosition, setYPosition] = useState(0);
+  // const buttonClick = () => {
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // };
+  // const [yPosition, setYPosition] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setYPosition(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setYPosition(window.scrollY);
+  //   };
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [yPosition]);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [yPosition]);
 
   return (
     <>
@@ -131,13 +130,13 @@ function App() {
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
-          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} />}></Route>
+          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
           <Route path="signature" element={<Signature />}></Route>
           <Route path="signature/:no" element={<SignatureDetail />}></Route>
           <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
-          <Route path="/map" element={<Map />}></Route>
+          {/* <Route path="/map" element={<Map />}></Route> */}
 
           <Route path="/board" element={<Board board={board} />}></Route>
           <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} />}></Route>
@@ -146,9 +145,9 @@ function App() {
           <Route path='/board/update/:no' element={<BoardRe board={board} token={token} />} />
         </Routes>
       </div>
-      <button onClick={buttonClick} 
+      {/* <button onClick={buttonClick}
         style={{position:'fixed', padding:'5px 10px', right:'10px', bottom:'10px', borderRadius:'5px', 
-        backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button>
+        backgroundColor:'rgb(216, 167, 7)', border:'0px', cursor:'pointer'}}>▲</button> */}
     </>
   );
 }
