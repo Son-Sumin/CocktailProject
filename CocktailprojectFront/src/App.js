@@ -45,10 +45,19 @@ function App() {
   });
 
   // 로그인 시 서버에서 보내준 유저에 관한 정보를 보관해주기 위한 state
-  const [user, setUser] = useState("");
-  const [likePlace, setLikePlace] = useState([]);
+  const [user, setUser] = useState({
+    name: '',
+    nickname: '',
+    id: '',
+    phoneNumber: '',
+    gender: '',
+    likeCocktail: [],
+  });
 
-  console.log("유저정보: " + user);
+  // 좋아요버튼, 최상위 컴포넌트에 빼둔 이유는 useEffect()에서 좋아요 클릭마다 실시간 렌더링을 하기위함
+  const [isLiked, setIsLiked] = useState(false);
+
+  console.log("유저정보: " + JSON.stringify(user.nickname));
   // console.log("likePlace: " + JSON.stringify(likePlace));
 
 
@@ -80,15 +89,21 @@ function App() {
       }
     }).then(response => {
       // 유저 정보를 처리
-      setUser(response.data.name);
-      setLikePlace(response.data.likePlace);
+      setUser({
+        name: response.data.name,
+        nickname: response.data.nickname,
+        id: response.data.id,
+        phoneNumber: response.data.phoneNumber,
+        gender: response.data.gender,
+        likeCocktail: response.data.likeCocktail,
+      })
 
       console.log("로그인여부: " + isLoggedIn);
     }).catch(error => {
         // 에러를 처리
         console.error(error);
       });
-  }, [token]);
+  }, [isLiked]);
 
   // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {
@@ -128,9 +143,10 @@ function App() {
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
-          <Route path="/mypage" element={<MyPage />}></Route>
+          <Route path="/mypage" element={<MyPage user={user} />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
-          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} isLoggedIn={isLoggedIn} />}></Route>
+          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} 
+            isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked}/>}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
           <Route path="signature" element={<Signature />}></Route>

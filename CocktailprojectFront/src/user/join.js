@@ -61,7 +61,7 @@ function Join() {
     return (
         <div className="signature-join-container">
             <div className="signature-join-contents">
-                <span>제목</span>
+                <h1 style={{margin:'0px'}}>모여Bar 회원가입</h1>
             </div>
             <form className="signature-join-contents" onSubmit={handleJoin}>
                 <label>
@@ -95,12 +95,12 @@ function Join() {
                 <div>
                     <h3>성별 ▼</h3>
                     <label>
-                        <span>남성</span>
-                        <input type="checkbox" name="gender" value='male' checked={joinMember.gender === 'male'} onChange={handleChange} />
+                        <span style={{fontSize:'20px', fontWeight:'bold'}}>남성</span>
+                        <input type="checkbox" name="gender" value='male' checked={joinMember.gender === 'male'} onChange={handleChange} style={{marginRight:'20px', marginLeft:'10px'}} />
                     </label>
                     <label>
-                        <span>여성</span>
-                        <input type="checkbox" name="gender" value='female' checked={joinMember.gender === 'female'} onChange={handleChange} />
+                        <span style={{fontSize:'20px', fontWeight:'bold'}}>여성</span>
+                        <input type="checkbox" name="gender" value='female' checked={joinMember.gender === 'female'} onChange={handleChange} style={{marginRight:'20px', marginLeft:'10px'}} />
                     </label>
                 </div>
                 <div style={{display:'grid', gridTemplateColumns:'1fr 200px', columnGap:'2%'}}>
