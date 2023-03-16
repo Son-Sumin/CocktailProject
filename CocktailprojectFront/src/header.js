@@ -7,7 +7,7 @@ import axios from "axios";
 
 // 회원메뉴 모달창 (하위 컴포넌트)
 function HeaderModal(props) {
-  const { isModalOpen, handleModalClose, token} = props;
+  const {isModalOpen, handleModalClose, token} = props;
 
   // 모달창 이외의 부분 클릭시 모달창 닫기
   if (!isModalOpen) return null;
@@ -67,10 +67,12 @@ function Header(props) {
   const search = process.env.PUBLIC_URL + '/search.png';
 
 
-  // 모달 핸들러
+  // 메뉴 클릭시 색상 변경
   const handleMenuClick = (menu) => {
     setSelectedMenu(menu);
   }
+
+  // 모달 핸들러
   function handleModal() {
     setIsModalOpen(true);
     // console.log("회원모달메뉴: " + isModalOpen);
@@ -105,7 +107,7 @@ function Header(props) {
         isLoggedIn ? (
           <div style={{ gridColumn: '3/4'}}>
             <>
-            <button className='login-btn' onClick={handleModal} style={{color:'black'}}>{user} 님</button>
+            <button className='login-btn' onClick={handleModal} style={{color:'black'}}>{user.name} 님</button>
             {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} 
               setIsLoggedIn={setIsLoggedIn} removeToken={removeToken} token={token}/>}
             </>

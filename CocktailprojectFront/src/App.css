@@ -151,3 +151,87 @@ img {
   height: 530px;
   background-color: aliceblue;
 }
+
+/* --------------- mypage -------------------- */
+
+.mypage-container {
+  margin: 5% 10%;
+  column-gap: 30px;
+  border-radius: 10px;
+}
+
+.mypage-left {
+  float: left;
+  display: grid;
+  width: 252px;
+  grid-template-rows: 150px 280px 1fr 1fr 1fr;
+  background-color: rgba(224, 218, 201);
+  box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
+  border-radius: 10px;
+  position: fixed;
+}
+
+.mypage-profile-picture {
+  width: 130px;
+  height: 130px;
+  padding: 40px;
+  border: 1px solid black;
+  border-radius: 150px;
+  margin-top: 2%;
+  margin-left: 8%;
+}
+
+.mypage-left-menu {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 15%;
+  padding-bottom: 15%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mypage-left-menu:hover {
+  color: white;
+  box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
+  background-color: rgb(121, 105, 17);
+  border-radius: 50px;
+}
+
+.mypage-left-menu.selected span {
+  color: rgb(216, 167, 7);
+}
+
+.mypage-right {
+  float: right;
+  display: grid;
+  width: 80%;
+  grid-template-rows: 1fr 1fr;
+  background-color: rgba(224, 218, 201);
+  box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
+  border-radius: 10px;
+}
+
+.mypage-right-contents {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 1fr 0.3fr;
+  grid-template-rows: 1fr 1fr 1fr 1.5fr;
+}
+
+.mypage-right-contents-keys h2 {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.mypage-right-contents-keys {
+  border-bottom: 1px solid gray;
+}
+
+.mypage-right-contents-values {
+  font-size: 20px;
+  padding-top: 20px;
+  padding-left: 20%;
+  font-weight: 500;
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+}
