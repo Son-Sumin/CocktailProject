@@ -104,8 +104,18 @@ function Header(props) {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px 200px 150px', columnGap: '10px' }}>
         {
+        (!isLoggedIn) ? (
+          <div style={{ gridColumn: '3/4' }}>
+          <button className='login-btn'>
+            <Link to="/join">회원가입</Link>
+          </button>
+        </div>
+        ) : null
+        }
+
+        {
         isLoggedIn ? (
-          <div style={{ gridColumn: '3/4'}}>
+          <div style={{ gridColumn: '4/5'}}>
             <>
             <button className='login-btn' onClick={handleModal} style={{color:'black'}}>{user.name} 님</button>
             {isModalOpen && <HeaderModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} 
@@ -113,18 +123,13 @@ function Header(props) {
             </>
           </div>
         ) : (
-          <div style={{ gridColumn: '3/4' }}>
+          <div style={{ gridColumn: '4/5' }}>
             <button className='login-btn'>
               <Link to="/login">로그인</Link>
             </button>
           </div>
         )
         }
-        <div style={{ gridColumn: '4/5' }}>
-          <button className='login-btn'>
-            <Link to="/join">회원가입</Link>
-          </button>
-        </div>
       </div>
 
       <Link to="/cocktail" className={`header-menu-box ${selectedMenu === 'cocktail' ? 'selected' : ''}`} onClick={() => handleMenuClick('cocktail')}>

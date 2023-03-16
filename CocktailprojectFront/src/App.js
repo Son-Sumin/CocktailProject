@@ -103,7 +103,7 @@ function App() {
         // 에러를 처리
         console.error(error);
       });
-  }, [isLiked]);
+  }, [isLiked, user]);
 
   // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {
