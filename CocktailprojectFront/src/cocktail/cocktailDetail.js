@@ -7,11 +7,11 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 import parse from 'html-react-parser';
 
 function CocktailDetail(props) {
-    const {cocktail, token, isLoggedIn} = props;
+    const {cocktail, token, isLoggedIn, isLiked, setIsLiked} = props;
     const {no} = useParams();
 
     // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
-    const [isLiked, setIsLiked] = useState(false);
+    // const [isLiked, setIsLiked] = useState(false);
 
     // 좋아요 개수 저장 (버튼 클릭 시 실시간으로 좋아요 개수를 반영하기 위한 state)
     const[countLiked, setCountLiked] = useState([]);
@@ -31,7 +31,7 @@ function CocktailDetail(props) {
                       Authorization: `Bearer ${token}`
                     }
                 }).then((res) => {
-                    const liked =  res.data; // 서버에서 회원의 좋아요정보 요청 => true or false
+                    const liked = res.data; // 서버에서 회원의 좋아요정보 요청 => true or false
                     setIsLiked(liked); // true or false를 isLiked state에 저장
                     console.log("좋아요 데이터 가져오기 성공: " + liked);
                 }).catch((err) => {
@@ -47,7 +47,7 @@ function CocktailDetail(props) {
             // Click이벤트 발생 시, 실시간으로 숫자를 반영
             axios.get(`/cocktail/countliked/${no}`)
             .then((res) => {
-                const counted =  res.data;
+                const counted = res.data;
                 setCountLiked(counted);
                 console.log("좋아요 카운트데이터 가져오기 성공: " + counted);
             }).catch((err) => {
@@ -67,7 +67,7 @@ function CocktailDetail(props) {
               Authorization: `Bearer ${token}`
             }
         }).then((res) => {
-            const liked =  res.data;
+            const liked = res.data;
             setIsLiked(liked);
             console.log("좋아요 데이터 가져오기 성공: " + liked);
         }).catch((err) => {
@@ -80,7 +80,7 @@ function CocktailDetail(props) {
     useEffect(() => {
         axios.get(`/cocktail/countliked/${no}`)
         .then((res) => {
-            const counted =  res.data;
+            const counted = res.data;
             setCountLiked(counted);
             console.log("좋아요 카운트데이터 가져오기 성공: " + counted);
         }).catch((err) => {
