@@ -9,11 +9,10 @@ function MyPageProfile(props) {
     const {user} = props;
 
     return (
-        <div className="mypage-right">
+        <div className="mypage-right" style={{display:'grid', gridTemplateRows:'1fr 1fr'}}>
             <div>
                 <div className="mypage-profile-picture" style={{margin:'auto', width:'150px', height:'150px', marginTop:'5%'}}></div>
-                <h2 style={{margin:'10px 0px', textAlign:'center', cursor:'default'}}>{user.name}</h2>
-                <div style={{margin:'10px 0px', textAlign:'center'}}>
+                <div style={{margin:'30px 0px', textAlign:'center'}}>
                     <span style={{border:'1px solid black', padding:'5px', borderRadius:'5px', cursor:'pointer'}}>프로필 사진 변경</span>
                 </div>
             </div>
@@ -58,13 +57,13 @@ function MyPageFavorite(props) {
     }, []);
 
     return (
-        <div className="mypage-right" style={{gridTemplateRows:'1fr 1fr'}}>
-            <div style={{padding:'1% 5%'}}>
-                <h2>내가 찜한 칵테일 ▼</h2>
+        <div className="mypage-right">
+            <div style={{padding:'3% 5%'}}>
+                <h2 style={{cursor:'default'}}>내가 찜한 칵테일 ▼</h2>
+                <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr', columnGap:'80px', rowGap:'100px', gridAutoFlow: 'row'}}>
                 {
                 favoriteCocktail.map(function (a, i) {
                     return (
-                        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr', columnGap:'120px', height:'280px'}}>
                             <Link to={`/cocktail/${a.cocktail.no}`} key={i}>
                                 <div className="cocktail-box">
                                     <img src={a.cocktail.cocktailImages[0].url} width='280px' height='200px' style={{ borderRadius: '10px' }} alt="cocktail"></img>
@@ -72,13 +71,14 @@ function MyPageFavorite(props) {
                                     <div className='cocktail-contents' style={{color: 'rgb(131, 131, 131)', fontSize: '12px', backgroundColor:'rgba(224, 218, 201)' }}>{a.cocktail.cocktailContents}</div>
                                 </div>
                             </Link>
-                        </div>
-                    )
+                    )   
                 })
                 }
+                </div>
             </div>
-            <div style={{padding:'1% 5%'}}>
-                <h2>내가 찜한 시그니처 ▼</h2>
+
+            <div style={{padding:'1% 5%', marginTop:'5%'}}>
+                <h2 style={{cursor:'default'}}>내가 찜한 시그니처 ▼</h2>
             </div>
         </div>
     )
@@ -89,7 +89,7 @@ function MyPageFavorite(props) {
 // 마이페이지 (상위컴포넌트)
 function MyPage(props) {
     const {user} = props;
-    const bannerLogo = process.env.PUBLIC_URL + '/project-logo.png';
+    const bannerLogo = process.env.PUBLIC_URL + '/project-log-no.png';
 
     // 현재 선택된 메뉴
     const [selectedMenu, setSelectedMenu] = useState('profile');
@@ -104,7 +104,7 @@ function MyPage(props) {
             {/* 마이페이지 좌측 메뉴바 */}
             <div className="mypage-left">
                 <Link to="/" style={{borderRadius:'10px', overflow:'hidden', width:'250px', height:'130px', border:'1px solid rgba(224, 218, 201)'}}>
-                    <img src={bannerLogo} alt="project-logo"/>
+                    <img src={bannerLogo} alt="project-log-no" width={'100%'} />
                 </Link>
                 <div>
                     <div className="mypage-profile-picture">
