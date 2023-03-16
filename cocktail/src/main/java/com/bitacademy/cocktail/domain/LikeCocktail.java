@@ -38,6 +38,6 @@ public class LikeCocktail {
 	
 	@ManyToOne
 	@JoinColumn(name="cocktail_no")
-	@JsonIgnoreProperties({"cocktailImages","cocktailRecipes", "likeCocktail"})
+	@JsonIgnoreProperties({"cocktailRecipes", "likeCocktail"})
 	private Cocktail cocktail;
 }

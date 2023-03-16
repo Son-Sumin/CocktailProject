@@ -86,7 +86,7 @@ public class BoardController {
 
 //	게시글 수정
 	@PutMapping("/board/update/{no}")
-	public void boardUpdate(@PathVariable("no") Long no, Board board, BoardImage boardImage, List<MultipartFile> files)
+	public void boardUpdate(@PathVariable("no") Long no, @RequestBody Board board, BoardImage boardImage, List<MultipartFile> files)
 			throws Exception {
 		Board boardTemp = boardService.boardView(no);
 		boardTemp.setCategory(board.getCategory());
@@ -95,12 +95,12 @@ public class BoardController {
 		boardTemp.setImgs(board.getImgs());
 		boardService.boardWrite(boardTemp);
 
-		System.out.println("img:  "+boardTemp.getImgs());
-		if(boardTemp.getImgs() != null) {
-			System.out.println("*****");
-			boardImageService.imgDelete(no);
-		}
-		boardImageService.saveFile(board, boardImage, files);
+//		System.out.println("img:  "+boardTemp.getImgs());
+//		if(boardTemp.getImgs() != null) {
+//			System.out.println("*****");
+//			boardImageService.imgDelete(no);
+//		}
+//		boardImageService.saveFile(board, boardImage, files);
 	}
 
 //	게시글삭제
