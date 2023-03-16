@@ -45,10 +45,16 @@ function App() {
   });
 
   // 로그인 시 서버에서 보내준 유저에 관한 정보를 보관해주기 위한 state
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({
+    name: '',
+    nickname: '',
+    id: '',
+    phoneNumber: '',
+    gender: '',
+  });
   const [likePlace, setLikePlace] = useState([]);
 
-  console.log("유저정보: " + user);
+  console.log("유저정보: " + JSON.stringify(user));
   // console.log("likePlace: " + JSON.stringify(likePlace));
 
 
@@ -80,8 +86,13 @@ function App() {
       }
     }).then(response => {
       // 유저 정보를 처리
-      setUser(response.data.name);
-      setLikePlace(response.data.likePlace);
+      setUser({
+        name: response.data.name,
+        nickname: response.data.nickname,
+        id: response.data.id,
+        phoneNumber: response.data.phoneNumber,
+        gender: response.data.gender,
+      })
 
       console.log("로그인여부: " + isLoggedIn);
     }).catch(error => {
@@ -128,7 +139,7 @@ function App() {
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
-          <Route path="/mypage" element={<MyPage />}></Route>
+          <Route path="/mypage" element={<MyPage user={user} />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
