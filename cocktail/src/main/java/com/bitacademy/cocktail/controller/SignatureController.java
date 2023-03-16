@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bitacademy.cocktail.domain.Cocktail;
 import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
@@ -45,9 +44,7 @@ public class SignatureController {
 	
 	/* 시그니처 리스트 */
 	@GetMapping({"", "/list"})
-	public List<Signature> list(Model model) {
-		List<Signature> signature = signatureService.listSignature();
-		model.addAttribute("signatures", signature);
+	public List<Signature> list() {
 		return signatureService.listSignature();
 	}
 
@@ -81,7 +78,6 @@ public class SignatureController {
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 + 해당 게시글 레시피 리스트 */
 	@GetMapping("/view/{no}")
 	public Signature view(@PathVariable("no") Long no, SignatureRecipe recipe) {
-		// 조회수
 		signatureService.updateHit(no);
 		reviewSignatureService.listReviewSignature(no);
 		signatureRecipeService.findBySignature(no, recipe);

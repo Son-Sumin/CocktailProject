@@ -15,7 +15,6 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,10 +42,8 @@ public class BannerController {
 	
 	/* 배너 리스트 */
 	@GetMapping({"", "/list"})
-	public List<Banner> listBanner(Model model) {
-		List<Banner> banner = bannerRepository.findAll();
-		model.addAttribute("banners", banner);
-		return banner;
+	public List<Banner> listBanner() {
+		return bannerRepository.findAll();
 	}
 	
 	/* 각 배너별 이미지 변환 */

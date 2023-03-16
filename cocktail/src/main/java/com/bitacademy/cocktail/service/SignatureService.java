@@ -47,11 +47,5 @@ public class SignatureService {
 	/* 조회수 올리기 */
 	public void updateHit(Long no) {
 		signatureRepository.updateHit(no);
-	}
-	
-//	/* 좋아요 올리기 */
-//	public void updateLike(Long no) {
-//		signatureRepository.updateLike(no);
-//	}
-	
+	}	
 }

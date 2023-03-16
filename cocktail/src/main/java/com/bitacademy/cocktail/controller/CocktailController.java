@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,49 +33,25 @@ public class CocktailController {
 	
 	/* 칵테일 목록 */
 	@GetMapping({"", "/list"})
-	public List<Cocktail> list(Model model) {
-		List<Cocktail> cocktail = cocktailService.listCocktail();
-		model.addAttribute("cocktails", cocktail);
-		return cocktailService.listCocktail();
-	}
-
-	/* 칵테일 글 작성 */
-	@PostMapping("/form")
-	public List<Cocktail> enrollCocktail(@ModelAttribute Cocktail form) {
-
-		Cocktail cocktail = new Cocktail();
-
-		cocktail.setType(form.getType());
-		cocktail.setName(form.getName());
-		cocktail.setEngName(form.getEngName());
-		cocktail.setCocktailContents(form.getCocktailContents());
-		cocktail.setRecipeContents(form.getRecipeContents());
-
-		cocktailService.add(cocktail);
+	public List<Cocktail> list() {
 		return cocktailService.listCocktail();
 	}
 
 	/* 칵테일 게시글 보기 + 칵테일별 재료 목록 */
 	@GetMapping("/view/{no}")
 	public Cocktail view(@PathVariable("no") Long no, Model model, CocktailRecipe cocktailRecipe) {
-		// 칵테일 게시글 보기
-		model.addAttribute("cocktail", cocktailService.findCocktailView(no));
-		
-		//칵테일별 재료 목록
-		List<CocktailRecipe> list =  cocktailRecipeService.findByCocktail(no, cocktailRecipe);
-		model.addAttribute("cocktailRecipes", list);
-		
+		cocktailRecipeService.findByCocktail(no, cocktailRecipe);
 		return cocktailService.findCocktailView(no);
 	}
 	
-	//좋아요
+	/* 칵테일 좋아요 */
 	@PostMapping("/like/{no}")
 	public void addLike(@PathVariable("no") Long no) {
 		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
 		likeCocktailService.addLike(member, no);
 	}
 	
-	// 좋아요 확인
+	/* 좋아요 확인 */
 	@GetMapping("/isliked/{no}")
 	public boolean isLiked(@PathVariable("no") Long no) {
 		Cocktail cocktail = cocktailService.findCocktailView(no);
@@ -85,10 +60,27 @@ public class CocktailController {
 		return !likeCocktailService.notLike(member, cocktail);
 	}
 	
-	//좋아요 갯수
+	/* 좋아요 갯수 */
 	@GetMapping("/countliked/{no}")
 	public String countLiked(@PathVariable("no") Long no) {
 		return likeCocktailService.countLiked(no);
 	}
 	
 }
+
+
+///* 칵테일 글 작성 */
+//@PostMapping("/form")
+//public List<Cocktail> enrollCocktail(@ModelAttribute Cocktail form) {
+//
+//	Cocktail cocktail = new Cocktail();
+//
+//	cocktail.setType(form.getType());
+//	cocktail.setName(form.getName());
+//	cocktail.setEngName(form.getEngName());
+//	cocktail.setCocktailContents(form.getCocktailContents());
+//	cocktail.setRecipeContents(form.getRecipeContents());
+//
+//	cocktailService.add(cocktail);
+//	return cocktailService.listCocktail();
+//}

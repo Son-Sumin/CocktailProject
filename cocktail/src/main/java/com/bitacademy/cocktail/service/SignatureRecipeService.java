@@ -1,18 +1,13 @@
 package com.bitacademy.cocktail.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bitacademy.cocktail.domain.Ingredient;
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureRecipe;
-import com.bitacademy.cocktail.repository.IngredientRepository;
 import com.bitacademy.cocktail.repository.SignatureRecipeRepository;
 import com.bitacademy.cocktail.repository.SignatureRepository;
 
@@ -26,7 +21,7 @@ public class SignatureRecipeService {
 	/* 생성자 주입 */
 	private final SignatureRepository signatureRepository;
 	private final SignatureRecipeRepository signatureRecipeRepository;
-	private final IngredientRepository ingredientRepository;
+	//private final IngredientRepository ingredientRepository;
 	
 	/* 시그니처 레시피 리스트 */
 	public List<SignatureRecipe> listSignatureRecipe() {
