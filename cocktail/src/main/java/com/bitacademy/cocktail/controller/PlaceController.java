@@ -49,4 +49,19 @@ public class PlaceController {
 		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
 		likePlaceService.addLike(member, no);
 	}
+	
+	/* 좋아요 확인 */
+	@GetMapping("/isliked/{no}")
+	public boolean isLiked(@PathVariable("no") Long no) {
+		Place place = placeService.findPlaceView(no);
+		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
+		//System.out.println(!likeCocktailService.notLike(member, signature));
+		return !likePlaceService.notLike(member, place);
+	}
+	
+	/* 좋아요 갯수 */
+	@GetMapping("/countliked/{no}")
+	public String countLiked(@PathVariable("no") Long no) {
+		return likePlaceService.countLiked(no);
+	}
 }
