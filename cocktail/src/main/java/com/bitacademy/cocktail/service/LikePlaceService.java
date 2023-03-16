@@ -38,8 +38,15 @@ public class LikePlaceService {
 		}	
 	}
 	
+	/* 좋아요 확인 */
 	public boolean notLike(Member member, Place place) {
 		return likePlaceRepository.findByMemberAndPlace(member, place).isEmpty();
+	}
+
+	/* 좋아요 갯수 */
+	public String countLiked(Long no) {
+		Place place = placeRepository.findByNo(no);
+		return likePlaceRepository.countByPlace(place);
 	}
 
 }

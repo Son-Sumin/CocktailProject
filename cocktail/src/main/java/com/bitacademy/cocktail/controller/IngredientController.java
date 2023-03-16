@@ -26,23 +26,14 @@ public class IngredientController {
 
 	/* 재료 목록 */
 	@GetMapping({"", "/list"})
-	public List<Ingredient> list(Model model) {
-		List<Ingredient> ingredient = ingredientService.listIngredient();
-		model.addAttribute("ingredient", ingredient);
-		
+	public List<Ingredient> list(Model model) {	
 		return ingredientService.listIngredient();
 	}
 	
 	/* 재료 게시글 보기 + 재료별 칵테일 목록 */
 	@GetMapping("/view/{no}")
 	public Ingredient view(@PathVariable("no") Long no, Model model, CocktailRecipe cocktailRecipe) {
-		// 재료 게시글 보기
-		model.addAttribute("ingredient", ingredientService.findIngredientView(no));
-		
-		// 재료별 칵테일 목록
-		List<CocktailRecipe> list =  cocktailRecipeService.findByIngredient(no, cocktailRecipe);
-		model.addAttribute("cocktailRecipes", list);
-		
+		cocktailRecipeService.findByIngredient(no, cocktailRecipe);
 		return ingredientService.findIngredientView(no);
 	}
 }

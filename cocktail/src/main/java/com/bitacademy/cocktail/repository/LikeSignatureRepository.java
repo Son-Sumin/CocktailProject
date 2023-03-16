@@ -14,4 +14,6 @@ public interface LikeSignatureRepository extends JpaRepository<LikeSignature, Lo
 
 	Optional<LikeSignature> findByMemberAndSignature(Member member, Signature signature);
 
+	String countBySignature(Signature signature);
+
 }

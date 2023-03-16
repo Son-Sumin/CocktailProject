@@ -21,6 +21,7 @@ public class LikeSignatureService {
 	private final LikeSignatureRepository likesignatureRepository;
 	private final SignatureRepository signatureRepository;
 
+	/* 좋아요 또는 해제 */
 	public void addlike(Member member, Long no) {
 		Signature signature = signatureRepository.findByNo(no);
 		
@@ -36,10 +37,16 @@ public class LikeSignatureService {
 					likesignatureRepository.findByMemberAndSignature(member, signature).get().getNo());
 			System.out.println("좋아요취소");
 		}
-		
 	}
 	
+	/* 좋아요 확인 */
 	public boolean notLike(Member member, Signature signature) {
 		return likesignatureRepository.findByMemberAndSignature(member, signature).isEmpty();
+	}
+
+	/* 좋아요 갯수 */
+	public String countLiked(Long no) {
+		Signature signature = signatureRepository.findByNo(no);
+		return likesignatureRepository.countBySignature(signature);
 	}
 }
