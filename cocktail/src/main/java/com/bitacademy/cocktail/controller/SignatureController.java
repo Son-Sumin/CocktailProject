@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bitacademy.cocktail.domain.Cocktail;
 import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.domain.ReviewSignature;
 import com.bitacademy.cocktail.domain.Signature;
@@ -63,10 +64,7 @@ public class SignatureController {
 	/* 멀티파일 업로드 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write/{no}/file")
-	public void uploadSignatureFile(
-			@PathVariable("no") Long no,
-			@ModelAttribute SignatureImage signatureImage,
-			List<MultipartFile> files) throws Exception {
+	public void uploadSignatureFile(@PathVariable("no") Long no, @ModelAttribute SignatureImage signatureImage, List<MultipartFile> files) throws Exception {
 		Signature signature = signatureService.findSigView(no);
 		signatureImageService.addImages(signature, signatureImage, files);
 	}
@@ -74,9 +72,7 @@ public class SignatureController {
 	/* 시그니처 레시피 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write/{sno}/recipe")
-	public List<SignatureRecipe> writeSignatureRecipe(
-			@PathVariable("sno") Long sno,
-			@ModelAttribute SignatureRecipe recipe) {
+	public List<SignatureRecipe> writeSignatureRecipe(@PathVariable("sno") Long sno, @ModelAttribute SignatureRecipe recipe) {
 		signatureService.findSigView(sno);
 		signatureRecipeService.addRecipe(sno, recipe);
 		return signatureRecipeService.findBySignature(sno, recipe);
@@ -137,9 +133,7 @@ public class SignatureController {
 	/* 시그니처 게시글 댓글 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/view/{no}/review/write")
-	public Signature writeReviewSig(
-			@PathVariable("no") Long no,
-			@ModelAttribute ReviewSignature reviewSignature) {	
+	public Signature writeReviewSig(@PathVariable("no") Long no, @ModelAttribute ReviewSignature reviewSignature) {	
 		reviewSignature.setNo(null);
 		reviewSignature.setMember(memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get());
 		reviewSignatureService.add(no, reviewSignature);
@@ -153,11 +147,26 @@ public class SignatureController {
 		return signatureService.findSigView(no);
 	}
 	
-	/* 시그니처 게시글 좋아요 */
+	/* 시그니처 좋아요 */
 	@PostMapping("/like/{no}")
 	public void addLike(@PathVariable("no") Long no,  Model model) {
 		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
 		likeSignatureService.addlike(member, no);
+	}
+	
+	/* 좋아요 확인 */
+	@GetMapping("/isliked/{no}")
+	public boolean isLiked(@PathVariable("no") Long no) {
+		Signature signature = signatureService.findSigView(no);
+		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
+		//System.out.println(!likeCocktailService.notLike(member, signature));
+		return !likeSignatureService.notLike(member, signature);
+	}
+	
+	/* 좋아요 갯수 */
+	@GetMapping("/countliked/{no}")
+	public String countLiked(@PathVariable("no") Long no) {
+		return likeSignatureService.countLiked(no);
 	}
 }
 
