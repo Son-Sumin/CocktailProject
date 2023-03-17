@@ -6,14 +6,11 @@ import { Routes, Route, Link, useParams, useNavigate, Outlet } from 'react-route
 
 function Cocktail(props) {
     // 전체 칵테일데이터
-    const cocktail = props.cocktail;
-    // console.log(cocktail);
+    const {cocktail} = props;
 
-
-    // 필터링 할 칵테일데이터(copy)
+    // 원본 cocktail 데이터에서 새로 담을 state
     const [eachCocktail, setEachCocktail] = useState([]);
 
-    // 이거 없으면 초기화면 출력에 아무것도 mapping이 안됨
     useEffect(() => {
         setEachCocktail(cocktail);
     }, [cocktail]);
