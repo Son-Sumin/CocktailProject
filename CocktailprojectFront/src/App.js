@@ -17,7 +17,7 @@ import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
 import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard, getSignature} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
-import Map from "./map/map";
+import Map from "./map/KakaoMap";
 
 import BoardDetail from "./board/boardIn";
 import Search from "./search";
@@ -158,6 +158,7 @@ function App() {
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked}/>}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
+
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
           <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>

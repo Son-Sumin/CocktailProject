@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 function Board(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const Data1 = props.board;
-    const token = props.token;
 
     //페이징 데이터
     const [data, setData] = useState([]); // 전체 / 데이터 원본 데이터 화
@@ -38,14 +37,14 @@ function Board(props) {
         });
     };
 
-    const [sorting, setSorting] = useState("asc");
+    const [sorting, setSorting] = useState("desc");
     const onSorted = (e) => {
         const sortByValue = e.target.value;
         setSorting(sortByValue);
         if (sortByValue === 'asc') {
-            sortJSON(board, "title", "asc")
+            sortJSON(board, "createdDate", "asc")
         } else if (sortByValue === 'desc') {
-            sortJSON(board, "title", "desc")
+            sortJSON(board, "createdDate", "desc")
         }
     };
 
@@ -72,7 +71,9 @@ function Board(props) {
     const handleItemsPerPageChange = (e) => {
         setItemsPerPage(e.target.value)
     }
-   
+
+
+
     return (
         <>
             <div className='border ' style={{ margin: "auto", height: "500px", width: "1400px", backgroundColor: 'aliceblue' }}>
@@ -89,7 +90,7 @@ function Board(props) {
                                         if (i < 5) {
                                             return (
                                                 <tr className='text-start '>
-                                                    {i + 1}. <Link to={`/board/${test.no}`}>{test.title}</Link>
+                                                    {i + 1}. <Link to={`/board/view/${test.no}`}>{test.title}</Link>
                                                 </tr>
                                             )
                                         }
@@ -104,7 +105,7 @@ function Board(props) {
                                         if (i < 5) {
                                             return (
                                                 <tr className='text-start'>
-                                                    <Link to={`/board/${test.no}`}>{i + 1}. {test.title}</Link>
+                                                    <Link to={`/board/view/${test.no}`}>{i + 1}. {test.title}</Link>
                                                 </tr>
                                             )
                                         }
@@ -120,9 +121,10 @@ function Board(props) {
                 <button className='cocktail-btn' onClick={() => setBoard(data)}>전체</button>
                 <button className='cocktail-btn' onClick={() => setBoard(data.filter(x => x.category === 'random'))}>자유</button>
                 <button className='cocktail-btn' onClick={() => setBoard(data.filter(x => x.category === 'question'))}>Q&A</button>
-                <select style={{ width: "100px", height: "40px", fontSize: '20px', textAlign: "center" }} onChange={onSorted} id="sorting" value={board.title}>   {/* value : title을 기준으로 변경 */}
-                    <option value="asc" > 오름차순 </option>
-                    <option value="desc" > 내림차순 </option>
+                <select style={{ width: "100px", height: "40px", fontSize: '20px', textAlign: "center" }}
+                    onChange={onSorted} id="sorting" value={currentData.createdDate}> {/* value : title을 기준으로 변경 */}
+                    <option value="desc" > 최신순 </option>
+                    <option value="asc" > 오래된순 </option>
                 </select>
                 <button className='cocktail-btn' onClick={() => setBoard(Data1)}>초기화</button>
             </div>
@@ -144,17 +146,21 @@ function Board(props) {
             <>
                 {/* 페이지별 데이터 출력 */}
                 <div style={{ margin: "10px" }} >
-                    {currentData.map((test, i) => {
-                        // if (i < { countNo }) {
+                    {currentData.map((test, mappingIndex) => {
                         return (
                             <div style={{ border: "solid 1px", margin: "10px", display: "flex", alignItems: "center" }}>
                                 <div>
                                     <div style={{ display: "flex", alignItems: "center" }}>
                                         <div >
-                                            <p>{test.no}</p>
+                                            {sorting === 'asc'
+                                                ?
+                                                <span key={mappingIndex}>{currentData.length - mappingIndex}</span>
+                                                :
+                                                <span key={mappingIndex}>{mappingIndex + 1}</span>
+                                            }
                                         </div>
                                         <div >
-                                            <Link to ={`/board/view/${test.no}`}>
+                                            <Link to={`/board/view/${test.no}`}>
                                                 <table>
                                                     <tr>
                                                         <td> <p>category:{test.category}</p></td>
@@ -177,8 +183,8 @@ function Board(props) {
                                 </div>
                             </div>
                         )
-                        // }
                     })}
+
                 </div >
 
 

@@ -8,7 +8,7 @@ import com.bitacademy.cocktail.domain.SignatureImage;
 
 public interface SignatureImageRepository extends JpaRepository<SignatureImage, Long> {
 
-	List<SignatureImage> findBySignature_No(Long signatureNo);
+	List<SignatureImage> findBySignatureNo(Long signatureNo);
 	
 	void deleteByNo(Long no);
 	

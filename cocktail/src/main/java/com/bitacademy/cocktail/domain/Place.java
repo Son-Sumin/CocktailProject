@@ -31,6 +31,7 @@ public class Place {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long no;
+	private String name;
 	private String address;
 	private String telephone;
 	private String image;
