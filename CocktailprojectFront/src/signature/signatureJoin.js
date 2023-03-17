@@ -1,6 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // 재료정보 추가 컴포넌트 (하위)
@@ -62,6 +62,13 @@ function SignatureJoin(props) {
         "unit": '개',
         },
     )
+
+    
+    // handleClickPhoto 이벤트
+    const handleClickPhoto = () => {
+        
+    }
+
 
     // handleChange 이벤트
     const handleSignatureJoinChange = (e) => {
@@ -212,7 +219,7 @@ function SignatureJoin(props) {
                         <h3>칵테일 사진 ▼</h3>
                         <div className="signature-picture-box signature-picture-box-grid-1" style={{border:'0px'}}>
                             <div>
-                                <button type='button' className='signature-picture-button'>
+                                <button type='button' className='signature-picture-button' onClick={handleClickPhoto}>
                                     <img src={uploadPhoto} alt="이미지 업로드 버튼"/>
                                     <p className='signature-picture-button-text'>사진 업로드</p>
                                 </button>
