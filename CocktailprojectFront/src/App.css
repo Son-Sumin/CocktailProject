@@ -101,7 +101,7 @@ img {
   grid-template-rows: 1fr 1fr 40px;
   position: absolute;
   top: 12%;
-  right: 23.3%;
+  right: 15%;
   width: 300px;
   height: 150px;
   background-color: white;
@@ -204,18 +204,23 @@ img {
 
 .mypage-right {
   float: right;
-  display: grid;
   width: 80%;
-  grid-template-rows: 1fr 1fr;
   background-color: rgba(224, 218, 201);
   box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
   border-radius: 10px;
 }
 
+.mypage-right:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
 .mypage-right-contents {
   display: grid;
   grid-template-columns: 0.3fr 1fr 1fr 0.3fr;
-  grid-template-rows: 1fr 1fr 1fr 1.5fr;
+  grid-template-rows: 1fr 1fr 1fr 150px;
 }
 
 .mypage-right-contents-keys h2 {

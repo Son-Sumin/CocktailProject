@@ -7,21 +7,18 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function Main(props) {
-    const banner = props.banner;
-    // console.log("props.banner: " + banner);
+    const {banner} = props;
 
     const [title, setTitle] = useState("");
     const [file, setFile] = useState(null);
     const [eachBanner, setEachBanner] = useState([]);
 
-    const cocktail01 = process.env.PUBLIC_URL + '/cocktail01.jpg';
-    const cocktail02 = process.env.PUBLIC_URL + '/cocktail02.jpg';
+    // const cocktail01 = process.env.PUBLIC_URL + '/cocktail01.jpg';
+    // const cocktail02 = process.env.PUBLIC_URL + '/cocktail02.jpg';
 
-    useEffect(() => {
-        setEachBanner(banner);
-    },[banner]);
-    // console.log("eachBanner: " + banner);
+    // const testImage = 'http://192.168.0.22:8080/files/0dab8024-1583-4090-a4c8-37a4a204037e_%ED%95%98%ED%8A%B8%EB%A7%B9%EA%B5%AC.jpg';
 
+    // 배너설정
     const settings = {
         dots: true,
         infinite: true,
@@ -30,7 +27,7 @@ function Main(props) {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000 // 2초마다 자동으로 넘어감
-      };
+    };
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -52,32 +49,36 @@ function Main(props) {
                     'Content-Type': 'multipart/form-data'
                 }
               });
+            console.log("배너 업로드 성공!");
+            setTimeout(() => {
+                window.location.reload();
+              }, 1500);
         } catch(err) {
+            console.log("배너 업로드 실패ㅠㅠ")
             console.log(err);
         }
-        
-        console.log(formData);
     }
+
+    useEffect(() => {
+        setEachBanner(banner);
+    },[banner]);
 
     return(
         <>
         <Slider {...settings}>
-            <div className='banner'>
-                {/* {
+                {
                 eachBanner.map(function(a,i) {
                     return (
-                        <img src={`C:\\bitacademyBigdata\\eclipse-workspace\\CocktailProject\\cocktail\\src\\main\\resources\\static${a.filepath}`} alt={"Image"} key={i} />
+                        <div className='banner'>
+                            <img src={`${a.filepath}`} alt={`Image${i}`} key={i} style={{width:'100%'}}/>
+                        </div>
                     )
                 })
-                } */}
-                <img src={cocktail01} alt={"Image"} style={{width:'100%', height:'100%'}}/>
-            </div>
-            <div className='banner'>
-                <img src={cocktail02} alt={"Image"} style={{width:'100%', height:'100%'}}/>
-            </div>
+                }
         </Slider>
 
         <form onSubmit={handleSubmit} style={{margin:'50px'}}>
+            {/* file 타입은 value 속성 사용못함. onChange 이벤트 핸들러에서 event.target.files를 통해 접근가능 */}
             <input type="file" name="file" onChange={handleFileChange} />
             <label>배너이름 : 
                 <input type="text" name="title" value={title} onChange={handleTitleChange} ></input>
