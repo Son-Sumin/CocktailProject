@@ -68,7 +68,7 @@ public class SignatureImageService {
 	}
 
 	public List<SignatureImage> findSigImg(Long no) {
-		return signatureImageRepository.findBySignature_No(no);
+		return signatureImageRepository.findBySignatureNo(no);
 	}
 	
 }

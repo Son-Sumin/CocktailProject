@@ -14,7 +14,4 @@ public interface ReviewSignatureRepository extends JpaRepository<ReviewSignature
 	List<ReviewSignature> findBySignatureNo(@Param("no") Long signatureNo);
 
 	void deleteByNo(Long no);
-
-	//ReviewSignature findByNo(Long no);
-
 }
