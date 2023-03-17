@@ -20,6 +20,7 @@ import com.bitacademy.cocktail.domain.BoardImage;
 import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.domain.ReviewBoard;
 import com.bitacademy.cocktail.jwt.SecurityUtil;
+import com.bitacademy.cocktail.repository.BoardImageRepository;
 import com.bitacademy.cocktail.service.BoardImageService;
 import com.bitacademy.cocktail.service.BoardService;
 import com.bitacademy.cocktail.service.LikeBoardService;
@@ -86,7 +87,7 @@ public class BoardController {
 
 //	게시글 수정
 	@PutMapping("/board/update/{no}")
-	public void boardUpdate(@PathVariable("no") Long no, @RequestBody Board board, BoardImage boardImage, List<MultipartFile> files)
+	public void boardUpdate(@PathVariable("no") Long no, @ModelAttribute Board board, BoardImage boardImage, List<MultipartFile> files)
 			throws Exception {
 		Board boardTemp = boardService.boardView(no);
 		boardTemp.setCategory(board.getCategory());
@@ -122,4 +123,5 @@ public class BoardController {
 //	public void imgDelete(@PathVariable("no") Long no, @PathVariable("bno") Long bno) {
 //		boardImageService.imgDelete(bno);
 //	}
+	
 }
