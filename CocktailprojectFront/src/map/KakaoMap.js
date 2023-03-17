@@ -8,13 +8,13 @@ import parse from 'html-react-parser';
 const { kakao } = window;
 
 // 현재위치 마커 이미지 조정
-const redMarkerImage = new kakao.maps.MarkerImage(
-    "https://ssl.pstatic.net/static/maps/m/pin_rd.png",
-    new kakao.maps.Size(20, 20),
-    {
-        offset: new kakao.maps.Point(10, 10),
-    }
-);
+// const redMarkerImage = new kakao.maps.MarkerImage(
+//     "https://ssl.pstatic.net/static/maps/m/pin_rd.png",
+//     new kakao.maps.Size(20, 20),
+//     {
+//         offset: new kakao.maps.Point(10, 10),
+//     }
+// );
 function KakaoMap() {
     // 위치데이터 가져오기
     const [Data, setData] = useState([]);
