@@ -15,7 +15,7 @@ import IngredientDetail from "./ingredient/IngredientDetail";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard} from "./api";
+import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard, getSignature} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 import Map from "./map/map";
 
@@ -37,6 +37,7 @@ function App() {
   const [ingredient, setIngredient] = useState([]);
   const [banner, setBanner] = useState([]);
   const [board, setBoard] = useState([]);
+  const [signature, setSignature] = useState([]);
 
   // localStorage에서 isLoggedIn 값을 가져옴. 값이 없으면 false를 반환합니다.
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -61,6 +62,7 @@ function App() {
   // console.log("likePlace: " + JSON.stringify(likePlace));
 
 
+
   // 칵테일 JSON파일
   useEffect(() => {
     getCocktail(setCocktail);
@@ -80,6 +82,13 @@ function App() {
   useEffect(() => {
     getBoard(setBoard);
   }, [])
+
+  // 시그니처 JSON파일
+  useEffect(() => {
+    getSignature(setSignature);
+  }, [])
+
+
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
@@ -103,7 +112,7 @@ function App() {
         // 에러를 처리
         console.error(error);
       });
-  }, [isLiked, user]);
+  }, [isLiked, token]);
 
   // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {
@@ -149,8 +158,8 @@ function App() {
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked}/>}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
-          <Route path="signature" element={<Signature />}></Route>
-          <Route path="signature/:no" element={<SignatureDetail />}></Route>
+          <Route path="signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
+          <Route path="signature/:no" element={<SignatureDetail signature={signature} />}></Route>
           <Route path="signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
           {/* <Route path="/map" element={<Map />}></Route> */}
 

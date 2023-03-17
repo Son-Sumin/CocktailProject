@@ -1,7 +1,13 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
+import {useParams} from 'react-router-dom';
 
-function SignatureDetail() {
+function SignatureDetail(props) {
+    const {signature} = props;
+    const {no} = useParams();
+
+    const eachSignature = signature.filter((signature) => signature.no == no);
+
     return (
         <>
         {/* {
