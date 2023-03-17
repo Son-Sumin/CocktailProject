@@ -46,4 +46,12 @@ async function getBoard(setBoard) {
     setBoard(boardData.data);
 }
 
-export {getCocktail, getIngredient, ScrollToTop, getBanner, getBoard};
+// 시그니처 JSON파일
+async function getSignature(setSignature) {
+    const signatureData = await axios.get(
+        '/signature'
+    );
+    setSignature(signatureData.data);
+}
+
+export {getCocktail, getIngredient, ScrollToTop, getBanner, getBoard, getSignature};
