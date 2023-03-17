@@ -31,6 +31,8 @@ function SignatureJoin(props) {
     const ingredient = props.ingredient;
     const navigate = useNavigate();
 
+    const uploadPhoto = process.env.PUBLIC_URL + '/upload-photo.png';
+
     // 데이터를 저장할 state
     const [signatureJoin, setSignatureJoin] = useState({
         cocktailName: '',
@@ -206,21 +208,28 @@ function SignatureJoin(props) {
             <div className="signature-join-contents">
                 {/* 영문이름 grid 150px */}
                 <form style={{display:'grid', gridTemplateRows:'1fr 150px 150px 280px 1fr 1fr', rowGap:'20px'}} onSubmit={handleSubmit}>
-                    <div className="signature-contents-picture-box">
+                    <div>
                         <h3>칵테일 사진 ▼</h3>
                         <div className="signature-picture-box signature-picture-box-grid-1" style={{border:'0px'}}>
-                            <div className="signature-picture-box" style={{border:'3px solid'}}>
-                                <input type="file" name='files' defaultValue={files} multiple onChange={handleFilesChange} style={{textAlign:'center', marginTop:'80px'}}></input>  
+                            <div>
+                                <button type='button' className='signature-picture-button'>
+                                    <img src={uploadPhoto} alt="이미지 업로드 버튼"/>
+                                    <p className='signature-picture-button-text'>사진 업로드</p>
+                                </button>
+                                {/* <input type="file" name='files' defaultValue={files} multiple onChange={handleFilesChange} style={{textAlign:'center', marginTop:'80px'}}></input>   */}
                             </div>
-                            <div className="signature-picture-box signature-picture-box-grid-2">
+
+                            <div className="signature-picture-box-2 signature-picture-box-grid-2">
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진1</div>
                                 <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div>
                             </div>
-                            <div className="signature-picture-box signature-picture-box-grid-2">
+
+                            <div className="signature-picture-box-2 signature-picture-box-grid-2">
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진2</div>
                                 <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div>
                             </div>
-                            <div className="signature-picture-box signature-picture-box-grid-2">
+
+                            <div className="signature-picture-box-2 signature-picture-box-grid-2">
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진3</div>
                                 <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div> 
                             </div>

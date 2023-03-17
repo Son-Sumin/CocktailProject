@@ -31,7 +31,7 @@ function Signature(props) {
             {
             eachSignature.map(function(a, i) {
                 return (
-                    <Link to={`/signature/1`} key={i}>
+                    <Link to={`/signature/${a.no}`} key={i}>
                         <div style={{cursor: "pointer"}}>
                             <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail"></img>
                             <div className='signature-contents' style={{fontWeight:'800', padding:'10px 0px'}}>{a.cocktailName}</div>

@@ -1,19 +1,21 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function SignatureDetail(props) {
     const {signature} = props;
-    const {no} = useParams();
+    const {no} = useParams(); // 파라미터를 변수로 추출
 
+    // 전체 시그니처중 no와 맞는 시그니처
     const eachSignature = signature.filter((signature) => signature.no == no);
+    console.log(eachSignature);
 
     return (
         <>
-        {/* {
-        eachCocktail.map(function(a, i) {
-            return ( */}
-                <div className='banner cocktail-banner'>
+        {
+        eachSignature.map(function(a, i) {
+            return (
+                <div className='banner cocktail-banner' key={i}>
                     <div className="cocktail-banner-box">
                         <div className="cocktail-banner-box-piturebox">
                             <div style={{width:'80px', height:'100%'}}>
@@ -48,10 +50,10 @@ function SignatureDetail(props) {
                         </div>
                     </div>
                 </div>
-            {/* )
+            )
         }
         )
-        } */}
+        }
 
         <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
             <div style={{marginBottom:'50px'}}>

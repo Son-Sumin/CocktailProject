@@ -8,7 +8,7 @@ import parse from 'html-react-parser';
 
 function CocktailDetail(props) {
     const {cocktail, token, isLoggedIn, isLiked, setIsLiked} = props;
-    const {no} = useParams();
+    const {no} = useParams(); // 파라미터를 변수로 추출
 
     // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
     // const [isLiked, setIsLiked] = useState(false);
