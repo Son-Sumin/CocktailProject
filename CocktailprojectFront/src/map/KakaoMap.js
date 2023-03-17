@@ -1,92 +1,106 @@
-import React, { useRef } from "react";
+import axios from "axios";
+import React from "react";
 import { useEffect, useState } from "react";
 import { MapMarker, Map, CustomOverlayMap } from "react-kakao-maps-sdk";
 import '../css/map.css';
+import parse from 'html-react-parser';
+
 const { kakao } = window;
+
 // 현재위치 마커 이미지 조정
-// const redMarkerImage = new kakao.maps.MarkerImage(
-//     "https://ssl.pstatic.net/static/maps/m/pin_rd.png",
-//     new kakao.maps.Size(20, 20),
-//     {
-//         offset: new kakao.maps.Point(10, 10),
-//     }
-// );
+const redMarkerImage = new kakao.maps.MarkerImage(
+    "https://ssl.pstatic.net/static/maps/m/pin_rd.png",
+    new kakao.maps.Size(20, 20),
+    {
+        offset: new kakao.maps.Point(10, 10),
+    }
+);
 function KakaoMap() {
+    // 위치데이터 가져오기
+    const [Data, setData] = useState([]);
+
+    const [isOpenList, setIsOpenList] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get(`/place/list`)
+            .then((res) => {
+                const data0 = res.data;
+                console.log("#########: ", data0);
+                setData(data0);
+                setIsOpenList(data0.map(() => false)); // isOpenList 배열 초기화
+            })
+            .catch((error) =>
+                console.error("error" + error))
+    }, []);
     // useEffect(() => {
     //     const container = document.getElementById("map");
-    //     // 위치정보 가져오기
-    //     navigator.geolocation.getCurrentPosition(
-    //       (position) => {
+    // 위치정보 가져오기
+    // navigator.geolocation.getCurrentPosition(
+    //     (position) => {
     //         const { latitude, longitude } = position.coords;
     //         const currentPosition = new kakao.maps.LatLng(latitude, longitude);
-    //         // 지도 중심 위치
+    //         // 지도 중심 위치 
     //         const options = {
-    //           // 높은 정확도 요청, 배터리 수명에 영향줄 수 있으므로 사용 시 유의!!
-    //           // enableHighAccuracy: true,
-    //           center: currentPosition,
-    //           level: 5,
+    //             // 높은 정확도 요청, 배터리 수명에 영향줄 수 있으므로 사용 시 유의!!
+    //             // enableHighAccuracy: true,
+    //             center: currentPosition,
+    //             level: 5,
     //         };
     //         const map = new kakao.maps.Map(container, options);
     //         // 현재 위치 마커 표시
     //         const currentMarker = new kakao.maps.Marker({
-    //           position: currentPosition,
-    //           title: "현재위치",
-    //           map: map,
-    //           image: redMarkerImage,
-    //         });
-
-    //         const locations = [
-    //           {
-    //             title: "마커1",
-    //             latlng: new kakao.maps.LatLng(37.498216, 127.027548),
-    //             content: "마커1입니다.",
-    //           },
-    //           {
-    //             title: "마커2",
-    //             latlng: new kakao.maps.LatLng(37.498322, 127.029808),
-    //             content: "마커2입니다.",
-    //           },
-    //           {
-    //             title: "마커3",
-    //             latlng: new kakao.maps.LatLng(37.498895, 127.027118),
-    //             content: "마커3입니다.",
-    //           },
-    //         ];
-    //         locations.forEach((location) => {
-    //           const marker = new kakao.maps.Marker({
-    //             position: location.latlng,
+    //             position: currentPosition,
+    //             title: "현재위치",
     //             map: map,
-    //             title: location.title,
-    //           });
-    //           const infowindow = new kakao.maps.InfoWindow({
-    //             content: location.content,
-    //           });
-    //           kakao.maps.event.addListener(marker, "mouseover", function () {
-    //             infowindow.open(map, marker);
-    //           });
-    //           kakao.maps.event.addListener(marker, 'mouseout', function() {
-    //             // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-    //             infowindow.close();
+    //             image: redMarkerImage,
     //         });
-    //         });
-    //       },
-    //       (error) => {
-    //         console.error(error);
-    //         // 위치정보를 가져오는데 실패했을 때 강남역 좌표로 설정
-    //         const options = {
-    //           center: new kakao.maps.LatLng(37.497942, 127.027621),
-    //           level: 3,
-    //         };
-    //       }
-    //     );
-    //   }, []);
-    const [isOpen, setIsOpen] = useState(false)
-
-    const markerPosition = {
-        lat: 33.450701,
-        lng: 126.570667,
-    }
-
+    //     }
+    // );
+    // }, []);
+    const [state, setState] = useState({
+        center: {
+          lat: 33.450701,
+          lng: 126.570667,
+        },
+        errMsg: null,
+        isLoading: true,
+      })
+      
+      useEffect(() => {
+        if (navigator.geolocation) {
+          // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+          navigator.geolocation.getCurrentPosition(
+            position => {
+              setState(prev => ({
+                ...prev,
+                center: {
+                  lat: position.coords.latitude, // 위도
+                  lng: position.coords.longitude, // 경도
+                },
+                isLoading: false,
+              }))
+            },
+            err => {
+              setState(prev => ({
+                ...prev,
+                errMsg: err.message,
+                isLoading: false,
+              }))
+            },
+            { enableHighAccuracy: true, timeout: 5000 }
+          )
+        } else {
+          // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+          setState(prev => ({
+            ...prev,
+            errMsg: 'geolocation을 사용할수 없어요..',
+            isLoading: false,
+          }))
+        }
+      }, [])
+      
+    // // 개시판 부분
     // //scroll 이벤트 관련
     // const lastScroll = useSelector(state => state.review.current_scroll);
     // var timer;
@@ -111,75 +125,89 @@ function KakaoMap() {
                 {/* <div onScroll={scroll} ref={contain}>
 
                 </div> */}
-                {/* <div id="map" style={{ width: "500px", height: "500px", margin: "auto" }}></div> */}
+
                 <Map // 지도를 표시할 Container
                     id={`map`}
                     center={{
                         // 지도의 중심좌표
-                        lat: 37.497942,
-                        lng: 127.027621,
+                        lng: 127.027621,    //lon
+                        lat: 37.497942,     //lat
                     }}
                     style={{
                         // 지도의 크기
-                        width: "800px",
+                        width: "1000px",
                         height: "700px",
-                        margin: "0  50% ",
+                        margin: "0 40% ",
                         border: "solid 1px"
                     }}
                     level={3} // 지도의 확대 레벨
                 >
-                    <MapMarker position={markerPosition} onClick={() => setIsOpen(true)} />
-                    {isOpen && (
-                        <CustomOverlayMap position={markerPosition}>
-                            <div className="wrap">
-                                <div className="info">
-                                    <div className="title">
-                                        카카오 스페이스닷원
-                                        <div
-                                            className="close"
-                                            onClick={() => setIsOpen(false)}
-                                            title="닫기"
-                                        ></div>
-                                    </div>
-                                    <div className="body">
-                                        <div className="img">
-                                            <img
-                                                src="//t1.daumcdn.net/thumb/C84x76/?fname=http://t1.daumcdn.net/cfile/2170353A51B82DE005"
-                                                width="73"
-                                                height="70"
-                                                alt="카카오 스페이스닷원"
-                                            />
+                    {/* 마커 등록 */}
+                    {Data.map((value, index) => (
+                        <MapMarker
+                            key={`marker_${index}`}
+                            position={{ lat: value.lat, lng: value.lon }}
+                            onClick={() =>
+                                setIsOpenList(
+                                    isOpenList.map((item, i) => (i === index ? !item : item))
+                                )
+                            }
+                        />
+                    ))}
+                    {Data.map((value, index) => (
+                        isOpenList[index] && (
+                            <CustomOverlayMap key={`overlay_${index}`} position={{ lat: value.lat, lng: value.lon }}>
+                                <div className="wrap">
+                                    <div className="info">
+                                        <div className="title">
+                                            {value.name}
+                                            <div
+                                                className="close"
+                                                onClick={() =>
+                                                    setIsOpenList(
+                                                        isOpenList.map((item, i) => (i === index ? !item : item))
+                                                    )
+                                                }
+                                                title="닫기"
+                                            ></div>
                                         </div>
-                                        <div className="desc">
-                                            <div className="ellipsis">
-                                                제주특별자치도 제주시 첨단로 242
+
+                                        {/* 장소 정보 */}
+                                        <div className="body">
+                                            <div className="img">
+                                                <img
+                                                    src={value.image}
+                                                    width="73"
+                                                    height="70"
+                                                    alt={value.name}
+                                                />
                                             </div>
-                                            <div className="jibun ellipsis">
-                                                (우) 63309 (지번) 영평동 2181
-                                            </div>
-                                            <div>
-                                                <a
-                                                    href="https://www.kakaocorp.com/main"
-                                                    target="_blank"
-                                                    className="link"
-                                                    rel="noreferrer"
-                                                >
-                                                    홈페이지
-                                                </a>
+                                            <div className="desc">
+                                                <div className="ellipsis">{parse(value.address)}</div>
+                                                <div className="jibun ellipsis">{value.telephone}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            ;
-                        </CustomOverlayMap>
+                            </CustomOverlayMap>
+                        )
+                    ))}
+                    {!state.isLoading && (
+                        <MapMarker 
+                        position={state.center}
+                        image={{
+                            src: "https://ssl.pstatic.net/static/maps/m/pin_rd.png", // 마커이미지의 주소입니다
+                            size: {
+                              width: 20,
+                              height: 20,
+                            }, // 마커이미지의 크기입니다                            
+                          }}>
+                          <div style={{ padding: "5px", color: "#000" }}>
+                          {state.errMsg ? state.errMsg : "여기에 계신가요?!"}
+                        </div>
+                      </MapMarker>
                     )}
                 </Map>
-                {/* <Map center={{ lat: 33.5563, lng: 126.79581 }} style={{ width: "500px", height: "500px" }}>
-             <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
-                 <div style={{ color: "#000" }}>Hello World!</div>
-             </MapMarker>
-         </Map> */}
             </div>
         </>
     );
