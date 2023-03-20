@@ -1,0 +1,16 @@
+.board-container {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.board-bestcontents-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.board-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 80px;
+}
