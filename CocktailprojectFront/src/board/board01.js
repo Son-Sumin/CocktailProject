@@ -53,7 +53,7 @@ function Board01() {
                 <button>자유게시판</button>
                 <button>Q&A</button>
                 <div>&nbsp;</div>
-                <Link to="/board02">
+                <Link to="/board03">
                     <button style={{marginRight:'0px'}}>글쓰기</button>
                 </Link>
             </div>

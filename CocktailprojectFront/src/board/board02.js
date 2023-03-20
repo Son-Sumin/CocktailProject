@@ -8,14 +8,14 @@ function Board02() {
     return (
         <>
         <div className="board-container">
-            <div className="board-insert-container">
+            <div className="board-eachcontents-container">
                 <div style={{margin:'auto'}}>
-                    <h3 className="board-insert-category">자유</h3>
+                    <h3 className="board-eachcontents-category">자유</h3>
                 </div>
                 <div style={{gridColumn:'2/9'}}>
                     <div>제목</div>
                 </div>
-                <div className="board-insert-profilepicture" style={{gridRow:'2/5'}}>
+                <div className="board-eachcontents-profilepicture" style={{gridRow:'2/5'}}>
                     {/* <img src=""></img> */}
                 </div>
                 <div style={{gridRow:'3/4'}}>닉네임</div>
@@ -32,13 +32,13 @@ function Board02() {
                 내용
             </div>
 
-            <div className="board-insert-button">
+            <div className="board-eachcontents-button">
                 <Link to="/board01" style={{gridColumn:"2/3", margin:'auto'}}>
                     <button>목록</button>
                 </Link>
-                <div className="board-insert-favorite">
-                    <div className="board-insert-favorite-contents">♡</div>
-                    <div className="board-insert-favorite-contents" style={{fontSize:'25px'}}>1</div>
+                <div className="board-eachcontents-favorite">
+                    <div className="board-eachcontents-favorite-contents">♡</div>
+                    <div className="board-eachcontents-favorite-contents" style={{fontSize:'25px'}}>1</div>
                 </div>
             </div>
         </div>

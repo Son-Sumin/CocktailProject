@@ -67,8 +67,8 @@
     grid-row: 1/3;
 }
 
-/* board-insert */
-.board-insert-container {
+/* board-eachcontents */
+.board-eachcontents-container {
     display: grid;
     grid-template-rows: 45px 30px 50px 40px;
     grid-template-columns: 150px 150px 130px 50px 100px 1fr 120px 120px;
@@ -76,7 +76,7 @@
     column-gap: 10px;
 }
 
-.board-insert-category {
+.board-eachcontents-category {
     width: 100px;
     height: 30px;
     margin: 0px;
@@ -88,7 +88,7 @@
     background-color: #ccc;
 }
 
-.board-insert-profilepicture {
+.board-eachcontents-profilepicture {
     width: 100px;
     height: 100px;
     border: 1px solid black;
@@ -96,12 +96,13 @@
     margin: auto;
 }
 
-.board-insert-container div {
+.board-eachcontents-container div {
     margin-top: auto;
     margin-bottom: auto;
+    cursor: default;
 }
 
-.board-insert-container button {
+.board-eachcontents-container button {
     width: 100px;
     margin: auto;
     padding: 5px 10px;
@@ -115,12 +116,12 @@
     transition: all 0.3s;
 }
 
-.board-insert-container button:hover {
+.board-eachcontents-container button:hover {
     border: 1px solid rgb(216, 167, 7);
     color: rgb(216, 167, 7);   
 }
 
-.board-insert-button {
+.board-eachcontents-button {
     display: grid;
     grid-template-columns: 1fr 130px 130px 1fr;
     border-Top: 1px solid black;
@@ -128,7 +129,7 @@
     border-bottom: 1px solid black;
 }
 
-.board-insert-button button {
+.board-eachcontents-button button {
     width: 100px;
     margin: auto;
     padding: 5px 10px;
@@ -142,7 +143,7 @@
     transition: all 0.3s;
 }
 
-.board-insert-favorite {
+.board-eachcontents-favorite {
     width: 100px;
     height: 100px;
     margin: 25px auto;
@@ -151,7 +152,7 @@
     cursor: pointer;
 }
 
-.board-insert-favorite-contents {
+.board-eachcontents-favorite-contents {
     text-align: center;
     font-size: 55px;
     color: rgb(216, 167, 7);
@@ -159,7 +160,13 @@
     margin-bottom: -8px;
 }
 
-.board-insert-button button:hover {
+.board-eachcontents-button button:hover {
     border: 1px solid rgb(216, 167, 7);
     color: rgb(216, 167, 7);   
+}
+
+/* board-insert */
+.board-insert-title {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
