@@ -211,7 +211,7 @@ function boardIn(props) {
                             <td>③{Data?.member?.nickname || ""}</td>
                             <td>④{formatDate(Data.createdDate)} ⑤ {Data.hit} ⑥ {Data.likes}</td>
                             <td style={{ width: "10%" }}>
-                                <button><Link to={`/board/updata/${Data.no}`}>수정</Link></button>
+                                <button><Link to={`/board/update/${Data.no}`}>수정</Link></button>
                                 <button onClick={onRemove}>삭제</button>
                             </td>
                         </tr>

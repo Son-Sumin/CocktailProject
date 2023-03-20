@@ -240,3 +240,11 @@ img {
   border-bottom: 1px solid gray;
   border-left: 1px solid gray;
 }
+
+.cocktail-ingredient-image {
+  width: 100px;
+  height: 100px;
+  background-color: #eee;
+  border-radius: 100px;
+  margin-left: 25%;
+}
