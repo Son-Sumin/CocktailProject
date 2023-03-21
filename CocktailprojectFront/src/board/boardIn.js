@@ -196,52 +196,41 @@ function boardIn(props) {
                 console.log(err)
             })
     }, [countLiked]);
-
     return (
         <>
-            <div>
-                {/* 상단 정보창 */}
-                <div>
-                    <table>
-                        <tr>
-                            <td>①{Data.category}</td>
-                            <td>②{Data.title}</td>
-                        </tr>
-                        <tr>
-                            <td>③{Data?.member?.nickname || ""}</td>
-                            <td>④{formatDate(Data.createdDate)} ⑤ {Data.hit} ⑥ {Data.likes}</td>
-                            <td style={{ width: "10%" }}>
-                                <button><Link to={`/board/update/${Data.no}`}>수정</Link></button>
-                                <button onClick={onRemove}>삭제</button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                {/* 이미지창 */}
-                <div>
-
-                </div>
-                {/* 콘텐츠창 */}
-                <div style={{ minHeight: "800px" }}>
-                    {/* {Data.contents} */}
-                    <div dangerouslySetInnerHTML={{ __html: Data.contents }}></div >
-                </div>
-                {/* 좋아요 버튼 */}
-                {/* <div style={{ textAlign: "center" }}>
-                    <button
-                        type='button'
-                        style={{ height: '100px', width: '100px', borderRadius: '50px' }}
-                    // onClick={(e) => handleClick(e, Data)}
-                    >
-                        좋아요
-                    </button>
-                </div> */}
-                <div className="cocktail-ingredient-image" style={{ marginLeft: '0%', marginTop: '3%', cursor: isLoggedIn ? 'pointer' : 'default' }} onClick={handleLikeClick}>
-                    <div className="cocktail-banner-box-contents-favorite">
-                        {isLiked ? '♥' : '♡'}
+            <div className="board-container">
+                <div className="board-eachcontents-container">
+                    <div style={{ margin: 'auto' }}>
+                        <h3 className="board-eachcontents-category">{Data.category}</h3>
                     </div>
-                    <div className="cocktail-banner-box-contents-favorite" style={{ fontSize: '25px', marginTop: '-15px' }}>{countLiked}</div>
+                    <div style={{ gridColumn: '2/9' }}>
+                        <div>{Data.title}</div>
+                    </div>
+                    <div className="board-eachcontents-profilepicture" style={{ gridRow: '2/5' }}>
+                        {/* <img src=""></img> */}
+                    </div>
+                    <div style={{ gridRow: '3/4' }}>{Data?.member?.nickname || ""}</div>
+                    <div style={{ gridRow: '3/4' }}>{formatDate(Data.createdDate)}</div>
+                    <div style={{ gridColumn: '2/8' }}>&nbsp;</div>
+                    <div style={{ gridRow: '3/4', gridColumn: '4/5' }}>{Data.hit}</div>
+                    <div style={{ gridRow: '3/4', gridColumn: '5/6' }}>{Data.likes}</div>
+                    <button style={{ gridRow: '3/4', gridColumn: '7/8' }}><Link to={`/board/update/${Data.no}`}>수정</Link></button>
+                    <button style={{ gridRow: '3/4', gridColumn: '8/9' }} onClick={onRemove}>삭제</button>
+                </div>
+                <div style={{ border: '1px solid black', marginBottom: '40px', marginTop: '20px' }}></div>
+
+                <div style={{ fontSize: '20px' }} dangerouslySetInnerHTML={{ __html: Data.contents }}></div>
+
+                <div className="board-eachcontents-button">
+                    <Link to="/board01" style={{ gridColumn: "2/3", margin: 'auto' }}>
+                        <button><Link to={`/board`}>목록</Link></button>
+                    </Link>
+                    <div className="board-eachcontents-favorite" onClick={handleLikeClick}>
+                        <div className="board-eachcontents-favorite-contents">
+                            {isLiked ? '♥' : '♡'}
+                        </div>
+                        <div className="board-eachcontents-favorite-contents" style={{ fontSize: '25px' }}>{countLiked}</div>
+                    </div>
                 </div>
                 {/* 댓글창 */}
                 <div>

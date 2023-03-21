@@ -68,10 +68,7 @@ function KakaoMap(props) {
         }
     }, [])
 
-    //스크롤 상자 생성
-    const scrollRef = useRef(null);
-
-
+    //뭐였지?
     const [selectedValue, setSelectedValue] = useState(null);
     useEffect(() => {
         console.log(selectedValue);
@@ -115,7 +112,7 @@ function KakaoMap(props) {
                 // console.log("좋아요 서버전달 실패!");
                 console.log(err);
             });
-            
+
             // Click이벤트 발생 시, 실시간으로 숫자를 반영
             axios.get(`/cocktail/countliked/${boardNo}`)
                 .then((res) => {
@@ -149,152 +146,144 @@ function KakaoMap(props) {
     }, []);
 
 
+    //스크롤 이벤트
+
     return (
-        <>
+        <div className="page" style={{ position: 'fixed', width: "100%" }}>
             <div className="box">
-                <div className="boxInner" ref={scrollRef}
-                    style={{ float: "left", border: "solid 1px", width: '25%', height: "680px", margin: "0 0 0 10%" }} >
-
+                <div className="boxInner"
+                    style={{ float: "left", border: "solid 1px", width: '25%', height: "680px", margin: "0 0 0 10%", overflowY: 'scroll' }} >
                     {Data.map((value, index) => (
-                        <div>
-                            <div key={index} >
-                                <input type="checkbox" name="example" value={value.name} onChange={(e) => setSelectedValue(selectedValue === e.target.value ? null : e.target.value)}></input>
-                                <img
-                                    src={value.image}
-                                    width="73"
-                                    height="70"
-                                    alt={value.name} />
-                                <label>{value.name}</label>
-                                <label> 좋아요:{value.likes ? value.likes.length : 0}</label>
-
-                            </div>
+                        <div key={index} style={{ display: 'grid', gridTemplateColumns: '0.5fr 0.75fr 1fr 0.75fr', alignItems: "center", columnGap: '10px' }}>
+                            <input type="radio" name="example" value={value.name} onChange={(e) => setSelectedValue(selectedValue === e.target.value ? null : e.target.value)}></input>
+                            <img src={value.image} width="73" height="70" alt={value.name} />
+                            <label>{value.name}</label>
+                            <label> 좋아요:{value.likes ? value.likes.length : 0}</label>
                         </div>
                     ))}
 
                 </div>
             </div>
-            <div>
-                <Map // 지도를 표시할 Container
-                    id={`map`}
-                    center={{
-                        // 지도의 중심좌표
-                        lng: 127.027621,    //lon
-                        lat: 37.497942,     //lat
-                    }}
-                    style={{
-                        // 지도의 크기
-                        width: "1000px",
-                        height: "700px",
-                        margin: "0 0 40% 0",
-                        border: "solid 1px"
-                    }}
-                    level={3} // 지도의 확대 레벨
-                >
-                    {/* 마커 등록 */}
-                    {Data.map((value, index) => {
-                        if (value.name === selectedValue) {
-                            return (
-                                <MapMarker
-                                    key={`marker_${index}`}
-                                    position={{ lat: value.lat, lng: value.lon }}
-                                    onClick={() => {
-                                        setIsOpenList(
-                                            isOpenList.map((item, i) => (i === index ? !item : item))
-                                        );
-                                    }}
-                                    image={{
-                                        src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
-                                        size: {
-                                            width: 20,
-                                            height: 20,
-                                        }, // 마커이미지의 크기입니다
-                                    }}
-                                />
-                            );
+            <Map // 지도를 표시할 Container
+                id={`map`}
+                center={{
+                    // 지도의 중심좌표
+                    lng: 127.027621,    //lon
+                    lat: 37.497942,     //lat
+                }}
+                style={{
+                    // 지도의 크기
+                    width: "1000px",
+                    height: "700px",
+                    margin: "0 0 40% 0",
+                    border: "solid 1px"
+                }}
+                level={4} // 지도의 확대 레벨
+            >
+                {/* 마커 등록 */}
+                {Data.map((value, index) => {
+                    if (value.name === selectedValue) {
+                        return (
+                            <MapMarker
+                                key={`marker_${index}`}
+                                position={{ lat: value.lat, lng: value.lon }}
+                                onClick={() => {
+                                    setIsOpenList(
+                                        isOpenList.map((item, i) => (i === index ? !item : item))
+                                    );
+                                }}
+                                image={{
+                                    src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
+                                    size: {
+                                        width: 20,
+                                        height: 30,
+                                    }, // 마커이미지의 크기입니다
+                                }}
+                            />
+                        );
 
 
-                        }
-                        else {
-                            return (
-                                <MapMarker
-                                    key={`marker_${index}`}
-                                    position={{ lat: value.lat, lng: value.lon }}
-                                    onClick={() => {
-                                        setIsOpenList(
-                                            isOpenList.map((item, i) => (i === index ? !item : item))
-                                        );
-                                    }}
-                                    image={{
-                                        src: "https://ssl.pstatic.net/static/maps/m/pin_rd.png", // 마커이미지의 주소입니다
-                                        size: {
-                                            width: 20,
-                                            height: 20,
-                                        }, // 마커이미지의 크기입니다
-                                    }}
-                                />
-                            );
-                        }
+                    }
+                    else {
+                        return (
+                            <MapMarker
+                                key={`marker_${index}`}
+                                position={{ lat: value.lat, lng: value.lon }}
+                                onClick={() => {
+                                    setIsOpenList(
+                                        isOpenList.map((item, i) => (i === index ? !item : item))
+                                    );
+                                }}
+                                image={{
+                                    src: "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png", // 마커이미지의 주소입니다
+                                    size: {
+                                        width: 20,
+                                        height: 30,
+                                    }, // 마커이미지의 크기입니다
+                                }}
+                            />
+                        );
+                    }
 
-                    })}
+                })}
 
 
-                    {Data.map((value, index) => (
-                        isOpenList[index] && (
-                            <CustomOverlayMap key={`overlay_${index}`} position={{ lat: value.lat, lng: value.lon }}>
-                                <div className="wrap">
-                                    <div className="info">
-                                        <div className="title">
-                                            {value.name}
-                                            <div
-                                                className="close"
-                                                onClick={() =>
-                                                    setIsOpenList(
-                                                        isOpenList.map((item, i) => (i === index ? !item : item))
-                                                    )
-                                                }
-                                                title="닫기"
-                                            ></div>
-                                        </div>
-
-                                        {/* 장소 정보 */}
-                                        <div className="body">
-                                            {/* 좋아요 */}
-                                            <div className="cocktail-ingredient-image" style={{width:"5px", height:"5px", marginLeft:'0%', marginTop:'1%', cursor: isLoggedIn ? 'pointer' : 'default' }} onClick={handleLikeClick}>
-                                                <div className="cocktail-banner-box-contents-favorite" style={{width:"5px", height:"5px"}}>
-                                                    {isLiked ? '♥' : '♡'}
-                                                </div>
-                                            </div>
-                                            <div className="desc">
-                                                <div className="ellipsis">{parse(value.address)}</div>
-                                                <div className="jibun ellipsis">{value.telephone}</div>
-                                            </div>
-                                        </div>
-
+                {Data.map((value, index) => (
+                    isOpenList[index] && (
+                        <CustomOverlayMap key={`overlay_${index}`} position={{ lat: value.lat, lng: value.lon }}>
+                            <div className="wrap">
+                                <div className="info">
+                                    <div className="title">
+                                        {value.name}
+                                        <div
+                                            className="close"
+                                            onClick={() =>
+                                                setIsOpenList(
+                                                    isOpenList.map((item, i) => (i === index ? !item : item))
+                                                )
+                                            }
+                                            title="닫기"
+                                        ></div>
                                     </div>
+
+                                    {/* 장소 정보 */}
+                                    <div className="body">
+                                        {/* 좋아요 */}
+                                        <div className="cocktail-ingredient-image" style={{ width: "5px", height: "5px", marginLeft: '0%', marginTop: '1%', cursor: isLoggedIn ? 'pointer' : 'default' }} onClick={handleLikeClick}>
+                                            <div className="cocktail-banner-box-contents-favorite" style={{ width: "5px", height: "5px" }}>
+                                                {isLiked ? '♥' : '♡'}
+                                            </div>
+                                        </div>
+                                        <div className="desc">
+                                            <div className="ellipsis">{parse(value.address)}</div>
+                                            <div className="jibun ellipsis">{value.telephone}</div>
+                                        </div>
+                                    </div>
+
                                 </div>
-                            </CustomOverlayMap>
-                        )
-                    ))}
-                    {/* 현재위치 */}
-                    {!state.isLoading && (
-                        <MapMarker
-                            position={state.center}
-                            image={{
-                                src: "https://ssl.pstatic.net/static/maps/m/pin_rd.png", // 마커이미지의 주소입니다
-                                size: {
-                                    width: 20,
-                                    height: 20,
-                                }, // 마커이미지의 크기입니다
-                            }}>
-                            <div style={{ padding: "5px", color: "#000" }}>
-                                {state.errMsg ? state.errMsg : "여기에 계신가요?!"}
                             </div>
-                        </MapMarker>
-                    )}
-                    <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
-                </Map>
-            </div>
-        </>
+                        </CustomOverlayMap>
+                    )
+                ))}
+                {/* 현재위치 */}
+                {!state.isLoading && (
+                    <MapMarker
+                        position={state.center}
+                        image={{
+                            src: "https://ssl.pstatic.net/static/maps/m/pin_rd.png", // 마커이미지의 주소입니다
+                            size: {
+                                width: 20,
+                                height: 20,
+                            }, // 마커이미지의 크기입니다
+                        }}>
+                        <div style={{ padding: "5px", color: "#000" }}>
+                            {state.errMsg ? state.errMsg : "현재위치"}
+                        </div>
+                    </MapMarker>
+                )}
+                <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+            </Map>
+        </div>
     );
 }
 

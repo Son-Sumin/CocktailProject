@@ -37,7 +37,7 @@ function Cocktail(props) {
 
             <div className="cocktail-list">
                 {
-                    eachCocktail.map(function (cocktail, i) {
+                    eachCocktail.map( (cocktail, i)=> {
                         return (
                             <Link to={`/cocktail/${cocktail.no}`} key={i}>
                                 <div className="cocktail-box">
