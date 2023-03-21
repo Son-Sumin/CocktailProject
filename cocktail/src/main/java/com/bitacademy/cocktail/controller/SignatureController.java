@@ -43,6 +43,7 @@ public class SignatureController {
 	private final LikeSignatureService likeSignatureService;
 	
 	/* 시그니처 리스트 */
+	@CrossOrigin(origins = "*")
 	@GetMapping({"", "/list"})
 	public List<Signature> list() {
 		return signatureService.listSignature();
@@ -76,6 +77,7 @@ public class SignatureController {
 	}
 
 	/* 시그니처 게시글 보기 + 조회수 + 해당 게시글 댓글 리스트 + 해당 게시글 레시피 리스트 */
+	@CrossOrigin(origins = "*")
 	@GetMapping("/view/{no}")
 	public Signature view(@PathVariable("no") Long no, SignatureRecipe recipe) {
 		signatureService.updateHit(no);
@@ -85,6 +87,7 @@ public class SignatureController {
 	}
 
 	/* 시그니처 게시글, 멀티파일, 레시피 삭제 */
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/delete/{no}")
 	public void delete(@PathVariable("no") Long no, SignatureImage signatureImage) {
 		signatureImageService.deleteImage(no);
@@ -144,6 +147,7 @@ public class SignatureController {
 	}
 	
 	/* 시그니처 좋아요 */
+	@CrossOrigin(origins = "*")
 	@PostMapping("/like/{no}")
 	public void addLike(@PathVariable("no") Long no,  Model model) {
 		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
@@ -151,6 +155,7 @@ public class SignatureController {
 	}
 	
 	/* 좋아요 확인 */
+	@CrossOrigin(origins = "*")
 	@GetMapping("/isliked/{no}")
 	public boolean isLiked(@PathVariable("no") Long no) {
 		Signature signature = signatureService.findSigView(no);
@@ -160,6 +165,7 @@ public class SignatureController {
 	}
 	
 	/* 좋아요 갯수 */
+	@CrossOrigin(origins = "*")
 	@GetMapping("/countliked/{no}")
 	public String countLiked(@PathVariable("no") Long no) {
 		return likeSignatureService.countLiked(no);
