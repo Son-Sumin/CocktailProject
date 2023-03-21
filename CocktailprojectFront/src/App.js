@@ -5,6 +5,7 @@ import { Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Header from './header';
 import Main from './main/main';
+import Search from "./search";
 import Join from "./user/join";
 import Login from "./user/login";
 import MyPage from "./user/mypage";
@@ -15,12 +16,15 @@ import IngredientDetail from "./ingredient/IngredientDetail";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import { getCocktail, getIngredient, ScrolToTop, getBanner, getBoard, getSignature} from "./api";
+import { getCocktail, getIngredient, getBanner, getBoard, getSignature} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 import Map from "./map/KakaoMap";
 
+import Board01 from "./board/board01";
+import Board02 from "./board/board02";
+import Board03 from "./board/board03";
+
 import BoardDetail from "./board/boardIn";
-import Search from "./search";
 import Writing from "./board/writing";
 import BoardRe from "./board/boardRe";
 
@@ -162,7 +166,11 @@ function App() {
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
           <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
-          {/* <Route path="/map" element={<Map />}></Route> */}
+          <Route path="/map" element={<Map />}></Route>
+
+          <Route path="/board01" element={<Board01 />}></Route>
+          <Route path="/board02" element={<Board02 />}></Route>
+          <Route path="/board03" element={<Board03 />}></Route>
 
           <Route path="/board" element={<Board board={board} />}></Route>
           <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} />}></Route>
