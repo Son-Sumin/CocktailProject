@@ -27,11 +27,10 @@ function IngredientForm(props) {
 
 // 시그니처 작성페이지 (상위)
 function SignatureJoin(props) {
-    // ingredient 데이터 불러오기
+    // ingredient 데이터 불러오기, 사진 그림 불러오기, navigate 사용
     const ingredient = props.ingredient;
-    const navigate = useNavigate();
-
     const uploadPhoto = process.env.PUBLIC_URL + '/upload-photo.png';
+    const navigate = useNavigate();
 
     // 데이터를 저장할 state
     const [signatureJoin, setSignatureJoin] = useState({
@@ -41,7 +40,7 @@ function SignatureJoin(props) {
         recipeContents: '',
     })
 
-    const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState(null);
 
     const [ingredients, setIngredients] = useState(
         {
@@ -63,10 +62,26 @@ function SignatureJoin(props) {
         },
     )
 
-    
     // handleClickPhoto 이벤트
+    const fileInputRef = useRef(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
+
     const handleClickPhoto = () => {
-        
+        fileInputRef.current.click();
+    }
+    const handleFilesChange = (e) => {
+        e.preventDefault();
+
+        // 파일 미리보기를 도와줌
+        const reader = new FileReader();
+
+        setFiles(e.target.value);
+
+        reader.onloadend = () => {
+            setPreviewUrl(reader.result);
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
     }
 
 
@@ -80,11 +95,8 @@ function SignatureJoin(props) {
         });
     };
 
-    const handleFilesChange = (e) => {
-        setFiles(e.target.value);
-    }
 
-    // IngredientForm이벤트
+    // IngredientForm 이벤트
     const handleClickIngredientForm = () => {
         const nextKey = ingredientForm.length;
         const newIngredientForm = <IngredientForm key={nextKey} />;
@@ -223,12 +235,17 @@ function SignatureJoin(props) {
                                     <img src={uploadPhoto} alt="이미지 업로드 버튼"/>
                                     <p className='signature-picture-button-text'>사진 업로드</p>
                                 </button>
-                                {/* <input type="file" name='files' defaultValue={files} multiple onChange={handleFilesChange} style={{textAlign:'center', marginTop:'80px'}}></input>   */}
+                                <input ref={fileInputRef} type="file" name='files' defaultValue={files} multiple onChange={handleFilesChange} style={{display:'none'}}></input>  
                             </div>
 
-                            <div className="signature-picture-box-2 signature-picture-box-grid-2">
+                            <div className="signature-picture-box-2 signature-picture-box-grid-2" style={(previewUrl === null) ? null : {overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px'}}>
+                                {
+                                (previewUrl === null) ?
+                                (<>
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진1</div>
                                 <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div>
+                                </>) : <img src={previewUrl} alt="file preview" />
+                                }
                             </div>
 
                             <div className="signature-picture-box-2 signature-picture-box-grid-2">

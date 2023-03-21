@@ -105,8 +105,8 @@ function CocktailDetail(props) {
                                 {
                                 a.cocktailImages.map(function(a, i) {
                                     return (
-                                        <div className="cocktail-banner-box-minipiturebox">
-                                            <img className="cocktail-banner-box-minipiture" src={a.url} width='420px' height='400px'></img>
+                                        <div className="cocktail-banner-box-minipicturebox">
+                                            <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img>
                                         </div>
                                     )
                                 })

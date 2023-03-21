@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 const { kakao } = window;
 
 function KakaoMap(props) {
+
     // 위치데이터 가져오기
     const [Data, setData] = useState([]);
 
