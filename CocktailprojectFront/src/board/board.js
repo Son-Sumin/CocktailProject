@@ -149,7 +149,7 @@ function Board(props) {
                                 <div style={{ gridColumn: '3/6' }}>{test.title}</div>
                                 <div>{test.createdDate}</div>
                                 <div>{test.hit}</div>
-                                {test && test.likes && <div>{test.likes.length}</div>}
+                                <div>{test.likeBoard.length}</div>
                             </Link>
                             <div style={{ border: '1px solid #ddd', marginBottom: '20px' }}></div>
                         </>
