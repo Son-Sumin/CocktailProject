@@ -158,14 +158,6 @@
     cursor: pointer;
 }
 
-.cocktail-ingredient-image {
-    width: 100px;
-    height: 100px;
-    background-color: #eee;
-    border-radius: 100px;
-    margin-left: 25%;
-}
-
 .cocktail-ingredient-contents {
     text-align: center;
     padding-top: 20%;

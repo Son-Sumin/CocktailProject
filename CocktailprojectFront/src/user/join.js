@@ -7,8 +7,8 @@ function Join() {
     const navigate = useNavigate();
 
     // JSON데이터를 저장할 객체
-    const [joinMember,setJoinMember] = useState({
-        id: '',  
+    const [joinMember, setJoinMember] = useState({
+        id: '',
         password: '',
         name: '',
         nickname: '',
@@ -19,7 +19,7 @@ function Join() {
 
     // input에 넣은 값을 항상 value로 업데이트 해주고 빈state객체에 저장해줌
     const handleChange = (e) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
 
         setJoinMember({
             ...joinMember,
@@ -45,12 +45,12 @@ function Join() {
         try {
             const res = await axios.post('/member/join', formData, {
                 headers: {
-                  'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 }
-              }); // http://192.168.0.4:8080/member/join
+            }); // http://192.168.0.4:8080/member/join
             alert("회원가입 성공!!");
             navigate("/");
-        } catch(err) {
+        } catch (err) {
             alert("회원가입 실패");
         }
 
@@ -58,52 +58,79 @@ function Join() {
         console.log(joinMember);
     };
 
+    // // 중복확인
+    // const [ttt, TttSet] = useState(false)
+
+    // function onChange(e) {
+    //     e.preventDefault();
+    //     duplicationCheckAPI(usrtids)
+    //         .then((response) => {
+    //             console.log(response)
+    //             if (response === false) {
+    //                 TttSet(false)
+    //                 setUsableId(response);
+    //             }
+    //             else {
+    //                 TttSet(true)
+    //                 setUsableId(response);
+    //                 setUserid('');
+    //             }
+    //             console.log('중복체크');
+    //         })
+    // }
+
+
     return (
         <div className="signature-join-container">
             <div className="signature-join-contents">
-                <h1 style={{margin:'0px'}}>모여Bar 회원가입</h1>
+                <h1 style={{ margin: '0px' }}>모여Bar 회원가입</h1>
             </div>
             <form className="signature-join-contents" onSubmit={handleJoin}>
                 <label>
                     <h3>아이디 ▼</h3>
                     <input type="text" placeholder="아이디를 입력해주세요:)" className="signature-join-contents-2" name="id" value={joinMember.id} onChange={handleChange}></input>
-                    <p style={{textAlign:'right', marginTop:'5px'}}>{joinMember.id.length}/30</p>
+                    <p style={{ textAlign: 'right', marginTop: '5px' }}>{joinMember.id.length}/30</p>
                 </label>
                 <label>
                     <h3>패스워드 ▼</h3>
                     <input type="password" placeholder="패스워드를 입력해주세요:)" className="signature-join-contents-2" name="password" value={joinMember.password} onChange={handleChange}></input>
-                    <p style={{textAlign:'right', marginTop:'5px'}}>{joinMember.password.length}/30</p>
+                    <p style={{ textAlign: 'right', marginTop: '5px' }}>{joinMember.password.length}/30</p>
                 </label>
                 <label>
                     <h3>이름 ▼</h3>
                     <input type="text" placeholder="이름을 지어주세요:)" className="signature-join-contents-2" name="name" value={joinMember.name} onChange={handleChange}></input>
-                    <p style={{textAlign:'right', marginTop:'5px'}}>{joinMember.name.length}/30</p>
+                    <p style={{ textAlign: 'right', marginTop: '5px' }}>{joinMember.name.length}/30</p>
                 </label>
                 <label>
                     <h3>닉네임 ▼</h3>
                     <input type="text" placeholder="닉네임을 지어주세요:)" className="signature-join-contents-2" name="nickname" value={joinMember.nickname} onChange={handleChange}></input>
-                    <p style={{textAlign:'right', marginTop:'5px'}}>{joinMember.nickname.length}/30</p>
+                    <p style={{ textAlign: 'right', marginTop: '5px' }}>{joinMember.nickname.length}/30</p>
                 </label>
+                {/* 
+                <span onChange={onChange}>
+                    {ttt == false ? <p>사용가능</p> : <p>이미 존재함</p>}
+                </span>
+                */}
                 <label>
                     <h3>생년월일 ▼</h3>
-                    <input type="date" className="signature-join-contents-2" style={{marginBottom:'20px'}} name="birth" value={joinMember.birth} onChange={handleChange}></input>
+                    <input type="date" className="signature-join-contents-2" style={{ marginBottom: '20px' }} name="birth" value={joinMember.birth} onChange={handleChange}></input>
                 </label>
                 <label>
                     <h3>핸드폰번호 ▼</h3>
-                    <input type="tel" className="signature-join-contents-2" style={{marginBottom:'20px'}} placeholder="000-0000-0000" name="phoneNumber" value={joinMember.phoneNumber} onChange={handleChange}></input>
+                    <input type="tel" className="signature-join-contents-2" style={{ marginBottom: '20px' }} placeholder="000-0000-0000" name="phoneNumber" value={joinMember.phoneNumber} onChange={handleChange}></input>
                 </label>
                 <div>
                     <h3>성별 ▼</h3>
                     <label>
-                        <span style={{fontSize:'20px', fontWeight:'bold'}}>남성</span>
-                        <input type="checkbox" name="gender" value='male' checked={joinMember.gender === 'male'} onChange={handleChange} style={{marginRight:'20px', marginLeft:'10px'}} />
+                        <span style={{ fontSize: '20px', fontWeight: 'bold' }}>남성</span>
+                        <input type="checkbox" name="gender" value='male' checked={joinMember.gender === 'male'} onChange={handleChange} style={{ marginRight: '20px', marginLeft: '10px' }} />
                     </label>
                     <label>
-                        <span style={{fontSize:'20px', fontWeight:'bold'}}>여성</span>
-                        <input type="checkbox" name="gender" value='female' checked={joinMember.gender === 'female'} onChange={handleChange} style={{marginRight:'20px', marginLeft:'10px'}} />
+                        <span style={{ fontSize: '20px', fontWeight: 'bold' }}>여성</span>
+                        <input type="checkbox" name="gender" value='female' checked={joinMember.gender === 'female'} onChange={handleChange} style={{ marginRight: '20px', marginLeft: '10px' }} />
                     </label>
                 </div>
-                <div style={{display:'grid', gridTemplateColumns:'1fr 200px', columnGap:'2%'}}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px', columnGap: '2%' }}>
                     <Link to="/">
                         <button className="signature-contents-btn">취소</button>
                     </Link>
@@ -114,4 +141,141 @@ function Join() {
     )
 }
 
+
+
+// const [authObj, setAuthObj] = useState({
+//     id: '',
+//     password: '',
+//     name: '',
+//     nickname: '',
+//     birth: '',
+//     phoneNumber: '',
+//     gender: ''
+// });
+// const [nicknameCheck, setNicknameCheck] = useState(false);
+// const [checkError, setCheckError] = useState("");
+// const [error, setError] = useState("");
+
+// // 닉네임 중복검사 함수
+// const checkIfAvailable = async (value) => {
+//     const IDcheck = await 'http://192.168.0.4:8080/member/list'
+//         .collection("User_Profile")
+//         .where("nickname", "==", value)
+//         .get();
+//     if (IDcheck.docs.length === 0 && value.length > 0) {
+//         setCheckError("사용 가능한 닉네임입니다.");
+//         setNicknameCheck(true);
+//     }
+//     else {
+//         if (value.length > 0) setCheckError("이미 다른 사용자가 사용 중인 닉네임입니다.");
+//         else setCheckError("");
+//         setNicknameCheck(false);
+//     }
+// };
+
+// const onChange = async (event) => {
+//     const { target: { name, value } } = event;
+//     setAuthObj(authObj => ({ ...authObj, [name]: value }));
+
+//     if (name === "nickname") {
+//         await checkIfAvailable(value);
+//     }
+// };
+
+// const onSubmit = async (event) => {
+//     event.preventDefault();
+
+//     try {
+//         let data;
+
+//         if (!nicknameCheck) throw new Error('닉네임을 확인해주세요.');
+//         data = await authService.createUserWithEmailAndPassword(authObj.email, authObj.password);
+//         await dbService.collection("User_Profile").add({ displayName: authObj.displayName, uid: data.user.uid });
+
+//     } catch (error) {
+//         setError(error.message);
+//     }
+// };
+
+
+// return (
+//     <>
+//         <form className="centerContainer authForm" onSubmit={onSubmit}>
+//             <div>
+//                 <input
+//                     name="id"
+//                     type="text"
+//                     placeholder="Email Address"
+//                     required
+//                     value={authObj.id}
+//                     onChange={onChange}
+//                 />
+//             </div>
+//             <div>
+//                 <input
+//                     name="password"
+//                     type="password"
+//                     placeholder="Password (at least 6 characters)"
+//                     required
+//                     value={authObj.password}
+//                     onChange={onChange}
+//                 />
+//             </div>
+//             <div>
+//                 <input
+//                     name="name"
+//                     type="text"
+//                     placeholder="name"
+//                     required
+//                     value={authObj.name}
+//                     onChange={onChange}
+//                 />
+//             </div>
+//             <div>
+//                 <input
+//                     name="nickname"
+//                     type="text"
+//                     placeholder="nickname"
+//                     required
+//                     value={authObj.nickname}
+//                     onChange={onChange}
+//                 />
+//             </div>
+//             <div>
+//                 <input
+//                     name="birth"
+//                     type="text"
+//                     placeholder="birth"
+//                     required
+//                     value={authObj.birth}
+//                     onChange={onChange}
+//                 />
+//             </div>
+//             <div>
+//                 <input
+//                     name="phoneNumber"
+//                     type="text"
+//                     placeholder="phoneNumber"
+//                     required
+//                     value={authObj.phoneNumber}
+//                     onChange={onChange}
+//                 />
+//             </div>
+//             <div>
+//                 <input
+//                     name="gender"
+//                     type="text"
+//                     placeholder="gender"
+//                     required
+//                     value={authObj.gender}
+//                     onChange={onChange}
+//                 />
+//             </div>
+//             <span id="checkMess">{checkError}</span>
+//             <input type="submit" id="submitBtn" value="Sign Up" />
+//             <span id="error">{error}</span>
+//         </form>
+//     </>
+// );
+// };
 export default Join;

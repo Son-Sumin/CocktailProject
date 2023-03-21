@@ -168,6 +168,7 @@ function App() {
           <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
           <Route path="/map" element={<Map />}></Route>
 
+
           <Route path="/board01" element={<Board01 />}></Route>
           <Route path="/board02" element={<Board02 />}></Route>
           <Route path="/board03" element={<Board03 />}></Route>
