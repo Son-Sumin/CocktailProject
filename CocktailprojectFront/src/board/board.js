@@ -144,7 +144,7 @@ function Board(props) {
                                     {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
                                 </div>
 
-                                <div>카테고리</div>
+                                <div>{test.category}</div>
                                 <div style={{ gridRow: '2/3' }}>{test.member.nickname}</div>
                                 <div style={{ gridColumn: '3/6' }}>{test.title}</div>
                                 <div>{test.createdDate}</div>
