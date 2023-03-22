@@ -60,24 +60,57 @@ function Join() {
 
     // Id중복확인
     const [usableId, setUsableId] = useState(false)
-    const [reData, setRedData] = useState("")
+    const [reData, setReData] = useState("")
 
-    async function onChangeId(e, app) {
+    async function onChangeId(e) {
         e.preventDefault();
+
+        const { name, value } = e.target;
+        setJoinMember({
+            ...joinMember,
+            [name]: value
+        });
+
         try {
             const response = await axios.get(`${process.env.REACT_APP_ENDPOINT}/member/list`);
             const members = response.data;
-            const isUsable = !members.some(member => member.id === app);
+            const isUsable = !members.some(member => member.id === value); // e.target.name)
             setUsableId(isUsable);
             if (isUsable) {
-                setRedData('사용 가능한 아이디입니다.');
+                setReData('사용 가능한 아이디입니다.');
             } else {
-                setRedData('중복된 아이디입니다. 다시 시도하세요.');
+                setReData('중복된 아이디입니다. 다시 시도하세요.');
             }
         } catch (err) {
             console.log(err);
         };
-        return data;
+    }
+    // nickname중복확인
+    const [usableNickname, setUsableNickname] = useState(false)
+    const [nicknameData, setNicknameData] = useState("")
+
+    async function onChangeNickname(e) {
+        e.preventDefault();
+
+        const { name, value } = e.target;
+        setJoinMember({
+            ...joinMember,
+            [name]: value
+        });
+
+        try {
+            const response = await axios.get('/member/list');
+            const members = response.data;
+            const isUsable = !members.some(member => member.nickname === value); // e.target.name)
+            setUsableNickname(isUsable);
+            if (isUsable) {
+                setNicknameData('사용 가능한 닉네임입니다.');
+            } else {
+                setNicknameData('중복된 닉네임입니다. 다시 시도하세요.');
+            }
+        } catch (err) {
+            console.log(err);
+        };
     }
 
     return (
@@ -104,9 +137,10 @@ function Join() {
                 </label>
                 <label>
                     <h3>닉네임 ▼</h3>
-                    <input type="text" placeholder="닉네임을 지어주세요:)" className="signature-join-contents-2" name="nickname" value={joinMember.nickname} onChange={handleChange}></input>
+                    <input type="text" placeholder="닉네임을 지어주세요:)" className="signature-join-contents-2" name="nickname" value={joinMember.nickname} onChange={onChangeNickname}></input>
                     <p style={{ textAlign: 'right', marginTop: '5px' }}>{joinMember.nickname.length}/30</p>
                 </label>
+                <span>{nicknameData}</span>
                 {/* 
                 */}
                 <label>
@@ -138,142 +172,4 @@ function Join() {
         </div>
     )
 }
-
-
-
-// const [authObj, setAuthObj] = useState({
-//     id: '',
-//     password: '',
-//     name: '',
-//     nickname: '',
-//     birth: '',
-//     phoneNumber: '',
-//     gender: ''
-// });
-// const [nicknameCheck, setNicknameCheck] = useState(false);
-// const [checkError, setCheckError] = useState("");
-// const [error, setError] = useState("");
-
-// // 닉네임 중복검사 함수
-// const checkIfAvailable = async (value) => {
-//     const IDcheck = await 'http://192.168.0.4:8080/member/list'
-//         .collection("User_Profile")
-//         .where("nickname", "==", value)
-//         .get();
-//     if (IDcheck.docs.length === 0 && value.length > 0) {
-//         setCheckError("사용 가능한 닉네임입니다.");
-//         setNicknameCheck(true);
-//     }
-//     else {
-//         if (value.length > 0) setCheckError("이미 다른 사용자가 사용 중인 닉네임입니다.");
-//         else setCheckError("");
-//         setNicknameCheck(false);
-//     }
-// };
-
-// const onChange = async (event) => {
-//     const { target: { name, value } } = event;
-//     setAuthObj(authObj => ({ ...authObj, [name]: value }));
-
-//     if (name === "nickname") {
-//         await checkIfAvailable(value);
-//     }
-// };
-
-// const onSubmit = async (event) => {
-//     event.preventDefault();
-
-//     try {
-//         let data;
-
-//         if (!nicknameCheck) throw new Error('닉네임을 확인해주세요.');
-//         data = await authService.createUserWithEmailAndPassword(authObj.email, authObj.password);
-//         await dbService.collection("User_Profile").add({ displayName: authObj.displayName, uid: data.user.uid });
-
-//     } catch (error) {
-//         setError(error.message);
-//     }
-// };
-
-
-// return (
-//     <>
-//         <form className="centerContainer authForm" onSubmit={onSubmit}>
-//             <div>
-//                 <input
-//                     name="id"
-//                     type="text"
-//                     placeholder="Email Address"
-//                     required
-//                     value={authObj.id}
-//                     onChange={onChange}
-//                 />
-//             </div>
-//             <div>
-//                 <input
-//                     name="password"
-//                     type="password"
-//                     placeholder="Password (at least 6 characters)"
-//                     required
-//                     value={authObj.password}
-//                     onChange={onChange}
-//                 />
-//             </div>
-//             <div>
-//                 <input
-//                     name="name"
-//                     type="text"
-//                     placeholder="name"
-//                     required
-//                     value={authObj.name}
-//                     onChange={onChange}
-//                 />
-//             </div>
-//             <div>
-//                 <input
-//                     name="nickname"
-//                     type="text"
-//                     placeholder="nickname"
-//                     required
-//                     value={authObj.nickname}
-//                     onChange={onChange}
-//                 />
-//             </div>
-//             <div>
-//                 <input
-//                     name="birth"
-//                     type="text"
-//                     placeholder="birth"
-//                     required
-//                     value={authObj.birth}
-//                     onChange={onChange}
-//                 />
-//             </div>
-//             <div>
-//                 <input
-//                     name="phoneNumber"
-//                     type="text"
-//                     placeholder="phoneNumber"
-//                     required
-//                     value={authObj.phoneNumber}
-//                     onChange={onChange}
-//                 />
-//             </div>
-//             <div>
-//                 <input
-//                     name="gender"
-//                     type="text"
-//                     placeholder="gender"
-//                     required
-//                     value={authObj.gender}
-//                     onChange={onChange}
-//                 />
-//             </div>
-//             <span id="checkMess">{checkError}</span>
-//             <input type="submit" id="submitBtn" value="Sign Up" />
-//             <span id="error">{error}</span>
-//         </form>
-//     </>
-// );
-// };
 export default Join;

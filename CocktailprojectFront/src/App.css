@@ -287,5 +287,5 @@ img {
 }
 
 .ck-editor__editable:not(.ck-editor__nested-editable) {
-  min-height: 50px;
+  min-height: 500px;
 }
