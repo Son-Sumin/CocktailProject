@@ -58,27 +58,27 @@ function Join() {
         console.log(joinMember);
     };
 
-    // // 중복확인
-    // const [ttt, TttSet] = useState(false)
+    // Id중복확인
+    const [usableId, setUsableId] = useState(false)
+    const [reData, setRedData] = useState("")
 
-    // function onChange(e) {
-    //     e.preventDefault();
-    //     duplicationCheckAPI(usrtids)
-    //         .then((response) => {
-    //             console.log(response)
-    //             if (response === false) {
-    //                 TttSet(false)
-    //                 setUsableId(response);
-    //             }
-    //             else {
-    //                 TttSet(true)
-    //                 setUsableId(response);
-    //                 setUserid('');
-    //             }
-    //             console.log('중복체크');
-    //         })
-    // }
-
+    async function onChangeId(e, app) {
+        e.preventDefault();
+        try {
+            const response = await axios.get('/member/list');
+            const members = response.data;
+            const isUsable = !members.some(member => member.id === app);
+            setUsableId(isUsable);
+            if (isUsable) {
+                setRedData('사용 가능한 아이디입니다.');
+            } else {
+                setRedData('중복된 아이디입니다. 다시 시도하세요.');
+            }
+        } catch (err) {
+            console.log(err);
+        };
+        return data;
+    }
 
     return (
         <div className="signature-join-container">
@@ -88,9 +88,10 @@ function Join() {
             <form className="signature-join-contents" onSubmit={handleJoin}>
                 <label>
                     <h3>아이디 ▼</h3>
-                    <input type="text" placeholder="아이디를 입력해주세요:)" className="signature-join-contents-2" name="id" value={joinMember.id} onChange={handleChange}></input>
+                    <input type="text" placeholder="아이디를 입력해주세요:)" className="signature-join-contents-2" name="id" value={joinMember.id} onChange={onChangeId}></input>
                     <p style={{ textAlign: 'right', marginTop: '5px' }}>{joinMember.id.length}/30</p>
                 </label>
+                <span>{reData}</span>
                 <label>
                     <h3>패스워드 ▼</h3>
                     <input type="password" placeholder="패스워드를 입력해주세요:)" className="signature-join-contents-2" name="password" value={joinMember.password} onChange={handleChange}></input>
@@ -107,9 +108,6 @@ function Join() {
                     <p style={{ textAlign: 'right', marginTop: '5px' }}>{joinMember.nickname.length}/30</p>
                 </label>
                 {/* 
-                <span onChange={onChange}>
-                    {ttt == false ? <p>사용가능</p> : <p>이미 존재함</p>}
-                </span>
                 */}
                 <label>
                     <h3>생년월일 ▼</h3>
