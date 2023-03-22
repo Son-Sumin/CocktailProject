@@ -286,3 +286,6 @@ img {
   margin-left: 25%;
 }
 
+.ck-editor__editable:not(.ck-editor__nested-editable) {
+  min-height: 50px;
+}

@@ -43,6 +43,7 @@ public class BoardController {
 	LikeBoardService likeBoardService;
 	
 //	게시글 리스트
+	@CrossOrigin(origins = "*")
 	@GetMapping("/board/list")
 	public List<Board> boardList(Model model) {
 		List<Board> boardList = boardService.boardList();
@@ -68,6 +69,7 @@ public class BoardController {
 	}
 
 //	게시글 보기
+	@CrossOrigin(origins = "*")
 	@GetMapping("/board/view/{no}")
 	public Board boardView(Model model, @PathVariable("no") Long no) {
 		model.addAttribute("boardList", boardService.boardView(no));
@@ -76,6 +78,7 @@ public class BoardController {
 	}
 
 //	댓글쓰기
+	@CrossOrigin(origins = "*")
 	@PostMapping("/board/view/{no}/review/write")
 	public void reviewWrite(@PathVariable("no") Long no, @RequestBody ReviewBoard reviewBoard) {
 		reviewBoard.setNo(null);
@@ -84,6 +87,7 @@ public class BoardController {
 	}
 
 //	댓글삭제
+	@CrossOrigin(origins = "*")
 	@GetMapping("/board/view/{no}/review/delete/{bno}")
 	public void reivewDelete(@PathVariable("no") Long no, @PathVariable("bno") Long bno, ReviewBoard reviewBoard) {
 		reviewBoardService.reviewDelete(bno);
@@ -114,12 +118,14 @@ public class BoardController {
 	}
 
 //	게시글삭제
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/board/delete/{no}")
 	public void boardDelete(@PathVariable("no") Long no) {
 		boardService.boardDelete(no);
 	}
 	
 //	좋아요
+	@CrossOrigin(origins = "*")
 	@PostMapping("/board/like/{no}")
 	public void addLike(@PathVariable("no") Long no){
 		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
@@ -128,6 +134,7 @@ public class BoardController {
 	}
 
 //	이미지 삭제
+//	@CrossOrigin(origins = "*")
 //	@GetMapping("/board/{no}/img/delete/{bno}")
 //	public void imgDelete(@PathVariable("no") Long no, @PathVariable("bno") Long bno) {
 //		boardImageService.imgDelete(bno);

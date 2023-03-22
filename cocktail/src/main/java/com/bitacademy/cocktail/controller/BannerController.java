@@ -32,6 +32,7 @@ public class BannerController {
 	private final BannerRepository bannerRepository;
 	
 	/* 배너 리스트 */
+	@CrossOrigin(origins = "*")
 	@GetMapping({"", "/list"})
 	public List<Banner> listBanner() {
 		return bannerRepository.findAll();
@@ -72,6 +73,7 @@ public class BannerController {
 	}
 	
 	/* 배너 수정 */
+	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}")
 	public void modifyBanner(@PathVariable("no") Long no, @ModelAttribute Banner form, MultipartFile file) throws Exception {
 		Banner banner = bannerRepository.findByNo(no);

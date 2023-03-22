@@ -4,7 +4,6 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import React, { useRef, useState } from 'react'
-import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 // import useFetch from './useFetch';
 import axios from "axios";
@@ -17,6 +16,7 @@ function writing({ setDesc, desc, setImage }, props) {
     // const noData = Math.max.apply(null, Data1.map(function (v) { return v.no })) + 1;
     const caRef = useRef(null);
     const tiRef = useRef(null);
+    const data = useRef(null);
     // const hitRef = useRef(null);
     // const rdRef = useRef(null, Date());
     // const faRef = useRef(null);
@@ -30,11 +30,11 @@ function writing({ setDesc, desc, setImage }, props) {
         setContentsData(data);
     };
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
         if (confirm("저장 하시겠습니까?")) {
             //글 등록
-            fetch(`/board/write`, {
+             await fetch(`/board/write`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -46,6 +46,18 @@ function writing({ setDesc, desc, setImage }, props) {
                     "contents": contentsData,
                 }),
             })
+            // const resNo = response.data.no
+            //사진 등록
+            // fetch(`/board/write/${resNo}/file`, {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         "Authorization": `Bearer ${token}`,
+            //     },
+            //     body: JSON.stringify({
+            //         "imgs": data.current.value,
+            //     }),
+            // })
                 .then(res => {
                     if (res.ok) {
                         alert("저장이 완료되었습니다.");
@@ -56,66 +68,34 @@ function writing({ setDesc, desc, setImage }, props) {
                 })
                 .catch(error => console.error(`저장 중 오류가 발생했습니다: ${error}`));
 
-            /*  //사진 등록
-             fetch(`/board/write/image`, {
-                 method: "POST",
-                 headers: {
-                     "Content-Type": "application/json",
-                     "Authorization": `Bearer ${token}`,
-                 },
-                 body: JSON.stringify({
-                     "imgs": imgs.current.value,
-                 }),
-             })
-                 .then(res => {
-                     if (res.ok) {
-                         alert("저장이 완료되었습니다.");
-                         location.href = '/board'; // 브라우저 캐시를 비우기 위해 페이지를 다시 로드하세요.
-                     } else {
-                         throw new Error(`${res.status} (${res.statusText})`);
-                     }
-                 })
-                 .catch(error => console.error(`저장 중 오류가 발생했습니다: ${error}`)); */
-
         } else {
             alert("취소되었습니다.");
         }
     }
 
     //ㅅㅅㅅ
-    const [flag, setFlag] = useState(false);
-    const imgLink = "http://localhost:5000/images/"
-
-    const customUploadAdapter = (loader) => { // (2)
-        return {
-            upload() {
-                return new Promise((resolve, reject) => {
-                    const data = new FormData();
-                    loader.file.then((file) => {
-                        data.append("name", file.name);
-                        data.append("file", file);
-
-                        axios.post('/board/write', data)
-                            .then((res) => {
-                                if (!flag) {
-                                    setFlag(true);
-                                    setImage(res.data.filename);
-                                }
-                                resolve({
-                                    default: `${imgLink}/${res.data.filename}`
-                                });
-                            })
-                            .catch((err) => reject(err));
-                    })
-                })
-            }
-        }
+    const customUploadAdapter = (loader) => {
+        return new Promise((resolve, reject) => {
+            const data = new FormData();
+            loader.file.then((file) => {
+                data.append("name", file.name);
+                data.append("file", file);
+                resolve(window.URL.createObjectURL(data));
+            })
+        });
     }
-    function uploadPlugin(editor) { // (3)
+
+
+
+    function uploadPlugin(editor) {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
             return customUploadAdapter(loader);
         }
     }
+    // //에디터 객체 생성 후 uploadPlugin 함수를 호출하여 플러그인 추가
+    // const editor = new Editor({...});
+    // uploadPlugin(editor);
+
     return (
         <>
             <div className="board-container">
@@ -123,25 +103,20 @@ function writing({ setDesc, desc, setImage }, props) {
                     <h1 style={{ margin: '0px' }}>게시판 글쓰기</h1>
                 </div>
                 <div className="signature-join-contents">
-                    <div className="board-insert-title">
-                        <div>
-                            <tr>
-                                <td >제목</td>
-                                <td ><input type="text" ref={tiRef} style={{ width: "100%" }} /></td>
-                            </tr>
-                            <tr>
-                                <td>category</td>
-                                <td>
-                                    <select
-                                        id="sorting"
-                                        style={{ width: "100%", height: "100%" }}
-                                        defaultValue="random" ref={caRef}
-                                    >
-                                        <option value="random">자유</option>
-                                        <option value="question">Q&A</option>
-                                    </select>
-                                </td>
-                            </tr>
+                    <div>
+                        <div style={{ display: "flex", height: "45px" }}>
+                            <select
+                                id="sorting"
+                                style={{ width: "15%", height: "100%" }}
+                                defaultValue="random" ref={caRef}
+                            >
+                                <option value="random">자유</option>
+                                <option value="question">Q&A</option>
+                            </select>
+                            {/* </div>
+
+                        <div> */}
+                            <input ref={tiRef} style={{ flexGrow: "1" }} />
                         </div>
                         <br />
                         <div>
@@ -170,10 +145,10 @@ function writing({ setDesc, desc, setImage }, props) {
                         </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px', columnGap: '2%' }}>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
 
                         <form onSubmit={onSubmit}>
-                            <button className="signature-contents-btn"><a href='/board'>취소</a></button>
+                            <Link to='/board'><button className="signature-contents-btn">취소</button></Link>
                             <button className="signature-contents-btn">등록</button>
                         </form>
 
