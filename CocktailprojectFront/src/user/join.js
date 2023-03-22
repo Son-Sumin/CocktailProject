@@ -63,12 +63,19 @@ function Join(props) {
     const [usableId, setUsableId] = useState(false)
     const [reData, setRedData] = useState("")
 
-    async function onChangeId(e, app) {
+    async function onChangeId(e) {
         e.preventDefault();
+
+        const { name, value } = e.target;
+        setJoinMember({
+            ...joinMember,
+            [name]: value
+        });
+        
         try {
             const response = await axios.get('/member/list');
             const members = response.data;
-            const isUsable = !members.some(member => member.id === app);
+            const isUsable = !members.some(member => member.id === e.target.value);
             setUsableId(isUsable);
             if (isUsable) {
                 setRedData('사용 가능한 아이디입니다.');
@@ -78,7 +85,6 @@ function Join(props) {
         } catch (err) {
             console.log(err);
         };
-        return data;
     }
 
     return (
