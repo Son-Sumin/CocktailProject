@@ -7,6 +7,7 @@ import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-
 
 function Signature(props) {
     const {signature, isLoggedIn} = props;
+    const signatureBannerPicture = process.env.PUBLIC_URL + '/Signature.PNG';
 
     const [eachSignature, setEachSignature] = useState([]);
 
@@ -16,12 +17,13 @@ function Signature(props) {
 
     return (
     <>
-    <div className="banner">
-        <div className="banner-contents-container">
-            <div style={{marginTop:'22%'}}>누구나 참여할 수 있는 창작레시피 게시판</div>
-            <div style={{fontSize:'30px'}}>너만의 시그니처 칵테일을 만들어봐!!</div>
+    <div className="banner" style={{position:'relative'}}>
+        <img src={signatureBannerPicture} style={{width:'100%'}} alt="Signature banner" />
+        <div className="banner-contents-container" style={{position:'absolute', top:'50%', left:'50%', transform: 'translate(-50%, -50%)'}}>
+            <div style={{marginTop:'22%', fontSize:'20px'}}>누구나 참여할 수 있는 창작레시피 게시판</div>
+            <div style={{fontSize:'35px', fontWeight:'600'}}>너만의 시그니처 칵테일을 만들어봐!!</div>
             <Link to={isLoggedIn ? "/signature/join" : "/login"}>
-                <div><button className="banner-contents-btn">참가신청 바로가기</button></div>
+                <button className="banner-contents-btn">참가신청 바로가기</button>
             </Link>
         </div>
     </div>

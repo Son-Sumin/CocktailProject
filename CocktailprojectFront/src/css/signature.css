@@ -1,13 +1,15 @@
 /* ---------------- signature-banner ------------------ */
 .banner-contents-container {
-    width: 500px;
-    height: 400px;
+    width: 650px;
+    height: 500px;
     text-align: center;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 90px 1fr;
+    row-gap: 30px;
     margin: auto;
     position: relative;
     top: 12%;
+    z-index: 1;
 }
 
 .banner-contents-btn {
@@ -19,8 +21,14 @@
     border-radius: 10px;
     font-weight: 600;
     color: rgb(110, 100, 110);
-    z-index: 1;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.banner-contents-btn:hover {
+    background-color: rgb(242, 92, 92);
+    border: 1px solid rgb(242, 92, 92);
+    color: white;
 }
 
 /* ---------------- signature-list ------------------ */

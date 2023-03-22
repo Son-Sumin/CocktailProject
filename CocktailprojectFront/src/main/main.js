@@ -20,7 +20,7 @@ function Main(props) {
 
     // 배너설정
     const settings = {
-        dots: true,
+        // dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -69,7 +69,7 @@ function Main(props) {
                 {
                 eachBanner.map(function(a,i) {
                     return (
-                        <div className='banner'>
+                        <div className='banner' key={i}>
                             <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} alt={`Image${i}`} key={i} style={{width:'100%'}}/>
                         </div>
                     )
