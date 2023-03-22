@@ -17,7 +17,7 @@ function boardIn(props) {
 
     useEffect(() => {
         axios
-            .get(`/board/view/${boardNo}`)
+            .get(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}`)
             .then((res) => {
                 const data0 = res.data;
                 console.log("#########: ", data0);
@@ -36,7 +36,7 @@ function boardIn(props) {
     const onRemove = (event) => {
         event.preventDefault();
         if (confirm("정말 삭제합니까?")) {
-            fetch(`/board/delete/${boardNo}`, {
+            fetch(`${process.env.REACT_APP_ENDPOINT}/board/delete/${boardNo}`, {
                 method: "DELETE"
             })
                 .then(res => {
@@ -59,7 +59,7 @@ function boardIn(props) {
     function onSubmit(e) {
         e.preventDefault();
         if (confirm("댓글을 입력 하시겠습니까?")) {
-            fetch(`/board/view/${boardNo}/review/write`, {
+            fetch(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}/review/write`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -91,8 +91,8 @@ function boardIn(props) {
     const onRemove2 = (event, app) => {
         event.preventDefault();
         if (confirm("정말 삭제합니까?")) {
-            // fetch(`/board/view/${boardNo}/review/delete/${app.no}`, {
-            fetch(`/board/view/${boardNo}/review/delete/${app.no}`, {
+            // fetch(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}/review/delete/${app.no}`, {
+            fetch(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}/review/delete/${app.no}`, {
                 method: "DELETE"
             })
                 .then(res => {
@@ -128,13 +128,13 @@ function boardIn(props) {
     const handleLikeClick = async (e) => {
         // 로그인 시에만 click이벤트 작동
         if (isLoggedIn) {
-            await axios.post(`/cocktail/like/${boardNo}`, {}, {
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/cocktail/like/${boardNo}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }).then(() => {
                 // Click이벤트 발생 시, 하트상태 반전을 위한 데이버를 서버에서 불러옴
-                axios.get(`/cocktail/isliked/${boardNo}`, {
+                axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${boardNo}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -153,7 +153,7 @@ function boardIn(props) {
             });
 
             // Click이벤트 발생 시, 실시간으로 숫자를 반영
-            axios.get(`/cocktail/countliked/${boardNo}`)
+            axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${boardNo}`)
                 .then((res) => {
                     const counted = res.data;
                     setCountLiked(counted);
@@ -170,7 +170,7 @@ function boardIn(props) {
 
     // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
     useEffect(() => {
-        axios.get(`/cocktail/isliked/${boardNo}`, {
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${boardNo}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -186,7 +186,7 @@ function boardIn(props) {
 
     // 렌더링 할때마다, 실시간으로 숫자를 반영
     useEffect(() => {
-        axios.get(`/cocktail/countliked/${boardNo}`)
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${boardNo}`)
             .then((res) => {
                 const counted = res.data;
                 setCountLiked(counted);

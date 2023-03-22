@@ -4,7 +4,7 @@ import '../App.css';
 import '../css/cocktailandingredient.css';
 import '../css/signature.css';
 import axios from 'axios';
-import { Routes, Route, Link, useParams, useNavigate, Outlet } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function IngredientDetail(props) {
     const ingredient = props.ingredient;

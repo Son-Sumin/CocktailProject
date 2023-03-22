@@ -44,7 +44,7 @@ function Main(props) {
         formData.append('file', file);
 
         try {
-            await axios.post('/banner/add', formData, {
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/banner/add`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -70,7 +70,7 @@ function Main(props) {
                 eachBanner.map(function(a,i) {
                     return (
                         <div className='banner'>
-                            <img src={`${a.filepath}`} alt={`Image${i}`} key={i} style={{width:'100%'}}/>
+                            <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} alt={`Image${i}`} key={i} style={{width:'100%'}}/>
                         </div>
                     )
                 })

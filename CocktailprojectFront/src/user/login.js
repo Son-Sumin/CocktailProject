@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useNavigate} from "react-router-dom";
 
 function Login(props) {
-    const { setIsLoggedIn, endpoint } = props;
+    const { setIsLoggedIn } = props;
 
     const [id, setUserId] = useState('');
     const [password, setPassword] = useState('');
@@ -15,7 +15,7 @@ function Login(props) {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${endpoint}/member/login`, { 
+            const response = await axios.post(`${process.env.REACT_APP_ENDPOINT}/member/login`, { 
                 id: id, 
                 password: password });
             const accessToken = response.data.accessToken;

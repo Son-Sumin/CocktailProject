@@ -20,13 +20,13 @@ function CocktailDetail(props) {
     const handleLikeClick = async (e) => {
         // 로그인 시에만 click이벤트 작동
         if (isLoggedIn) {
-            await axios.post(`/cocktail/like/${no}`, {}, {
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/cocktail/like/${no}`, {}, {
                 headers: {
                   Authorization: `Bearer ${token}`
                 }
             }).then(() => {
                 // Click이벤트 발생 시, 하트상태 반전을 위한 데이버를 서버에서 불러옴
-                axios.get(`/cocktail/isliked/${no}`, {
+                axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${no}`, {
                     headers: {
                       Authorization: `Bearer ${token}`
                     }
@@ -45,7 +45,7 @@ function CocktailDetail(props) {
             });
     
             // Click이벤트 발생 시, 실시간으로 숫자를 반영
-            axios.get(`/cocktail/countliked/${no}`)
+            axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${no}`)
             .then((res) => {
                 const counted = res.data;
                 setCountLiked(counted);
@@ -62,7 +62,7 @@ function CocktailDetail(props) {
 
     // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
     useEffect(() => {
-        axios.get(`/cocktail/isliked/${no}`, {
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${no}`, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -78,7 +78,7 @@ function CocktailDetail(props) {
 
     // 렌더링 할때마다, 실시간으로 숫자를 반영
     useEffect(() => {
-        axios.get(`/cocktail/countliked/${no}`)
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${no}`)
         .then((res) => {
             const counted = res.data;
             setCountLiked(counted);
@@ -138,7 +138,6 @@ function CocktailDetail(props) {
                 <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
                     <div style={{marginBottom:'50px'}}>
                         <span style={{fontSize:'20px', fontWeight:'bold'}}>재료정보 ▼</span>
-                        <button className="cocktail-ingredient-btn"> ↻ 단위변경</button>
                     </div>
                     <div className="cocktail-ingredient-recipe-box">
                         {

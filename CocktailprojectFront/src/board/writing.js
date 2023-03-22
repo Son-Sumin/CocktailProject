@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 
 function writing({ setDesc, desc, setImage }, props) {
-    // let Data1 = useFetch("http://localhost:5030/board")
+    // let Data1 = useFetch(`${process.env.REACT_APP_ENDPOINT}/board`)
     // const Data1 = props.board;
     const token = props.token;
 
@@ -34,7 +34,7 @@ function writing({ setDesc, desc, setImage }, props) {
         e.preventDefault();
         if (confirm("저장 하시겠습니까?")) {
             //글 등록
-             await fetch(`/board/write`, {
+             await fetch(`${process.env.REACT_APP_ENDPOINT}/board/write`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,7 +48,7 @@ function writing({ setDesc, desc, setImage }, props) {
             })
             // const resNo = response.data.no
             //사진 등록
-            // fetch(`/board/write/${resNo}/file`, {
+            // fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resNo}/file`, {
             //     method: "POST",
             //     headers: {
             //         "Content-Type": "application/json",

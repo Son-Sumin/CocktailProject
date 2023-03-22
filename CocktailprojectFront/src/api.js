@@ -17,7 +17,7 @@ function ScrollToTop() {
 // 칵테일 JSON파일
 async function getCocktail(setCocktail) {
     const cocktailData = await axios.get(
-        '/cocktail'
+        `${process.env.REACT_APP_ENDPOINT}/cocktail`
     );
     setCocktail(cocktailData.data);
 }
@@ -25,7 +25,7 @@ async function getCocktail(setCocktail) {
 // 재료 JSON파일
 async function getIngredient(setIngredient) {
     const ingredientData = await axios.get(
-        '/ingredient'
+        `${process.env.REACT_APP_ENDPOINT}/ingredient`
     );
     setIngredient(ingredientData.data);
 }
@@ -33,7 +33,7 @@ async function getIngredient(setIngredient) {
 // 사진 JSON파일
 async function getBanner(setBanner) {
     const bannerData = await axios.get(
-        '/banner'
+        `${process.env.REACT_APP_ENDPOINT}/banner`
     );
     setBanner(bannerData.data);
 }
@@ -41,7 +41,7 @@ async function getBanner(setBanner) {
 // 게시판 JSON파일
 async function getBoard(setBoard) {
     const boardData = await axios.get(
-        '/board/list'
+        `${process.env.REACT_APP_ENDPOINT}/board/list`
     );
     setBoard(boardData.data);
 }
@@ -49,7 +49,7 @@ async function getBoard(setBoard) {
 // 시그니처 JSON파일
 async function getSignature(setSignature) {
     const signatureData = await axios.get(
-        '/signature'
+        `${process.env.REACT_APP_ENDPOINT}/signature`
     );
     setSignature(signatureData.data);
 }

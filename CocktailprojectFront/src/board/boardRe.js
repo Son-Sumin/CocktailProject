@@ -41,7 +41,7 @@ function boardRe(props) {
     function onSubmit(e) {
         e.preventDefault();
         if (confirm("저장 하시겠습니까?")) {
-            fetch(`/board/update/${boardNo}`, {
+            fetch(`${process.env.REACT_APP_ENDPOINT}/board/update/${boardNo}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
