@@ -48,14 +48,17 @@ public class Board extends BaseTimeEntity {
 	
 	@OneToMany(mappedBy="board", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"board"})
+	@Builder.Default
 	private List<ReviewBoard> reviews = new ArrayList<>();
 	
 	@OneToMany(mappedBy="board", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"board"})
+	@Builder.Default
 	private List<LikeBoard> likeBoard = new ArrayList<>();
 	
 	@OneToMany(mappedBy="board", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonIgnoreProperties({"board"})
+	@Builder.Default
 	private List<BoardImage> imgs = new ArrayList<>();
 	
 }

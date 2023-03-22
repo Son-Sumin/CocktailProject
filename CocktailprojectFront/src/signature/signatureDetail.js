@@ -1,5 +1,7 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
+import '../App.css';
+import '../css/cocktailandingredient.css';
 import { useParams } from 'react-router-dom';
 
 function SignatureDetail(props) {
@@ -22,9 +24,9 @@ function SignatureDetail(props) {
                                 {
                                 // a.cocktailImages.map(function(a, i) {
                                 //     return (
-                                        <div className="cocktail-banner-box-minipiturebox">
+                                        <div className="cocktail-banner-box-minipicturebox">
                                             {/* {a.url} */}
-                                            <img className="cocktail-banner-box-minipiture" src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='420px' height='400px'></img>
+                                            <img className="cocktail-banner-box-minipicture" src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='420px' height='400px'></img>
                                         </div>
                                 //     )
                                 // })
@@ -43,9 +45,11 @@ function SignatureDetail(props) {
                             </div>
                             <div style={{color:'white'}}>라모스 진피즈의 모습을 간단하게 흉내내고, 색을 조금 바꾼 칵테일입니다.</div>
                             <div className="cocktail-banner-box-contents-isalcohol">도수 : 알콜</div>
-                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'5%'}}>
-                                <div className="cocktail-banner-box-contents-favorite">❤</div>
-                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'0px'}}>5</div>
+                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'3%'}}>
+                                <div className="cocktail-banner-box-contents-favorite" >
+                                    ♥
+                                </div>
+                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'-15px'}}>5</div>
                             </div>
                         </div>
                     </div>
@@ -58,7 +62,6 @@ function SignatureDetail(props) {
         <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
             <div style={{marginBottom:'50px'}}>
                 <span style={{fontSize:'20px', fontWeight:'bold'}}>재료정보 ▼</span>
-                <button className="cocktail-ingredient-btn"> ↻ 단위변경</button>
             </div>
             <div className="cocktail-ingredient-recipe-box">
                 <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 400px', padding:'2% 20%'}}>
