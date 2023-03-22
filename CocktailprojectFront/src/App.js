@@ -30,6 +30,10 @@ import BoardRe from "./board/boardRe";
 
 
 function App() {
+
+  const endpoint = process.env.REACT_APP_ENDPOINT;
+  console.log("엔포: " + endpoint);
+
   // 서버에서 받아온 토큰
   const token = localStorage.getItem('accessToken');
 
@@ -96,7 +100,7 @@ function App() {
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
-    axios.get('/member/info', {
+    axios.get(`${endpoint}/member/info`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -154,8 +158,8 @@ function App() {
           <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} token={token} />} 
         <Routes>
           <Route path="/" element={<Main banner={banner} />}></Route>
-          <Route path="/join" element={<Join />}></Route>
-          <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
+          <Route path="/join" element={<Join endpoint={endpoint} />}></Route>
+          <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} endpoint={endpoint} />}></Route>
           <Route path="/mypage" element={<MyPage user={user} />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} 

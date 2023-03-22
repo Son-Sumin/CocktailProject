@@ -3,7 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-function Join() {
+function Join(props) {
+    const { endpoint } = props;
     const navigate = useNavigate();
 
     // JSON데이터를 저장할 객체
@@ -43,7 +44,7 @@ function Join() {
 
         // 엔드포인트에 JSON파일 전달
         try {
-            const res = await axios.post('/member/join', formData, {
+            const res = await axios.post(`${endpoint}/member/join`, formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

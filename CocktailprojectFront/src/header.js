@@ -161,7 +161,8 @@ function Header(props) {
       <div style={{ gridColumn: '6/7', position: 'relative' }}>
         <img src={search} style={{ position: 'absolute', right: '5px', top: '4.5px', cursor: 'pointer' }}></img>
         <form onSubmit={onSubmit}>
-          <input type="text" className='header-search' value={inputValue} onChange={handleChange} placeholder='만들고 싶은 칵테일 또는 재료를 검색하세요 :)'></input>
+          <input type="text" className='header-search' value={inputValue} spellCheck="false"
+            onChange={handleChange} placeholder='만들고 싶은 칵테일 또는 재료를 검색하세요 :)'></input>
         </form>
       </div>
     </div>
