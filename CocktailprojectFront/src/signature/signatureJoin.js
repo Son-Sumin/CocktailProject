@@ -182,19 +182,19 @@ function SignatureJoin(props) {
 
         // 엔드포인트에 JSON파일 전달
         try {
-            const res01 = await axios.post('/signature/write', formData01);
+            const res01 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write`, formData01);
             // console.log(res.data);
             // navigate("/signature");
 
             const postNo = res01.data.no;
             console.log("postNo: " + postNo);
         
-            const res02 = await axios.post(`/signature/write/${postNo}/recipe`, formData02);
+            const res02 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData02);
             
             console.log("formData02: " + JSON.stringify(res02.data));
             console.log("eachIngredientNo: " + JSON.stringify(ingredients));
 
-            const res03 = await axios.post(`/signature/write/${postNo}/recipe`, formData03);
+            const res03 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData03);
             
             console.log("formData03: " + JSON.stringify(res03.data));
             // console.log("eachIngredientNo: " + JSON.stringify(ingredients));
@@ -205,7 +205,7 @@ function SignatureJoin(props) {
         }
 
         try {
-            await axios.post(`/signature/write/${no}/file`, formData03, {
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${no}/file`, formData03, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 }

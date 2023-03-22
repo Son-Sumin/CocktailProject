@@ -30,9 +30,7 @@ import BoardRe from "./board/boardRe";
 
 
 function App() {
-
-  const endpoint = process.env.REACT_APP_ENDPOINT;
-  console.log("엔포: " + endpoint);
+  console.log("엔포: " + process.env.REACT_APP_ENDPOINT);
 
   // 서버에서 받아온 토큰
   const token = localStorage.getItem('accessToken');
@@ -100,27 +98,29 @@ function App() {
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
-    axios.get(`${endpoint}/member/info`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(response => {
-      // 유저 정보를 처리
-      setUser({
-        name: response.data.name,
-        nickname: response.data.nickname,
-        id: response.data.id,
-        phoneNumber: response.data.phoneNumber,
-        gender: response.data.gender,
-        likeCocktail: response.data.likeCocktail,
-      })
-
-      console.log("로그인여부: " + isLoggedIn);
-    }).catch(error => {
-        // 에러를 처리
-        console.error(error);
-      });
-  }, [isLiked, token]);
+    if (isLoggedIn) {
+      axios.get(`${process.env.REACT_APP_ENDPOINT}/member/info`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        // 유저 정보를 처리
+        setUser({
+          name: response.data.name,
+          nickname: response.data.nickname,
+          id: response.data.id,
+          phoneNumber: response.data.phoneNumber,
+          gender: response.data.gender,
+          likeCocktail: response.data.likeCocktail,
+        })
+  
+        console.log("로그인여부: " + isLoggedIn);
+      }).catch(error => {
+          // 에러를 처리
+          console.error(error);
+        });
+    }
+  }, [isLiked, token, isLoggedIn]);
 
   // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {
@@ -158,8 +158,8 @@ function App() {
           <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} token={token} />} 
         <Routes>
           <Route path="/" element={<Main banner={banner} />}></Route>
-          <Route path="/join" element={<Join endpoint={endpoint} />}></Route>
-          <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} endpoint={endpoint} />}></Route>
+          <Route path="/join" element={<Join />}></Route>
+          <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
           <Route path="/mypage" element={<MyPage user={user} />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} 
