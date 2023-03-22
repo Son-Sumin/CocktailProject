@@ -34,7 +34,7 @@ function writing({ setDesc, desc, setImage }, props) {
         e.preventDefault();
         if (confirm("저장 하시겠습니까?")) {
             //글 등록
-             await fetch(`/board/write`, {
+            const response = await fetch(`/board/write`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -46,18 +46,18 @@ function writing({ setDesc, desc, setImage }, props) {
                     "contents": contentsData,
                 }),
             })
-            // const resNo = response.data.no
+            const resNo = response.data.no
             //사진 등록
-            // fetch(`/board/write/${resNo}/file`, {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //         "Authorization": `Bearer ${token}`,
-            //     },
-            //     body: JSON.stringify({
-            //         "imgs": data.current.value,
-            //     }),
-            // })
+            fetch(`/board/write/${resNo}/file`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    "imgs": data.current.value,
+                }),
+            })
                 .then(res => {
                     if (res.ok) {
                         alert("저장이 완료되었습니다.");
@@ -73,25 +73,35 @@ function writing({ setDesc, desc, setImage }, props) {
         }
     }
 
-    //ㅅㅅㅅ
+    //파일업로드
     const customUploadAdapter = (loader) => {
-        return new Promise((resolve, reject) => {
-            const data = new FormData();
-            loader.file.then((file) => {
-                data.append("name", file.name);
-                data.append("file", file);
-                resolve(window.URL.createObjectURL(data));
-            })
-        });
+        return {
+            upload: () => {
+                return new Promise((resolve, reject) => {
+                    const data = new FormData();
+                    loader.file.then((file) => {
+                        data.append("files", file);
+                        axios.post(`/board/write/1/file`,data)
+                            .then((res) => {
+                                resolve({
+                                    default: `/board/view/1`
+                                });
+                            })
+                            .catch((err) => {
+                                reject(err);
+                            });
+                    });
+                });
+            }
+        };
     }
-
-
 
     function uploadPlugin(editor) {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
             return customUploadAdapter(loader);
         }
     }
+
     // //에디터 객체 생성 후 uploadPlugin 함수를 호출하여 플러그인 추가
     // const editor = new Editor({...});
     // uploadPlugin(editor);
@@ -123,7 +133,7 @@ function writing({ setDesc, desc, setImage }, props) {
                             <label>내용</label>
                             <CKEditor
                                 editor={ClassicEditor}
-                                config={{ // (4)
+                                config={{
                                     extraPlugins: [uploadPlugin]
                                 }}
                                 onChange={handleEditorChange}
