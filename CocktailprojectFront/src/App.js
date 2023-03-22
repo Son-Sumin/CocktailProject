@@ -98,27 +98,29 @@ function App() {
 
   // 로그인 한 유저정보 받아옴
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/member/info`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(response => {
-      // 유저 정보를 처리
-      setUser({
-        name: response.data.name,
-        nickname: response.data.nickname,
-        id: response.data.id,
-        phoneNumber: response.data.phoneNumber,
-        gender: response.data.gender,
-        likeCocktail: response.data.likeCocktail,
-      })
-
-      console.log("로그인여부: " + isLoggedIn);
-    }).catch(error => {
-        // 에러를 처리
-        console.error(error);
-      });
-  }, [isLiked, token]);
+    if (isLoggedIn) {
+      axios.get(`${process.env.REACT_APP_ENDPOINT}/member/info`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => {
+        // 유저 정보를 처리
+        setUser({
+          name: response.data.name,
+          nickname: response.data.nickname,
+          id: response.data.id,
+          phoneNumber: response.data.phoneNumber,
+          gender: response.data.gender,
+          likeCocktail: response.data.likeCocktail,
+        })
+  
+        console.log("로그인여부: " + isLoggedIn);
+      }).catch(error => {
+          // 에러를 처리
+          console.error(error);
+        });
+    }
+  }, [isLiked, token, isLoggedIn]);
 
   // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {

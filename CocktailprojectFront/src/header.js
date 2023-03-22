@@ -16,11 +16,11 @@ function HeaderModal(props) {
   const handleLogout = () => {
     handleModalClose;
 
-    axios.post('/member/logout', {}, {
+    axios.post(`${process.env.REACT_APP_ENDPOINT}/member/logout`, {}, {
       headers: {
         Authorization: `${token}`
       }
-    }).then(res => {
+    }).then(() => {
       console.log("로그아웃 서버전달 성공!");
     }).catch(() => {
       console.log("로그아웃 서버전달 실패ㅠㅠ");
