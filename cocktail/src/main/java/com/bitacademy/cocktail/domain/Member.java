@@ -66,34 +66,42 @@ public class Member implements UserDetails {
 
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"member", "reviews", "likeBoard", "imgs"})
+	@Builder.Default
 	private List<Board> boards = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"member", "board"})
+	@Builder.Default
 	private List<ReviewBoard> reviews = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"board"})
+	@Builder.Default
 	private List<LikeBoard> likeBoard = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"member"})
+	@Builder.Default
 	private List<LikeCocktail> likeCocktail = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"member", "reviewSignatures", "signatureImages", "signatureRecipes"})
+	@Builder.Default
 	private List<Signature> signatures = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"member", "signature"})
+	@Builder.Default
 	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"signature"})
+	@Builder.Default
 	private List<LikeSignature> likeSignature = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"member"})
+	@Builder.Default
 	private List<LikePlace> likePlace = new ArrayList<>();
 	
     @PrePersist

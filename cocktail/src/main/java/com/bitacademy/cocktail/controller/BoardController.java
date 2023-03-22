@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.Board;
-import com.bitacademy.cocktail.domain.BoardImage;
 import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.domain.ReviewBoard;
 import com.bitacademy.cocktail.jwt.SecurityUtil;
@@ -63,9 +63,9 @@ public class BoardController {
 	// 게시글 파일업로드
 	@CrossOrigin(origins = "*")
 	@PostMapping("/board/write/{no}/file")
-	public void boardFileUpload(@PathVariable("no") Long no, @RequestBody BoardImage boardImage , List<MultipartFile> files) throws Exception {
+	public void boardFileUpload(@PathVariable("no") Long no, @RequestParam List<MultipartFile> files) throws Exception {
 		Board board = boardService.boardView(no);
-		boardImageService.saveFile(board, boardImage, files);
+		boardImageService.saveFile(board, files);
 	}
 
 //	게시글 보기
@@ -109,12 +109,12 @@ public class BoardController {
 	// 게시글 파일 수정
 	@CrossOrigin(origins = "*")
 	@PutMapping("/board/update/{no}/file")
-	public void boardFileUpdate(@PathVariable("no") Long no, @RequestBody BoardImage boardImage, List<MultipartFile> files) throws Exception {
+	public void boardFileUpdate(@PathVariable("no") Long no, @RequestParam List<MultipartFile> files) throws Exception {
 		Board board = boardService.boardView(no);
 		if(board.getImgs() != null) {
 			boardImageService.imgDelete(no);
 	}
-	boardImageService.saveFile(board, boardImage, files);
+	boardImageService.saveFile(board, files);
 	}
 
 //	게시글삭제
