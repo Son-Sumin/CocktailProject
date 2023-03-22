@@ -29,7 +29,7 @@ public class BoardImageService {
 	@Autowired
 	BoardRepository boardRepository;
 
-	public void saveFile(Board board, BoardImage boardImage, List<MultipartFile> files) throws Exception {
+	public void saveFile(Board board, List<MultipartFile> files) throws Exception {
 
 		List<BoardImage> imgs = new ArrayList<>();
 		if (!files.isEmpty()) {
