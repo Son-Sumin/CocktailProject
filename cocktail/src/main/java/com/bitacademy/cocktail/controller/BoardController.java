@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bitacademy.cocktail.domain.Board;
-import com.bitacademy.cocktail.domain.BoardImage;
 import com.bitacademy.cocktail.domain.Member;
 import com.bitacademy.cocktail.domain.ReviewBoard;
 import com.bitacademy.cocktail.jwt.SecurityUtil;
