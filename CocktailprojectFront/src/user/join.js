@@ -61,7 +61,7 @@ function Join(props) {
 
     // Id중복확인
     const [usableId, setUsableId] = useState(false)
-    const [reData, setRedData] = useState("")
+    const [reData, setReData] = useState("")
 
     async function onChangeId(e) {
         e.preventDefault();
@@ -71,16 +71,43 @@ function Join(props) {
             ...joinMember,
             [name]: value
         });
-        
+
         try {
             const response = await axios.get('/member/list');
             const members = response.data;
-            const isUsable = !members.some(member => member.id === e.target.value);
+            const isUsable = !members.some(member => member.id === value); // e.target.name)
             setUsableId(isUsable);
             if (isUsable) {
-                setRedData('사용 가능한 아이디입니다.');
+                setReData('사용 가능한 아이디입니다.');
             } else {
-                setRedData('중복된 아이디입니다. 다시 시도하세요.');
+                setReData('중복된 아이디입니다. 다시 시도하세요.');
+            }
+        } catch (err) {
+            console.log(err);
+        };
+    }
+    // nickname중복확인
+    const [usableNickname, setUsableNickname] = useState(false)
+    const [nicknameData, setNicknameData] = useState("")
+
+    async function onChangeNickname(e) {
+        e.preventDefault();
+
+        const { name, value } = e.target;
+        setJoinMember({
+            ...joinMember,
+            [name]: value
+        });
+
+        try {
+            const response = await axios.get('/member/list');
+            const members = response.data;
+            const isUsable = !members.some(member => member.nickname === value); // e.target.name)
+            setUsableNickname(isUsable);
+            if (isUsable) {
+                setNicknameData('사용 가능한 닉네임입니다.');
+            } else {
+                setNicknameData('중복된 닉네임입니다. 다시 시도하세요.');
             }
         } catch (err) {
             console.log(err);
@@ -111,9 +138,10 @@ function Join(props) {
                 </label>
                 <label>
                     <h3>닉네임 ▼</h3>
-                    <input type="text" placeholder="닉네임을 지어주세요:)" className="signature-join-contents-2" name="nickname" value={joinMember.nickname} onChange={handleChange}></input>
+                    <input type="text" placeholder="닉네임을 지어주세요:)" className="signature-join-contents-2" name="nickname" value={joinMember.nickname} onChange={onChangeNickname}></input>
                     <p style={{ textAlign: 'right', marginTop: '5px' }}>{joinMember.nickname.length}/30</p>
                 </label>
+                <span>{nicknameData}</span>
                 {/* 
                 */}
                 <label>
