@@ -53,11 +53,10 @@ public class SignatureImageService {
 					img.setPath("/files/" + fileName);
 					img.setSignature(signature);
 					signatureImages.add(img);
-					
-					signatureImageRepository.saveAll(signatureImages);
 				} 
 			}
 		}
+		signatureImageRepository.saveAll(signatureImages);
 	}
 	
 	/* 멀티파일 삭제 */

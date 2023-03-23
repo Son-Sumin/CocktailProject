@@ -67,7 +67,7 @@ public class SignatureController {
 	public void uploadSignatureFile(@PathVariable("no") Long no, List<MultipartFile> files) throws Exception {
 		Signature signature = signatureService.findSigView(no);
 		System.out.println("########## 전 no  : " + no );
-		System.out.println("########## 전 signature  : " + signature );
+		System.out.println("########## 전 signature  : " + signature.getEngName() );
 		System.out.println("########## 전 files : " + files );
 		
 		signatureImageService.addImages(signature, files);
