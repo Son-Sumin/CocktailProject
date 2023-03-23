@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -66,14 +64,7 @@ public class SignatureController {
 	@PostMapping("/write/{no}/file")
 	public void uploadSignatureFile(@PathVariable("no") Long no, List<MultipartFile> files) throws Exception {
 		Signature signature = signatureService.findSigView(no);
-		System.out.println("########## 전 no  : " + no );
-		System.out.println("########## 전 signature  : " + signature.getEngName() );
-		System.out.println("########## 전 files : " + files );
-		
 		signatureImageService.addImages(signature, files);
-		
-		System.out.println("########## signature : " + signature );
-		System.out.println("########## files : " + files );
 	}
 	
 	/* 시그니처 레시피 작성 */
@@ -119,7 +110,7 @@ public class SignatureController {
 	/* 시그니처 멀티파일 수정 */
 	@CrossOrigin(origins = "*")
 	@PutMapping("/modify/{no}/file")
-	public void modifySignatureFile(@PathVariable("no") Long no, @RequestParam List<MultipartFile> files) throws Exception {
+	public void modifySignatureFile(@PathVariable("no") Long no, List<MultipartFile> files) throws Exception {
 		Signature signature = signatureService.findSigView(no);
 		if(signature.getSignatureImages() != null){
 			signatureImageService.deleteImage(no);			
@@ -169,7 +160,6 @@ public class SignatureController {
 	public boolean isLiked(@PathVariable("no") Long no) {
 		Signature signature = signatureService.findSigView(no);
 		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
-		//System.out.println(!likeCocktailService.notLike(member, signature));
 		return !likeSignatureService.notLike(member, signature);
 	}
 	
