@@ -30,9 +30,7 @@ public class SignatureImageService {
 	}
 	
 	/* 멀티파일 업로드 */
-	public void addImages(
-			Signature signature, SignatureImage signatureImage,
-			List<MultipartFile> files) throws Exception {
+	public void addImages(Signature signature, List<MultipartFile> files) throws Exception {
 		
 		List<SignatureImage> signatureImages = new ArrayList<>();
 		
