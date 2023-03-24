@@ -46,7 +46,7 @@ public class MemberController {
 		memberService.join(Member.builder().name(member.get("name")).id(member.get("id"))
 				.password(passwordEncoder.encode(member.get("password"))).nickname(member.get("nickname"))
 				.birth(member.get("birth")).phoneNumber(member.get("phoneNumber")).role(Role.enuser)
-				.profileImage("/common/defaultprofile.png").gender(member.get("gender")).build());
+				.profileImage("/bit/common/defaultprofile.png").gender(member.get("gender")).build());
 		System.out.println("회원가입성공");
 	}
 
