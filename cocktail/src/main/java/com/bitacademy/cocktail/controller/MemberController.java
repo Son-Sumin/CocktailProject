@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -46,7 +48,7 @@ public class MemberController {
 		memberService.join(Member.builder().name(member.get("name")).id(member.get("id"))
 				.password(passwordEncoder.encode(member.get("password"))).nickname(member.get("nickname"))
 				.birth(member.get("birth")).phoneNumber(member.get("phoneNumber")).role(Role.enuser)
-				.profileImage("/common/defaultprofile.png").gender(member.get("gender")).build());
+				.profileImage("/bit/common/defaultprofile.png").gender(member.get("gender")).build());
 		System.out.println("회원가입성공");
 	}
 
@@ -96,5 +98,19 @@ public class MemberController {
 	public Optional<Member> memberInfo() {
 		System.out.println(memberService.memberInfo(SecurityUtil.getCurrentMemberId()));
 		return memberService.memberInfo(SecurityUtil.getCurrentMemberId());
+	}
+	
+	@CrossOrigin(origins = "*")
+	@PatchMapping("/member/update")
+	public void imgUpdate(@ModelAttribute Member member) {
+		Member memberTemp = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
+		memberTemp.setName(member.getName());
+		memberTemp.setNickname(member.getNickname());
+		memberTemp.setPhoneNumber(member.getPhoneNumber());
+		
+		
+		//Member memberTemp = memberService.myPage
+		
+		
 	}
 }

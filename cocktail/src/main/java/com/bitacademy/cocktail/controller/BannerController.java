@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 public class BannerController {
+	
+	@Value("${file.upload-dir}")
+	private String uploadpath;
 
 	/* 생성자 주입 */
 	private final BannerRepository bannerRepository;
@@ -51,7 +55,7 @@ public class BannerController {
 			banner.setFilepath("");
 			bannerRepository.save(banner);	 
 	     } else {
-	 		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\banner";
+	 		String projectPath = uploadpath + "/banner";
 	 		UUID uuid = UUID.randomUUID();
 	 		String fileName = uuid + "_" + file.getOriginalFilename();
 	 		
@@ -60,7 +64,7 @@ public class BannerController {
 
 			banner.setTitle(form.getTitle());
 			banner.setFilename(file.getOriginalFilename());
-			banner.setFilepath("/banner/" + fileName);
+			banner.setFilepath("/bit/banner/" + fileName);
 			bannerRepository.save(banner);
 	     }
 	}
@@ -90,7 +94,7 @@ public class BannerController {
 			banner.setFilepath("");
 			bannerRepository.save(banner);	
 	    } else {
-			String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\banner";
+			String projectPath = uploadpath + "/banner";
 			UUID uuid = UUID.randomUUID();
 			String fileName = uuid + "_" + file.getOriginalFilename();
 			
@@ -99,7 +103,7 @@ public class BannerController {
 			
 			banner.setTitle(form.getTitle());
 			banner.setFilename(file.getOriginalFilename());
-			banner.setFilepath("/banner/" + fileName);
+			banner.setFilepath("/bit/banner/" + fileName);
 			bannerRepository.save(banner);
 	    }
 	}

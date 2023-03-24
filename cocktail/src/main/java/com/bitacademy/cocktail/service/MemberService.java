@@ -40,7 +40,7 @@ public class MemberService {
 	
 	public Optional<Member> memberInfo(String id) {
 		return memberRepository.findById(id);
-	}
+	}	
 
 	public JwtToken login(String id, String password) {
 		// 1. Login ID/PW 를 기반으로 Authentication 객체 생성
