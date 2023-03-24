@@ -169,7 +169,7 @@ function App() {
 
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
-          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
+          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} token={token} />}></Route>
           <Route path="/map" element={<Map />}></Route>
 
 

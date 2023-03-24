@@ -28,7 +28,7 @@ function Cocktail(props) {
                 <button className='cocktail-btn' onClick={() => setEachCocktail(cocktail.filter(data => data.type === 'alcohol'))}>알콜</button>
                 <button className='cocktail-btn' onClick={() => setEachCocktail(cocktail.filter(data => data.type === 'nonalcohol'))}>논알콜</button>
                 <button className="cocktail-btn" onClick={() => setEachCocktail(cocktail.filter(data => data.cocktailRecipes.length >= countValue))}>재료수</button>
-                <select className="modal" onChange={handleCountValueChange} defaultValue="0">
+                <select className="cocktail-btn" onChange={handleCountValueChange} defaultValue="0" style={{paddingTop:'8px'}}>
                     <option value="0"> all</option>
                     <option value="3"> 3↑</option>
                     <option value="5"> 5↑</option>
