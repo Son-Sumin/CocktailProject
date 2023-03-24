@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class SignatureImageService {
+	
+	@Value("${file.upload-dir}")
+	private String uploadpath;
 	
 	/* 생성자 주입 */
 	private final SignatureImageRepository signatureImageRepository;
@@ -41,7 +45,7 @@ public class SignatureImageService {
 				if(!file.isEmpty()) {
 			
 					// 프로젝트 경로 설정, 랜덤한 문자열이 들어간 파일이름 설정
-					String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+					String projectPath = uploadpath + "/signature";
 					UUID uuid = UUID.randomUUID();
 					String fileName = uuid + "_" + file.getOriginalFilename();
 					
@@ -52,7 +56,7 @@ public class SignatureImageService {
 					// 사진 1장씩 List<SignatureImage>에 추가
 					SignatureImage img = new SignatureImage();
 					img.setName(file.getOriginalFilename());
-					img.setPath("/files/" + fileName);
+					img.setPath("/bit/signature/" + fileName);
 					img.setSignature(signature);
 					signatureImages.add(img);
 					
