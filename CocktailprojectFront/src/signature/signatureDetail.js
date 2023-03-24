@@ -17,7 +17,7 @@ function SignatureDetail(props) {
         {
         eachSignature.map(function(a, i) {
             return (
-                <div className='banner cocktail-banner' key={i}>
+                <div className='banner cocktail-banner' style={{height:'530px'}} key={i}>
                     <div className="cocktail-banner-box">
                         <div className="cocktail-banner-box-piturebox">
                             <div style={{width:'80px', height:'100%'}}>
