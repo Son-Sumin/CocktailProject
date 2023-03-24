@@ -4,7 +4,7 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import axios from 'axios';
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 function writing(props) {
@@ -60,12 +60,11 @@ function writing(props) {
             fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
                 method: "POST",
                 body: img
-            })// body에 data를 직접 넣어줍니다.
-
+            }) // body에 data를 직접 넣어줍니다.
                 .then((res) => {
                     if (res.status === 200) {
                         alert("저장이 완료되었습니다.");
-                         location.href = '/board';
+                        location.href = '/board';
                     } else {
                         throw new Error(`${res.status} (${res.statusText})`);
                     }
@@ -73,6 +72,8 @@ function writing(props) {
                 .catch((error) =>
                     console.error(`저장 중 오류가 발생했습니다: ${error}`)
                 );
+
+
         } else {
             alert("취소되었습니다.");
         }
@@ -87,24 +88,12 @@ function writing(props) {
                     loader.file.then((file) => {
                         data.append("files", file);
                         setImg(data)
-                        fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/1/file`, {
-                            method: "POST",
-                            body: data
-                        })
-                            .then((res) => {
-                                const app = `${process.env.REACT_APP_ENDPOINT}/board/view/1}`.imgs
-                                resolve({
-                                    default: app
-                                });
-                            })
-                            .catch((err) => {
-                                reject(err);
-                            });
                     });
                 });
             }
         };
     }
+    
 
     function uploadPlugin(editor) {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
