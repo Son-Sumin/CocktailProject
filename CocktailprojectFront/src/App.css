@@ -264,7 +264,9 @@ img {
 
 .mypage-right {
   float: right;
+  margin-bottom: 100px;
   width: 80%;
+  height: 100%;
   background-color: rgba(224, 218, 201);
   box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
   border-radius: 10px;
@@ -276,6 +278,21 @@ img {
   clear: both;
 }
 
+.mypage-banner-preview-box {
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mypage-banner-list-box {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 50px 200px 1fr;
+}
 
 .mypage-right-contents {
   display: grid;
