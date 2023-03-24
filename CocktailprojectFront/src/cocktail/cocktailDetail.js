@@ -98,7 +98,7 @@ function CocktailDetail(props) {
         eachCocktail.map(function(a, i) {
             return (
             <div key={i}>
-                <div className='banner cocktail-banner'>
+                <div className='banner cocktail-banner' style={{height:'530px'}}>
                     <div className="cocktail-banner-box">
                         <div className="cocktail-banner-box-piturebox">
                             <div style={{width:'80px', height:'100%'}}>

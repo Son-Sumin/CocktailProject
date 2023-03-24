@@ -36,7 +36,7 @@ function IngredientDetail(props) {
                 eachIngredient.map(function (a, i) {
                     return (
                         <div key={i}>
-                            <div className='banner cocktail-banner'>
+                            <div className='banner cocktail-banner' style={{height:'530px'}}>
                                 <div className="cocktail-banner-box">
                                     <div className="cocktail-banner-box-piturebox">
                                         <div style={{ width: '420px', height: '100%', backgroundColor: 'white', borderRadius: '10px' }}>
@@ -56,14 +56,17 @@ function IngredientDetail(props) {
                                 </div>
                             </div>
                             <div style={{ paddingLeft: '15%', paddingRight: '15%', marginTop: '100px' }}>
-                                <div style={{ marginBottom: '50px' }}><span style={{ fontSize: '20px', fontWeight: 'bold' }}>해당 재료로 만들 수 있는 칵테일 ▼</span></div>
+                                <div style={{ marginBottom: '50px' }}>
+                                    <span style={{ fontSize: '20px', fontWeight: 'bold' }}>해당 재료로 만들 수 있는 칵테일 ▼</span>
+                                </div>
                                 <div className="signature-list">
                                     {a.cocktailRecipes.length == 0 ? (
-                                        <div style={{textAlign:"center"}}>
-                                            <h2>준비중입니다</h2>
+                                        <div className="signature-join-contents" style={{gridColumn:'1/5'}}>
+                                            <h3 style={{ margin: '0px' }}>해당 재료로 만들 수 있는 칵테일이 없어요^^!!</h3>
                                             <Link to={'/ingredient'}>
-                                                <h2>≪＝돌아가기</h2>
-                                            </Link>
+                                                <button className="signature-contents-btn"
+                                                style={{float:'left', marginTop:'40px', border:'1px solid rgb(110, 110, 110)', color:'rgb(110, 110, 110)', backgroundColor:'white'}}>돌아가기</button>
+                                             </Link>
                                         </div>
                                     ) : (
 

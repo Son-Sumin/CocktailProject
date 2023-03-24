@@ -77,25 +77,26 @@ function Board(props) {
 
     return (
         <div className="board-container">
-            <div className='banner'>
+            <div className='banner' style={{backgroundColor:'white', border:'1px solid black', borderRadius:'10px'}}>
                 <div className="board-bestcontents-container">
                     <div style={{ gridColumn: '1/3' }}>
-                        <h1 style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center' }}>오늘의 Best게시글</h1>
+                        <h1 style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center', cursor:'default' }}>오늘의 Best게시글</h1>
                     </div>
+
                     <div>
-                        <h3 style={{ marginTop: '10px' }}>조회순 ▼</h3>
+                        <h3 style={{ marginTop: '10px', marginLeft:'15px', cursor:'default' }}>조회순 ▼</h3>
                     </div>
+
                     <div>
-                        <h3 style={{ marginTop: '10px' }}>인기순 ▼</h3>
+                        <h3 style={{ marginTop: '10px', marginLeft:'15px', cursor:'default' }}>인기순 ▼</h3>
                     </div>
-                    {/*  map 돌릴때에는 <div key={content.id} style={{ gridRow: `${content.id + 1}` }}> */}
-                    {topHitData.map((test, i) => {
+                    {/* {topHitData.map((test, i) => {
                         if (i < 5) {
                             return (
                                 <div className="board-each-bestcontents" >
                                     <Link to={`/board/view/${test.no}`}>
                                         <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3' }}>
-                                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img>*/}
+                                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img>
                                         </div>
                                         <div style={{ gridColumn: '2/6' }}>{test.title}</div>
                                         <div style={{ gridRow: '2/3' }}>{test.createdDate}</div>
@@ -105,12 +106,61 @@ function Board(props) {
                                 </div>
                             )
                         }
-                    })}
-                    <div className="board-each-bestcontents">
-                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3' }}>
+                    })} */}
+
+                    <div className="board-each-bestcontents" style={{gridColumn:'1/2'}}> 
+                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
                             {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
                         </div>
-                        <div style={{ gridColumn: '2/6' }}>제목</div>
+                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
+                        <div style={{ gridRow: '2/3' }}>시간</div>
+                        <div style={{ gridRow: '2/3' }}>2</div>
+                        <div style={{ gridRow: '2/3' }}>3</div>
+                    </div>
+
+                    <div className="board-each-bestcontents" style={{gridColumn:'1/2'}}>
+                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
+                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
+                        </div>
+                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
+                        <div style={{ gridRow: '2/3' }}>시간</div>
+                        <div style={{ gridRow: '2/3' }}>2</div>
+                        <div style={{ gridRow: '2/3' }}>3</div>
+                    </div>
+
+
+
+
+                    {/* ---------------------- 위는 조회순 map, 아래는 인기순 map ------------------------ */}
+
+
+
+                    {/* 첫번째 데이터만 gridRow:'3/4' 속성을 줘야함... */}
+                    <div className="board-each-bestcontents" style={{gridColumn:'2/3', gridRow:'3/4'}}> 
+                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
+                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
+                        </div>
+                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
+                        <div style={{ gridRow: '2/3' }}>시간</div>
+                        <div style={{ gridRow: '2/3' }}>2</div>
+                        <div style={{ gridRow: '2/3' }}>3</div>
+                    </div>
+
+                    <div className="board-each-bestcontents" style={{gridColumn:'2/3'}}> 
+                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
+                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
+                        </div>
+                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
+                        <div style={{ gridRow: '2/3' }}>시간</div>
+                        <div style={{ gridRow: '2/3' }}>2</div>
+                        <div style={{ gridRow: '2/3' }}>3</div>
+                    </div>
+
+                    <div className="board-each-bestcontents" style={{gridColumn:'2/3'}}> 
+                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
+                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
+                        </div>
+                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
                         <div style={{ gridRow: '2/3' }}>시간</div>
                         <div style={{ gridRow: '2/3' }}>2</div>
                         <div style={{ gridRow: '2/3' }}>3</div>
@@ -124,8 +174,7 @@ function Board(props) {
                 <button onClick={() => setBoard(data)}>전체</button>
                 <button onClick={() => setBoard(data.filter(x => x.category === 'random'))}>자유</button>
                 <button onClick={() => setBoard(data.filter(x => x.category === 'question'))}>Q&A</button>
-                <select style={{ width: "100px", height: "40px", fontSize: '20px', textAlign: "center" }}
-                    onChange={onSorted} id="sorting" value={currentData.createdDate}>
+                <select onChange={onSorted} id="sorting" value={currentData.createdDate}>
                     <option value="desc" > 최신순 </option>
                     <option value="asc" > 오래된순 </option>
                 </select>
@@ -161,8 +210,8 @@ function Board(props) {
             <div className="pagination flex justify-content-center" >
                 {/* 이전 버튼 */}
                 {currentPage !== 1 && (
-                    <button onClick={() => handlePageChange(currentPage - 1)}>
-                        Previous
+                    <button className='page-button' onClick={() => handlePageChange(currentPage - 1)}>
+                        <span>Previous</span>
                     </button>
                 )}
 
@@ -179,8 +228,8 @@ function Board(props) {
 
                 {/* 다음 버튼 */}
                 {currentPage !== totalPages && (
-                    <button onClick={() => handlePageChange(currentPage + 1)}>
-                        Next
+                    <button className='page-button' onClick={() => handlePageChange(currentPage + 1)}> 
+                        <span>Next</span>
                     </button>
                 )}
             </div>

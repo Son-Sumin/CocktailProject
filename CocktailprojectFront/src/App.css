@@ -184,8 +184,8 @@ img {
 /* --------------- main -------------------- */
 
 .banner {
-  width: 99.9%;
-  height: 530px;
+  max-width: 100%;
+  height: 730px;
   background-color: aliceblue;
 }
 
@@ -209,6 +209,7 @@ img {
 }
 
 .mypage-profile-picture {
+  position: relative;
   width: 130px;
   height: 130px;
   padding: 40px;
@@ -216,6 +217,28 @@ img {
   border-radius: 150px;
   margin-top: 2%;
   margin-left: 8%;
+}
+
+.mypage-profile-picture-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mypage-profile-picture-change-button {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mypage-profile-picture-change-button:hover {
+  color: white;
+  box-shadow: rgb(0 0 0 / 20%) 3px 8px 20px;
+  background-color: rgb(121, 105, 17);
 }
 
 .mypage-left-menu {

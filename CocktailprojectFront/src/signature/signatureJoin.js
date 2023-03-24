@@ -27,12 +27,13 @@ function IngredientForm(props) {
 
 // 시그니처 작성페이지 (상위)
 function SignatureJoin(props) {
-    // ingredient 데이터 불러오기, 사진 그림 불러오기, navigate 사용
-    const ingredient = props.ingredient;
-    const uploadPhoto = process.env.PUBLIC_URL + '/upload-photo.png';
+    const { ingredient, token } = props;
+
+    // 사진 그림 불러오기, navigate 사용
+    const uploadPhoto = process.env.PUBLIC_URL + '/upload-photo.png'; // 이미지 업로드 버튼
     const navigate = useNavigate();
 
-    // 데이터를 저장할 state
+    // 텍스트 데이터를 저장할 state
     const [signatureJoin, setSignatureJoin] = useState({
         cocktailName: '',
         engName: '',
@@ -40,8 +41,7 @@ function SignatureJoin(props) {
         recipeContents: '',
     })
 
-    const [files, setFiles] = useState(null);
-
+    // 재료 데이터를 저장할 state
     const [ingredients, setIngredients] = useState(
         {
         "ingredient": {
@@ -62,9 +62,13 @@ function SignatureJoin(props) {
         },
     )
 
+    // 이미지 파일을 저장할 state
+    const [files, setFiles] = useState([]);
+
+
     // handleClickPhoto 이벤트
     const fileInputRef = useRef(null);
-    const [previewUrl, setPreviewUrl] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(Array.from({ length: 3 }, () => null)); // 3개의 원소가 있는 배열을 생성하고 각 원소를 'null'값으로 초기화
 
     const handleClickPhoto = () => {
         fileInputRef.current.click();
@@ -72,17 +76,35 @@ function SignatureJoin(props) {
     const handleFilesChange = (e) => {
         e.preventDefault();
 
-        // 파일 미리보기를 도와줌
+        // state에 파일 저장
+        if (files.length < 3) {
+            const fileList = e.target.files;
+            const fileArray = [];
+
+        for (let i = 0; i < fileList.length; i++) {
+            fileArray.push(fileList[i]);
+        }
+
+        // state에 들어간 이전 이미지 파일 데이터는 유지하면서 새로운 이미지를 추가
+        setFiles(prevFiles => [...prevFiles, ...fileArray]);
+
+        console.log("files state: " + files);
+
+        // 파일 미리보기
         const reader = new FileReader();
-
-        setFiles(e.target.value);
-
-        reader.onloadend = () => {
-            setPreviewUrl(reader.result);
+        reader.onloadend = () => { // reader.onloadend는 FileReader객체가 이미지 파일을 읽는 작업을 마쳤을 때 발생하는 이벤트
+            setPreviewUrl((prevUrls) => {
+            const newUrls = [...prevUrls];
+            newUrls[index] = reader.result; // newUrls[index]에는 읽은 이비지 파일의 URL을 할당
+            return newUrls; // 새로운 배열상태 newUrls를 반환하면서 previewUrls 배열상태를 업데이트
+            });
         };
-
         reader.readAsDataURL(e.target.files[0]);
+        } else {
+            alert("이미지파일은 최대 3장까지만 업로드 할수 있어요^^!!");
+        }
     }
+
 
 
     // handleChange 이벤트
@@ -159,8 +181,11 @@ function SignatureJoin(props) {
 
         // FormData객체에 데이터 저장
         const formData01 = new FormData();
+
         const formData02 = new FormData();
         const formData03 = new FormData();
+
+        const formData04 = new FormData();
 
         formData01.append('cocktailName', signatureJoin.cocktailName);
         formData01.append('cocktailContents', signatureJoin.cocktailContents);
@@ -176,40 +201,64 @@ function SignatureJoin(props) {
         formData03.append('amount', ingredients02.amount);
         formData03.append('unit', ingredients02.unit);
 
-        // joinSignature.files.forEach((file) => {
-        //     formData.append('files', file);
-        // });
+        files.forEach((file) => formData04.append('files', file));
+
+
+        // formData에 데이터 들어가있나 확인
+        for (const [key, value] of formData01.entries()) {
+            console.log("formData01: " + `${key}: ${value}`);
+            console.log("--------");
+        }
+        for (const [key, value] of formData02.entries()) {
+            console.log("formData02: " + `${key}: ${value}`);
+            console.log("--------");
+        }
+        for (const [key, value] of formData04.entries()) {
+            console.log("file state: " + files);
+            console.log("formData04: " + `${key}: ${value}`);
+            console.log("--------");
+        }
 
         // 엔드포인트에 JSON파일 전달
         try {
-            const res01 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write`, formData01);
+            const res01 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write`, formData01, 
+                {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              });
             // console.log(res.data);
             // navigate("/signature");
 
             const postNo = res01.data.no;
             console.log("postNo: " + postNo);
         
-            const res02 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData02);
-            
-            console.log("formData02: " + JSON.stringify(res02.data));
-            console.log("eachIngredientNo: " + JSON.stringify(ingredients));
-
-            const res03 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData03);
-            
-            console.log("formData03: " + JSON.stringify(res03.data));
-            // console.log("eachIngredientNo: " + JSON.stringify(ingredients));
-            
-            navigate("/signature");
-        } catch(err) {
-            console.log(err);
-        }
-
-        try {
-            await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${no}/file`, formData03, {
+            const res02 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData02 ,
+                {
                 headers: {
-                  'Content-Type': 'multipart/form-data'
+                  Authorization: `Bearer ${token}`
                 }
               });
+            
+            // console.log("formData02: " + JSON.stringify(res02.data));
+            // console.log("eachIngredientNo: " + JSON.stringify(ingredients));
+
+            const res03 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData03, 
+                {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+                });
+            
+            // console.log("formData03: " + JSON.stringify(res03.data));
+            // console.log("eachIngredientNo: " + JSON.stringify(ingredients));
+            
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/file`, formData04, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+              });
+
             navigate("/signature");
         } catch(err) {
             console.log(err);
@@ -235,7 +284,7 @@ function SignatureJoin(props) {
                                     <img src={uploadPhoto} alt="이미지 업로드 버튼"/>
                                     <p className='signature-picture-button-text'>사진 업로드</p>
                                 </button>
-                                <input ref={fileInputRef} type="file" name='files' defaultValue={files} multiple onChange={handleFilesChange} style={{display:'none'}}></input>  
+                                <input ref={fileInputRef} type="file" name='files' multiple onChange={handleFilesChange} style={{display:'none'}}></input>  
                             </div>
 
                             <div className="signature-picture-box-2 signature-picture-box-grid-2" style={(previewUrl === null) ? null : {overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px'}}>
