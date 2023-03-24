@@ -59,6 +59,8 @@ function App() {
     phoneNumber: '',
     gender: '',
     likeCocktail: [],
+    profileImage: "",
+    role: "",
   });
 
   // 좋아요버튼, 최상위 컴포넌트에 빼둔 이유는 useEffect()에서 좋아요 클릭마다 실시간 렌더링을 하기위함
@@ -112,6 +114,8 @@ function App() {
           phoneNumber: response.data.phoneNumber,
           gender: response.data.gender,
           likeCocktail: response.data.likeCocktail,
+          profileImage: response.data.profileImage,
+          role: response.data.role,
         })
   
         console.log("로그인여부: " + isLoggedIn);
