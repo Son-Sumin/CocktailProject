@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-lone-blocks */
@@ -14,19 +15,19 @@ function boardIn(props) {
 
     //데이터 받아오기(조회수 증가)
     const [Data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
+    async function fetchData() {
+        const response = await fetch(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}`);
+        const data = await response.json();
+        return data;
+    }
     useEffect(() => {
-        axios
-            .get(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}`)
-            .then((res) => {
-                const data0 = res.data;
-                console.log("#########: ", data0);
-                setData(data0);
-            })
-            .catch((error) =>
-                console.error("error" + error))
+        fetchData().then(data => {
+            setData(data);
+            setIsLoading(false);
+        });
     }, []);
-
     console.log(Data)
     console.log(typeof Data)
     console.log(Data.reviews)
@@ -218,6 +219,24 @@ function boardIn(props) {
                     <button style={{ gridRow: '3/4', gridColumn: '8/9' }} onClick={onRemove}>삭제</button>
                 </div>
                 <div style={{ border: '1px solid black', marginBottom: '40px', marginTop: '20px' }}></div>
+
+                <div>
+                    {isLoading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        <div>
+                            {Data.imgs.map((app, i) => {
+                                if (i < 5) {
+                                return (
+                                    <div style={{ textAlign: "center" }}>
+                                        <img src={`${process.env.REACT_APP_ENDPOINT}${app.path}`} key={i} alt={app.name} style={{ height: "200px", width: "auto" }}></img>
+                                    </div>
+                                )
+                                }
+                            })}
+                        </div>
+                    )}
+                </div>
 
                 <div style={{ fontSize: '20px' }} dangerouslySetInnerHTML={{ __html: Data.contents }}></div>
 

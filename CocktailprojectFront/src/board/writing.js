@@ -3,24 +3,17 @@
 
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import React, { useRef, useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
-// import useFetch from './useFetch';
-import axios from "axios";
 
-function writing({ setDesc, desc, setImage }, props) {
-    // let Data1 = useFetch(`${process.env.REACT_APP_ENDPOINT}/board`)
-    // const Data1 = props.board;
-    const token = props.token;
+function writing(props) {
+    const { token } = props;
 
-    // const noData = Math.max.apply(null, Data1.map(function (v) { return v.no })) + 1;
     const caRef = useRef(null);
     const tiRef = useRef(null);
-    const data = useRef(null);
-    // const hitRef = useRef(null);
-    // const rdRef = useRef(null, Date());
-    // const faRef = useRef(null);
-    // const unRef = useRef(null);
+    const [img, setImg] = useState(new FormData());
+
     //CK에디터 데이터 받아오기
     const [contentsData, setContentsData] = useState("");
 
@@ -32,54 +25,61 @@ function writing({ setDesc, desc, setImage }, props) {
 
     async function onSubmit(e) {
         e.preventDefault();
+        console.log("img");
+        console.log(img);
         if (confirm("저장 하시겠습니까?")) {
+
             //글 등록
-
-const response = await fetch(`/board/write`, {
-
-
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
+            const response = await axios.post(
+                `${process.env.REACT_APP_ENDPOINT}/board/write`,
+                {
+                    category: caRef.current.value,
+                    title: tiRef.current.value,
+                    contents: contentsData,
                 },
-                body: JSON.stringify({
-                    "category": caRef.current.value,
-                    "title": tiRef.current.value,
-                    "contents": contentsData,
-                }),
-            })
-            const resNo = response.data.no
-            //사진 등록
-            
-            fetch(`/board/write/${resNo}/file`, {
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            if (response.status === 200) {
+                console.log("글저장 완료");
+            } else {
+                console.error(
+                    `저장 중 오류가 발생했습니다: ${response.status} (${response.statusText})`
+                );
+            }
+
+            //사진 등록=> 임시저장되어있는 이미지 이동
+            const resData = response.data.no;
+            console.log(resData);
+            console.log("img");
+            console.log(img);
+            fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    "imgs": data.current.value,
-                }),
-            })
-
-
-                .then(res => {
-                    if (res.ok) {
+                body: img
+            }) // body에 data를 직접 넣어줍니다.
+                .then((res) => {
+                    if (res.status === 200) {
                         alert("저장이 완료되었습니다.");
-                        location.href = '/board'; // 브라우저 캐시를 비우기 위해 페이지를 다시 로드하세요.
+                        location.href = '/board';
                     } else {
                         throw new Error(`${res.status} (${res.statusText})`);
                     }
                 })
-                .catch(error => console.error(`저장 중 오류가 발생했습니다: ${error}`));
+                .catch((error) =>
+                    console.error(`저장 중 오류가 발생했습니다: ${error}`)
+                );
+
 
         } else {
             alert("취소되었습니다.");
         }
     }
 
-    //파일업로드
+    //파일업로드 플러그인
     const customUploadAdapter = (loader) => {
         return {
             upload: () => {
@@ -87,20 +87,13 @@ const response = await fetch(`/board/write`, {
                     const data = new FormData();
                     loader.file.then((file) => {
                         data.append("files", file);
-                        axios.post(`/board/write/1/file`,data)
-                            .then((res) => {
-                                resolve({
-                                    default: `/board/view/1`
-                                });
-                            })
-                            .catch((err) => {
-                                reject(err);
-                            });
+                        setImg(data)
                     });
                 });
             }
         };
     }
+    
 
     function uploadPlugin(editor) {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
