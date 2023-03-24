@@ -20,7 +20,7 @@ function Main(props) {
 
     // 배너설정
     const settings = {
-        dots: true,
+        // dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -43,16 +43,23 @@ function Main(props) {
         formData.append('title', title);
         formData.append('file', file);
 
+        // formData에 데이터 들어가있나 확인
+        for (const [key, value] of formData.entries()) {
+            console.log("formData: " + `${key}: ${value}`);
+            console.log("--------");
+        }
+
         try {
             await axios.post(`${process.env.REACT_APP_ENDPOINT}/banner/add`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
                 }
               });
             console.log("배너 업로드 성공!");
+
             setTimeout(() => {
                 window.location.reload();
-              }, 1500);
+              }, 5000);
         } catch(err) {
             console.log("배너 업로드 실패ㅠㅠ")
             console.log(err);
@@ -69,7 +76,7 @@ function Main(props) {
                 {
                 eachBanner.map(function(a,i) {
                     return (
-                        <div className='banner'>
+                        <div className='banner' key={i}>
                             <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} alt={`Image${i}`} key={i} style={{width:'100%'}}/>
                         </div>
                     )

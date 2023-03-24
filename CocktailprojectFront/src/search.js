@@ -20,13 +20,6 @@ function Search(props) {
 
     return (
         <>
-        <div className="cocktail-btn-box modal">
-            <button className='cocktail-btn'>전체</button>
-            <button className='cocktail-btn'>칵테일</button>
-            <button className='cocktail-btn'>재료</button>
-            <button className="cocktail-btn">시그니처</button>
-        </div>
-
         <div className='search-contatiner'>
             <div>
                 <h2 style={{marginBottom:'50px'}}>칵테일 ▼</h2>
