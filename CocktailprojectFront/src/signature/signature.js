@@ -20,10 +20,12 @@ function Signature(props) {
     <div className="banner" style={{position:'relative'}}>
         <img src={signatureBannerPicture} style={{width:'100%'}} alt="Signature banner" />
         <div className="banner-contents-container" style={{position:'absolute', top:'50%', left:'50%', transform: 'translate(-50%, -50%)'}}>
-            <div style={{marginTop:'22%', fontSize:'20px'}}>누구나 참여할 수 있는 창작레시피 게시판</div>
-            <div style={{fontSize:'35px', fontWeight:'600'}}>너만의 시그니처 칵테일을 만들어봐!!</div>
+            <div style={{marginTop:'22%', fontSize:'30px'}}>누구나 참여할 수 있는 창작레시피 게시판</div>
+            <div style={{fontSize:'45px', fontWeight:'600'}}>너만의 시그니처 칵테일을 만들어봐!!</div>
             <Link to={isLoggedIn ? "/signature/join" : "/login"}>
-                <button className="banner-contents-btn">참가신청 바로가기</button>
+                <button className="banner-contents-btn">
+                    <h2>참가신청 바로가기</h2>
+                </button>
             </Link>
         </div>
     </div>

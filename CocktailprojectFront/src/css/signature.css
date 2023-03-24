@@ -1,7 +1,7 @@
 /* ---------------- signature-banner ------------------ */
 .banner-contents-container {
-    width: 650px;
-    height: 500px;
+    width: 800px;
+    height: 600px;
     text-align: center;
     display: grid;
     grid-template-rows: 1fr 90px 1fr;
