@@ -5,17 +5,16 @@ import { useNavigate } from 'react-router-dom';
 
 // 재료정보 추가 컴포넌트 (하위)
 function IngredientForm(props) {
-    const ingredients = props.ingredients;
-    const handleClickIngredientForm = props.handleClickIngredientForm;
-    
+    const {ingredient01, ingredient02, ingredient03, handleClickIngredientForm, handleIngredientChange, handleAmountChange, handleUnitChange, num} = props;
+
     return (
         <label>
-            <h3>재료 정보{ingredients.length} ▼</h3>
+            <h3>재료 정보{ingredient01.length} ▼</h3>
             <div className="signature-ingredient-container">
                 <div><h3>재료1</h3></div>
-                <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => props.handleIngredientChange(e)} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
-                <div><input type="text" value={ingredients.amount} onChange={(e) => props.handleAmountChange(e)} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
-                <div><input type="text" value={ingredients.unit} onChange={(e) => props.handleUnitChange(e)} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
+                <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => handleIngredientChange(e)} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
+                <div><input type="text" value={(num == 1) ? ingredient01.amount :  (num) === 2 ? ingredient02.amount : ingredient03.amount} onChange={(e) => handleAmountChange(e)} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
+                <div><input type="text" value={(num == 1) ? ingredient01.unit : (num) === 2 ? ingredient02.unit : ingredient03.unit} onChange={(e) => handleUnitChange(e)} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
             </div>
             <button type='button' onClick={handleClickIngredientForm} className="signature-ingredient-contents-btn">재료추가</button>
         </label>
@@ -29,8 +28,16 @@ function IngredientForm(props) {
 function SignatureJoin(props) {
     const { ingredient, token } = props;
 
+    const [num, setNum] = useState(1);
+
+    const increaseNum = () => {
+        setNum(num + 1);
+        console.log(num + 1);
+    };
+
     // 사진 그림 불러오기, navigate 사용
     const uploadPhoto = process.env.PUBLIC_URL + '/upload-photo.png'; // 이미지 업로드 버튼
+    const signatureImage = process.env.PUBLIC_URL + '/signatureImage.png'; 
     const navigate = useNavigate();
 
     // 텍스트 데이터를 저장할 state
@@ -42,7 +49,7 @@ function SignatureJoin(props) {
     })
 
     // 재료 데이터를 저장할 state
-    const [ingredients, setIngredients] = useState(
+    const [ingredient01, setIngredient01] = useState(
         {
         "ingredient": {
             "no": '',
@@ -52,15 +59,26 @@ function SignatureJoin(props) {
         },
     )
 
-    const [ingredients02, setIngredients02] = useState(
+    const [ingredient02, setIngredient02] = useState(
         {
         "ingredient": {
-            "no": '1',
+            "no": '',
             },
-        "amount": '2',
-        "unit": '개',
+        "amount": '',
+        "unit": '',
         },
     )
+
+    const [ingredient03, setIngredient03] = useState(
+        {
+        "ingredient": {
+            "no": '',
+            },
+        "amount": '',
+        "unit": '',
+        },
+    )
+
 
     // 이미지 파일을 저장할 state
     const [files, setFiles] = useState([]);
@@ -123,6 +141,8 @@ function SignatureJoin(props) {
         const nextKey = ingredientForm.length;
         const newIngredientForm = <IngredientForm key={nextKey} />;
         setIngredientForm([...ingredientForm, newIngredientForm]);
+        increaseNum();
+
         console.log("클릭 성공!");
         console.log(ingredientForm);
     };
@@ -131,48 +151,131 @@ function SignatureJoin(props) {
         const { value } = e.target;
         const eachIngredient = ingredient.find((ingredient) => ingredient.name === value);
 
-        if (eachIngredient != null) {
-            setIngredients((prevState) => {
-                const newState = {
-                  ...prevState,
-                  ingredient: {
-                    no: eachIngredient.no,
-                  },
-                };
-    
-                console.log(eachIngredient);
-                console.log(newState);
-                return newState;
-            });   
-        }
+        if (num == 1) {
+            if (eachIngredient != null) {
+                setIngredient01((prevState) => {
+                    const newState = {
+                      ...prevState,
+                      ingredient: {
+                        no: eachIngredient.no,
+                      },
+                    };
+        
+                    console.log(eachIngredient);
+                    console.log(newState);
+                    return newState;
+                });   
+            }
+        } else if(num == 2) {
+            if (eachIngredient != null) {
+                setIngredient02((prevState) => {
+                    const newState = {
+                      ...prevState,
+                      ingredient: {
+                        no: eachIngredient.no,
+                      },
+                    };
+        
+                    console.log(eachIngredient);
+                    console.log(newState);
+                    return newState;
+                });   
+            }
+        } else if(num == 3) {
+            if (eachIngredient != null) {
+                setIngredient03((prevState) => {
+                    const newState = {
+                      ...prevState,
+                      ingredient: {
+                        no: eachIngredient.no,
+                      },
+                    };
+        
+                    console.log(eachIngredient);
+                    console.log(newState);
+                    return newState;
+                });   
+            }
+        } else {
+            return (
+                null
+            )
+        };
     }
 
     const handleAmountChange = (e) => {
         const { value } = e.target;
-        setIngredients((prevState) => {
-          const newState = {...prevState};
-          newState.amount = value;
 
-          console.log(newState);
-          return newState;
-        });
-      };
+        if (num == 1 ) {
+            setIngredient01((prevState) => {
+                const newState = {...prevState};
+                newState.amount = value;
+      
+                console.log(newState);
+                return newState;
+            });
+        } else if (num == 2) {
+            setIngredient02((prevState) => {
+                const newState = {...prevState};
+                newState.amount = value;
+      
+                console.log(newState);
+                return newState;
+            });
+        } else if (num == 3) {
+            setIngredient03((prevState) => {
+                const newState = {...prevState};
+                newState.amount = value;
+      
+                console.log(newState);
+                return newState;
+            });
+        } else {
+            return (
+                null
+            )
+        };
+    };
       
     const handleUnitChange = (e) => {
-    const { value } = e.target;
-    setIngredients((prevState) => {
-        const newState = {...prevState};
-        newState.unit = value;
-        
-        console.log(newState);
-        return newState;
-    });
+        const { value } = e.target;
+
+        if (num == 1) {
+        setIngredient01((prevState) => {
+            const newState = {...prevState};
+            newState.unit = value;
+            
+            console.log(newState);
+            return newState;
+            });
+        } else if (num == 2) {
+            setIngredient02((prevState) => {
+                const newState = {...prevState};
+                newState.unit = value;
+                
+                console.log(newState);
+                return newState;
+            });
+        } else if (num == 3) {
+            setIngredient03((prevState) => {
+                const newState = {...prevState};
+                newState.unit = value;
+                
+                console.log(newState);
+                return newState;
+            });
+        } else {
+            return (
+                null
+            )
+        };
     };
 
     // IngredientForm을 저장할 공간
-    const [ingredientForm, setIngredientForm] = useState([<IngredientForm key={0} ingredients={ingredients} ingredient={ingredient} 
-        setIngredients={setIngredients} handleClickIngredientForm={handleClickIngredientForm} 
-        handleIngredientChange={handleIngredientChange} handleAmountChange={handleAmountChange} handleUnitChange={handleUnitChange} />]);
+    const [ingredientForm, setIngredientForm] = useState([<IngredientForm key={0} ingredient01={ingredient01} ingredient={ingredient} 
+        setIngredient01={setIngredient01} handleClickIngredientForm={handleClickIngredientForm} 
+        handleIngredientChange={handleIngredientChange} handleAmountChange={handleAmountChange} handleUnitChange={handleUnitChange}
+        num={num} ingredient02={ingredient02} ingredient03={ingredient03} setIngredient02={setIngredient02} setIngredient03={setIngredient03} />]);
 
     // handleSumit 이벤트
     const handleSubmit = async (e) => {
@@ -180,28 +283,32 @@ function SignatureJoin(props) {
         e.preventDefault();
 
         // FormData객체에 데이터 저장
-        const formData01 = new FormData();
+        const formData01 = new FormData(); // 기본 string 데이터
 
-        const formData02 = new FormData();
+        const formData02 = new FormData(); // 재료 데이터
         const formData03 = new FormData();
-
         const formData04 = new FormData();
+
+        const formData05 = new FormData(); // file 데이터
 
         formData01.append('cocktailName', signatureJoin.cocktailName);
         formData01.append('cocktailContents', signatureJoin.cocktailContents);
         formData01.append('recipeContents', signatureJoin.recipeContents);
         formData01.append('engName', signatureJoin.engName);
 
-        // formData02.append('recipesData', ingredients[0]));
-        formData02.append('ingredient', ingredients.ingredient.no);
-        formData02.append('amount', ingredients.amount);
-        formData02.append('unit', ingredients.unit);
+        formData02.append('ingredient', ingredient01.ingredient.no);
+        formData02.append('amount', ingredient01.amount);
+        formData02.append('unit', ingredient01.unit);
 
-        formData03.append('ingredient', ingredients02.ingredient.no);
-        formData03.append('amount', ingredients02.amount);
-        formData03.append('unit', ingredients02.unit);
+        formData03.append('ingredient', ingredient02.ingredient.no);
+        formData03.append('amount', ingredient02.amount);
+        formData03.append('unit', ingredient02.unit);
 
-        files.forEach((file) => formData04.append('files', file));
+        formData04.append('ingredient', ingredient03.ingredient.no);
+        formData04.append('amount', ingredient03.amount);
+        formData04.append('unit', ingredient03.unit);
+
+        files.forEach((file) => formData05.append('files', file));
 
 
         // formData에 데이터 들어가있나 확인
@@ -213,9 +320,13 @@ function SignatureJoin(props) {
             console.log("formData02: " + `${key}: ${value}`);
             console.log("--------");
         }
-        for (const [key, value] of formData04.entries()) {
+        for (const [key, value] of formData03.entries()) {
+            console.log("formData03: " + `${key}: ${value}`);
+            console.log("--------");
+        }
+        for (const [key, value] of formData05.entries()) {
             console.log("file state: " + files);
-            console.log("formData04: " + `${key}: ${value}`);
+            console.log("formData05: " + `${key}: ${value}`);
             console.log("--------");
         }
 
@@ -224,9 +335,9 @@ function SignatureJoin(props) {
             const res01 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write`, formData01, 
                 {
                 headers: {
-                  Authorization: `Bearer ${token}`
+                  Authorization: `Bearer ${token}`,
                 }
-              });
+            });
             // console.log(res.data);
             // navigate("/signature");
 
@@ -236,28 +347,39 @@ function SignatureJoin(props) {
             const res02 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData02 ,
                 {
                 headers: {
-                  Authorization: `Bearer ${token}`
+                  Authorization: `Bearer ${token}`,
                 }
-              });
+            });
             
             // console.log("formData02: " + JSON.stringify(res02.data));
-            // console.log("eachIngredientNo: " + JSON.stringify(ingredients));
+            // console.log("eachIngredientNo: " + JSON.stringify(ingredient01));
 
-            const res03 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData03, 
+            if (num > 1) {
+                const res03 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData03, 
                 {
                 headers: {
-                  Authorization: `Bearer ${token}`
+                  Authorization: `Bearer ${token}`,
                 }
-                });
+            });
+            }
+
+            if (num > 2) {
+                const res04 = await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/recipe`, formData04, 
+                {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                }
+            });
+            }
             
             // console.log("formData03: " + JSON.stringify(res03.data));
-            // console.log("eachIngredientNo: " + JSON.stringify(ingredients));
+            // console.log("eachIngredientNo: " + JSON.stringify(ingredient01));
             
-            await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/file`, formData04, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-              });
+            // await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/file`, formData05, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`,
+            //     }
+            // });
 
             navigate("/signature");
         } catch(err) {
@@ -268,7 +390,9 @@ function SignatureJoin(props) {
     return (
         <div className="signature-join-container">
             <div className="signature-join-banner">
-                <div className="signature-join-banner-img" style={{gridRow:'1/4'}}></div>
+                <div className="signature-join-banner-img" style={{gridRow:'1/4', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <img src={signatureImage} atl="시그니처 이미지" />
+                </div>
                 <div style={{gridColumn:'3/4', fontSize:'30px', fontWeight:'600', paddingTop:'30px'}}>나만의 시그니처 올리기</div>
                 <div style={{gridColumn:'3/4', fontWeight:'600', color:'rgb(110, 110, 110)'}}>모여Bar 가이드에 도전하세요</div>
                 <div style={{gridColumn:'3/4', color:'rgb(110, 110, 110)', marginTop:'30px'}}>♥좋아요♥를 많이 받게되면 <br /> 모여Bar 가이드에 정식 레시피로 등록됩니다. 매력적인 칵테일을 소개해주세요!</div>
@@ -327,12 +451,12 @@ function SignatureJoin(props) {
                         <textarea placeholder="칵테일 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='cocktailContents' value={signatureJoin.cocktailContents} onChange={handleSignatureJoinChange}></textarea>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.cocktailContents.length}/200</p>
                     </label>
-                    {/* {<IngredientForm ingredients={ingredients} ingredient={ingredient} setIngredients={setIngredients} />} */}
+                    {/* {<IngredientForm ingredient01={ingredient01} ingredient={ingredient} setIngredient01={setIngredient01} />} */}
                     {
                     ingredientForm.map(function(a, i) {
                       return (
                         <label key={i}>
-                            <h3>재료 정보{ingredients.length} ▼</h3>
+                            <h3>재료 정보{ingredient01.length} ▼</h3>
                             <div className="signature-ingredient-container">
                                 <div><h3>재료{i + 1}</h3></div>
                                 <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => handleIngredientChange(e)} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
