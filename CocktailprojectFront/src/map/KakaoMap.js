@@ -130,7 +130,7 @@ function KakaoMap(props) {
                 <div className="boxInner"
                     style={{ float: "left", border: "solid 1px", width: '25%', height: "680px", margin: "0 0 0 10%", overflowY: 'scroll' }} >
                     {Data.map((value, index) => (
-                        <div key={index} style={{ display: 'grid', gridTemplateColumns: '0.5fr 0.75fr 1fr 0.75fr', alignItems: "center", columnGap: '10px' }}>
+                        <div key={index} style={{ marginBlock:"5px", borderBottom: "solid 1px gray", display: 'grid', gridTemplateColumns: '0.5fr 0.75fr 1fr 0.75fr', alignItems: "center", columnGap: '10px' }}>
                             <input type="radio" name="example" value={value.name} onChange={(e) => setSelectedValue(selectedValue === e.target.value ? null : e.target.value)}></input>
                             <img src={value.image} width="73" height="70" alt={value.name} />
                             <label>{value.name}</label>
@@ -144,8 +144,8 @@ function KakaoMap(props) {
                 id={`map`}
                 center={{
                     // 지도의 중심좌표
-                    lng: 127.027621,    //lon
-                    lat: 37.497942,     //lat
+                    lng: 127.03936,    //lon
+                    lat: 37.50960,     //lat
                 }}
                 style={{
                     // 지도의 크기
@@ -154,7 +154,7 @@ function KakaoMap(props) {
                     margin: "0 0 40% 0",
                     border: "solid 1px"
                 }}
-                level={4} // 지도의 확대 레벨
+                level={6} // 지도의 확대 레벨
             >
                 {/* 마커 등록 */}
                 {Data.map((value, index) => {
@@ -237,13 +237,13 @@ function KakaoMap(props) {
                         image={{
                             src: "https://ssl.pstatic.net/static/maps/m/pin_rd.png", // 마커이미지의 주소입니다
                             size: {
-                                width: 20,
-                                height: 20,
+                                width: 30,
+                                height: 30,
                             }, // 마커이미지의 크기입니다
                         }}>
-                        <div style={{ padding: "5px", color: "#000" }}>
+                        {/* <div style={{ padding: "5px", color: "#000" }}>
                             {state.errMsg ? state.errMsg : "현재위치"}
-                        </div>
+                        </div> */}
                     </MapMarker>
                 )}
                 <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />

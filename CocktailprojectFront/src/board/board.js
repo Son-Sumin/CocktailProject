@@ -51,7 +51,7 @@ function Board(props) {
     };
 
     sortJSON(topHitData, "hit", "desc")
-    sortJSON(topFavoriteData, "likeBoard" , "desc")
+    sortJSON(topFavoriteData, "likeBoard", "desc")
 
     //페이징 소스코드
     useEffect(() => {
@@ -85,34 +85,34 @@ function Board(props) {
                     </div>
 
                     <div>
-                        <h3 style={{ marginTop: '10px', marginLeft: '15px', cursor: 'default' }}>조회순 ▼</h3>
+                        <h3 style={{ marginTop: '10px', marginRight: '45px', cursor: 'default', textAlign: "right" }}>▼ 조회순</h3>
                     </div>
 
                     <div>
                         <h3 style={{ marginTop: '10px', marginLeft: '15px', cursor: 'default' }}>인기순 ▼</h3>
                     </div>
-                    <div style={{ gridColumn: '1/2' }}>
+                    <div style={{ gridColumn: '1/2', marginInline: "5%" }}>
                         {topHitData.map((test, i) => {
                             if (i < 5) {
                                 return (
                                     <Link to={`/board/view/${test.no}`}>
-                                        <div className="board-each-bestcontents" style={{ border: "solid 1px" }}>
-                                            <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor: 'pointer' }}>
+                                        <div className="board-each-bestcontents-left" style={{ marginTop: "3%" }}>
+                                            <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridColumn: '2/3', gridRow: '1/3', cursor: 'pointer', border: "solid 1px gray" }}>
                                                 {test.imgs && test.imgs[0] && test.imgs[0].path && (
                                                     <img className="cocktail-banner-box-minipicture" src={`${process.env.REACT_APP_ENDPOINT}${test.imgs[0].path}`} width='420px' height='400px' />
                                                 )}
                                             </div>
-                                            <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>{test.title}</div>
-                                            <div style={{ gridRow: '2/3' }}>{test.createdDate}</div>
-                                            <div style={{ gridRow: '2/3' }}>{test.hit}</div>
-                                            <div style={{ gridRow: '2/3' }}>{test.likeBoard.length}</div>
+                                            <div style={{ gridColumn: '3/6', gridRow: '1/2', cursor: 'pointer' }}>{test.title}</div>
+                                            <div style={{ gridColumn: '3/4', gridRow: '2/3' }}>{test.createdDate}</div>
+                                            <div style={{ gridColumn: '4/5', gridRow: '2/3' }}>👁‍🗨:{test.hit}</div>
+                                            <div style={{ gridColumn: '5/6', gridRow: '2/3', color: 'rgb(242, 92, 92)' }}>♥:{test.likeBoard.length}</div>
                                         </div>
                                     </Link>
                                 )
                             }
                         })}
                     </div>
-                    <div>
+                    <div style={{ marginInline: "5%" }}>
                         {/* 첫번째 데이터만 gridRow:'3/4' 속성을 줘야함... */}
                         {topFavoriteData.map((test, i) => {
                             let style01 = { gridColumn: '2/3' };
@@ -122,16 +122,16 @@ function Board(props) {
                             if (i < 5) {
                                 return (
                                     <Link to={`/board/view/${test.no}`} key={test.no}>
-                                        <div className="board-each-bestcontents" style={style01}>
-                                            <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor: 'pointer' }}>
+                                        <div className="board-each-bestcontents" style={{ ...style01, marginTop: "3%" }}>
+                                            <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor: 'pointer', border: "solid 1px gray" }}>
                                                 {test.imgs && test.imgs[0] && test.imgs[0].path && (
                                                     <img className="cocktail-banner-box-minipicture" src={`${process.env.REACT_APP_ENDPOINT}${test.imgs[0].path}`} width='420px' height='400px' />
                                                 )}
                                             </div>
                                             <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>{test.title}</div>
                                             <div style={{ gridRow: '2/3' }}>{test.createdDate}</div>
-                                            <div style={{ gridRow: '2/3' }}>{test.hit}</div>
-                                            <div style={{ gridRow: '2/3' }}>{test.likeBoard.length}</div>
+                                            <div style={{ gridRow: '2/3' }}>👁‍🗨:{test.hit}</div>
+                                            <div style={{ gridRow: '2/3', color: 'rgb(242, 92, 92)' }}>♥:{test.likeBoard.length}</div>
                                         </div>
                                     </Link>
                                 )
@@ -172,6 +172,7 @@ function Board(props) {
                                         src={`${process.env.REACT_APP_ENDPOINT}${test.imgs && test.imgs[0] && test.imgs[0].path ? test.imgs[0].path : test.member.profileImage}`}
                                         width='420px'
                                         height='400px'
+                                        style={{border: "solid 1px gray"}}
                                     />
                                 </div>
 
@@ -179,8 +180,8 @@ function Board(props) {
                                 <div style={{ gridRow: '2/3' }}>{test.member.nickname}</div>
                                 <div style={{ gridColumn: '3/6' }}>{test.title}</div>
                                 <div>{test.createdDate}</div>
-                                <div>{test.hit}</div>
-                                <div>{test.likeBoard.length}</div>
+                                <div>👁‍🗨:{test.hit}</div>
+                                <div style={{ color: 'rgb(242, 92, 92)' }}>♥:{test.likeBoard.length}</div>
                             </Link>
                             <div style={{ border: '1px solid #ddd', marginBottom: '20px' }}></div>
                         </>
