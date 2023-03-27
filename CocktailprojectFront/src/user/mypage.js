@@ -51,7 +51,7 @@ function ControlBanner(props) {
 
     useEffect(() => {
         setAllBanner(banner);
-    }, []);
+    }, [banner]);
 
     const handleClickPhoto = () => {
         fileInputRef.current.click();
@@ -69,9 +69,21 @@ function ControlBanner(props) {
         reader.readAsDataURL(e.target.files[0]);
     }
 
+    function handleDelete(no) {
+        if (window.confirm('해당 배너를 정말로 삭제하시겠습니까?')) {
+          axios.delete(`${process.env.REACT_APP_ENDPOINT}/banner/delete/${no}`)
+            .then(() => {
+              console.log("삭제성공!");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      }
+      console.log(allBanner);
 
     return (
-        <div className="mypage-right" style={{display:'grid', gridTemplateRows:'1fr 1fr'}}>
+        <div className="mypage-right" style={{display:'grid', gridTemplateRows:'250px 1fr 50px'}}>
             <div style={{display:'grid', gridTemplateColumns:'300px 1fr', padding:'50px'}}>
                 <div style={{width:'200px', height:'200px'}}>
                     <button type='button' className='signature-picture-button' onClick={handleClickPhoto}>
@@ -88,6 +100,7 @@ function ControlBanner(props) {
                         : <img src={previewUrl} alt="file preview" style={{width:'100%', height:'100%'}} />}
                     </div>
                 </div>
+                <div>업로드</div>
             </div>
 
             <div style={{padding:'50px'}}>
@@ -96,8 +109,26 @@ function ControlBanner(props) {
                     <div><h4>No</h4></div>
                     <div><h4>배너이름</h4></div>
                     <div><h4>배너</h4></div>
+                    <div><h4>상태관리</h4></div>
 
-                    <div style={{gridColumn:'2/3'}}>
+                    <div style={{gridColumn:'1/5', paddingLeft:'0px'}}>
+                        <div style={{display:'grid', gridTemplateColumns:'50px 200px 720px 100px', rowGap:'20px'}}>
+                            {
+                            (allBanner.length === 0) ? <div style={{paddingLeft:'0px', marginTop:'30px', cursor:'default', gridColumn:'1/5'}}><h2 style={{textAlign:'center', marginBottom:'50px'}}>현재 업로드된 배너가 없어요^^!!</h2></div>
+                            : (allBanner.map((a, i) => {
+                                return (
+                                    <>
+                                    <div style={{paddingLeft:'0px', marginTop:'30px', cursor:'default'}}><h4>{i}</h4></div>
+                                    <div style={{paddingLeft:'0px', marginTop:'30px', cursor:'default'}}><h4>{a.filename}</h4></div>
+                                    <div style={{width:'600px', height:'150px', paddingLeft:'0px', marginBottom:'30px'}}>
+                                        <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} style={{width:'100%', height:'100%'}}/>
+                                    </div>
+                                    <button className='signature-picture-button' onClick={() => handleDelete(a.no)} style={{width:'100px', height:'50px', marginTop:'50px'}}>삭제</button>
+                                    </>
+                                )
+                            }))
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -313,7 +344,7 @@ function MyPage(props) {
             {selectedMenu === 'favorite' && <MyPageFavorite user={user} />}
 
             {/* 마이페이지중 관리자의 배너관리 */}
-            {selectedMenu === 'controlBanner' && <ControlBanner user={user} />}
+            {selectedMenu === 'controlBanner' && <ControlBanner user={user}  banner={banner} />}
         </div>
     )
 }
