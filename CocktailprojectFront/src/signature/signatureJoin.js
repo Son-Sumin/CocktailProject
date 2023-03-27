@@ -68,7 +68,7 @@ function SignatureJoin(props) {
 
     // handleClickPhoto 이벤트
     const fileInputRef = useRef(null);
-    const [previewUrl, setPreviewUrl] = useState(Array.from({ length: 3 }, () => null)); // 3개의 원소가 있는 배열을 생성하고 각 원소를 'null'값으로 초기화
+    const [previewUrl, setPreviewUrl] = useState(Array.from({length: 3}, () => null)); // 3개의 원소가 있는 배열을 생성하고 각 원소를 'null'값으로 초기화
 
     const handleClickPhoto = () => {
         fileInputRef.current.click();
@@ -95,7 +95,7 @@ function SignatureJoin(props) {
         reader.onloadend = () => { // reader.onloadend는 FileReader객체가 이미지 파일을 읽는 작업을 마쳤을 때 발생하는 이벤트
             setPreviewUrl((prevUrls) => {
             const newUrls = [...prevUrls];
-            newUrls[index] = reader.result; // newUrls[index]에는 읽은 이비지 파일의 URL을 할당
+            newUrls[files.length] = reader.result; // 새로운 미리보기 URL을 배열의 마지막에 추가
             return newUrls; // 새로운 배열상태 newUrls를 반환하면서 previewUrls 배열상태를 업데이트
             });
         };
@@ -287,24 +287,28 @@ function SignatureJoin(props) {
                                 <input ref={fileInputRef} type="file" name='files' multiple onChange={handleFilesChange} style={{display:'none'}}></input>  
                             </div>
 
-                            <div className="signature-picture-box-2 signature-picture-box-grid-2" style={(previewUrl === null) ? null : {overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px'}}>
-                                {
-                                (previewUrl === null) ?
+                            <div className="signature-picture-box-2 signature-picture-box-grid-2" style={(previewUrl[0] === null) ? null : {overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px'}}>
+                                {(previewUrl[0] === null) ?
                                 (<>
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진1</div>
                                 <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div>
-                                </>) : <img src={previewUrl} alt="file preview" />
-                                }
+                                </>) : <img src={previewUrl[0]} alt="file preview" />}
                             </div>
 
-                            <div className="signature-picture-box-2 signature-picture-box-grid-2">
+                            <div className="signature-picture-box-2 signature-picture-box-grid-2" style={(previewUrl[1] === null) ? null : {overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px'}}>
+                                {(previewUrl[1] === null) ?
+                                (<>
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진2</div>
                                 <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div>
+                                </>) : <img src={previewUrl[1]} alt="file preview" />}
                             </div>
 
-                            <div className="signature-picture-box-2 signature-picture-box-grid-2">
+                            <div className="signature-picture-box-2 signature-picture-box-grid-2" style={(previewUrl[2] === null) ? null : {overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px'}}>
+                                {(previewUrl[2] === null) ?
+                                (<>
                                 <div style={{gridRow:'2/3', textAlign:'center', fontWeight:'600'}}>추천사진3</div>
-                                <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div> 
+                                <div style={{gridRow:'3/4', textAlign:'center'}}>깔끔하게 흰 배경에 <br/> 찍어보세요!</div>
+                                </>) : <img src={previewUrl[2]} alt="file preview" />}
                             </div>
                         </div>
                     </div>

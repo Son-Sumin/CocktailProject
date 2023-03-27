@@ -160,7 +160,7 @@ function App() {
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
-          <Route path="/mypage" element={<MyPage user={user} />}></Route>
+          <Route path="/mypage" element={<MyPage user={user} banner={banner} />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token}
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>
