@@ -1,3 +1,4 @@
+/* eslint-disable no-sequences */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -13,8 +14,6 @@ function boardRe(props) {
     const Data1 = props.board;
     const token = props.token;
     const [board, setBoard] = useState([])
-    const [content, setContent] = useState('');
-    const [imageUrls, setImageUrls] = useState([]);
     useEffect(() => { setBoard([...Data1]); }, [Data1])
 
     //데이터 분류 (Params)
@@ -24,64 +23,88 @@ function boardRe(props) {
         const inData = board.filter(x => x.no == boardNo)
         setData2(inData)
 
-        // setContent(inData.contents);
-        // const paths = inData.imgs.map(img => img.path);
-        // setImageUrls(paths);
-
     }, [board])
 
+    const [content, setContent] = useState('');
+    const [imageUrls, setImageUrls] = useState([]);
+    const [imgData, setImgData] = useState(false);
 
-
-
-    // useEffect(() => {
-    //     // 데이터베이스에서 글과 이미지 URL 가져오기
-    //     axios.get(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}`)
-    //         .then(response => {
-    //             const { contents, imgs } = response.data;
-    //             setContent(contents);
-    //             const paths = imgs.map(img => img.path);
-    //             setImageUrls(paths);
-    //             console.log("imageUrls")
-    //             console.log(typeof imageUrls)
-    //             console.log(imageUrls)
-    //             console.log("content")
-    //             console.log(typeof content)
-    //             console.log(content)
-    //         });
-    // }, [boardNo]);
+    useEffect(() => {
+        // 데이터베이스에서 글과 이미지 URL 가져오기
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}`)
+            .then(response => {
+                const { contents, imgs } = response.data;
+                setContent(contents);
+                const paths = imgs.map(img => `${process.env.REACT_APP_ENDPOINT}${img.path}`);
+                setImageUrls(paths);
+                // setImageUrls(imgs);
+                console.log("content")
+                console.log(typeof content)
+                console.log(contents)
+                console.log(imgs)
+                console.log(paths)
+                console.log(typeof paths)
+            });
+    }, [boardNo]);
 
     const getInitialData = () => {
         // 초기 데이터 설정
         return content;
     };
 
-    const onReady = (editor) => {
-        // 이미지 URL을 기반으로 이미지 파일 다시 불러오기
-        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-            return new Promise((resolve, reject) => {
-                const imageUrl = loader.file.url;
-                if (imageUrl) {
-                    axios.get(imageUrl, { responseType: 'blob' }).then(response => {
-                        resolve({
-                            default: response.data,
-                            url: imageUrl
-                        });
-                    });
-                } else {
-                    reject();
-                }
-            });
-        };
-    };
+    // const onReady = (editor) => {
+    //     // 이미지 URL을 기반으로 이미지 파일 다시 불러오기
+    //     editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+    //         return new Promise((resolve, reject) => {
+    //             const imageUrl = loader.file.url;
+    //             if (imageUrl) {
+    //                 axios.get(`${process.env.REACT_APP_ENDPOINT}/${imageUrl}`, { responseType: 'blob' }).then(response => {
+    //                     resolve({
+    //                         default: response.data,
+    //                         url: imageUrl
+    //                     });
+    //                 });
+    //             } else {
+    //                 reject(
+    //                     console.log("이미지 실패")
+    //                 );
+    //             }
+    //         });
+    //     };
+    // };
 
+    // const config = {
+    //     extraPlugins: [uploadPlugin],
+    //     image: {
+    //         toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side'],
+    //         styles: ['full', 'side'],
+    //         // 이미지 로더 함수
+    //         loader: (url, success, failure, progress) => {
+    //             // 이미지 URL이 `imageUrls` 배열에 포함되어 있는 경우
+    //             if (imageUrls.indexOf(url) !== -1) {
+    //                 // 이미지 URL을 로드하여 success 함수 호출
+    //                 const image = new Image();
+    //                 image.src = url;
+    //                 image.onload = () => {
+    //                     success(image);
+    //                 };
+    //                 image.onerror = failure;
+    //                 return;
+    //             } else {
+    //                 console.log("이미지 로딩 실패   ")
+    //             }
+    //             // 이미지 URL이 `imageUrls` 배열에 포함되어 있지 않은 경우
+    //             failure();
+    //         }
+    //     }
+    // }
 
-
-    const caRef = useRef(null);
-    const tiRef = useRef(null);
-    const [img, setImg] = useState(new FormData());
 
     //CK에디터 데이터 받아오기
     const [contentsData, setContentsData] = useState("");
+    const caRef = useRef(null);
+    const tiRef = useRef(null);
+    const [img, setImg] = useState(new FormData());
 
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
@@ -94,8 +117,7 @@ function boardRe(props) {
         if (confirm("저장 하시겠습니까?")) {
 
             //글 등록
-            const response = await axios.post(
-                `${process.env.REACT_APP_ENDPOINT}/board/update/${boardNo}`,
+            const response = await axios.put(`${process.env.REACT_APP_ENDPOINT}/board/update/${boardNo}`,
                 {
                     category: caRef.current.value,
                     title: tiRef.current.value,
@@ -110,20 +132,20 @@ function boardRe(props) {
             );
             if (response.status === 200) {
                 console.log("글저장 완료");
+                if (imgData === false) {
+                    alert("저장이 완료되었습니다.");
+                    location.href = '/board';
+                }
             } else {
                 console.error(
                     `저장 중 오류가 발생했습니다: ${response.status} (${response.statusText})`
                 );
             }
 
-            //사진 등록=> 임시저장되어있는 이미지 이동
-            const resData = response.data.no;
-            console.log(resData);
-            console.log("img");
-            console.log(img);
-            fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
-                method: "POST",
-                body: imageUrls
+            // //사진 등록=> 임시저장되어있는 이미지 이동
+            fetch(`${process.env.REACT_APP_ENDPOINT}/board/update/${boardNo}/file`, {
+                method: "PUT",
+                body: img
             }) // body에 data를 직접 넣어줍니다.
                 .then((res) => {
                     if (res.status === 200) {
@@ -136,8 +158,6 @@ function boardRe(props) {
                 .catch((error) =>
                     console.error(`저장 중 오류가 발생했습니다: ${error}`)
                 );
-
-
         } else {
             alert("취소되었습니다.");
         }
@@ -147,11 +167,12 @@ function boardRe(props) {
     const customUploadAdapter = (loader) => {
         return {
             upload: () => {
-                return new Promise((resolve, reject) => {
+                return new Promise(() => {
                     const data = new FormData();
                     loader.file.then((file) => {
                         data.append("files", file);
                         setImg(data)
+                        setImgData(true)
                     });
                 });
             }
@@ -192,16 +213,16 @@ function boardRe(props) {
                                 <CKEditor
                                     editor={ClassicEditor}
                                     config={{
-                                        extraPlugins: [uploadPlugin]
+                                        extraPlugins: [uploadPlugin],
                                     }}
                                     // data={test.contents}
                                     data={getInitialData()}
-                                    onReady={onReady}
+                                    // onReady={onReady}
 
                                     onChange={handleEditorChange}
-                                    // onReady={editor => {
-                                    //     console.log('Editor is ready to use!', editor);
-                                    // }}
+                                    onReady={editor => {
+                                        console.log('Editor is ready to use!', editor);
+                                    }}
                                     onBlur={(event, editor) => {
                                         console.log('Blur.', editor);
                                     }}
