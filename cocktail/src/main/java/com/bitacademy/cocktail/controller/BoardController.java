@@ -54,10 +54,11 @@ public class BoardController {
 //	게시글 작성
 	@CrossOrigin(origins = "*")
 	@PostMapping("/board/write")
-	public void boardWrite(@RequestBody Board board) {
+	public Board boardWrite(@RequestBody Board board) {
 		board.setHit(0L);
 		board.setMember(memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get());
 		boardService.boardWrite(board);
+		return boardService.boardView(board.getNo());
 	}
 	
 	// 게시글 파일업로드
