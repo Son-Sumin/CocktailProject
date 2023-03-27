@@ -112,9 +112,12 @@ public class MemberController {
 	@PatchMapping("/member/update")
 	public void imgUpdate(@ModelAttribute Member member, MultipartFile file) throws Exception {
 		member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
-		member.setProfileImage("");
 		
-		if(file.isEmpty()) {
+		if(file != null) {
+			member.setProfileImage(null);
+        }
+		
+		if(!file.isEmpty()) {
 			String projectPath = uploadpath + "/common";
 	 		UUID uuid = UUID.randomUUID();
 	 		String fileName = uuid + "_" + file.getOriginalFilename();
@@ -122,7 +125,7 @@ public class MemberController {
 	 		File saveFile = new File(projectPath, fileName);
 	 		file.transferTo(saveFile);
 	 		
-	 		member.setProfileImage("/bit/banner/" + fileName);
+	 		member.setProfileImage("/bit/common/" + fileName);
 	 		memberService.save(member);	
 		}		
 	}

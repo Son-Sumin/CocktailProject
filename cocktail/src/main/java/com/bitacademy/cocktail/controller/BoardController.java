@@ -89,7 +89,7 @@ public class BoardController {
 
 //	댓글삭제
 	@CrossOrigin(origins = "*")
-	@GetMapping("/board/view/{no}/review/delete/{bno}")
+	@DeleteMapping("/board/view/{no}/review/delete/{bno}")
 	public void reivewDelete(@PathVariable("no") Long no, @PathVariable("bno") Long bno, ReviewBoard reviewBoard) {
 		reviewBoardService.reviewDelete(bno);
 	}

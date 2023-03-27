@@ -173,8 +173,10 @@ function App() {
 
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
-          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} token={token} />}></Route>
-          <Route path="/map" element={<Map />}></Route>
+
+          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
+          <Route path="/map" element={<Map token={token}
+            isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>
 
 
           <Route path="/board01" element={<Board01 />}></Route>
@@ -185,7 +187,7 @@ function App() {
           <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} />}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
           <Route path='/writing' element={<Writing board={board} token={token} />} />
-          <Route path='/board/update/:no' element={<BoardRe board={board} token={token} />} />
+          <Route path='/board/update/:no' element={<BoardRe board={board} token={token} user={user}/>} />
         </Routes>
       </div>
       {/* <button onClick={buttonClick}

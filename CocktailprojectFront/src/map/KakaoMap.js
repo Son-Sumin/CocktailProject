@@ -109,7 +109,7 @@ function KakaoMap(props) {
         }
     }
 
-    const randerEvent = (e,test) => { // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
+    const randerEvent = (e, test) => { // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
         axios.get(`${process.env.REACT_APP_ENDPOINT}/place/isliked/${test}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -134,7 +134,7 @@ function KakaoMap(props) {
                             <input type="radio" name="example" value={value.name} onChange={(e) => setSelectedValue(selectedValue === e.target.value ? null : e.target.value)}></input>
                             <img src={value.image} width="73" height="70" alt={value.name} />
                             <label>{value.name}</label>
-                            <label> 좋아요:{value.likes ? value.likes.length : 0}</label>
+                            <label> 좋아요:{value.likePlace.length !== 0 ? value.likePlace.length : 0}</label>
                         </div>
                     ))}
 
@@ -163,7 +163,7 @@ function KakaoMap(props) {
                             <MapMarker
                                 key={`marker_${index}`}
                                 position={{ lat: value.lat, lng: value.lon }}
-                                onClick={(e) => { setIsOpenList(isOpenList.map((item, i) => (i === index ? !item : item))); randerEvent(e,value.no); }}
+                                onClick={(e) => { setIsOpenList(isOpenList.map((item, i) => (i === index ? !item : item))); randerEvent(e, value.no); }}
                                 image={{
                                     src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
                                     size: {
@@ -181,7 +181,7 @@ function KakaoMap(props) {
                             <MapMarker
                                 key={`marker_${index}`}
                                 position={{ lat: value.lat, lng: value.lon }}
-                                onClick={(e) => { setIsOpenList(isOpenList.map((item, i) => (i === index ? !item : item))); randerEvent(e,value.no); }}
+                                onClick={(e) => { setIsOpenList(isOpenList.map((item, i) => (i === index ? !item : item))); randerEvent(e, value.no); }}
                                 image={{
                                     src: "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png", // 마커이미지의 주소입니다
                                     size: {

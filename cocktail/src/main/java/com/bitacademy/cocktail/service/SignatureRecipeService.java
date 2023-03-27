@@ -1,5 +1,6 @@
 package com.bitacademy.cocktail.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitacademy.cocktail.domain.Signature;
 import com.bitacademy.cocktail.domain.SignatureRecipe;
+import com.bitacademy.cocktail.repository.IngredientRepository;
 import com.bitacademy.cocktail.repository.SignatureRecipeRepository;
 import com.bitacademy.cocktail.repository.SignatureRepository;
 
@@ -21,7 +23,7 @@ public class SignatureRecipeService {
 	/* 생성자 주입 */
 	private final SignatureRepository signatureRepository;
 	private final SignatureRecipeRepository signatureRecipeRepository;
-	//private final IngredientRepository ingredientRepository;
+	private final IngredientRepository ingredientRepository;
 	
 	/* 시그니처 레시피 리스트 */
 	public List<SignatureRecipe> listSignatureRecipe() {
@@ -35,7 +37,7 @@ public class SignatureRecipeService {
 		return signatureRecipeRepository.findBySignatureNo(signatureNo);
 	}
 	
-	/* 시그니처 레시피 등록 */
+	/* 시그니처 레시피 1개 등록 */
 	public void addRecipe(Long signatureNo, SignatureRecipe recipe) {
 		
 		Signature signature = signatureRepository.findByNo(signatureNo);
@@ -53,4 +55,23 @@ public class SignatureRecipeService {
 	public void deleteRecipe(Long signatureNo) {
 		signatureRecipeRepository.deleteBySignatureNo(signatureNo);
 	}
+	
+//	/* 시그니처 레시피 리스트 등록 */
+//	public void addRecipe(Long signatureNo, List<SignatureRecipe> recipes) {
+//		
+//		Signature signature = signatureRepository.findByNo(signatureNo);
+//		
+//		List<SignatureRecipe> signatureRecipes = new ArrayList<>();
+//		
+//		for (SignatureRecipe recipe : recipes) {
+//			SignatureRecipe sig = new SignatureRecipe();
+//			sig.setSignature(signature);
+//			//sig.setIngredient(ingredientRepository.findByNo(recipe.getIngredient().getNo()));
+//			sig.setIngredient(recipe.getIngredient());
+//			sig.setAmount(recipe.getAmount());
+//			sig.setUnit(recipe.getUnit());
+//			signatureRecipes.add(sig);
+//		}
+//		signatureRecipeRepository.saveAll(signatureRecipes);
+//	}
 }
