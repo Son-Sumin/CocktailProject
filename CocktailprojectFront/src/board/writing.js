@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/rules-of-hooks */
 
@@ -12,8 +13,9 @@ function writing(props) {
     const caRef = useRef(null);
     const tiRef = useRef(null);
 
+
     //CK에디터 데이터 받아오기
-    const [contentsData, setContentsData] = useState("");
+    const [contentsData, setContentsData] = useState("빈 글");
     const [img, setImg] = useState(new FormData());
     const [imgData, setImgData] = useState(false);
 
@@ -34,7 +36,7 @@ function writing(props) {
                 `${process.env.REACT_APP_ENDPOINT}/board/write`,
                 {
                     category: caRef.current.value,
-                    title: tiRef.current.value,
+                    title: tiRef.current.value !== "" ? tiRef.current.value : "제목없음",
                     contents: contentsData,
                 },
                 {
@@ -44,16 +46,17 @@ function writing(props) {
                     },
                 }
             );
+
             if (response.status === 200) {
                 console.log("글저장 완료");
+                if (imgData === false) {
+                    alert("저장이 완료되었습니다.");
+                    location.href = '/board';
+                }
             } else {
                 console.error(
                     `저장 중 오류가 발생했습니다: ${response.status} (${response.statusText})`
                 );
-                if (imgData === true){
-                    alert("저장이 완료되었습니다.");
-                    location.href = '/board';
-                }
             }
 
             //사진 등록=> 임시저장되어있는 이미지 이동
@@ -61,34 +64,39 @@ function writing(props) {
             console.log(resData);
             console.log("img");
             console.log(img);
-            if (imgData === true){
-            fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
-                method: "POST",
-                body: img
-            }) // body에 data를 직접 넣어줍니다.
-                .then((res) => {
-                    if (res.status === 200) {
-                        alert("저장이 완료되었습니다.");
-                        location.href = '/board';
-                    } else {
-                        throw new Error(`${res.status} (${res.statusText})`);
-                    }
-                })
-                .catch((error) =>
-                    console.error(`저장 중 오류가 발생했습니다: ${error}`)
-                );
+            for (let key of img.keys()) {
+                console.log(key);
             }
+            // img.map(app => {
+            if (imgData === true) {
+                fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
+                    method: "POST",
+                    body: img
+                })
+                    .then((res) => {
+                        if (res.status === 200) {
+                            alert("저장이 완료되었습니다.");
+                            location.href = '/board';
+                        } else {
+                            throw new Error(`${res.status} (${res.statusText})`);
+                        }
+                    })
+                    .catch((error) =>
+                        console.error(`저장 중 오류가 발생했습니다: ${error}`)
+                    );
+            }
+            // });
         } else {
             alert("취소되었습니다.");
         }
     }
 
     //파일업로드 플러그인
+    const data = new FormData();
     const customUploadAdapter = (loader) => {
         return {
             upload: () => {
-                return new Promise((resolve, reject) => {
-                    const data = new FormData();
+                return new Promise(() => {
                     loader.file.then((file) => {
                         data.append("files", file);
                         setImg(data)
@@ -128,7 +136,7 @@ function writing(props) {
                                 <option value="question">Q&A</option>
                             </select>
 
-                            <input ref={tiRef} style={{ flexGrow: "1" }} />
+                            <input ref={tiRef} style={{ flexGrow: "1" }} placeholder="제목을 입력하세요" />
                         </div>
                         <br />
                         <div>

@@ -51,7 +51,7 @@ function Board(props) {
     };
 
     sortJSON(topHitData, "hit", "desc")
-    sortJSON(topFavoriteData, "likeBoard.length", "desc")
+    sortJSON(topFavoriteData, "likeBoard" , "desc")
 
     //페이징 소스코드
     useEffect(() => {
