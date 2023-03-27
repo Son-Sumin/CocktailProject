@@ -16,7 +16,7 @@ import IngredientDetail from "./ingredient/IngredientDetail";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import { getCocktail, getIngredient, getBanner, getBoard, getSignature} from "./api";
+import { getCocktail, getIngredient, getBanner, getBoard, getSignature } from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 import Map from "./map/KakaoMap";
 
@@ -59,8 +59,6 @@ function App() {
     phoneNumber: '',
     gender: '',
     likeCocktail: [],
-    profileImage: "",
-    role: "",
   });
 
   // 좋아요버튼, 최상위 컴포넌트에 빼둔 이유는 useEffect()에서 좋아요 클릭마다 실시간 렌더링을 하기위함
@@ -114,15 +112,13 @@ function App() {
           phoneNumber: response.data.phoneNumber,
           gender: response.data.gender,
           likeCocktail: response.data.likeCocktail,
-          profileImage: response.data.profileImage,
-          role: response.data.role,
         })
-  
+
         console.log("로그인여부: " + isLoggedIn);
       }).catch(error => {
-          // 에러를 처리
-          console.error(error);
-        });
+        // 에러를 처리
+        console.error(error);
+      });
     }
   }, [isLiked, token, isLoggedIn]);
 
@@ -158,23 +154,24 @@ function App() {
   return (
     <>
       <div className="App">
-        {!['/join', '/login', '/mypage'].includes(location.pathname) && 
-          <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} token={token} />} 
+        {!['/join', '/login', '/mypage'].includes(location.pathname) &&
+          <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} token={token} />}
         <Routes>
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
           <Route path="/mypage" element={<MyPage user={user} />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
-          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} 
-            isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked}/>}></Route>
+          <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token}
+            isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
 
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
-          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} token={token} />}></Route>
-          <Route path="/map" element={<Map />}></Route>
+          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
+          <Route path="/map" element={<Map
+            isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>
 
 
           <Route path="/board01" element={<Board01 />}></Route>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
@@ -77,96 +78,66 @@ function Board(props) {
 
     return (
         <div className="board-container">
-            <div className='banner' style={{backgroundColor:'white', border:'1px solid black', borderRadius:'10px'}}>
+            <div className='banner' style={{ backgroundColor: 'white', border: '1px solid black', borderRadius: '10px' }}>
                 <div className="board-bestcontents-container">
                     <div style={{ gridColumn: '1/3' }}>
-                        <h1 style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center', cursor:'default' }}>오늘의 Best게시글</h1>
+                        <h1 style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center', cursor: 'default' }}>오늘의 Best게시글</h1>
                     </div>
 
                     <div>
-                        <h3 style={{ marginTop: '10px', marginLeft:'15px', cursor:'default' }}>조회순 ▼</h3>
+                        <h3 style={{ marginTop: '10px', marginLeft: '15px', cursor: 'default' }}>조회순 ▼</h3>
                     </div>
 
                     <div>
-                        <h3 style={{ marginTop: '10px', marginLeft:'15px', cursor:'default' }}>인기순 ▼</h3>
+                        <h3 style={{ marginTop: '10px', marginLeft: '15px', cursor: 'default' }}>인기순 ▼</h3>
                     </div>
-                    {/* {topHitData.map((test, i) => {
-                        if (i < 5) {
-                            return (
-                                <div className="board-each-bestcontents" >
+                    <div style={{ gridColumn: '1/2' }}>
+                        {topHitData.map((test, i) => {
+                            if (i < 5) {
+                                return (
                                     <Link to={`/board/view/${test.no}`}>
-                                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3' }}>
-                                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img>
+                                        <div className="board-each-bestcontents" style={{ border: "solid 1px" }}>
+                                            <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor: 'pointer' }}>
+                                                {test.imgs && test.imgs[0] && test.imgs[0].path && (
+                                                    <img className="cocktail-banner-box-minipicture" src={`${process.env.REACT_APP_ENDPOINT}${test.imgs[0].path}`} width='420px' height='400px' />
+                                                )}
+                                            </div>
+                                            <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>{test.title}</div>
+                                            <div style={{ gridRow: '2/3' }}>{test.createdDate}</div>
+                                            <div style={{ gridRow: '2/3' }}>{test.hit}</div>
+                                            <div style={{ gridRow: '2/3' }}>{test.likeBoard.length}</div>
                                         </div>
-                                        <div style={{ gridColumn: '2/6' }}>{test.title}</div>
-                                        <div style={{ gridRow: '2/3' }}>{test.createdDate}</div>
-                                        <div style={{ gridRow: '2/3' }}>{test.hit}</div>
-                                        <div style={{ gridRow: '2/3' }}>{test.category}</div>
                                     </Link>
-                                </div>
-                            )
-                        }
-                    })} */}
-
-                    <div className="board-each-bestcontents" style={{gridColumn:'1/2'}}> 
-                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
-                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
-                        </div>
-                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
-                        <div style={{ gridRow: '2/3' }}>시간</div>
-                        <div style={{ gridRow: '2/3' }}>2</div>
-                        <div style={{ gridRow: '2/3' }}>3</div>
+                                )
+                            }
+                        })}
                     </div>
-
-                    <div className="board-each-bestcontents" style={{gridColumn:'1/2'}}>
-                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
-                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
-                        </div>
-                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
-                        <div style={{ gridRow: '2/3' }}>시간</div>
-                        <div style={{ gridRow: '2/3' }}>2</div>
-                        <div style={{ gridRow: '2/3' }}>3</div>
+                    <div>
+                        {/* 첫번째 데이터만 gridRow:'3/4' 속성을 줘야함... */}
+                        {topFavoriteData.map((test, i) => {
+                            let style01 = { gridColumn: '2/3' };
+                            if (i === 0) {
+                                style01.gridRow = '3/4';
+                            }
+                            if (i < 5) {
+                                return (
+                                    <Link to={`/board/view/${test.no}`} key={test.no}>
+                                        <div className="board-each-bestcontents" style={style01}>
+                                            <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor: 'pointer' }}>
+                                                {test.imgs && test.imgs[0] && test.imgs[0].path && (
+                                                    <img className="cocktail-banner-box-minipicture" src={`${process.env.REACT_APP_ENDPOINT}${test.imgs[0].path}`} width='420px' height='400px' />
+                                                )}
+                                            </div>
+                                            <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>{test.title}</div>
+                                            <div style={{ gridRow: '2/3' }}>{test.createdDate}</div>
+                                            <div style={{ gridRow: '2/3' }}>{test.hit}</div>
+                                            <div style={{ gridRow: '2/3' }}>{test.likeBoard.length}</div>
+                                        </div>
+                                    </Link>
+                                )
+                            }
+                        })}
                     </div>
-
-
-
-
-                    {/* ---------------------- 위는 조회순 map, 아래는 인기순 map ------------------------ */}
-
-
-
-                    {/* 첫번째 데이터만 gridRow:'3/4' 속성을 줘야함... */}
-                    <div className="board-each-bestcontents" style={{gridColumn:'2/3', gridRow:'3/4'}}> 
-                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
-                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
-                        </div>
-                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
-                        <div style={{ gridRow: '2/3' }}>시간</div>
-                        <div style={{ gridRow: '2/3' }}>2</div>
-                        <div style={{ gridRow: '2/3' }}>3</div>
-                    </div>
-
-                    <div className="board-each-bestcontents" style={{gridColumn:'2/3'}}> 
-                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
-                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
-                        </div>
-                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
-                        <div style={{ gridRow: '2/3' }}>시간</div>
-                        <div style={{ gridRow: '2/3' }}>2</div>
-                        <div style={{ gridRow: '2/3' }}>3</div>
-                    </div>
-
-                    <div className="board-each-bestcontents" style={{gridColumn:'2/3'}}> 
-                        <div className="cocktail-banner-box-minipicturebox" style={{ marginBottom: '0px', gridRow: '1/3', cursor:'pointer' }}>
-                            {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
-                        </div>
-                        <div style={{ gridColumn: '2/6', cursor: 'pointer' }}>제목</div>
-                        <div style={{ gridRow: '2/3' }}>시간</div>
-                        <div style={{ gridRow: '2/3' }}>2</div>
-                        <div style={{ gridRow: '2/3' }}>3</div>
-                    </div>
-
-
                 </div>
             </div>
 
@@ -174,14 +145,20 @@ function Board(props) {
                 <button onClick={() => setBoard(data)}>전체</button>
                 <button onClick={() => setBoard(data.filter(x => x.category === 'random'))}>자유</button>
                 <button onClick={() => setBoard(data.filter(x => x.category === 'question'))}>Q&A</button>
-                <select onChange={onSorted} id="sorting" value={currentData.createdDate}>
+                <select onChange={onSorted} style={{ textAlign: "center" }}
+                    id="sorting" value={currentData.createdDate}>
                     <option value="desc" > 최신순 </option>
                     <option value="asc" > 오래된순 </option>
                 </select>
-                {/* <button onClick={() => setBoard(Data1)}>초기화</button> */}
-
-                {/* <div>&nbsp;</div> */}
-                <button style={{ marginRight: '0px' }}><a href='/writing'>글쓰기</a></button>
+                <select
+                    style={{ width: "100px", height: "40px", textAlign: "center" }}
+                    id="paging" onChange={handleItemsPerPageChange} value={itemsPerPage} defaultValue={10}>
+                    <option value="5" > 5 </option>
+                    <option value="10" > 10 </option>
+                    <option value="15" > 15 </option>
+                    <option value="20" > 20 </option>
+                </select>
+                <button ><a href='/writing'>글쓰기</a></button>
             </div>
 
             <div className="board-contents">
@@ -190,7 +167,12 @@ function Board(props) {
                         <>
                             <Link to={`/board/view/${test.no}`} className="board-each-contents">
                                 <div className="board-contents-picture">
-                                    {/* <img className="cocktail-banner-box-minipicture" src={a.url} width='420px' height='400px'></img> */}
+                                    <img
+                                        className="cocktail-banner-box-minipicture"
+                                        src={`${process.env.REACT_APP_ENDPOINT}${test.imgs && test.imgs[0] && test.imgs[0].path ? test.imgs[0].path : test.member.profileImage}`}
+                                        width='420px'
+                                        height='400px'
+                                    />
                                 </div>
 
                                 <div>{test.category}</div>
@@ -220,7 +202,7 @@ function Board(props) {
                     <button
                         key={index + 1}
                         onClick={() => handlePageChange(index + 1)}
-                        className={currentPage === index + 1 ? "active" : ""} //css 수정해야됨 : .active를 변경시 현재페이지 표시됨 
+                        className={`page-button ${currentPage === index + 1 ? "active" : ""}`} //css 수정해야됨 : .active를 변경시 현재페이지 표시됨 
                     >
                         {index + 1}
                     </button>
@@ -228,7 +210,7 @@ function Board(props) {
 
                 {/* 다음 버튼 */}
                 {currentPage !== totalPages && (
-                    <button className='page-button' onClick={() => handlePageChange(currentPage + 1)}> 
+                    <button className='page-button' onClick={() => handlePageChange(currentPage + 1)}>
                         <span>Next</span>
                     </button>
                 )}

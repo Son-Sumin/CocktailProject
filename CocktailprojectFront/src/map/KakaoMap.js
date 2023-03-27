@@ -1,11 +1,11 @@
 import axios from "axios";
-import React, { useMemo, useRef } from "react";
+import React from "react";
 import { useEffect, useState } from "react";
 import { MapMarker, Map, CustomOverlayMap, ZoomControl } from "react-kakao-maps-sdk";
 import '../css/map.css';
 import parse from 'html-react-parser';
 import { useParams } from "react-router-dom";
-const { kakao } = window;
+// const { kakao } = window;
 
 function KakaoMap(props) {
 
@@ -69,34 +69,45 @@ function KakaoMap(props) {
         }
     }, [])
 
-    //뭐였지?
+    // 지도 
     const [selectedValue, setSelectedValue] = useState(null);
+    const { token, isLoggedIn, isLiked, setIsLiked } = props;
     useEffect(() => {
         console.log(selectedValue);
     }, [selectedValue]);
 
-
-    const isLoggedIn = props;
-    const token = props.token;
-    const boardNo = Number(useParams().no);
-
     // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
-    const [isLiked, setIsLiked] = useState(false);
+    // const [isLiked, setIsLiked] = useState(false);
 
-    // 좋아요 개수 저장 (버튼 클릭 시 실시간으로 좋아요 개수를 반영하기 위한 state)
-    const [countLiked, setCountLiked] = useState([]);
+    // // 좋아요 개수 저장 (버튼 클릭 시 실시간으로 좋아요 개수를 반영하기 위한 state)
+    // const[countLiked, setCountLiked] = useState([]);
 
     // 클릭시 하트상태 반전
-    const handleLikeClick = async (e) => {
+    const handleLikeClick = async (e, test) => {
+
+        // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/place/isliked/${test}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            const liked = res.data;
+            setIsLiked(liked);
+            console.log("좋아요 데이터 가져오기 성공: " + liked);
+        }).catch((err) => {
+            console.log("좋아요 데이터 가져오기 실패ㅠㅠ");
+            console.log(err)
+        })
+
         // 로그인 시에만 click이벤트 작동
         if (isLoggedIn) {
-            await axios.post(`${process.env.REACT_APP_ENDPOINT}/cocktail/like/${boardNo}`, {}, {/*fetch주소 변경 */
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/place/like/${test}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }).then(() => {
                 // Click이벤트 발생 시, 하트상태 반전을 위한 데이버를 서버에서 불러옴
-                axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${boardNo}`, {/*fetch주소 변경 */
+                axios.get(`${process.env.REACT_APP_ENDPOINT}/place/isliked/${test}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -115,10 +126,10 @@ function KakaoMap(props) {
             });
 
             // Click이벤트 발생 시, 실시간으로 숫자를 반영
-            axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${boardNo}`)
+            axios.get(`${process.env.REACT_APP_ENDPOINT}/place/countliked/${test}`)
                 .then((res) => {
                     const counted = res.data;
-                    setCountLiked(counted);
+                    // setCountLiked(counted);
                     console.log("좋아요 카운트데이터 가져오기 성공: " + counted);
                 }).catch((err) => {
                     console.log("좋아요 카운트데이터 가져오기 실패ㅠㅠ");
@@ -129,25 +140,6 @@ function KakaoMap(props) {
             e.preventDefault();
         }
     }
-
-    // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${boardNo}`, {/*fetch주소 변경 */
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((res) => {
-            const liked = res.data;
-            setIsLiked(liked);
-            console.log("좋아요 데이터 가져오기 성공: " + liked);
-        }).catch((err) => {
-            console.log("좋아요 데이터 가져오기 실패ㅠㅠ");
-            console.log(err)
-        })
-    }, []);
-
-
-    //스크롤 이벤트
 
     return (
         <div className="page" style={{ position: 'fixed', width: "100%" }}>
@@ -250,7 +242,7 @@ function KakaoMap(props) {
                                     {/* 장소 정보 */}
                                     <div className="body">
                                         {/* 좋아요 */}
-                                        <div className="cocktail-ingredient-image" style={{ width: "5px", height: "5px", marginLeft: '0%', marginTop: '1%', cursor: isLoggedIn ? 'pointer' : 'default' }} onClick={handleLikeClick}>
+                                        <div className="cocktail-ingredient-image" style={{ width: "5px", height: "5px", marginLeft: '0%', marginTop: '1%', cursor: isLoggedIn ? 'pointer' : 'default' }} onClick={e => handleLikeClick(e, value.no)}>
                                             <div className="cocktail-banner-box-contents-favorite" style={{ width: "5px", height: "5px" }}>
                                                 {isLiked ? '♥' : '♡'}
                                             </div>
@@ -282,7 +274,7 @@ function KakaoMap(props) {
                         </div>
                     </MapMarker>
                 )}
-                <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+                {/* <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} /> */}
             </Map>
         </div>
     );
