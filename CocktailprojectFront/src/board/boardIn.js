@@ -129,13 +129,13 @@ function boardIn(props) {
     const handleLikeClick = async (e) => {
         // 로그인 시에만 click이벤트 작동
         if (isLoggedIn) {
-            await axios.post(`${process.env.REACT_APP_ENDPOINT}/cocktail/like/${boardNo}`, {}, {
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/board/like/${boardNo}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }).then(() => {
                 // Click이벤트 발생 시, 하트상태 반전을 위한 데이버를 서버에서 불러옴
-                axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${boardNo}`, {
+                axios.get(`${process.env.REACT_APP_ENDPOINT}/board/isliked/${boardNo}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -154,7 +154,7 @@ function boardIn(props) {
             });
 
             // Click이벤트 발생 시, 실시간으로 숫자를 반영
-            axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${boardNo}`)
+            axios.get(`${process.env.REACT_APP_ENDPOINT}/board/countliked/${boardNo}`)
                 .then((res) => {
                     const counted = res.data;
                     setCountLiked(counted);
@@ -171,7 +171,7 @@ function boardIn(props) {
 
     // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/isliked/${boardNo}`, {
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/board/isliked/${boardNo}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -187,7 +187,7 @@ function boardIn(props) {
 
     // 렌더링 할때마다, 실시간으로 숫자를 반영
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_ENDPOINT}/cocktail/countliked/${boardNo}`)
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/board/countliked/${boardNo}`)
             .then((res) => {
                 const counted = res.data;
                 setCountLiked(counted);
@@ -227,11 +227,11 @@ function boardIn(props) {
                         <div>
                             {Data.imgs.map((app, i) => {
                                 if (i < 5) {
-                                return (
-                                    <div style={{ textAlign: "center" }}>
-                                        <img src={`${process.env.REACT_APP_ENDPOINT}${app.path}`} key={i} alt={app.name} style={{ height: "200px", width: "auto" }}></img>
-                                    </div>
-                                )
+                                    return (
+                                        <div style={{ textAlign: "center" }}>
+                                            <img src={`${process.env.REACT_APP_ENDPOINT}${app.path}`} key={i} alt={app.name} style={{ maxWidth: "2000px", maxHeight: "200px" }}></img>
+                                        </div>
+                                    )
                                 }
                             })}
                         </div>
@@ -252,7 +252,7 @@ function boardIn(props) {
                     </div>
                 </div>
                 {/* 댓글창 */}
-                <div style={{minHeight:"200px"}}>
+                <div style={{ minHeight: "100px" }}>
                     <p className="text-center">
                         <h4>댓글</h4>
                     </p>
@@ -262,18 +262,20 @@ function boardIn(props) {
                             <button style={{ width: "10%", height: "40px" }}>작성</button>
                         </form>
                     </div>
+                </div>
+                <div>
                     {/* 댓글창 view */}
-                    <table className='border text-center' style={{ margin: "auto" }}>
+                    <table style={{ margin: "auto" }}>
                         {Data && Data.reviews &&
                             <tbody>
                                 {Data.reviews.map(app => {
                                     return (
-                                        <tr>
-                                            <td>{app.no}</td>
-                                            <td>{app.contents}</td>
-                                            <td>{app.createdDate}</td>
+                                        <tr style={{ fontSize: "25px", display: "flex" }}>
+                                            <td style={{textAlign:"left", width:"50px"}}>{app.no}</td>
+                                            <td style={{ width:"500px"}}>{app.createdDate}</td>
+                                            <td style={{ width: "500px" }}>{app.contents}</td>
                                             <td style={{ width: "10%" }}>
-                                                <button onClick={(e) => onRemove2(e, app)}>삭제</button>
+                                                <button onClick={(e) => onRemove2(e, app)} style={{width:"100px",height:"50px"}}>삭제</button>
                                             </td>
                                         </tr>
                                     )

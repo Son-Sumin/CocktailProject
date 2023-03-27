@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { MapMarker, Map, CustomOverlayMap, ZoomControl } from "react-kakao-maps-sdk";
 import '../css/map.css';
 import parse from 'html-react-parser';
-import { useParams } from "react-router-dom";
-// const { kakao } = window;
+const { kakao } = window;
 
 function KakaoMap(props) {
 
@@ -76,28 +75,8 @@ function KakaoMap(props) {
         console.log(selectedValue);
     }, [selectedValue]);
 
-    // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
-    // const [isLiked, setIsLiked] = useState(false);
-
-    // // 좋아요 개수 저장 (버튼 클릭 시 실시간으로 좋아요 개수를 반영하기 위한 state)
-    // const[countLiked, setCountLiked] = useState([]);
-
     // 클릭시 하트상태 반전
     const handleLikeClick = async (e, test) => {
-
-        // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
-        axios.get(`${process.env.REACT_APP_ENDPOINT}/place/isliked/${test}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((res) => {
-            const liked = res.data;
-            setIsLiked(liked);
-            console.log("좋아요 데이터 가져오기 성공: " + liked);
-        }).catch((err) => {
-            console.log("좋아요 데이터 가져오기 실패ㅠㅠ");
-            console.log(err)
-        })
 
         // 로그인 시에만 click이벤트 작동
         if (isLoggedIn) {
@@ -124,21 +103,25 @@ function KakaoMap(props) {
                 // console.log("좋아요 서버전달 실패!");
                 console.log(err);
             });
-
-            // Click이벤트 발생 시, 실시간으로 숫자를 반영
-            axios.get(`${process.env.REACT_APP_ENDPOINT}/place/countliked/${test}`)
-                .then((res) => {
-                    const counted = res.data;
-                    // setCountLiked(counted);
-                    console.log("좋아요 카운트데이터 가져오기 성공: " + counted);
-                }).catch((err) => {
-                    console.log("좋아요 카운트데이터 가져오기 실패ㅠㅠ");
-                    console.log(err)
-                });
         } else {
             // 비로그인 시, Click이벤트 막음
             e.preventDefault();
         }
+    }
+
+    const randerEvent = (e,test) => { // 렌더링 할때마다, 예전에 좋아요 버튼 클릭했다면 ♥으로 고정, 안했다면 ♡으로 고정... 서버에서 데이터를 불러옴
+        axios.get(`${process.env.REACT_APP_ENDPOINT}/place/isliked/${test}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            const liked = res.data;
+            setIsLiked(liked);
+            console.log("좋아요 데이터 가져오기 성공: " + liked);
+        }).catch((err) => {
+            console.log("좋아요 데이터 가져오기 실패ㅠㅠ");
+            console.log(err)
+        })
     }
 
     return (
@@ -180,11 +163,7 @@ function KakaoMap(props) {
                             <MapMarker
                                 key={`marker_${index}`}
                                 position={{ lat: value.lat, lng: value.lon }}
-                                onClick={() => {
-                                    setIsOpenList(
-                                        isOpenList.map((item, i) => (i === index ? !item : item))
-                                    );
-                                }}
+                                onClick={(e) => { setIsOpenList(isOpenList.map((item, i) => (i === index ? !item : item))); randerEvent(e,value.no); }}
                                 image={{
                                     src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다
                                     size: {
@@ -202,11 +181,7 @@ function KakaoMap(props) {
                             <MapMarker
                                 key={`marker_${index}`}
                                 position={{ lat: value.lat, lng: value.lon }}
-                                onClick={() => {
-                                    setIsOpenList(
-                                        isOpenList.map((item, i) => (i === index ? !item : item))
-                                    );
-                                }}
+                                onClick={(e) => { setIsOpenList(isOpenList.map((item, i) => (i === index ? !item : item))); randerEvent(e,value.no); }}
                                 image={{
                                     src: "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png", // 마커이미지의 주소입니다
                                     size: {
@@ -230,10 +205,7 @@ function KakaoMap(props) {
                                         {value.name}
                                         <div
                                             className="close"
-                                            onClick={() =>
-                                                setIsOpenList(
-                                                    isOpenList.map((item, i) => (i === index ? !item : item))
-                                                )
+                                            onClick={() => setIsOpenList(isOpenList.map((item, i) => (i === index ? !item : item)))
                                             }
                                             title="닫기"
                                         ></div>
@@ -274,7 +246,7 @@ function KakaoMap(props) {
                         </div>
                     </MapMarker>
                 )}
-                {/* <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} /> */}
+                <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
             </Map>
         </div>
     );
