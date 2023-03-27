@@ -40,4 +40,9 @@ public class LikeBoardService {
 	public boolean notLike(Member member, Board board) {
 		return likeBoardRepository.findBymemberAndBoard(member, board).isEmpty();
 	}
+
+	public String countLiked(Long no) {
+		Board board = boardRepository.findByNo(no).get();
+		return likeBoardRepository.countByBoard(board);
+	}
 }

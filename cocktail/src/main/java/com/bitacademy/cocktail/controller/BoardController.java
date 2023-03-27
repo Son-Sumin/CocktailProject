@@ -54,10 +54,11 @@ public class BoardController {
 //	게시글 작성
 	@CrossOrigin(origins = "*")
 	@PostMapping("/board/write")
-	public void boardWrite(@RequestBody Board board) {
+	public Board boardWrite(@RequestBody Board board) {
 		board.setHit(0L);
 		board.setMember(memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get());
 		boardService.boardWrite(board);
+		return boardService.boardView(board.getNo());
 	}
 	
 	// 게시글 파일업로드
@@ -130,7 +131,22 @@ public class BoardController {
 	public void addLike(@PathVariable("no") Long no){
 		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
 		likeBoardService.addLike(member, no);
-		
+	}
+	
+	// 좋아요 확인
+	@CrossOrigin(origins = "*")
+	@GetMapping("/board/isliked/{no}")
+	public boolean isLiked(@PathVariable("no") Long no) {
+		Board board = boardService.boardView(no);
+		Member member = memberService.memberInfo(SecurityUtil.getCurrentMemberId()).get();
+		return !likeBoardService.notLike(member, board);
+	}
+	
+	// 좋아요 갯수
+	@CrossOrigin(origins = "*")
+	@GetMapping("/board/countliked/{no}")
+	public String countLiked(@PathVariable("no") Long no) {
+		return likeBoardService.countLiked(no);
 	}
 
 //	이미지 삭제

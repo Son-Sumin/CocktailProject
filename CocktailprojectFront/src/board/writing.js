@@ -25,6 +25,8 @@ function writing(props) {
 
     async function onSubmit(e) {
         e.preventDefault();
+        console.log("img");
+        console.log(img);
         if (confirm("저장 하시겠습니까?")) {
 
             //글 등록
@@ -48,10 +50,10 @@ function writing(props) {
                 console.error(
                     `저장 중 오류가 발생했습니다: ${response.status} (${response.statusText})`
                 );
-            }
-            if (imgData === false) {
-                alert("저장이 완료되었습니다.");
-                location.href = '/board';
+                if (imgData === true){
+                    alert("저장이 완료되었습니다.");
+                    location.href = '/board';
+                }
             }
 
             //사진 등록=> 임시저장되어있는 이미지 이동
@@ -59,22 +61,22 @@ function writing(props) {
             console.log(resData);
             console.log("img");
             console.log(img);
-            if (imgData === true) {
-                fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
-                    method: "POST",
-                    body: img
-                }) // body에 data를 직접 넣어줍니다.
-                    .then((res) => {
-                        if (res.status === 200) {
-                            alert("저장이 완료되었습니다.");
-                            location.href = '/board';
-                        } else {
-                            throw new Error(`${res.status} (${res.statusText})`);
-                        }
-                    })
-                    .catch((error) =>
-                        console.error(`저장 중 오류가 발생했습니다: ${error}`)
-                    );
+            if (imgData === true){
+            fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
+                method: "POST",
+                body: img
+            }) // body에 data를 직접 넣어줍니다.
+                .then((res) => {
+                    if (res.status === 200) {
+                        alert("저장이 완료되었습니다.");
+                        location.href = '/board';
+                    } else {
+                        throw new Error(`${res.status} (${res.statusText})`);
+                    }
+                })
+                .catch((error) =>
+                    console.error(`저장 중 오류가 발생했습니다: ${error}`)
+                );
             }
         } else {
             alert("취소되었습니다.");
