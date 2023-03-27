@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import '../App.css';
 import '../css/cocktailandingredient.css';
 import axios from 'axios';
-import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Ingredient(props) {
     const ingredient = props.ingredient;   

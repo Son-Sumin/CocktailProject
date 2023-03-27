@@ -13,7 +13,7 @@ function AdminMypage(props) {
                 <img src={bannerLogo} alt="project-log-no" width={'100%'} />
             </Link>
             <div>
-                <div className="mypage-profile-picture">
+                <div className="mypage-profile-picture" style={{overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <img className="mypage-profile-picture-img" src={`${process.env.REACT_APP_ENDPOINT}${user.profileImage}`} alt="profile-image" />
                 </div>
                 <div style={{textAlign:'center'}}>
@@ -37,17 +37,12 @@ function AdminMypage(props) {
 function ControlBanner(props) {
     const { user, banner } = props;
 
-    const [allUser, setAllUser] = useState([]);
     const [allBanner, setAllBanner] = useState([]);
     
     const [file, setFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
     const fileInputRef = useRef(null);
     const uploadPhoto = process.env.PUBLIC_URL + '/upload-photo.png'; // 이미지 업로드 버튼
-
-    useEffect(() => {
-        setAllUser(user);
-    }, []);
 
     useEffect(() => {
         setAllBanner(banner);
@@ -60,7 +55,8 @@ function ControlBanner(props) {
     const handleFilesChange = (e) => {
         e.preventDefault();
 
-        setFile(e.target.files[0]);
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
 
         const reader = new FileReader();
         reader.onload = () => {
@@ -79,29 +75,59 @@ function ControlBanner(props) {
               console.log(error);
             });
         }
-      }
-      console.log(allBanner);
+    }
+
+    const handleBannerSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        // formData에 데이터 들어가있나 확인
+        // for (const [key, value] of formData.entries()) {
+        //     console.log("formData: " + `${key}: ${value}`);
+        //     console.log("--------");
+        // }
+
+        try {
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/banner/add`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+              });
+            console.log("배너 업로드 성공!");
+
+            setTimeout(() => {
+                window.location.reload();
+              }, 3000);
+        } catch(err) {
+            console.log("배너 업로드 실패ㅠㅠ")
+            console.log(err);
+        }
+    }
 
     return (
-        <div className="mypage-right" style={{display:'grid', gridTemplateRows:'250px 1fr 50px'}}>
-            <div style={{display:'grid', gridTemplateColumns:'300px 1fr', padding:'50px'}}>
-                <div style={{width:'200px', height:'200px'}}>
-                    <button type='button' className='signature-picture-button' onClick={handleClickPhoto}>
-                        <img src={uploadPhoto} alt="이미지 업로드 버튼"/>
-                        <p className='signature-picture-button-text'>사진 업로드</p>
-                    </button>
-                    <input ref={fileInputRef} type="file" name='files' multiple onChange={handleFilesChange} style={{display:'none'}}></input>  
-                </div>
-
-                <div>
-                    <div className="mypage-banner-preview-box" style={(previewUrl === null) ? null : {overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px'}}>
-                    {(previewUrl == null) ?
-                    (<h1 style={{textAlign:'center', cursor:'default'}}>배너 사진 업로드</h1>) 
-                        : <img src={previewUrl} alt="file preview" style={{width:'100%', height:'100%'}} />}
+        <div className="mypage-right" style={{display:'grid', gridTemplateRows:'250px 1fr'}}>
+            <form onSubmit={handleBannerSubmit}>
+                <div style={{display:'grid', gridTemplateColumns:'300px 1fr', padding:'50px', gridTemplateRows:'1fr 70px'}}>
+                    <div style={{width:'200px', height:'200px'}}>
+                        <button type='button' className='signature-picture-button' onClick={handleClickPhoto}>
+                            <img src={uploadPhoto} alt="이미지 업로드 버튼"/>
+                            <p className='signature-picture-button-text'>배너 업로드</p>
+                        </button>
+                        <input ref={fileInputRef} type="file" name='files' onChange={handleFilesChange} style={{display:'none'}}></input>  
                     </div>
+
+                    <div>
+                        <div className="mypage-banner-preview-box" style={(previewUrl === null) ? null : {overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px'}}>
+                        {(previewUrl == null) ?
+                        (<h1 style={{textAlign:'center', cursor:'default'}}>배너 미리보기</h1>) 
+                            : <img src={previewUrl} alt="file preview" style={{width:'100%', height:'100%'}} />}
+                        </div>
+                    </div>
+                    <button type="submit" className='signature-picture-button' style={{width:'110px', height:'50px', gridColumn:'1/3', marginLeft:'88%', marginTop:'15px'}}>업로드</button>
                 </div>
-                <div>업로드</div>
-            </div>
+            </form>
 
             <div style={{padding:'50px'}}>
                 <h3>배너 목록 ▼</h3>
@@ -169,54 +195,62 @@ function EnUserMyPage(props) {
 
 // 관리자,일반유저의 마이페이지중 프로필 (하위컴포넌트)
 function MyPageProfile(props) {
-    const { user } = props;
+    const { user, token } = props;
 
     // 프로필사진 수정할때 저장할 state
     const [file, setFile] = useState(null);
-    // const [banner, setBanner] = useState(null);
 
     const fileInputRef = useRef(null);
-    // const bannerInputRef = useRef(null);
 
-    const handleClickPhoto = (type) => () => {
-        if (type === "profile") {
-            fileInputRef.current.click();
-        } 
-        // else if (type === "banner") {
-        //     bannerInputRef.current.click();
-        // }
+    const handleClickPhoto = () => {
+        fileInputRef.current.click();
     }
-    const handleFilesChange = (e) => {
+
+    const handleFilesChange = async (e) => {
         e.preventDefault();
 
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+
         const formData = new FormData();
+        formData.append("file", selectedFile);
 
-        formData.append()
+        // formData에 데이터 들어가있나 확인
+        for (const [key, value] of formData.entries()) {
+            console.log("formData: " + `${key}: ${value}`);
+            console.log("--------");
+        }
+
+        try {
+            await axios.patch(`${process.env.REACT_APP_ENDPOINT}/member/update`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                }
+              });
+            console.log("프로필사진 업데이트 성공!");
+
+            setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+        } catch(err) {
+            console.log("프로필사진 업데이트 실패ㅠㅠ");
+            console.log(err);
+        }
     }
-    // const handleBannerChange = (e) => {
-    //     e.preventDefault();
 
-    // }
-
-    console.log(user.profileImage);
     console.log(process.env.REACT_APP_ENDPOINT);
 
     return (
         <div className="mypage-right" style={{display:'grid', gridTemplateRows:'1fr 1fr'}}>
             <div>
-                <div className="mypage-profile-picture" style={{margin:'auto', width:'150px', height:'150px', marginTop:'5%'}}>
+                <div className="mypage-profile-picture" style={{margin:'auto', width:'150px', height:'150px', marginTop:'5%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center',}}>
                     <img className="mypage-profile-picture-img" src={`${process.env.REACT_APP_ENDPOINT}${user.profileImage}`} alt="profile-image" />
                 </div>
-                <div style={{margin:'30px 0px', textAlign:'center'}} onClick={handleClickPhoto("profile")}>
+                <div style={{margin:'30px 0px', textAlign:'center'}} onClick={handleClickPhoto}>
                     <span className="mypage-profile-picture-change-button">프로필 사진 변경</span>
-                    {/* {
-                        <div style={{margin:'30px 0px', textAlign:'center'}} onClick={handleClickPhoto("banner")}>
-                            <span className="mypage-profile-picture-change-button" style={{padding:'4px 13px'}}>배너 사진 변경</span>
-                        </div>
-                    } */}
                 </div>
-                <input ref={fileInputRef} type="file" name='files' multiple onChange={handleFilesChange} style={{display:'none'}}></input>
-                {/* <input ref={bannerInputRef} type="file" name='files' multiple onChange={handleBannerChange} style={{display:'none'}}></input> */}
+                <input ref={fileInputRef} type="file" name='file' onChange={handleFilesChange} style={{display:'none'}}></input>
             </div>
             <div className="mypage-right-contents">
                 <div className="mypage-right-contents-keys" style={{gridColumn:'2/3', borderTop:'1px solid gray'}}>
@@ -316,7 +350,7 @@ function MyPageFavorite(props) {
 
 // 마이페이지 (상위컴포넌트)
 function MyPage(props) {
-    const { user, banner } = props;
+    const { user, banner, token } = props;
     const bannerLogo = process.env.PUBLIC_URL + '/project-log-no.png';
 
     // 현재 선택된 메뉴
@@ -338,7 +372,7 @@ function MyPage(props) {
             )}
 
             {/* 마이페이지중 일반유저, 관리자의 프로필 */}
-            {selectedMenu === 'profile' && <MyPageProfile user={user}/>}
+            {selectedMenu === 'profile' && <MyPageProfile user={user} token={token} />}
 
             {/* 마이페이지중 일반유저의 찜목록 */}
             {selectedMenu === 'favorite' && <MyPageFavorite user={user} />}
