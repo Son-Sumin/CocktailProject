@@ -7,7 +7,7 @@
 .board-bestcontents-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 60px 40px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    /* grid-template-rows: 60px 40px 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
     row-gap: 8px;
 }
 
@@ -25,7 +25,7 @@
 
 .board-menu {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 690px 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr minmax(0, 100%) 1fr;
     margin-top: 80px;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .page-button {
-    width: 70px;
+    width: minmax(70px auto);
     margin: 15px;
     padding: 5px 10px;
     font-size: 20px;

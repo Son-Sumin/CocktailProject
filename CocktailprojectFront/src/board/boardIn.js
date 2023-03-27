@@ -252,7 +252,7 @@ function boardIn(props) {
                     </div>
                 </div>
                 {/* 댓글창 */}
-                <div>
+                <div style={{minHeight:"200px"}}>
                     <p className="text-center">
                         <h4>댓글</h4>
                     </p>

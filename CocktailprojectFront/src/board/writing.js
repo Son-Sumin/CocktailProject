@@ -4,18 +4,18 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 function writing(props) {
     const { token } = props;
-
     const caRef = useRef(null);
     const tiRef = useRef(null);
-    const [img, setImg] = useState(new FormData());
 
     //CK에디터 데이터 받아오기
     const [contentsData, setContentsData] = useState("");
+    const [img, setImg] = useState(new FormData());
+    const [imgData, setImgData] = useState(false);
 
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
@@ -25,8 +25,6 @@ function writing(props) {
 
     async function onSubmit(e) {
         e.preventDefault();
-        console.log("img");
-        console.log(img);
         if (confirm("저장 하시겠습니까?")) {
 
             //글 등록
@@ -51,29 +49,33 @@ function writing(props) {
                     `저장 중 오류가 발생했습니다: ${response.status} (${response.statusText})`
                 );
             }
+            if (imgData === false) {
+                alert("저장이 완료되었습니다.");
+                location.href = '/board';
+            }
 
             //사진 등록=> 임시저장되어있는 이미지 이동
             const resData = response.data.no;
             console.log(resData);
             console.log("img");
             console.log(img);
-            fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
-                method: "POST",
-                body: img
-            }) // body에 data를 직접 넣어줍니다.
-                .then((res) => {
-                    if (res.status === 200) {
-                        alert("저장이 완료되었습니다.");
-                        location.href = '/board';
-                    } else {
-                        throw new Error(`${res.status} (${res.statusText})`);
-                    }
-                })
-                .catch((error) =>
-                    console.error(`저장 중 오류가 발생했습니다: ${error}`)
-                );
-
-
+            if (imgData === true) {
+                fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${resData}/file`, {
+                    method: "POST",
+                    body: img
+                }) // body에 data를 직접 넣어줍니다.
+                    .then((res) => {
+                        if (res.status === 200) {
+                            alert("저장이 완료되었습니다.");
+                            location.href = '/board';
+                        } else {
+                            throw new Error(`${res.status} (${res.statusText})`);
+                        }
+                    })
+                    .catch((error) =>
+                        console.error(`저장 중 오류가 발생했습니다: ${error}`)
+                    );
+            }
         } else {
             alert("취소되었습니다.");
         }
@@ -88,12 +90,13 @@ function writing(props) {
                     loader.file.then((file) => {
                         data.append("files", file);
                         setImg(data)
+                        setImgData(true)
                     });
                 });
             }
         };
     }
-    
+
 
     function uploadPlugin(editor) {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
@@ -122,9 +125,7 @@ function writing(props) {
                                 <option value="random">자유</option>
                                 <option value="question">Q&A</option>
                             </select>
-                            {/* </div>
 
-                        <div> */}
                             <input ref={tiRef} style={{ flexGrow: "1" }} />
                         </div>
                         <br />
