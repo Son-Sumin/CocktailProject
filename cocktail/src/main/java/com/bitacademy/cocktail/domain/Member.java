@@ -95,7 +95,6 @@ public class Member implements UserDetails {
 	private List<ReviewSignature> reviewSignatures = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"signature"})
 	@Builder.Default
 	private List<LikeSignature> likeSignature = new ArrayList<>();
 	
