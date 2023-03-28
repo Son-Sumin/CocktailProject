@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from "react";
 import '../App.css';
 import '../css/cocktailandingredient.css';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function SignatureDetail(props) {
-    const { signature, token, isLoggedIn } = props;
+    const { signature, token, isLoggedIn, isLiked, setIsLiked } = props;
     const { no } = useParams(); // 파라미터를 변수로 추출
 
     // 좋아요 개수 저장 (버튼 클릭 시 실시간으로 좋아요 개수를 반영하기 위한 state)
@@ -92,91 +93,91 @@ function SignatureDetail(props) {
         <>
         {
         eachSignature.map(function(a, i) {
+            // degree가 0인게 한개라도 있다면 알콜을 반환, 아니라면 논알콜을 반환
+            const hasDegreeNotZero = a.signatureRecipes.some(recipe => recipe.ingredient.degree !== 0);
+            const isAlcohol = hasDegreeNotZero ? "알콜" : "논알콜";
+
             return (
+                <>
                 <div className='banner cocktail-banner' style={{height:'530px'}} key={i}>
                     <div className="cocktail-banner-box">
                         <div className="cocktail-banner-box-piturebox">
                             <div style={{width:'80px', height:'100%'}}>
                                 {
-                                // a.cocktailImages.map(function(a, i) {
-                                //     return (
+                                a.signatureImages.map(function(a, i) {
+                                    return (
                                         <div className="cocktail-banner-box-minipicturebox">
                                             {/* {a.url} */}
-                                            <img className="cocktail-banner-box-minipicture" src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='420px' height='400px'></img>
+                                            <img className="cocktail-banner-box-minipicture" src={`${process.env.REACT_APP_ENDPOINT}${a.path}`} width='420px' height='400px'></img>
                                         </div>
-                                //     )
-                                // })
+                                    )
+                                })
                                 }
                             </div>
                             <div style={{width:'420px', height:'100%'}}>
                                 {/* {a.cocktailImages[0].url} */}
-                                <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/71.Shirley_temple.jpg" width='420px' height='400px' style={{borderRadius:'10px'}}></img> 
+                                <img src={`${process.env.REACT_APP_ENDPOINT}${a.signatureImages[0].path}`} width='420px' height='400px' style={{borderRadius:'10px'}}></img> 
                             </div>
                         </div>
                         <div className="cocktail-banner-box-contentsbox">
-                            <div style={{color:'rgb(242, 92, 92)', fontWeight:'800'}}>#알콜 #재료6개</div>
+                            <div style={{color:'rgb(242, 92, 92)', fontWeight:'800'}}>#{isAlcohol} #재료{a.signatureRecipes.length}개</div>
                             <div>
-                                <div className="cocktail-banner-box-contents-name">핑크 스카이 라이트 피즈</div>
-                                <div className="cocktail-banner-box-contents-engname">Pink Skylight Fizz</div>
+                                <div className="cocktail-banner-box-contents-name">{a.cocktailName}</div>
+                                <div className="cocktail-banner-box-contents-engname">{a.engName}</div>
                             </div>
-                            <div style={{color:'white'}}>라모스 진피즈의 모습을 간단하게 흉내내고, 색을 조금 바꾼 칵테일입니다.</div>
-                            <div className="cocktail-banner-box-contents-isalcohol">도수 : 알콜</div>
-                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'3%'}}>
+                            <div style={{color:'white'}}>{a.cocktailContents}</div>
+                            <div className="cocktail-banner-box-contents-isalcohol">도수 : {isAlcohol}</div>
+                            <div className="cocktail-ingredient-image" style={{marginLeft:'0%', marginTop:'3%', zIndex:'10', cursor: isLoggedIn ? 'pointer' : 'default'}} onClick={handleLikeClick}>
                                 <div className="cocktail-banner-box-contents-favorite" >
-                                    ♥
+                                    {isLiked ? '♥' : '♡'}
                                 </div>
-                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'-15px'}}>5</div>
+                                <div className="cocktail-banner-box-contents-favorite" style={{fontSize:'25px', marginTop:'-15px'}}>{countLiked}</div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div style={{ paddingLeft: '15%', paddingRight: '15%', marginTop: '100px' }}>
+                    <div style={{ marginBottom: '50px' }}>
+                        <span style={{ fontSize: '20px', fontWeight: 'bold' }}>재료정보 ▼</span>
+                    </div>
+                    <div className="cocktail-ingredient-recipe-box">
+                        {
+                            a.signatureRecipes && a.signatureRecipes.map(function (a, i) {
+                                return (
+                                    <Link to={`/ingredient/${a.ingredient.no}`}>
+                                        <div className="cocktail-ingredient-container">
+                                            <div className="cocktail-ingredient-image">
+                                                {/* "https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EC%BD%94%EC%BD%94%EB%84%9B%EB%B0%80%ED%81%AC80.png" {a.ingredient.image} */}
+                                                <img src={a.ingredient.image} width='100%' height='100%'></img>
+                                            </div>
+                                            <div className="cocktail-ingredient-contents" style={{ paddingTop: '15%' }}>
+                                                <div style={{ fontSize: '13px', color: 'rgb(242, 92, 92)', fontWeight: 'bold' }}>{a.ingredient.type}</div>
+                                                <div className="cocktail-ingredient-contents-name">{a.ingredient.name}</div>
+                                            </div>
+                                            <div className="cocktail-ingredient-contents" style={{ paddingTop: '10%', fontSize: '25px', fontWeight: 'bold' }}>{a.amount}{a.unit}</div>
+                                        </div>
+                                    </Link>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+
+                <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
+                    <div style={{marginBottom:'50px'}}>
+                        <span style={{fontSize:'20px', fontWeight:'bold'}}>레시피 설명 ▼</span>
+                    </div>
+                    <div className="cocktail-ingredient-recipe-box">
+                        <div style={{paddingLeft:'20%'}}>
+                            <p className="cocktail-recipe-contents" style={{whiteSpace: 'pre-line', lineHeight: '2.2', fontSize:'20px'}}>{a.recipeContents}</p>
+                        </div>
+                    </div>
+                </div>
+                </>
             )
-        }
-        )
-        }
-
-        <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
-            <div style={{marginBottom:'50px'}}>
-                <span style={{fontSize:'20px', fontWeight:'bold'}}>재료정보 ▼</span>
-            </div>
-            <div className="cocktail-ingredient-recipe-box">
-                <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 400px', padding:'2% 20%'}}>
-                    <div className="cocktail-ingredient-image">
-                        <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EC%BD%94%EC%BD%94%EB%84%9B%EB%B0%80%ED%81%AC80.png" width='100%' height='100%'></img>
-                    </div>
-                    <div className="cocktail-ingredient-contents" style={{paddingTop:'15%'}}>
-                        <div style={{fontSize:'13px', color:'rgb(242, 92, 92)', fontWeight:'bold'}}>음료수</div>
-                        <div>코코넛밀크</div>
-                    </div>
-                    <div className="cocktail-ingredient-contents" style={{paddingTop:'10%', fontSize:'25px', fontWeight:'bold'}}>30ml</div>
-                </div>
-                
-                <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 2fr', padding:'2% 20%'}}>
-                    <div className="cocktail-ingredient-image">
-                        <img src="https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/007.%EC%BD%94%EC%BD%94%EB%84%9B%EB%B0%80%ED%81%AC80.png" width='100%' height='100%'></img>
-                    </div>
-                    <div className="cocktail-ingredient-contents" style={{paddingTop:'15%'}}>
-                        <div style={{fontSize:'13px', color:'rgb(242, 92, 92)', fontWeight:'bold'}}>음료수</div>
-                        <div>코코넛밀크</div>
-                    </div>
-                    <div className="cocktail-ingredient-contents" style={{paddingTop:'10%', fontSize:'25px', fontWeight:'bold'}}>30ml</div>
-                </div>
-            </div>
-        </div>
-
-        <div style={{paddingLeft:'15%', paddingRight:'15%', marginTop:'100px'}}>
-            <div style={{marginBottom:'50px'}}>
-                <span style={{fontSize:'20px', fontWeight:'bold'}}>레시피 설명 ▼</span>
-            </div>
-            <div className="cocktail-ingredient-recipe-box">
-                <div style={{paddingLeft:'20%'}}>
-                    <p className="cocktail-recipe-contents">1. 믹서기에 으깬 얼음을 넣는다.</p>
-                    <p className="cocktail-recipe-contents">2. 코코넛 밀크(또는 코코넛 크림이나 코코넛 시럽) 30ml와 파인애플 주스 120ml를 추가한다. </p>
-                    <p className="cocktail-recipe-contents">3. 부드러워질 때까지 갈아서 허리케인 잔에 붓는다.</p>
-                    <p className="cocktail-recipe-contents">4. 휘핑크림으로 토핑하고 웨지 파인애플과 마라스키노 체리로 장식한다.</p>
-                </div>
-            </div>
-        </div>
+        })
+    }
         </>
     )
 }
