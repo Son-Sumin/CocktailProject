@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bitacademy.cocktail.domain.Member;
+import com.bitacademy.cocktail.domain.Role;
 import com.bitacademy.cocktail.jwt.JwtToken;
 import com.bitacademy.cocktail.jwt.JwtTokenProvider;
 import com.bitacademy.cocktail.repository.MemberRepository;
@@ -67,6 +68,19 @@ public class MemberService {
 
 	public void save(Member member) {
 		memberRepository.save(member);
+		
+	}
+
+	public void memberStatus(Member member) {
+		if(member.getRole() == Role.enuser) {
+			member.setRole(Role.unuser);
+			memberRepository.save(member);
+			System.out.println("차단");
+		} else {
+			member.setRole(Role.enuser);
+			memberRepository.save(member);
+			System.out.println("차단취소");
+		}
 		
 	}
 
