@@ -78,7 +78,7 @@ img {
   transition: all 0.3s;
 }
 
-.header-menu:hover ~ .header-animationbar {
+.header-menu:hover~.header-animationbar {
   width: 95%;
 }
 
@@ -334,4 +334,18 @@ img {
 
 .ck-editor__editable:not(.ck-editor__nested-editable) {
   min-height: 500px;
+}
+
+/* ---------------- main cocktail ------------------ */
+
+.cocktail-count-box {
+  width: 200px;
+  display: inline-block;
+  margin-inline: 15px;
+}
+
+.cocktail-count-button {
+  height: 100px;
+  width: 50px;
+  margin-top: 60%;
 }
