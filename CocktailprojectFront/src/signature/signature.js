@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import '../App.css';
 import '../css/signature.css';
-import axios from 'axios';
 import { getSignature } from "../api";
 import { Link } from 'react-router-dom';
 
