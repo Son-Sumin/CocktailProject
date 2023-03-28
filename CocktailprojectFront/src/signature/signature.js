@@ -9,11 +9,11 @@ function Signature(props) {
     const {signature, isLoggedIn} = props;
     const signatureBannerPicture = process.env.PUBLIC_URL + '/Signature.PNG';
 
-    const [eachSignature, setEachSignature] = useState([]);
-
     useEffect(() => {
         setEachSignature(signature);
     }, [signature]);
+
+    const [eachSignature, setEachSignature] = useState([]);
 
     return (
     <>

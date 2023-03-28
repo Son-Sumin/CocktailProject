@@ -132,7 +132,7 @@ function App() {
           console.error(error);
         });
     }
-  }, [isLiked, token, isLoggedIn]);
+  }, [isLiked, token, isLoggedIn, signature]);
 
   // isLoggedIn 값이 변경될 때마다 localStorage에 저장
   useEffect(() => {
@@ -181,7 +181,7 @@ function App() {
 
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} isLiked={isLiked} setIsLiked={setIsLiked} isLoggedIn={isLoggedIn} token={token} />}></Route>
-          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} token={token} />}></Route>
+          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} signature={signature} setSignature={setSignature} token={token} />}></Route>
           <Route path="/map" element={<Map token={token}
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>
 
