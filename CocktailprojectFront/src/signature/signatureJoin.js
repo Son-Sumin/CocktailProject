@@ -375,7 +375,6 @@ function SignatureJoin(props) {
             });
 
             navigate("/signature");
-            
         } catch(err) {
             console.log(err);
         }
