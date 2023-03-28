@@ -10,6 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function boardRe(props) {
+    const [imgData, setImgData] = useState(false);
     // 데이터 연결
     const Data1 = props.board;
     const token = props.token;
@@ -27,7 +28,8 @@ function boardRe(props) {
 
     const [content, setContent] = useState('');
     const [imageUrls, setImageUrls] = useState([]);
-    const [imgData, setImgData] = useState(false);
+    console.log("imageUrls")
+    console.log(imageUrls)
 
     useEffect(() => {
         // 데이터베이스에서 글과 이미지 URL 가져오기
@@ -35,15 +37,9 @@ function boardRe(props) {
             .then(response => {
                 const { contents, imgs } = response.data;
                 setContent(contents);
-                const paths = imgs.map(img => `${process.env.REACT_APP_ENDPOINT}${img.path}`);
+                const paths = imgs.map(img => `${img.path}`);
                 setImageUrls(paths);
                 // setImageUrls(imgs);
-                console.log("content")
-                console.log(typeof content)
-                console.log(contents)
-                console.log(imgs)
-                console.log(paths)
-                console.log(typeof paths)
             });
     }, [boardNo]);
 
@@ -58,7 +54,8 @@ function boardRe(props) {
     //         return new Promise((resolve, reject) => {
     //             const imageUrl = loader.file.url;
     //             if (imageUrl) {
-    //                 axios.get(`${process.env.REACT_APP_ENDPOINT}/${imageUrl}`, { responseType: 'blob' }).then(response => {
+    //                 axios.get(`${process.env.REACT_APP_ENDPOINT}/${imageUrl}`, { responseType: 'blob' })
+    //                    .then(response => {
     //                     resolve({
     //                         default: response.data,
     //                         url: imageUrl
@@ -98,6 +95,7 @@ function boardRe(props) {
     //         }
     //     }
     // }
+
 
 
     //CK에디터 데이터 받아오기
@@ -143,8 +141,8 @@ function boardRe(props) {
             }
 
             // //사진 등록=> 임시저장되어있는 이미지 이동
-            fetch(`${process.env.REACT_APP_ENDPOINT}/board/update/${boardNo}/file`, {
-                method: "PUT",
+            fetch(`${process.env.REACT_APP_ENDPOINT}/board/write/${boardNo}/file`, {
+                method: "POST",
                 body: img
             }) // body에 data를 직접 넣어줍니다.
                 .then((res) => {
@@ -164,11 +162,11 @@ function boardRe(props) {
     }
 
     //파일업로드 플러그인
+    const data = new FormData();
     const customUploadAdapter = (loader) => {
         return {
             upload: () => {
                 return new Promise(() => {
-                    const data = new FormData();
                     loader.file.then((file) => {
                         data.append("files", file);
                         setImg(data)
@@ -216,7 +214,9 @@ function boardRe(props) {
                                         extraPlugins: [uploadPlugin],
                                     }}
                                     // data={test.contents}
-                                    data={getInitialData()}
+                                    data={
+                                        getInitialData()
+                                    }
                                     // onReady={onReady}
 
                                     onChange={handleEditorChange}
