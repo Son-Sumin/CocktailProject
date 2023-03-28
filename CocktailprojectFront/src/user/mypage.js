@@ -159,11 +159,17 @@ function ControlBanner(props) {
     )
 }
 
-// 관리자의 마이페이지중 배너관리 (하위컴포넌트)
+// 관리자의 마이페이지중 유저관리 (하위컴포넌트)
 function ControlUser(props) { 
     const { member } = props;
 
-    console.log("###: " + member.name);
+    const [eachMember, setEachMember] = useState([]);
+
+    useEffect(() => {
+        setEachMember(eachMember);
+    }, [eachMember]);
+
+    console.log("###: " + eachMember);
 
     return (
         <>
@@ -331,8 +337,6 @@ function MyPageFavorite(props) {
         setFavoriteSignature(user.likeSignature);
     }, []);
 
-    console.log("#: " + favoriteCocktail);
-    console.log("###: " + favoriteSignature);
 
     return (
         <div className="mypage-right">
@@ -372,9 +376,9 @@ function MyPageFavorite(props) {
                         return (
                             <Link to={`/signature/${a.no}`} key={i}>
                                 <div className="cocktail-box">
-                                    <img src={a.signature.signatureImages[0].url} width='280px' height='200px' style={{ borderRadius: '10px' }} alt="cocktail"></img>
-                                    <div className='cocktail-contents' style={{fontWeight: '800', padding: '10px 0px', backgroundColor:'rgba(224, 218, 201)'}}>{a.signature.name}</div>
-                                    <div className='cocktail-contents' style={{color: 'rgb(131, 131, 131)', fontSize: '12px', backgroundColor:'rgba(224, 218, 201)' }}>{a.signature.signatureContents}</div>
+                                    <img src={`${process.env.REACT_APP_ENDPOINT}${a.signature.signatureImages[0].path}`} width='280px' height='200px' style={{ borderRadius: '10px' }} alt="cocktail"></img>
+                                    <div className='cocktail-contents' style={{fontWeight: '800', padding: '10px 0px', backgroundColor:'rgba(224, 218, 201)'}}>{a.signature.cocktailName}</div>
+                                    <div className='cocktail-contents' style={{color: 'rgb(131, 131, 131)', fontSize: '12px', backgroundColor:'rgba(224, 218, 201)' }}>{a.signature.cocktailContents}</div>
                                 </div>
                             </Link>
                         )   
