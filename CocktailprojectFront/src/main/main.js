@@ -103,7 +103,7 @@ function Main(props) {
     };
 
 
-    sortJSON(cocktailData, "hit", "desc")
+    sortJSON(cocktailData, "likeBoard", "desc")
 
     return (
         <>
@@ -131,39 +131,38 @@ function Main(props) {
             <div style={{ display: "flex", justifyContent: "center" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "150px 800px 150px" }}>
                     {count !== 0 ? (
-                        <div><button onClick={buttonMinus} style={{ height: "100px", width: "50px" }}>&lt;</button></div>
-                    ):(
-                        <div><button style={{ height: "100px", width: "50px" }}>&lt;</button></div>
+                        <div><button onClick={buttonMinus} className="cocktail-count-button">&lt;</button></div>
+                    ) : (
+                        <div><button className="cocktail-count-button">&lt;</button></div>
                     )}
                     <div>
+                        <h2>▶칵테일 좋아요</h2>
                         <div style={{ textAlign: "center" }}>
                             {cocktailData.map((app, i) => {
                                 if (count === 0 && i < 3) {
                                     return (
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{app.no} </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div style={{ width: "200px", display: "inline-block" }}>
+                                            <div>{app.no}</div>
+                                            <div><img src={app.cocktailImages[0].url} style={{ margin: "5px", height: "150px", width: "150px", }} /></div>
+                                            <div>{app.name}</div>
+                                            <div>{app.likeCocktail.length}</div>
+                                        </div>
                                     );
                                 } else if (count > 0 && count <= i && i < 3 + count) {
                                     return (
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>{app.no} </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div className="cocktail-count-box" >
+                                            <div>{app.no}</div>
+                                            <div><img src={app.cocktailImages[0].url} style={{ margin: "5px", height: "150px", width: "150px", }} /></div>
+                                            <div>{app.name}</div>
+                                            <div>{app.likeCocktail.length}</div>
+                                        </div>
                                     );
                                 }
                                 return null;
                             })}
                         </div>
                     </div>
-                    <div><button onClick={buttonPlus} style={{ height: "100px", width: "50px" }}>&gt;</button></div>
+                    <div><button onClick={buttonPlus} className="cocktail-count-button">&gt;</button></div>
                 </div>
             </div>
         </>

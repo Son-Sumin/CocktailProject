@@ -248,8 +248,8 @@ function boardIn(props) {
                 <div style={{ fontSize: '20px' }} dangerouslySetInnerHTML={{ __html: Data.contents }}></div>
 
                 <div className="board-eachcontents-button">
-                    <Link to="/board01" style={{ gridColumn: "2/3", margin: 'auto' }}>
-                        <button><Link to={`/board`}>목록</Link></button>
+                    <Link to="/board" style={{ gridColumn: "2/3", margin: 'auto' }}>
+                        <button>목록</button>
                     </Link>
                     <div className="board-eachcontents-favorite" onClick={handleLikeClick}>
                         <div className="board-eachcontents-favorite-contents">
