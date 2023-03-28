@@ -35,26 +35,19 @@ function AdminMypage(props) {
 
 // 관리자의 마이페이지중 배너관리 (하위컴포넌트)
 function ControlBanner(props) {
-    const { user, banner } = props;
-
-    const [allBanner, setAllBanner] = useState([]);
+    const { banner, setBanner } = props;
     
     const [file, setFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
+    const [title, setTitle] = useState("배너사진");
     const fileInputRef = useRef(null);
     const uploadPhoto = process.env.PUBLIC_URL + '/upload-photo.png'; // 이미지 업로드 버튼
-
-    useEffect(() => {
-        setAllBanner(banner);
-    }, [banner]);
 
     const handleClickPhoto = () => {
         fileInputRef.current.click();
     }
 
     const handleFilesChange = (e) => {
-        e.preventDefault();
-
         const selectedFile = e.target.files[0];
         setFile(selectedFile);
 
@@ -69,7 +62,13 @@ function ControlBanner(props) {
         if (window.confirm('해당 배너를 정말로 삭제하시겠습니까?')) {
           axios.delete(`${process.env.REACT_APP_ENDPOINT}/banner/delete/${no}`)
             .then(() => {
-              console.log("삭제성공!");
+                console.log("삭제성공!");
+                
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
+
+                alert("배너 업로드 성공!");
             })
             .catch((error) => {
               console.log(error);
@@ -81,29 +80,27 @@ function ControlBanner(props) {
         e.preventDefault();
 
         const formData = new FormData();
+        formData.append('title', title);
         formData.append('file', file);
-
-        // formData에 데이터 들어가있나 확인
-        // for (const [key, value] of formData.entries()) {
-        //     console.log("formData: " + `${key}: ${value}`);
-        //     console.log("--------");
-        // }
 
         try {
             await axios.post(`${process.env.REACT_APP_ENDPOINT}/banner/add`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }
-              });
-            console.log("배너 업로드 성공!");
+            });
 
             setTimeout(() => {
                 window.location.reload();
-              }, 3000);
+            }, 500);
+
+            alert("배너 업로드 성공!");
         } catch(err) {
             console.log("배너 업로드 실패ㅠㅠ")
             console.log(err);
         }
+
+        setBanner([...banner, formData]);
     }
 
     return (
@@ -125,7 +122,7 @@ function ControlBanner(props) {
                             : <img src={previewUrl} alt="file preview" style={{width:'100%', height:'100%'}} />}
                         </div>
                     </div>
-                    <button type="submit" className='signature-picture-button' style={{width:'110px', height:'50px', gridColumn:'1/3', marginLeft:'88%', marginTop:'15px'}}>업로드</button>
+                    <button type="submit" className='signature-picture-button' style={{width:'110px', height:'50px', gridColumn:'1/3', marginLeft:'88%', marginTop:'15px', zIndex:'5'}}>업로드</button>
                 </div>
             </form>
 
@@ -140,11 +137,11 @@ function ControlBanner(props) {
                     <div style={{gridColumn:'1/5', paddingLeft:'0px'}}>
                         <div style={{display:'grid', gridTemplateColumns:'50px 200px 720px 100px', rowGap:'20px'}}>
                             {
-                            (allBanner.length === 0) ? <div style={{paddingLeft:'0px', marginTop:'30px', cursor:'default', gridColumn:'1/5'}}><h2 style={{textAlign:'center', marginBottom:'50px'}}>현재 업로드된 배너가 없어요^^!!</h2></div>
-                            : (allBanner.map((a, i) => {
+                            (banner.length === 0) ? <div style={{paddingLeft:'0px', marginTop:'30px', cursor:'default', gridColumn:'1/5'}}><h2 style={{textAlign:'center', marginBottom:'50px'}}>현재 업로드된 배너가 없어요^^!!</h2></div>
+                            : (banner.map((a, i) => {
                                 return (
                                     <>
-                                    <div style={{paddingLeft:'0px', marginTop:'30px', cursor:'default'}}><h4>{i}</h4></div>
+                                    <div style={{paddingLeft:'0px', marginTop:'30px', cursor:'default'}}><h4>{i + 1}</h4></div>
                                     <div style={{paddingLeft:'0px', marginTop:'30px', cursor:'default'}}><h4>{a.filename}</h4></div>
                                     <div style={{width:'600px', height:'150px', paddingLeft:'0px', marginBottom:'30px'}}>
                                         <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} style={{width:'100%', height:'100%'}}/>
@@ -162,6 +159,43 @@ function ControlBanner(props) {
     )
 }
 
+// 관리자의 마이페이지중 배너관리 (하위컴포넌트)
+function ControlUser(props) { 
+    const { member } = props;
+
+    console.log("###: " + member.name);
+
+    return (
+        <>
+        <div className="mypage-right" style={{marginBottom:'30px'}}>
+            <h1 style={{marginLeft:'50px'}}>유저관리 ▼</h1>
+        </div>
+
+        <div className="mypage-right" style={{display:'grid', gridTemplateColumns:'30px 100px 250px 250px 1fr', gridTemplateRows:'100px 1fr', columnGap:'10px', textAlign:'center'}}>
+            <div>&nbsp;</div>
+            <div style={{cursor:'default'}}><h3>no</h3></div>
+            <div style={{cursor:'default'}}><h3>이름</h3></div>
+            <div style={{cursor:'default'}}><h3>상태</h3></div>
+            <div style={{cursor:'default'}}><h3>상태관리</h3></div>
+
+            {
+                member.map((a, i) => {
+                    return (
+                        <>
+                        <div>&nbsp;</div>
+                        <div style={{cursor:'default'}}><h3>{i + 1}</h3></div>
+                        <div style={{cursor:'default'}}><h3>{a.name}</h3></div>
+                        <div style={{cursor:'default'}}><h3>상태</h3></div>
+                        <div><h3 style={{cursor:'pointer'}}>상태관리</h3></div>
+                        </>
+                    )
+                })
+            }
+        </div>
+        </>
+    )
+}
+
 // 일반유저의 마이페이지 좌측메뉴바
 function EnUserMyPage(props) {
     const { bannerLogo, user, selectedMenu, handleMenuClick } = props;
@@ -173,7 +207,7 @@ function EnUserMyPage(props) {
                 <img src={bannerLogo} alt="project-log-no" style={{ width: '80%', margin: 'auto' }} />
             </Link>
             <div>
-                <div className="mypage-profile-picture">
+                <div className="mypage-profile-picture" style={{overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <img className="mypage-profile-picture-img" src={`${process.env.REACT_APP_ENDPOINT}${user.profileImage}`} alt="profile-image" />
                 </div>
                 <div style={{textAlign:'center'}}>
@@ -232,7 +266,7 @@ function MyPageProfile(props) {
 
             setTimeout(() => {
                 window.location.reload();
-              }, 2000);
+              }, 500);
         } catch(err) {
             console.log("프로필사진 업데이트 실패ㅠㅠ");
             console.log(err);
@@ -350,11 +384,15 @@ function MyPageFavorite(props) {
 
 // 마이페이지 (상위컴포넌트)
 function MyPage(props) {
-    const { user, banner, token } = props;
+    const { user, setUser, banner, setBanner, member, token } = props;
     const bannerLogo = process.env.PUBLIC_URL + '/project-log-no.png';
 
     // 현재 선택된 메뉴
     const [selectedMenu, setSelectedMenu] = useState('profile');
+
+    useEffect(() => {
+        setBanner(banner);
+    }, [banner]);
 
     // 메뉴 클릭시 색상 변경
     const handleMenuClick = (menu) => {
@@ -378,7 +416,10 @@ function MyPage(props) {
             {selectedMenu === 'favorite' && <MyPageFavorite user={user} />}
 
             {/* 마이페이지중 관리자의 배너관리 */}
-            {selectedMenu === 'controlBanner' && <ControlBanner user={user}  banner={banner} />}
+            {selectedMenu === 'controlBanner' && <ControlBanner user={user} banner={banner} setBanner={setBanner} />}
+
+            {/* 마이페이지중 관리자의 유저관리 */}
+            {selectedMenu === 'controlUser' && <ControlUser member={member} />}
         </div>
     )
 }

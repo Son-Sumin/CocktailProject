@@ -54,4 +54,12 @@ async function getSignature(setSignature) {
     setSignature(signatureData.data);
 }
 
-export {getCocktail, getIngredient, ScrollToTop, getBanner, getBoard, getSignature};
+// 시그니처 JSON파일
+async function getMember(setMember) {
+    const memberData = await axios.get(
+        `${process.env.REACT_APP_ENDPOINT}/member/list`
+    );
+    setMember(memberData.data);
+}
+
+export {getCocktail, getIngredient, ScrollToTop, getBanner, getBoard, getSignature, getMember};
