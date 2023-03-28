@@ -16,7 +16,7 @@ import IngredientDetail from "./ingredient/IngredientDetail";
 import Board from "./board/board";
 import Signature from "./signature/signature";
 import SignatureDetail from "./signature/signatureDetail";
-import { getCocktail, getIngredient, getBanner, getBoard, getSignature} from "./api";
+import { getCocktail, getIngredient, getBanner, getBoard, getSignature, getMember} from "./api";
 import SignatureJoin from "./signature/signatureJoin";
 import Map from "./map/KakaoMap";
 
@@ -44,6 +44,7 @@ function App() {
   const [banner, setBanner] = useState([]);
   const [board, setBoard] = useState([]);
   const [signature, setSignature] = useState([]);
+  const [member, setMember] = useState([]);
 
   // localStorage에서 isLoggedIn 값을 가져옴. 값이 없으면 false를 반환합니다.
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -94,6 +95,11 @@ function App() {
   // 시그니처 JSON파일
   useEffect(() => {
     getSignature(setSignature);
+  }, [])
+
+  // 전체회원 JSON파일
+  useEffect(() => {
+    getMember(setMember);
   }, [])
 
 
@@ -164,7 +170,7 @@ function App() {
           <Route path="/" element={<Main banner={banner} />}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
-          <Route path="/mypage" element={<MyPage user={user} banner={banner} token={token} />}></Route>
+          <Route path="/mypage" element={<MyPage user={user} setUser={setUser} banner={banner} setBanner={setBanner} member={member} token={token} />}></Route>
           <Route path="/cocktail" element={<Cocktail cocktail={cocktail} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/cocktail/:no" element={<CocktailDetail cocktail={cocktail} token={token} 
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked}/>}></Route>
@@ -173,11 +179,9 @@ function App() {
 
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
-
-          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} />}></Route>
+          <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} token={token} />}></Route>
           <Route path="/map" element={<Map token={token}
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>
-
 
           <Route path="/board01" element={<Board01 />}></Route>
           <Route path="/board02" element={<Board02 />}></Route>

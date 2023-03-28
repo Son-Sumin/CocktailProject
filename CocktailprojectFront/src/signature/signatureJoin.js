@@ -42,15 +42,14 @@ function SignatureJoin(props) {
 
     // 텍스트 데이터를 저장할 state
     const [signatureJoin, setSignatureJoin] = useState({
-        cocktailName: '',
-        engName: '',
-        cocktailContents: '',
-        recipeContents: '',
+        'cocktailName': '',
+        'engName': '',
+        'cocktailContents': '',
+        'recipeContents': '',
     })
 
     // 재료 데이터를 저장할 state
-    const [ingredient01, setIngredient01] = useState(
-        {
+    const [ingredient01, setIngredient01] = useState({
         "ingredient": {
             "no": '',
             },
@@ -59,8 +58,7 @@ function SignatureJoin(props) {
         },
     )
 
-    const [ingredient02, setIngredient02] = useState(
-        {
+    const [ingredient02, setIngredient02] = useState({
         "ingredient": {
             "no": '',
             },
@@ -69,8 +67,7 @@ function SignatureJoin(props) {
         },
     )
 
-    const [ingredient03, setIngredient03] = useState(
-        {
+    const [ingredient03, setIngredient03] = useState({
         "ingredient": {
             "no": '',
             },
@@ -314,20 +311,18 @@ function SignatureJoin(props) {
         // formData에 데이터 들어가있나 확인
         for (const [key, value] of formData01.entries()) {
             console.log("formData01: " + `${key}: ${value}`);
-            console.log("--------");
         }
+        console.log("--------");
         for (const [key, value] of formData02.entries()) {
             console.log("formData02: " + `${key}: ${value}`);
-            console.log("--------");
-        }
+        }console.log("--------");
         for (const [key, value] of formData03.entries()) {
             console.log("formData03: " + `${key}: ${value}`);
-            console.log("--------");
         }
+        console.log("--------");
         for (const [key, value] of formData05.entries()) {
             console.log("file state: " + files);
             console.log("formData05: " + `${key}: ${value}`);
-            console.log("--------");
         }
 
         // 엔드포인트에 JSON파일 전달
@@ -338,8 +333,6 @@ function SignatureJoin(props) {
                   Authorization: `Bearer ${token}`,
                 }
             });
-            // console.log(res.data);
-            // navigate("/signature");
 
             const postNo = res01.data.no;
             console.log("postNo: " + postNo);
@@ -375,11 +368,11 @@ function SignatureJoin(props) {
             // console.log("formData03: " + JSON.stringify(res03.data));
             // console.log("eachIngredientNo: " + JSON.stringify(ingredient01));
             
-            // await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/file`, formData05, {
-            //     headers: {
-            //         Authorization: `Bearer ${token}`,
-            //     }
-            // });
+            await axios.post(`${process.env.REACT_APP_ENDPOINT}/signature/write/${postNo}/file`, formData05, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
 
             navigate("/signature");
         } catch(err) {
