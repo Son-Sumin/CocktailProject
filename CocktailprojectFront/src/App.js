@@ -169,7 +169,7 @@ function App() {
         {!['/join', '/login', '/mypage'].includes(location.pathname) && 
           <Header setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} user={user} removeToken={removeToken} token={token} />} 
         <Routes>
-          <Route path="/" element={<Main banner={banner} />}></Route>
+          <Route path="/" element={<Main banner={banner} cocktail={cocktail}/>}></Route>
           <Route path="/join" element={<Join />}></Route>
           <Route path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
           <Route path="/mypage" element={<MyPage user={user} setUser={setUser} banner={banner} setBanner={setBanner} member={member} token={token} />}></Route>

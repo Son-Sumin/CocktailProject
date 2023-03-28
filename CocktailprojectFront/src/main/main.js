@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function Main(props) {
-    const {banner} = props;
+    const { banner, cocktail } = props;
 
     const [title, setTitle] = useState("");
     const [file, setFile] = useState(null);
@@ -54,13 +54,13 @@ function Main(props) {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 }
-              });
+            });
             console.log("배너 업로드 성공!");
 
             setTimeout(() => {
                 window.location.reload();
-              }, 5000);
-        } catch(err) {
+            }, 5000);
+        } catch (err) {
             console.log("배너 업로드 실패ㅠㅠ")
             console.log(err);
         }
@@ -68,30 +68,104 @@ function Main(props) {
 
     useEffect(() => {
         setEachBanner(banner);
-    },[banner]);
+        setCocktailData(cocktail)
+    }, [banner, cocktail]);
 
-    return(
+    //정렬 소스코드
+    var sortJSON = function (data, key, type) {
+        if (type == undefined) {
+            type = "asc";
+        }
+        return data.sort(function (a, b) {
+            var x = a[key];
+            var y = b[key];
+            if (type == "desc") {
+                return x > y ? -1 : x < y ? 1 : 0;
+            } else if (type == "asc") {
+                return x < y ? -1 : x > y ? 1 : 0;
+            }
+        });
+    };
+
+    // 칵테일 데이터
+    const [cocktailData, setCocktailData] = useState([]);
+    const [count, setCount] = useState(0);
+
+    const buttonMinus = (e) => {
+        e.preventDefault();
+        setCount(count - 3);
+        console.log(count)
+    };
+    const buttonPlus = (e) => {
+        e.preventDefault();
+        setCount(count + 3);
+        console.log(count)
+    };
+
+
+    sortJSON(cocktailData, "hit", "desc")
+
+    return (
         <>
-        <Slider {...settings}>
+            <Slider {...settings}>
                 {
-                eachBanner.map(function(a,i) {
-                    return (
-                        <div className='banner' key={i}>
-                            <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} alt={`Image${i}`} key={i} style={{width:'100%'}}/>
-                        </div>
-                    )
-                })
+                    eachBanner.map(function (a, i) {
+                        return (
+                            <div className='banner' key={i}>
+                                <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} alt={`Image${i}`} key={i} style={{ width: '100%' }} />
+                            </div>
+                        )
+                    })
                 }
-        </Slider>
-
+            </Slider>
+            {/* 
         <form onSubmit={handleSubmit} style={{margin:'50px'}}>
-            {/* file 타입은 value 속성 사용못함. onChange 이벤트 핸들러에서 event.target.files를 통해 접근가능 */}
+            {/* file 타입은 value 속성 사용못함. onChange 이벤트 핸들러에서 event.target.files를 통해 접근가능 
             <input type="file" name="file" onChange={handleFileChange} />
-            <label>배너이름 : 
+            <label>배너이름 :
                 <input type="text" name="title" value={title} onChange={handleTitleChange} ></input>
             </label>
-            <button type="submit" style={{marginLeft:'70px'}}>배너 업로드</button>
-        </form>
+            <button type="submit" style={{ marginLeft: '70px' }}>배너 업로드</button>
+        </form>  */}
+            <br />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "150px 800px 150px" }}>
+                    {count !== 0 ? (
+                        <div><button onClick={buttonMinus} style={{ height: "100px", width: "50px" }}>&lt;</button></div>
+                    ):(
+                        <div><button style={{ height: "100px", width: "50px" }}>&lt;</button></div>
+                    )}
+                    <div>
+                        <div style={{ textAlign: "center" }}>
+                            {cocktailData.map((app, i) => {
+                                if (count === 0 && i < 3) {
+                                    return (
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{app.no} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    );
+                                } else if (count > 0 && count <= i && i < 3 + count) {
+                                    return (
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{app.no} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </div>
+                    </div>
+                    <div><button onClick={buttonPlus} style={{ height: "100px", width: "50px" }}>&gt;</button></div>
+                </div>
+            </div>
         </>
     )
 }

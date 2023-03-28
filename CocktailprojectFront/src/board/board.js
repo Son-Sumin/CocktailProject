@@ -217,11 +217,7 @@ function Board(props) {
                 )}
             </div>
         </div>
-
-
-
     )
 }
-
 
 export default Board;
