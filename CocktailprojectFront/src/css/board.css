@@ -11,13 +11,18 @@
     row-gap: 8px;
 }
 
-.board-each-bestcontents {
+.board-each-bestcontents-left {
     display: grid;
-    grid-template-columns: 80px 130px 50px 50px 1fr;
+    grid-template-columns:1fr 80px 130px 70px 70px ;
     grid-template-rows: 1fr 1fr;
     column-gap: 10px;
 }
-
+.board-each-bestcontents {
+    display: grid;
+    grid-template-columns: 80px 130px 70px 70px 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 10px;
+}
 .board-each-bestcontents div {
     font-weight: 600;
     cursor: default;
@@ -60,7 +65,7 @@
 
 .board-each-contents {
     display: grid;
-    grid-template-columns: 100px 90px 80px 1fr 1fr;
+    grid-template-columns: 100px 100px 100px 100px 1fr;
     grid-template-rows: 1fr 1fr;
     column-gap: 20px;
     margin-bottom: 20px;

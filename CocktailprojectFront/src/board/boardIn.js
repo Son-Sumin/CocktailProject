@@ -22,10 +22,14 @@ function boardIn(props) {
         const data = await response.json();
         return data;
     }
+    // 수정 삭제 권한 확인
+    const [authority, setAuthority] = useState(false);
+
     useEffect(() => {
         fetchData().then(data => {
             setData(data);
             setIsLoading(false);
+            setAuthority(data.member.name === user.name)
         });
     }, []);
     console.log(Data)
@@ -92,7 +96,6 @@ function boardIn(props) {
     const onRemove2 = (event, app) => {
         event.preventDefault();
         if (confirm("정말 삭제합니까?")) {
-            // fetch(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}/review/delete/${app.no}`, {
             fetch(`${process.env.REACT_APP_ENDPOINT}/board/view/${boardNo}/review/delete/${app.no}`, {
                 method: "DELETE"
             })
@@ -196,21 +199,6 @@ function boardIn(props) {
                 console.log(err)
             })
     }, [countLiked]);
-
-    // 수정 삭제 권한 확인
-    const [authority, setAuthority] = useState(false);
-
-    // useEffect(() => {
-    //     console.log("user.name");
-    //     console.log(user.name);
-    //     console.log("Data.member.name");
-    //     console.log(Data.member.name    );
-    //     if (Data.member.name === user.name) {
-    //         setAuthority(true);
-    //     } else {
-    //         console.log("false임");
-    //     }
-    // }, [Data, user]);
 
     return (
         <>

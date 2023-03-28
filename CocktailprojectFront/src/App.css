@@ -157,9 +157,9 @@ img {
 /* --------------- search -------------------- */
 
 .search-contatiner {
-  display: grid;
+  /* display: grid;
   grid-template-rows: 1fr 1fr;
-  row-gap: 50px;
+  row-gap: 50px; */
   padding-left: 15%;
   padding-right: 15%;
 }

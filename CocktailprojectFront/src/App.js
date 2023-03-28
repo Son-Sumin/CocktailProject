@@ -178,16 +178,15 @@ function App() {
           <Route path="/map" element={<Map token={token}
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>
 
-
           <Route path="/board01" element={<Board01 />}></Route>
           <Route path="/board02" element={<Board02 />}></Route>
           <Route path="/board03" element={<Board03 />}></Route>
 
           <Route path="/board" element={<Board board={board} />}></Route>
-          <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} />}></Route>
+          <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} user={user}/>}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
           <Route path='/writing' element={<Writing board={board} token={token} />} />
-          <Route path='/board/update/:no' element={<BoardRe board={board} token={token} user={user}/>} />
+          <Route path='/board/update/:no' element={<BoardRe board={board} token={token}/>} />
         </Routes>
       </div>
       {/* <button onClick={buttonClick}
