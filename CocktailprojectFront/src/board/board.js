@@ -158,7 +158,7 @@ function Board(props) {
                     <option value="15" > 15 </option>
                     <option value="20" > 20 </option>
                 </select>
-                <button ><a href='/writing'>글쓰기</a></button>
+                <Link to={`/writing`}><button >글쓰기</button></Link>
             </div>
 
             <div className="board-contents">
@@ -172,7 +172,7 @@ function Board(props) {
                                         src={`${process.env.REACT_APP_ENDPOINT}${test.imgs && test.imgs[0] && test.imgs[0].path ? test.imgs[0].path : test.member.profileImage}`}
                                         width='420px'
                                         height='400px'
-                                        style={{border: "solid 1px gray"}}
+                                        style={{ border: "solid 1px gray" }}
                                     />
                                 </div>
 
