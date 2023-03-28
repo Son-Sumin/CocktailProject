@@ -70,7 +70,7 @@ public class SignatureController {
 		signatureImageService.addImages(signature, files);
 	}
 	
-	/* 시그니처 레시피 작성 */
+	/* 시그니처 레시피 1개 작성 */
 	@CrossOrigin(origins = "*")
 	@PostMapping("/write/{sno}/recipe")
 	public List<SignatureRecipe> writeSignatureRecipe(@PathVariable("sno") Long sno, @ModelAttribute SignatureRecipe recipe) {
