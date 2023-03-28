@@ -133,7 +133,7 @@ public class MemberController {
 	@CrossOrigin(origins = "*")
 	@PatchMapping("/member/status/{no}")
 	public void memberStatus(@PathVariable("no") Long no) {
-		Member member = memberRepository.finByNo(no);
+		Member member = memberRepository.findByNo(no);
 		memberService.memberStatus(member);
 	}
 }
