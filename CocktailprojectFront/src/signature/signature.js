@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import '../App.css';
 import '../css/signature.css';
 import axios from 'axios';
-import {Routes, Route, Link, useParams, useNavigate, Outlet} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Signature(props) {
     const {signature, isLoggedIn} = props;
@@ -37,7 +37,7 @@ function Signature(props) {
                 return (
                     <Link to={`/signature/${a.no}`} key={i}>
                         <div style={{cursor: "pointer"}}>
-                            <img src={`${process.env.REACT_APP_ENDPOINT}`} width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail" />
+                            {a.signatureImages[0] && <img src={`${process.env.REACT_APP_ENDPOINT}${a.signatureImages[0].path}`} width='280px' height='200px' style={{borderRadius:'10px'}} alt="cocktail" />}
                             <div className='signature-contents' style={{fontWeight:'800', padding:'10px 0px'}}>{a.cocktailName}</div>
                             <div className='signature-contents' style={{color:'rgb(131, 131, 131)', fontSize:'12px'}}>{a.cocktailContents}</div>
                         </div>

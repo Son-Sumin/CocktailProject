@@ -463,7 +463,12 @@ function SignatureJoin(props) {
                     }
                     <label>
                         <h3>레시피 정보 ▼</h3>
-                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='recipeContents' value={signatureJoin.recipeContents} onChange={handleSignatureJoinChange}></textarea>
+                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)
+                        1. 첫번째 레시피정보
+                        2. 두번째 레시피정보
+                        3. 세번째 레시피정보
+                        ..........
+                        .........." spellCheck="false" className="signature-join-contents-2 signature-textarea" name='recipeContents' value={signatureJoin.recipeContents} onChange={handleSignatureJoinChange}></textarea>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.recipeContents.length}/200</p>
                     </label>
                     <div>

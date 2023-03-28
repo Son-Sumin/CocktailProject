@@ -60,6 +60,7 @@ function App() {
     phoneNumber: '',
     gender: '',
     likeCocktail: [],
+    likeSignature: [],
     profileImage: "",
     role: "",
   });
@@ -80,27 +81,27 @@ function App() {
   // 재료 JSON파일
   useEffect(() => {
     getIngredient(setIngredient);
-  }, [])
+  }, []);
 
   // 배너 JSON파일
   useEffect(() => {
     getBanner(setBanner);
-  }, [])
+  }, []);
 
   // 게시판 JSON파일
   useEffect(() => {
     getBoard(setBoard);
-  }, [])
+  }, []);
 
   // 시그니처 JSON파일
   useEffect(() => {
     getSignature(setSignature);
-  }, [])
+  }, []);
 
   // 전체회원 JSON파일
   useEffect(() => {
     getMember(setMember);
-  }, [])
+  }, []);
 
 
 
@@ -120,6 +121,7 @@ function App() {
           phoneNumber: response.data.phoneNumber,
           gender: response.data.gender,
           likeCocktail: response.data.likeCocktail,
+          likeSignature: response.data.likeSignature,
           profileImage: response.data.profileImage,
           role: response.data.role,
         })
@@ -178,7 +180,7 @@ function App() {
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
 
           <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
-          <Route path="/signature/:no" element={<SignatureDetail signature={signature} />}></Route>
+          <Route path="/signature/:no" element={<SignatureDetail signature={signature} isLiked={isLiked} setIsLiked={setIsLiked} isLoggedIn={isLoggedIn} token={token} />}></Route>
           <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} token={token} />}></Route>
           <Route path="/map" element={<Map token={token}
             isLoggedIn={isLoggedIn} setUser={setUser} isLiked={isLiked} setIsLiked={setIsLiked} />}></Route>

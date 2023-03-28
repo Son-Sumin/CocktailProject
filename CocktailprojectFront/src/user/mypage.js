@@ -318,13 +318,21 @@ function MyPageFavorite(props) {
     // App.js에서 유저 정보 불러옴
     const { user } = props;
 
-    // 유저가 좋아요 한 칵테일을 저장할 state
+    // 유저가 좋아요 한 칵테일과 시그니처를 저장할 state
     const [favoriteCocktail, setFavoriteCocktail] = useState([]);
+    const [favoriteSignature, setFavoriteSignature] = useState([]);
 
     // 렌더링 할때마다, 유저가 좋아요 한 칵테일을 state에 저장
     useEffect(() => {
         setFavoriteCocktail(user.likeCocktail);
     }, []);
+
+    useEffect(() => {
+        setFavoriteSignature(user.likeSignature);
+    }, []);
+
+    console.log("#: " + favoriteCocktail);
+    console.log("###: " + favoriteSignature);
 
     return (
         <div className="mypage-right">
@@ -355,18 +363,18 @@ function MyPageFavorite(props) {
             <div style={{padding:'1% 5%', marginTop:'5%'}}>
                 <h2 style={{cursor:'default'}}>내가 찜한 시그니처 ▼</h2>
                 <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr', columnGap:'80px', rowGap:'100px', gridAutoFlow: 'row'}}>
-                { (favoriteCocktail.length == 0) ? (
+                { (favoriteSignature.length == 0) ? (
                     <div className="signature-join-contents" style={{border:'1px solid black', gridColumn:'1/4'}}>
                         <h3 style={{ margin: '0px' }}>아직 찜한 시그니처 없어요^^!!</h3>
                     </div>
                 ) : (
-                    favoriteCocktail.map(function (a, i) {
+                    favoriteSignature.map(function (a, i) {
                         return (
-                            <Link to={`/cocktail/${a.cocktail.no}`} key={i}>
+                            <Link to={`/signature/${a.no}`} key={i}>
                                 <div className="cocktail-box">
-                                    <img src={a.cocktail.cocktailImages[0].url} width='280px' height='200px' style={{ borderRadius: '10px' }} alt="cocktail"></img>
-                                    <div className='cocktail-contents' style={{fontWeight: '800', padding: '10px 0px', backgroundColor:'rgba(224, 218, 201)'}}>{a.cocktail.name}</div>
-                                    <div className='cocktail-contents' style={{color: 'rgb(131, 131, 131)', fontSize: '12px', backgroundColor:'rgba(224, 218, 201)' }}>{a.cocktail.cocktailContents}</div>
+                                    <img src={a.signature.signatureImages[0].url} width='280px' height='200px' style={{ borderRadius: '10px' }} alt="cocktail"></img>
+                                    <div className='cocktail-contents' style={{fontWeight: '800', padding: '10px 0px', backgroundColor:'rgba(224, 218, 201)'}}>{a.signature.name}</div>
+                                    <div className='cocktail-contents' style={{color: 'rgb(131, 131, 131)', fontSize: '12px', backgroundColor:'rgba(224, 218, 201)' }}>{a.signature.signatureContents}</div>
                                 </div>
                             </Link>
                         )   
@@ -384,7 +392,7 @@ function MyPageFavorite(props) {
 
 // 마이페이지 (상위컴포넌트)
 function MyPage(props) {
-    const { user, setUser, banner, setBanner, member, token } = props;
+    const { user, banner, setBanner, member, token } = props;
     const bannerLogo = process.env.PUBLIC_URL + '/project-log-no.png';
 
     // 현재 선택된 메뉴
