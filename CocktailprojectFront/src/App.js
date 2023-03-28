@@ -179,7 +179,7 @@ function App() {
           <Route path="/ingredient" element={<Ingredient ingredient={ingredient} />}></Route>
           <Route path="/ingredient/:no" element={<IngredientDetail ingredient={ingredient} />}></Route>
 
-          <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} />}></Route>
+          <Route path="/signature" element={<Signature isLoggedIn={isLoggedIn} signature={signature} setSignature={setSignature} />}></Route>
           <Route path="/signature/:no" element={<SignatureDetail signature={signature} isLiked={isLiked} setIsLiked={setIsLiked} isLoggedIn={isLoggedIn} token={token} />}></Route>
           <Route path="/signature/join" element={<SignatureJoin ingredient={ingredient} signature={signature} setSignature={setSignature} token={token} />}></Route>
           <Route path="/map" element={<Map token={token}
