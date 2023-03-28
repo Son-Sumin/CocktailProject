@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import '../App.css';
 import '../css/signature.css';
 import axios from 'axios';
+import { getSignature } from "../api";
 import { Link } from 'react-router-dom';
 
 function Signature(props) {
-    const {signature, isLoggedIn} = props;
+    const {signature, setSignature, isLoggedIn} = props;
     const signatureBannerPicture = process.env.PUBLIC_URL + '/Signature.PNG';
-
+    
     useEffect(() => {
-        setEachSignature(signature);
-    }, [signature]);
-
-    const [eachSignature, setEachSignature] = useState([]);
+        getSignature(setSignature);
+      }, []);
 
     return (
     <>
@@ -33,7 +32,7 @@ function Signature(props) {
         <div style={{marginBottom:'50px'}}><span style={{fontSize:'20px', fontWeight:'bold'}}>시그니처 리스트 ▼</span></div>
         <div className="signature-list">
             {
-            eachSignature.map(function(a, i) {
+            signature.map(function(a, i) {
                 return (
                     <Link to={`/signature/${a.no}`} key={i}>
                         <div style={{cursor: "pointer"}}>
