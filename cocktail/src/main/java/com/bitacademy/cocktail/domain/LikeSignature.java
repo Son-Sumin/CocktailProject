@@ -36,7 +36,7 @@ public class LikeSignature {
 	
 	@ManyToOne
 	@JoinColumn(name="signature_no")
-	@JsonIgnoreProperties({"member", "reviewSignatures", "signatureImages", "signatureRecipes", "likeSignature"})
+	@JsonIgnoreProperties({"member", "reviewSignatures", "signatureRecipes", "likeSignature"})
 	private Signature signature;
 
 }
