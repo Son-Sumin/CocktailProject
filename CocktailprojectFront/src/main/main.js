@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React, { useEffect, useState } from "react";
+import { getCocktail, getBanner, getSignature } from "../api";
 import '../App.css';
 import axios from "axios";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-function Main(props) {
-    const { banner, cocktail } = props;
+function Main() {
 
     const [title, setTitle] = useState("");
     const [file, setFile] = useState(null);
@@ -65,46 +65,59 @@ function Main(props) {
             console.log(err);
         }
     }
-
+    //데이터 입력
     useEffect(() => {
-        setEachBanner(banner);
-        setCocktailData(cocktail)
-    }, [banner, cocktail]);
+        getBanner(setEachBanner);
+        getCocktail(setTopCocktailData);
+        getSignature(setTopSignatureData);
+    }, []);
 
-    //정렬 소스코드
-    var sortJSON = function (data, key, type) {
+    //좋아요 페이지
+    const [topCocktailData, setTopCocktailData] = useState([]);
+    const [topSignatureData, setTopSignatureData] = useState([]);
+
+    const sortJSON = (data, key, type) => {
         if (type == undefined) {
             type = "asc";
         }
-        return data.sort(function (a, b) {
-            var x = a[key];
-            var y = b[key];
-            if (type == "desc") {
+        return data.sort((a, b) => {
+            const x = a[key];
+            const y = b[key];
+            if (type === "desc") {
                 return x > y ? -1 : x < y ? 1 : 0;
-            } else if (type == "asc") {
+            } else if (type === "asc") {
                 return x < y ? -1 : x > y ? 1 : 0;
             }
         });
     };
 
-    // 칵테일 데이터
-    const [cocktailData, setCocktailData] = useState([]);
-    const [count, setCount] = useState(0);
+    useEffect(() => {
+        setTopCocktailData(sortJSON(topCocktailData, "likeCocktail", "desc"));
+        setTopSignatureData(sortJSON(topSignatureData, "likeSignature", "desc"));
+    }, [topCocktailData, topSignatureData]);
 
-    const buttonMinus = (e) => {
+    //버튼 컨트롤
+    const [count1, setCount1] = useState(0);
+
+    const buttonMinus1 = (e) => {
         e.preventDefault();
-        setCount(count - 3);
-        console.log(count)
+        setCount1(count1 - 3);
     };
-    const buttonPlus = (e) => {
+    const buttonPlus1 = (e) => {
         e.preventDefault();
-        setCount(count + 3);
-        console.log(count)
+        setCount1(count1 + 3);
     };
 
+    const [count2, setCount2] = useState(0);
 
-    sortJSON(cocktailData, "likeBoard", "desc")
-
+    const buttonMinus2 = (e) => {
+        e.preventDefault();
+        setCount2(count2 - 3);
+    };
+    const buttonPlus2 = (e) => {
+        e.preventDefault();
+        setCount2(count2 + 3);
+    };
     return (
         <>
             <Slider {...settings}>
@@ -118,51 +131,50 @@ function Main(props) {
                     })
                 }
             </Slider>
-            {/* 
-        <form onSubmit={handleSubmit} style={{margin:'50px'}}>
-            {/* file 타입은 value 속성 사용못함. onChange 이벤트 핸들러에서 event.target.files를 통해 접근가능 
-            <input type="file" name="file" onChange={handleFileChange} />
-            <label>배너이름 :
-                <input type="text" name="title" value={title} onChange={handleTitleChange} ></input>
-            </label>
-            <button type="submit" style={{ marginLeft: '70px' }}>배너 업로드</button>
-        </form>  */}
-            <br />
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "5%" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "150px 800px 150px" }}>
-                    {count !== 0 ? (
-                        <div><button onClick={buttonMinus} className="cocktail-count-button">&lt;</button></div>
+                    {count1 !== 0 ? (
+                        <div><button onClick={buttonMinus1} className="cocktail-count-button">&lt;</button></div>
                     ) : (
                         <div><button className="cocktail-count-button">&lt;</button></div>
                     )}
                     <div>
                         <h2>▶칵테일 좋아요</h2>
                         <div style={{ textAlign: "center" }}>
-                            {cocktailData.map((app, i) => {
-                                if (count === 0 && i < 3) {
-                                    return (
-                                        <div style={{ width: "200px", display: "inline-block" }}>
-                                            <div>{app.no}</div>
-                                            <div><img src={app.cocktailImages[0].url} style={{ margin: "5px", height: "150px", width: "150px", }} /></div>
-                                            <div>{app.name}</div>
-                                            <div>{app.likeCocktail.length}</div>
-                                        </div>
-                                    );
-                                } else if (count > 0 && count <= i && i < 3 + count) {
-                                    return (
-                                        <div className="cocktail-count-box" >
-                                            <div>{app.no}</div>
-                                            <div><img src={app.cocktailImages[0].url} style={{ margin: "5px", height: "150px", width: "150px", }} /></div>
-                                            <div>{app.name}</div>
-                                            <div>{app.likeCocktail.length}</div>
-                                        </div>
-                                    );
-                                }
-                                return null;
-                            })}
+                            {topCocktailData.slice(count1, count1 + 3).map((app) => (
+                                <div className="cocktail-count-box" >
+                                    <div><img src={app.cocktailImages[0].url}
+                                        style={{ margin: "5px", height: "180px", width: "180px" }} /></div>
+                                    <div>{app.name}</div>
+                                    <div style={{ color: 'rgb(242, 92, 92)' }}>♥  {app.likeCocktail.length}</div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    <div><button onClick={buttonPlus} className="cocktail-count-button">&gt;</button></div>
+                    <div><button onClick={buttonPlus1} className="cocktail-count-button">&gt;</button></div>
+                </div>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "5%" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "150px 800px 150px" }}>
+                    {count2 !== 0 ? (
+                        <div><button onClick={buttonMinus2} className="cocktail-count-button">&lt;</button></div>
+                    ) : (
+                        <div><button className="cocktail-count-button">&lt;</button></div>
+                    )}
+                    <div>
+                        <h2>▶시그니처 좋아요</h2>
+                        <div style={{ textAlign: "center" }}>
+                            {topSignatureData.slice(count2, count2 + 3).map((app) => (
+                                <div className="cocktail-count-box" >
+                                    <div><img src={`${process.env.REACT_APP_ENDPOINT}${app.signatureImages[0].path}`}
+                                        style={{ margin: "5px", height: "180px", width: "180px" }} /></div>
+                                    <div>{app.cocktailName}</div>
+                                    <div style={{ color: 'rgb(242, 92, 92)' }}>♥  {app.likeSignature.length}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div><button onClick={buttonPlus2} className="cocktail-count-button">&gt;</button></div>
                 </div>
             </div>
         </>

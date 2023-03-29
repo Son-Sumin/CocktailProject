@@ -56,7 +56,7 @@ function Board(props) {
     //페이징 소스코드
     useEffect(() => {
         setData([...Data1])
-        setBoard([...Data1]);
+        setBoard([...sortJSON(Data1, "createdDate", "desc")]);
         setTopHitData([...Data1]);
         setTopFavoriteData([...Data1]);
     }, [Data1])
@@ -72,10 +72,8 @@ function Board(props) {
 
     const handleItemsPerPageChange = (e) => {
         setItemsPerPage(e.target.value)
+        setCurrentPage(1)
     }
-
-
-
     return (
         <div className="board-container">
             <div className='banner' style={{ backgroundColor: 'white', border: '1px solid black', borderRadius: '10px' }}>
@@ -146,9 +144,9 @@ function Board(props) {
                 <button onClick={() => setBoard(data.filter(x => x.category === 'random'))}>자유</button>
                 <button onClick={() => setBoard(data.filter(x => x.category === 'question'))}>Q&A</button>
                 <select onChange={onSorted} style={{ textAlign: "center" }}
-                    id="sorting" value={currentData.createdDate}>
-                    <option value="desc" > 최신순 </option>
-                    <option value="asc" > 오래된순 </option>
+                    id="sorting" value={sorting}>
+                    <option value="desc" defaultChecked>최신순</option>
+                    <option value="asc" >오래된순</option>
                 </select>
                 <select
                     style={{ width: "100px", height: "40px", textAlign: "center" }}

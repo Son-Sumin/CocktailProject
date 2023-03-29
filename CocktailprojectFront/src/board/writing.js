@@ -36,7 +36,7 @@ function writing(props) {
                 `${process.env.REACT_APP_ENDPOINT}/board/write`,
                 {
                     category: caRef.current.value,
-                    title: tiRef.current.value !== "" ? tiRef.current.value : "제목없음",
+                    title: tiRef.current.value !== "" ? tiRef.current.value : "제목없음1",
                     contents: contentsData,
                 },
                 {
