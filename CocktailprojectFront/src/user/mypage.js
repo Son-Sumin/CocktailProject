@@ -186,13 +186,32 @@ function ControlUser(props) {
 
             {
                 member.map((a, i) => {
+                    const [status, setStatus] = useState(a.role);
+
+                    function handleUserChange() {
+                        const confirmed = window.confirm(`${a.name} 님의 상태를 변경하시겠습니까?`);
+
+                        axios.patch(`${process.env.REACT_APP_ENDPOINT}/member/status/${a.no}`)
+                            .then(() => "회원 상태관리 변경 성공")
+                            .catch(() => "회원 상태관리 변경 실패");
+
+                        if (confirmed) {
+                            const newRole = status === 'enuser' ? 'unuser' : 'enuser';
+                            setStatus(newRole);
+                        }
+                    }
+
                     return (
                         <>
-                        <div>&nbsp;</div>
-                        <div style={{cursor:'default'}}><h3>{i + 1}</h3></div>
-                        <div style={{cursor:'default'}}><h3>{a.name}</h3></div>
-                        <div style={{cursor:'default'}}><h3>상태</h3></div>
-                        <div><h3 style={{cursor:'pointer'}}>상태관리</h3></div>
+                            {a.role !== 'admin' && (<>
+                            <div>&nbsp;</div>
+                            <div style={{cursor:'default'}}><h3>{i + 1}</h3></div>
+                            <div style={{cursor:'default'}}><h3>{a.name}</h3></div>
+                            <div style={{cursor:'default'}}>
+                                <h3 style={{backgroundColor: status === 'unuser' ? 'rgb(242, 92, 92)' : 'rgb(216, 167, 7)', borderRadius:'10px'}}>{status}</h3>
+                            </div>
+                            <div><button className='signature-picture-button' onClick={handleUserChange} style={{width:'100px', height:'50px', cursor:'pointer'}}>상태관리</button></div>
+                            </>)}
                         </>
                     )
                 })
