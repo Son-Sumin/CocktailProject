@@ -125,7 +125,7 @@ function Main() {
                     eachBanner.map(function (a, i) {
                         return (
                             <div className='banner' key={i}>
-                                <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} alt={`Image${i}`} key={i} style={{ width: '100%' }} />
+                                <img src={`${process.env.REACT_APP_ENDPOINT}${a.filepath}`} alt={`Image${i}`} key={i} style={{ width: '100%', height: '100%' }} />
                             </div>
                         )
                     })
