@@ -37,17 +37,17 @@ function HeaderModal(props) {
   return (
     <div>
       <div className="overlay" onClick={handleModalClose}></div>
-        <div className="modal-container">
-          <Link to="/mypage" style={{fontSize:'20px'}} onClick={handleModalClose}>
-            <span className="modal-container-contents">마이페이지</span>
-          </Link>
-          <Link to="/signature/join">
-            <span className="modal-container-contents" onClick={handleModalClose}>시그니처 참가하기</span>
-          </Link>
-          <div className="modal-contents-logout" onClick={handleLogout}>
-            <span>로그아웃</span>
-          </div>
+      <div className="modal-container">
+        <Link to="/mypage" style={{fontSize:'20px'}} onClick={handleModalClose}>
+          <span className="modal-container-contents">마이페이지</span>
+        </Link>
+        <Link to="/signature/join">
+          <span className="modal-container-contents" onClick={handleModalClose}>시그니처 참가하기</span>
+        </Link>
+        <div className="modal-contents-logout" onClick={handleLogout}>
+          <span>로그아웃</span>
         </div>
+      </div>
     </div>
   )
 }

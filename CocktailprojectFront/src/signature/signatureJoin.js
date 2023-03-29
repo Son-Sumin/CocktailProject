@@ -1,6 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // 재료정보 추가 컴포넌트 (하위)
@@ -26,7 +26,7 @@ function IngredientForm(props) {
 
 // 시그니처 작성페이지 (상위)
 function SignatureJoin(props) {
-    const { ingredient, signature, setSignature, token } = props;
+    const { ingredient, token } = props;
 
     const [num, setNum] = useState(1);
 
@@ -379,10 +379,6 @@ function SignatureJoin(props) {
             console.log(err);
         }
     };
-
-    useEffect(() => {
-        setSignature(signature);
-    }, []);
 
     return (
         <div className="signature-join-container">
