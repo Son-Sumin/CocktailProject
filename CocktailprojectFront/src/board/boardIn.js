@@ -120,7 +120,6 @@ function boardIn(props) {
         return formattedDate;
     }
 
-
     // 좋아요 버튼 (false일때에는 하얀하트, true일때에는 빨간하트)
     const [isLiked, setIsLiked] = useState(false);
 
@@ -251,7 +250,7 @@ function boardIn(props) {
                     <Link to="/board" style={{ gridColumn: "2/3", margin: 'auto' }}>
                         <button>목록</button>
                     </Link>
-                    <div className="board-eachcontents-favorite" onClick={handleLikeClick}>
+                    <div className="board-eachcontents-favorite" onClick={handleLikeClick} style={{ zIndex: "5" }}>
                         <div className="board-eachcontents-favorite-contents">
                             {isLiked ? '♥' : '♡'}
                         </div>
@@ -283,6 +282,7 @@ function boardIn(props) {
                                             <td style={{ width: "500px" }}>{app.contents}</td>
                                             <td style={{ width: "10%" }}>
                                                 <button onClick={(e) => onRemove2(e, app)} style={{ width: "100px", height: "50px" }}>삭제</button>
+
                                             </td>
                                         </tr>
                                     )

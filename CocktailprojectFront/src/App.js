@@ -190,7 +190,7 @@ function App() {
           <Route path="/board03" element={<Board03 />}></Route>
 
           <Route path="/board" element={<Board board={board} />}></Route>
-          <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} user={user}/>}></Route>
+          <Route path="/board/view/:no" element={<BoardDetail board={board} token={token} user={user} isLoggedIn={isLoggedIn} />}></Route>
           <Route path="/search/:Sdata" element={<Search cocktail={cocktail} ingredient={ingredient} />}></Route>
           <Route path='/writing' element={<Writing board={board} token={token} />} />
           <Route path='/board/update/:no' element={<BoardRe board={board} token={token}/>} />

@@ -126,11 +126,11 @@ function KakaoMap(props) {
 
     return (
         <div className="page" style={{ position: 'fixed', width: "100%" }}>
-            <div className="box">
+            <div className="box" >
                 <div className="boxInner"
-                    style={{ float: "left", border: "solid 1px", width: '25%', height: "680px", margin: "0 0 0 10%", overflowY: 'scroll' }} >
+                    style={{ float: "left", borderRadius: "10px 0 0 10px", border: "solid 1px", width: '25%', height: "630px", margin: "0 0 0 10%", overflowY: 'scroll' }} >
                     {Data.map((value, index) => (
-                        <div key={index} style={{ marginBlock:"5px", borderBottom: "solid 1px gray", display: 'grid', gridTemplateColumns: '0.5fr 0.75fr 1fr 0.75fr', alignItems: "center", columnGap: '10px' }}>
+                        <div key={index} style={{ marginBlock: "5px", borderBottom: "solid 1px gray", display: 'grid', gridTemplateColumns: '0.5fr 0.75fr 1fr 0.75fr', alignItems: "center", columnGap: '10px' }}>
                             <input type="radio" name="example" value={value.name} onChange={(e) => setSelectedValue(selectedValue === e.target.value ? null : e.target.value)}></input>
                             <img src={value.image} width="73" height="70" alt={value.name} />
                             <label>{value.name}</label>
@@ -150,8 +150,9 @@ function KakaoMap(props) {
                 style={{
                     // 지도의 크기
                     width: "1000px",
-                    height: "700px",
+                    height: "650px",
                     margin: "0 0 40% 0",
+                    borderRadius: "0 10px 10px 0",
                     border: "solid 1px"
                 }}
                 level={6} // 지도의 확대 레벨
