@@ -1,19 +1,29 @@
 /* eslint-disable */
 import axios from 'axios';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // 재료정보 추가 컴포넌트 (하위)
 function IngredientForm(props) {
     const {ingredient01, ingredient02, ingredient03, handleClickIngredientForm, handleIngredientChange, handleAmountChange, handleUnitChange, num} = props;
 
+    const [isUnitModalOpen, setIsUnitModalOpen] = useState(false);
+
+    // 단위 모달 이벤트
+    function handleUnitModalOpen() {
+        setIsUnitModalOpen(true);
+    }
+    function handleUnitModalClose() {
+        setIsUnitModalOpen(false);
+    }
+
     return (
         <label>
-            <h3>재료 정보{ingredient01.length} ▼</h3>
+            <h3>재료 정보 ▼</h3>
             <div className="signature-ingredient-container">
                 <div><h3>재료1</h3></div>
                 <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => handleIngredientChange(e)} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
-                <div><input type="text" value={(num == 1) ? ingredient01.amount :  (num) === 2 ? ingredient02.amount : ingredient03.amount} onChange={(e) => handleAmountChange(e)} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
+                <div><input type="text" value={(num == 1) ? ingredient01.amount : (num) === 2 ? ingredient02.amount : ingredient03.amount} onChange={(e) => handleAmountChange(e)} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
                 <div><input type="text" value={(num == 1) ? ingredient01.unit : (num) === 2 ? ingredient02.unit : ingredient03.unit} onChange={(e) => handleUnitChange(e)} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
             </div>
             <button type='button' onClick={handleClickIngredientForm} className="signature-ingredient-contents-btn">재료추가</button>
@@ -26,7 +36,7 @@ function IngredientForm(props) {
 
 // 시그니처 작성페이지 (상위)
 function SignatureJoin(props) {
-    const { ingredient, token } = props;
+    const { ingredient, signature, setSignature, token } = props;
 
     const [num, setNum] = useState(1);
 
@@ -136,7 +146,10 @@ function SignatureJoin(props) {
     // IngredientForm 이벤트
     const handleClickIngredientForm = () => {
         const nextKey = ingredientForm.length;
-        const newIngredientForm = <IngredientForm key={nextKey} />;
+        const newIngredientForm = <IngredientForm key={nextKey} ingredient01={ingredient01} ingredient={ingredient} 
+        setIngredient01={setIngredient01} handleClickIngredientForm={handleClickIngredientForm} 
+        handleIngredientChange={handleIngredientChange} handleAmountChange={handleAmountChange} handleUnitChange={handleUnitChange}
+        num={num} ingredient02={ingredient02} ingredient03={ingredient03} setIngredient02={setIngredient02} setIngredient03={setIngredient03} />;
         setIngredientForm([...ingredientForm, newIngredientForm]);
         increaseNum();
 
@@ -268,11 +281,13 @@ function SignatureJoin(props) {
         };
     };
 
+
     // IngredientForm을 저장할 공간
     const [ingredientForm, setIngredientForm] = useState([<IngredientForm key={0} ingredient01={ingredient01} ingredient={ingredient} 
         setIngredient01={setIngredient01} handleClickIngredientForm={handleClickIngredientForm} 
         handleIngredientChange={handleIngredientChange} handleAmountChange={handleAmountChange} handleUnitChange={handleUnitChange}
         num={num} ingredient02={ingredient02} ingredient03={ingredient03} setIngredient02={setIngredient02} setIngredient03={setIngredient03} />]);
+
 
     // handleSumit 이벤트
     const handleSubmit = async (e) => {
@@ -380,6 +395,10 @@ function SignatureJoin(props) {
         }
     };
 
+    useEffect(() => {
+        setSignature(signature);
+    }, []);
+
     return (
         <div className="signature-join-container">
             <div className="signature-join-banner">
@@ -391,7 +410,6 @@ function SignatureJoin(props) {
                 <div style={{gridColumn:'3/4', color:'rgb(110, 110, 110)', marginTop:'30px'}}>♥좋아요♥를 많이 받게되면 <br /> 모여Bar 가이드에 정식 레시피로 등록됩니다. 매력적인 칵테일을 소개해주세요!</div>
             </div>
             <div className="signature-join-contents">
-                {/* 영문이름 grid 150px */}
                 <form style={{display:'grid', gridTemplateRows:'1fr 150px 150px 280px 1fr 1fr', rowGap:'20px'}} onSubmit={handleSubmit}>
                     <div>
                         <h3>칵테일 사진 ▼</h3>
@@ -429,52 +447,82 @@ function SignatureJoin(props) {
                             </div>
                         </div>
                     </div>
+
                     <label>
                         <h3>칵테일 이름 ▼</h3>
                         <input type="text" placeholder="이름을 지어주세요:)" className="signature-join-contents-2" name='cocktailName' value={signatureJoin.cocktailName} onChange={handleSignatureJoinChange}></input>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.cocktailName.length}/50</p>
                     </label>
+
                     <label>
                         <h3>칵테일 영문이름 ▼</h3>
                         <input type="text" placeholder="영문이름을 지어주세요:)" className="signature-join-contents-2" name='engName' value={signatureJoin.engName} onChange={handleSignatureJoinChange}></input>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.engName.length}/50</p>
                     </label>
+
                     <label>
                         <h3>칵테일 설명 ▼</h3>
                         <textarea placeholder="칵테일 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='cocktailContents' value={signatureJoin.cocktailContents} onChange={handleSignatureJoinChange}></textarea>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.cocktailContents.length}/200</p>
                     </label>
-                    {/* {<IngredientForm ingredient01={ingredient01} ingredient={ingredient} setIngredient01={setIngredient01} />} */}
+
                     {
-                    ingredientForm.map(function(a, i) {
-                      return (
-                        <label key={i}>
-                            <h3>재료 정보{ingredient01.length} ▼</h3>
-                            <div className="signature-ingredient-container">
-                                <div><h3>재료{i + 1}</h3></div>
-                                <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => handleIngredientChange(e)} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
-                                <div><input type="text" value={a.amount} onChange={(e) => handleAmountChange(e)} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
-                                <div><input type="text" value={a.unit} onChange={(e) => handleUnitChange(e)} placeholder="단위" className="signature-ingredient-contents-1"></input></div>
-                            </div>
-                            <button type='button' onClick={handleClickIngredientForm} className="signature-ingredient-contents-btn">재료추가</button>
-                        </label>
-                      )
-                    })
+                    ingredientForm.map(form => form)
+                    //   return (
+                    //     <label key={i}>
+                    //         <h3>재료 정보{ingredient01.length} ▼</h3>
+                    //         <div className="signature-ingredient-container">
+                    //             <div><h3>재료{i + 1}</h3></div>
+                    //             <div style={{gridColumn:'1/3'}}><input type="text" onChange={(e) => handleIngredientChange(e)} placeholder="재료 이름을 검색해주세요" className="signature-ingredient-contents-1" style={{width:'98.3%'}}></input></div>
+                    //             <div><input type="text" value={a.amount} onChange={(e) => handleAmountChange(e)} placeholder="용량" className="signature-ingredient-contents-1"></input></div>
+                    //             <div onClick={handleUnitModelOpen} className="signature-ingredient-contents-1" style={{backgroundColor:'white', height:'17px', cursor:'pointer'}}>
+                    //                 <span style={{color:'gray'}}>단위</span>
+                    //             </div>
+                    //             {
+                    //             isUnitModalOpen && <UnitModal handleUnitModalOpen={handleUnitModalOpen} handleUnitModalClose={handleUnitModalClose} />
+                    //             }
+                    //         </div>
+                    //         <button type='button' onClick={handleClickIngredientForm} className="signature-ingredient-contents-btn">재료추가</button>
+                    //     </label>
+                    //   )
                     }
+                    {/* <button type='button' onClick={handleClickIngredientForm} className="signature-ingredient-contents-btn">재료추가</button> */}
+                    
+
                     <label>
                         <h3>레시피 정보 ▼</h3>
-                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)
-                        1. 첫번째 레시피정보
-                        2. 두번째 레시피정보
-                        3. 세번째 레시피정보
-                        ..........
-                        .........." spellCheck="false" className="signature-join-contents-2 signature-textarea" name='recipeContents' value={signatureJoin.recipeContents} onChange={handleSignatureJoinChange}></textarea>
+                        <textarea placeholder="레시피에 대한 설명을 적어주세요:)" spellCheck="false" className="signature-join-contents-2 signature-textarea" name='recipeContents' value={signatureJoin.recipeContents} onChange={handleSignatureJoinChange}></textarea>
                         <p style={{textAlign:'right', marginTop:'5px'}}>{signatureJoin.recipeContents.length}/200</p>
                     </label>
                     <div>
                         <button type='submit' className="signature-contents-btn">업로드</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    )
+}
+
+// 단위 모달
+function UnitModal(props) {
+    const {handleUnitModalOpen, handleUnitModalClose} = props;
+
+    // 모달창 이외의 부분 클릭시 모달창 닫기
+    if (!handleUnitModalOpen) return null;
+
+    return (
+        <div>
+            <div className="overlay" onClick={handleUnitModalClose}></div>
+            <div className='signature-contents-unit-modal' style={{display:'grid', gridTemplateRows:'1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr'}}>
+                <div onClick={handleUnitModalClose}>ml</div>
+                <div onClick={handleUnitModalClose}>dash</div>
+                <div onClick={handleUnitModalClose}>teaspoon</div>
+                <div onClick={handleUnitModalClose}>drops</div>
+                <div onClick={handleUnitModalClose}>gram</div>
+                <div onClick={handleUnitModalClose}>개</div>
+                <div onClick={handleUnitModalClose}>slice</div>
+                <div onClick={handleUnitModalClose}>peel</div>
+                <div onClick={handleUnitModalClose} style={{borderBottom:'none'}}>leaves</div>
             </div>
         </div>
     )

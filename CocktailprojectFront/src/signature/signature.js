@@ -11,7 +11,7 @@ function Signature(props) {
     
     useEffect(() => {
         getSignature(setSignature);
-      }, []);
+    }, []);
 
     return (
     <>
